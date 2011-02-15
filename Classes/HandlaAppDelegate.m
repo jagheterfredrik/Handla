@@ -7,7 +7,8 @@
 //
 
 #import "HandlaAppDelegate.h"
-
+#import "ListsViewController.h"
+#import "BudgetViewController.h"
 
 @implementation HandlaAppDelegate
 
@@ -20,7 +21,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
-    
+	listsViewController.managedObjectContext = [self managedObjectContext];
+	budgetViewController.managedObjectContext = [self managedObjectContext];
+    [window addSubview:tabBarController.view];
     [self.window makeKeyAndVisible];
     
     return YES;

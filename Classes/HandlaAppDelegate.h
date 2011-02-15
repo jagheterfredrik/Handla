@@ -9,9 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+@class ListsViewController;
+@class BudgetViewController;
+
 @interface HandlaAppDelegate : NSObject <UIApplicationDelegate> {
     
     UIWindow *window;
+	IBOutlet UITabBarController *tabBarController;
+	IBOutlet ListsViewController *listsViewController;
+	IBOutlet BudgetViewController *budgetViewController;
     
 @private
     NSManagedObjectContext *managedObjectContext_;

@@ -15,6 +15,8 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		4848B960130AA95300702E2D /* ListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848B95F130AA95300702E2D /* ListsViewController.m */; };
+		4848B9C5130AB22100702E2D /* BudgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848B9C4130AB22100702E2D /* BudgetViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,10 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Handla_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Handla_Prefix.pch; sourceTree = "<group>"; };
+		4848B95E130AA95300702E2D /* ListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListsViewController.h; sourceTree = "<group>"; };
+		4848B95F130AA95300702E2D /* ListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListsViewController.m; sourceTree = "<group>"; };
+		4848B9C3130AB22100702E2D /* BudgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BudgetViewController.h; sourceTree = "<group>"; };
+		4848B9C4130AB22100702E2D /* BudgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BudgetViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Handla-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Handla-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,6 +58,10 @@
 			children = (
 				1D3623240D0F684500981E51 /* HandlaAppDelegate.h */,
 				1D3623250D0F684500981E51 /* HandlaAppDelegate.m */,
+				4848B95E130AA95300702E2D /* ListsViewController.h */,
+				4848B95F130AA95300702E2D /* ListsViewController.m */,
+				4848B9C3130AB22100702E2D /* BudgetViewController.h */,
+				4848B9C4130AB22100702E2D /* BudgetViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -169,6 +179,8 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* HandlaAppDelegate.m in Sources */,
 				28193060112F816700ECF9B4 /* Handla.xcdatamodeld in Sources */,
+				4848B960130AA95300702E2D /* ListsViewController.m in Sources */,
+				4848B9C5130AB22100702E2D /* BudgetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
