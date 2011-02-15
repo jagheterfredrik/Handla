@@ -18,11 +18,14 @@
 #pragma mark -
 #pragma mark Application lifecycle
 
+- (void)awakeFromNib {
+	listsViewController.managedObjectContext = self.managedObjectContext;
+	budgetViewController.managedObjectContext = self.managedObjectContext;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
-	listsViewController.managedObjectContext = [self managedObjectContext];
-	budgetViewController.managedObjectContext = [self managedObjectContext];
     [window addSubview:tabBarController.view];
     [self.window makeKeyAndVisible];
     

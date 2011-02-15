@@ -7,155 +7,99 @@
 //
 
 #import "ListsViewController.h"
-
+#import "AlertPrompt.h"
+#import "List.h"
+#import "ListArticle.h"
+#import "IndividualListViewController.h"
 
 @implementation ListsViewController
 
-@synthesize managedObjectContext;
+@synthesize managedObjectContext=managedObjectContext_;
 
 #pragma mark -
-#pragma mark Initialization
+#pragma mark Core data table view overrides
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization.
-    }
-    return self;
+- (void)managedObjectSelected:(NSManagedObject *)managedObject
+{
+	IndividualListViewController *individualListViewController = [[IndividualListViewController alloc] initWithList:(List*)managedObject];
+	[self.navigationController pushViewController:individualListViewController animated:YES];
+	[individualListViewController release];
 }
-*/
+
+- (BOOL)canDeleteManagedObject:(NSManagedObject *)managedObject {
+	return YES;
+}
+
+- (void)deleteManagedObject:(NSManagedObject *)managedObject {
+	//Remove all articles
+	NSSet *articles = ((List*)managedObject).articles;
+	for (ListArticle *listArticle in articles) {
+		[managedObjectContext_ deleteObject:listArticle];
+	}
+	//Remove the list
+	[managedObjectContext_ deleteObject:managedObject];
+}
 
 
 #pragma mark -
 #pragma mark View lifecycle
 
-/*
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // Add an add-button to the right on the navigationbar
+	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createList)];
+	self.navigationItem.rightBarButtonItem = addButton;
+	[addButton release];
+	
+	// Add an edit-button to the left on the navigationbar
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+	
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	request.entity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext_];
+	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
+																					 ascending:YES
+																					  selector:@selector(caseInsensitiveCompare:)]];
+	request.predicate = nil;
+	request.fetchBatchSize = 20;
+	
+	NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
+									   initWithFetchRequest:request
+									   managedObjectContext:managedObjectContext_
+									   sectionNameKeyPath:nil
+									   cacheName:nil];
+	frc.delegate = self;
+	
+	[request release];
+	
+	[self setFetchedResultsController:frc];
+	[frc release];
+	
+	self.titleKey = @"name";
+	self.searchKey = @"name";
 }
-*/
-
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
 
 #pragma mark -
-#pragma mark Table view data source
+#pragma mark Events
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 1;
+// Called when the add button is pressed
+- (void)createList {
+	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp din lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Lägg till"];
+	[alertPrompt show];
 }
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return 1;
-}
-
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    
-    // Configure the cell...
-	cell.textLabel.text = @"Test";
-    
-    return cell;
-}
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 #pragma mark -
-#pragma mark Table view delegate
+#pragma mark Alert prompt delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-    */
+#define alertViewButtonOK 1
+
+- (void)alertView:(AlertPrompt *)alertPrompt clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == alertViewButtonOK) {
+		List *list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:self.managedObjectContext];
+		list.name = alertPrompt.textField.text;
+		list.creationDate = [NSDate date];
+	}
 }
-
 
 #pragma mark -
 #pragma mark Memory management

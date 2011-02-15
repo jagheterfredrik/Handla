@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataTableViewController.h"
 
+@interface ListsViewController : CoreDataTableViewController<UIAlertViewDelegate> {
 
-@interface ListsViewController : UITableViewController {
-	NSManagedObjectContext *managedObjectContext;
+@private
+    NSManagedObjectContext *managedObjectContext_;
 }
+
+- (void)createList;
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
