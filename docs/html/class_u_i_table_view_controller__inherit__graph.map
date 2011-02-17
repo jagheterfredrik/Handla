@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$interface_add_budget_post_view_controller.html" title="AddBudgetPostViewController" alt="" coords="5,83,232,112"/>
+<area shape="rect" id="node5" href="$interface_budget_view_controller.html" title="BudgetViewController" alt="" coords="256,83,427,112"/>
+<area shape="rect" id="node7" href="$interface_core_data_table_view_controller.html" title="CoreDataTableViewController" alt="" coords="451,83,672,112"/>
+<area shape="rect" id="node9" href="$interface_add_article_list_view_controller.html" title="AddArticleListViewController" alt="" coords="221,160,435,189"/>
+<area shape="rect" id="node11" href="$interface_individual_list_view_controller.html" title="IndividualListViewController" alt="" coords="459,160,664,189"/>
+<area shape="rect" id="node13" href="$interface_lists_view_controller.html" title="ListsViewController" alt="" coords="688,160,840,189"/>
+</map>

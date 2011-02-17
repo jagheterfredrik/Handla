@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$interface_article.html" title="Article" alt="" coords="5,83,72,112"/>
+<area shape="rect" id="node5" href="$interface_budget_post.html" title="BudgetPost" alt="" coords="96,83,197,112"/>
+<area shape="rect" id="node7" href="$interface_list.html" title="List" alt="" coords="221,83,267,112"/>
+<area shape="rect" id="node9" href="$interface_list_article.html" title="ListArticle" alt="" coords="291,83,381,112"/>
+</map>
