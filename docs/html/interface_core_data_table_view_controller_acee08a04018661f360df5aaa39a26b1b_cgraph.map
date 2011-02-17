@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$interface_core_data_table_view_controller.html#a8a4ea92b35c45fcc790d9762517a50af" title="&#45;[CoreDataTableViewController deleteManagedObject:]" alt="" coords="697,5,1095,35"/>
+<area shape="rect" id="node5" href="$interface_core_data_table_view_controller.html#a3be1069bd20911667af080d5d4b88357" title="&#45;[CoreDataTableViewController fetchedResultsControllerForTableView:]" alt="" coords="644,59,1148,88"/>
+<area shape="rect" id="node7" href="$interface_core_data_table_view_controller.html#a95673568e6e1a4e1d27c485a17250338" title="&#45;[CoreDataTableViewController performFetchForTableView:]" alt="" coords="1197,59,1624,88"/>
+</map>

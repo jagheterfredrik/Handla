@@ -56,6 +56,14 @@ Collaboration diagram for ListsViewController:</div>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_lists_view_controller.html#ac7468cfccdc743897596315fbc1482b3">createList</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_lists_view_controller.html#a52433abb80429095e7966b9602177265">managedObjectSelected:</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_lists_view_controller.html#a7dbc58d84d9b6229489a10d267c110ed">canDeleteManagedObject:</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_lists_view_controller.html#a1217d0f37fa480a4f9c6c3456e5731ed">deleteManagedObject:</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_lists_view_controller.html#ace65f211edf525cba2a0b7596eebdf35">viewDidLoad</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_lists_view_controller.html#a99a73e9abec2561c590937692e5b15d2">alertView:clickedButtonAtIndex:</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_lists_view_controller.html#a35562f47b19df0a10df96f766e6297de">didReceiveMemoryWarning</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_lists_view_controller.html#ae31030992d03e58fe48fcdce958a28d1">viewDidUnload</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_lists_view_controller.html#a8d58f5c6e5ce129170d872f9fee9499b">dealloc</a><code> [implementation]</code></td></tr>
 <tr><td colspan="2"><h2><a name="properties"></a>
 Properties</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSManagedObjectContext *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_lists_view_controller.html#a3c284fc6e961452e089cd7f14e9b4a3e">managedObjectContext</a></td></tr>
@@ -67,6 +75,55 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_lists_view_controller_8h_source.html#l00012">12</a> of file <a class="el" href="_lists_view_controller_8h_source.html">ListsViewController.h</a>.</p>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a99a73e9abec2561c590937692e5b15d2"></a><!-- doxytag: member="ListsViewController::alertView:clickedButtonAtIndex:" ref="a99a73e9abec2561c590937692e5b15d2" args="(AlertPrompt *alertPrompt,[clickedButtonAtIndex] NSInteger buttonIndex)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) alertView: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="interface_alert_prompt.html">AlertPrompt</a> *)&nbsp;</td>
+          <td class="paramname"> <em>alertPrompt</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">clickedButtonAtIndex:</td>
+          <td></td>
+          <td class="paramtype">(NSInteger)&nbsp;</td>
+          <td class="paramname"> <em>buttonIndex</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_lists_view_controller_8m_source.html#l00096">96</a> of file <a class="el" href="_lists_view_controller_8m_source.html">ListsViewController.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7dbc58d84d9b6229489a10d267c110ed"></a><!-- doxytag: member="ListsViewController::canDeleteManagedObject:" ref="a7dbc58d84d9b6229489a10d267c110ed" args="(NSManagedObject *managedObject)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) canDeleteManagedObject: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="class_n_s_managed_object.html">NSManagedObject</a> *)&nbsp;</td>
+          <td class="paramname"> <em>managedObject</em></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_lists_view_controller_8m_source.html#l00029">29</a> of file <a class="el" href="_lists_view_controller_8m_source.html">ListsViewController.m</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ac7468cfccdc743897596315fbc1482b3"></a><!-- doxytag: member="ListsViewController::createList" ref="ac7468cfccdc743897596315fbc1482b3" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -83,6 +140,140 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="_lists_view_controller_8m_source.html#l00086">86</a> of file <a class="el" href="_lists_view_controller_8m_source.html">ListsViewController.m</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="interface_lists_view_controller_ac7468cfccdc743897596315fbc1482b3_cgraph.png" border="0" usemap="#interface_lists_view_controller_ac7468cfccdc743897596315fbc1482b3_cgraph" alt=""/></div>
+<map name="interface_lists_view_controller_ac7468cfccdc743897596315fbc1482b3_cgraph" id="interface_lists_view_controller_ac7468cfccdc743897596315fbc1482b3_cgraph">
+<area shape="rect" id="node3" href="interface_alert_prompt.html#a5956e98e52f1f7ee7fe3b030452299c5" title="&#45;[AlertPrompt show]" alt="" coords="297,5,455,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a8d58f5c6e5ce129170d872f9fee9499b"></a><!-- doxytag: member="ListsViewController::dealloc" ref="a8d58f5c6e5ce129170d872f9fee9499b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) dealloc </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_lists_view_controller_8m_source.html#l00120">120</a> of file <a class="el" href="_lists_view_controller_8m_source.html">ListsViewController.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1217d0f37fa480a4f9c6c3456e5731ed"></a><!-- doxytag: member="ListsViewController::deleteManagedObject:" ref="a1217d0f37fa480a4f9c6c3456e5731ed" args="(NSManagedObject *managedObject)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) deleteManagedObject: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="class_n_s_managed_object.html">NSManagedObject</a> *)&nbsp;</td>
+          <td class="paramname"> <em>managedObject</em></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_lists_view_controller_8m_source.html#l00033">33</a> of file <a class="el" href="_lists_view_controller_8m_source.html">ListsViewController.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a35562f47b19df0a10df96f766e6297de"></a><!-- doxytag: member="ListsViewController::didReceiveMemoryWarning" ref="a35562f47b19df0a10df96f766e6297de" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) didReceiveMemoryWarning </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_lists_view_controller_8m_source.html#l00107">107</a> of file <a class="el" href="_lists_view_controller_8m_source.html">ListsViewController.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a52433abb80429095e7966b9602177265"></a><!-- doxytag: member="ListsViewController::managedObjectSelected:" ref="a52433abb80429095e7966b9602177265" args="(NSManagedObject *managedObject)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) managedObjectSelected: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="class_n_s_managed_object.html">NSManagedObject</a> *)&nbsp;</td>
+          <td class="paramname"> <em>managedObject</em></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_lists_view_controller_8m_source.html#l00022">22</a> of file <a class="el" href="_lists_view_controller_8m_source.html">ListsViewController.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ace65f211edf525cba2a0b7596eebdf35"></a><!-- doxytag: member="ListsViewController::viewDidLoad" ref="ace65f211edf525cba2a0b7596eebdf35" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) viewDidLoad </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_lists_view_controller_8m_source.html#l00047">47</a> of file <a class="el" href="_lists_view_controller_8m_source.html">ListsViewController.m</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="interface_lists_view_controller_ace65f211edf525cba2a0b7596eebdf35_cgraph.png" border="0" usemap="#interface_lists_view_controller_ace65f211edf525cba2a0b7596eebdf35_cgraph" alt=""/></div>
+<map name="interface_lists_view_controller_ace65f211edf525cba2a0b7596eebdf35_cgraph" id="interface_lists_view_controller_ace65f211edf525cba2a0b7596eebdf35_cgraph">
+<area shape="rect" id="node3" href="interface_core_data_table_view_controller.html#ace0d05e4ff275ce16f99accbc2dfc02b" title="&#45;[CoreDataTableViewController setFetchedResultsController:]" alt="" coords="312,5,755,35"/><area shape="rect" id="node5" href="interface_core_data_table_view_controller.html#a95673568e6e1a4e1d27c485a17250338" title="&#45;[CoreDataTableViewController performFetchForTableView:]" alt="" coords="803,5,1229,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ae31030992d03e58fe48fcdce958a28d1"></a><!-- doxytag: member="ListsViewController::viewDidUnload" ref="ae31030992d03e58fe48fcdce958a28d1" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) viewDidUnload </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_lists_view_controller_8m_source.html#l00114">114</a> of file <a class="el" href="_lists_view_controller_8m_source.html">ListsViewController.m</a>.</p>
 
 </div>
 </div>
@@ -123,7 +314,7 @@ Private Attributes</h2></td></tr>
 <li><a class="el" href="_lists_view_controller_8m_source.html">ListsViewController.m</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 17 2011 13:23:36 for Handla by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 17 2011 17:37:34 for Handla by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

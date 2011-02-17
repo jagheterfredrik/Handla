@@ -106,20 +106,20 @@
 <a name="l00077"></a>00077 
 <a name="l00078"></a>00078 
 <a name="l00079"></a>00079 <span class="preprocessor">#pragma mark -</span>
-<a name="l00080"></a>00080 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Table view data source</span>
+<a name="l00080"></a><a class="code" href="interface_add_article_list_view_controller.html#a98590daa05a770b7acbf0bb5e64282ca">00080</a> <span class="preprocessor"></span><span class="preprocessor">#pragma mark Table view data source</span>
 <a name="l00081"></a>00081 <span class="preprocessor"></span>
 <a name="l00082"></a>00082 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 <a name="l00083"></a>00083     <span class="comment">// Return the number of sections.</span>
 <a name="l00084"></a>00084     <span class="keywordflow">return</span> 1;
 <a name="l00085"></a>00085 }
-<a name="l00086"></a>00086 
+<a name="l00086"></a><a class="code" href="interface_add_article_list_view_controller.html#a1ea1565e51a92a2dc9748c5cfc7d541e">00086</a> 
 <a name="l00087"></a>00087 
 <a name="l00088"></a>00088 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 <a name="l00089"></a>00089     <span class="comment">// Return the number of rows in the section.</span>
 <a name="l00090"></a>00090     <span class="keywordflow">return</span> 0;
 <a name="l00091"></a>00091 }
 <a name="l00092"></a>00092 
-<a name="l00093"></a>00093 
+<a name="l00093"></a><a class="code" href="interface_add_article_list_view_controller.html#a3f2f5e8c4b3dbd2c3eda2bbf8ac578ea">00093</a> 
 <a name="l00094"></a>00094 <span class="comment">// Customize the appearance of table view cells.</span>
 <a name="l00095"></a>00095 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 <a name="l00096"></a>00096     
@@ -177,7 +177,7 @@
 <a name="l00148"></a>00148 
 <a name="l00149"></a>00149 
 <a name="l00150"></a>00150 <span class="preprocessor">#pragma mark -</span>
-<a name="l00151"></a>00151 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Table view delegate</span>
+<a name="l00151"></a><a class="code" href="interface_add_article_list_view_controller.html#a2b36052b662449d02d19567912486eb3">00151</a> <span class="preprocessor"></span><span class="preprocessor">#pragma mark Table view delegate</span>
 <a name="l00152"></a>00152 <span class="preprocessor"></span>
 <a name="l00153"></a>00153 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 <a name="l00154"></a>00154     <span class="comment">// Navigation logic may go here. Create and push another view controller.</span>
@@ -192,23 +192,23 @@
 <a name="l00163"></a>00163 
 <a name="l00164"></a>00164 
 <a name="l00165"></a>00165 <span class="preprocessor">#pragma mark -</span>
-<a name="l00166"></a>00166 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Memory management</span>
+<a name="l00166"></a><a class="code" href="interface_add_article_list_view_controller.html#aa6d39e3b477349ec7b6f0b99a65dc785">00166</a> <span class="preprocessor"></span><span class="preprocessor">#pragma mark Memory management</span>
 <a name="l00167"></a>00167 <span class="preprocessor"></span>
-<a name="l00168"></a>00168 - (void)didReceiveMemoryWarning {
+<a name="l00168"></a>00168 - (void)<a class="code" href="interface_add_article_list_view_controller.html#aa6d39e3b477349ec7b6f0b99a65dc785">didReceiveMemoryWarning</a> {
 <a name="l00169"></a>00169     <span class="comment">// Releases the view if it doesn&#39;t have a superview.</span>
 <a name="l00170"></a>00170     [<span class="keyword">super</span> didReceiveMemoryWarning];
 <a name="l00171"></a>00171     
 <a name="l00172"></a>00172     <span class="comment">// Relinquish ownership any cached data, images, etc. that aren&#39;t in use.</span>
-<a name="l00173"></a>00173 }
+<a name="l00173"></a><a class="code" href="interface_add_article_list_view_controller.html#a27f829ebf36b1f7605d35df15111b494">00173</a> }
 <a name="l00174"></a>00174 
-<a name="l00175"></a>00175 - (void)viewDidUnload {
+<a name="l00175"></a>00175 - (void)<a class="code" href="interface_add_article_list_view_controller.html#a27f829ebf36b1f7605d35df15111b494">viewDidUnload</a> {
 <a name="l00176"></a>00176     <span class="comment">// Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.</span>
 <a name="l00177"></a>00177     <span class="comment">// For example: self.myOutlet = nil;</span>
 <a name="l00178"></a>00178 }
-<a name="l00179"></a>00179 
+<a name="l00179"></a><a class="code" href="interface_add_article_list_view_controller.html#abe21a103aca12a7917d255bc540a282a">00179</a> 
 <a name="l00180"></a>00180 
-<a name="l00181"></a>00181 - (void)dealloc {
-<a name="l00182"></a>00182     [<span class="keyword">super</span> dealloc];
+<a name="l00181"></a>00181 - (void)<a class="code" href="interface_add_article_list_view_controller.html#abe21a103aca12a7917d255bc540a282a">dealloc</a> {
+<a name="l00182"></a>00182     [<span class="keyword">super</span> <a class="code" href="interface_core_data_table_view_controller.html#a6b574a22198292222a0e92b802306038">dealloc</a>];
 <a name="l00183"></a>00183 }
 <a name="l00184"></a>00184 
 <a name="l00185"></a>00185 
@@ -216,7 +216,7 @@
 <a name="l00187"></a>00187 
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 17 2011 13:23:35 for Handla by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 17 2011 17:37:33 for Handla by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

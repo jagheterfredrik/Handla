@@ -69,7 +69,7 @@
 <a name="l00040"></a>00040                 
 <a name="l00041"></a>00041                 [request release];
 <a name="l00042"></a>00042                 
-<a name="l00043"></a>00043                 [<span class="keyword">self</span> setFetchedResultsController:frc];
+<a name="l00043"></a>00043                 [<span class="keyword">self</span> <a class="code" href="interface_core_data_table_view_controller.html#ace0d05e4ff275ce16f99accbc2dfc02b">setFetchedResultsController</a>:frc];
 <a name="l00044"></a>00044                 [frc release];
 <a name="l00045"></a>00045                 
 <a name="l00046"></a>00046                 <span class="keyword">self</span>.titleKey = <span class="stringliteral">@&quot;article.name&quot;</span>;
@@ -78,11 +78,11 @@
 <a name="l00049"></a>00049         <span class="keywordflow">return</span> <span class="keyword">self</span>;
 <a name="l00050"></a>00050 }
 <a name="l00051"></a>00051 
-<a name="l00052"></a>00052 <span class="preprocessor">#pragma mark -</span>
+<a name="l00052"></a><a class="code" href="interface_individual_list_view_controller.html#a1c280d37975b4daff695360f1f5281ea">00052</a> <span class="preprocessor">#pragma mark -</span>
 <a name="l00053"></a>00053 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Core data table view overrides</span>
 <a name="l00054"></a>00054 <span class="preprocessor"></span>
 <a name="l00055"></a>00055 - (BOOL)canDeleteManagedObject:(<a class="code" href="class_n_s_managed_object.html">NSManagedObject</a> *)managedObject {
-<a name="l00056"></a>00056         <span class="keywordflow">return</span> YES;
+<a name="l00056"></a><a class="code" href="interface_individual_list_view_controller.html#ad31fef1b0a7ab0a6695fbec50d429e05">00056</a>         <span class="keywordflow">return</span> YES;
 <a name="l00057"></a>00057 }
 <a name="l00058"></a>00058 
 <a name="l00059"></a>00059 - (void)deleteManagedObject:(<a class="code" href="class_n_s_managed_object.html">NSManagedObject</a> *)managedObject {
@@ -92,10 +92,10 @@
 <a name="l00063"></a>00063 }
 <a name="l00064"></a>00064 
 <a name="l00065"></a>00065 <span class="preprocessor">#pragma mark -</span>
-<a name="l00066"></a>00066 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Events</span>
+<a name="l00066"></a><a class="code" href="interface_individual_list_view_controller.html#addd1c85a9548dca3e819425740c5a88e">00066</a> <span class="preprocessor"></span><span class="preprocessor">#pragma mark Events</span>
 <a name="l00067"></a>00067 <span class="preprocessor"></span>
 <a name="l00068"></a>00068 <span class="comment">// Called when the add button is pressed</span>
-<a name="l00069"></a>00069 - (void)addArticle {
+<a name="l00069"></a>00069 - (void)<a class="code" href="interface_individual_list_view_controller.html#addd1c85a9548dca3e819425740c5a88e">addArticle</a> {
 <a name="l00070"></a>00070 <span class="comment">/*      AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@&quot;Lägg till vara&quot; delegate:self cancelButtonTitle:@&quot;Avbryt&quot; okButtonTitle:@&quot;Lägg till&quot;];</span>
 <a name="l00071"></a>00071 <span class="comment">        [alertPrompt show];*/</span>
 <a name="l00072"></a>00072         <a class="code" href="interface_add_article_list_view_controller.html">AddArticleListViewController</a> *addArticleListViewController = [[<a class="code" href="interface_add_article_list_view_controller.html">AddArticleListViewController</a> alloc] initInManagedObjectContext:list_.managedObjectContext];
@@ -106,7 +106,7 @@
 <a name="l00077"></a>00077 
 <a name="l00078"></a><a class="code" href="_individual_list_view_controller_8m.html#a5aa52868c92c352067d9dc02dd1662be">00078</a> <span class="preprocessor">#pragma mark -</span>
 <a name="l00079"></a>00079 <span class="preprocessor"></span><span class="preprocessor">#pragma mark Alert prompt delegate</span>
-<a name="l00080"></a>00080 <span class="preprocessor"></span>
+<a name="l00080"></a><a class="code" href="interface_individual_list_view_controller.html#aa795595da31a4a7340ef529814e4b71e">00080</a> <span class="preprocessor"></span>
 <a name="l00081"></a>00081 <span class="preprocessor">#define alertViewButtonOK 1</span>
 <a name="l00082"></a>00082 <span class="preprocessor"></span>
 <a name="l00083"></a>00083 - (void)alertView:(<a class="code" href="interface_alert_prompt.html">AlertPrompt</a> *)alertPrompt clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -116,24 +116,24 @@
 <a name="l00087"></a>00087                 <a class="code" href="interface_list_article.html">ListArticle</a> *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@&quot;ListArticle&quot; inManagedObjectContext:list_.managedObjectContext];
 <a name="l00088"></a>00088                 listArticle.<a class="code" href="interface_list_article.html#af627983fb60c9e4a2d73f20cb5915832">article</a> = article;
 <a name="l00089"></a>00089                 listArticle.<a class="code" href="interface_list_article.html#a01cc369bd19f1c8b767db4ed2ddc3d81">list</a> = <a class="code" href="interface_individual_list_view_controller.html#a3f268d67dc02b98dd8a058b11a782173">list_</a>;
-<a name="l00090"></a>00090         }
+<a name="l00090"></a><a class="code" href="interface_individual_list_view_controller.html#a05a39875d471404563f002a10f3d6512">00090</a>         }
 <a name="l00091"></a>00091 }
 <a name="l00092"></a>00092 
-<a name="l00093"></a>00093 - (void)didReceiveMemoryWarning {
+<a name="l00093"></a>00093 - (void)<a class="code" href="interface_individual_list_view_controller.html#a05a39875d471404563f002a10f3d6512">didReceiveMemoryWarning</a> {
 <a name="l00094"></a>00094     <span class="comment">// Releases the view if it doesn&#39;t have a superview.</span>
 <a name="l00095"></a>00095     [<span class="keyword">super</span> didReceiveMemoryWarning];
 <a name="l00096"></a>00096     
-<a name="l00097"></a>00097     <span class="comment">// Release any cached data, images, etc. that aren&#39;t in use.</span>
+<a name="l00097"></a><a class="code" href="interface_individual_list_view_controller.html#a91a5eeb3e50bc2f23856705f532b0fc2">00097</a>     <span class="comment">// Release any cached data, images, etc. that aren&#39;t in use.</span>
 <a name="l00098"></a>00098 }
 <a name="l00099"></a>00099 
-<a name="l00100"></a>00100 - (void)viewDidUnload {
+<a name="l00100"></a>00100 - (void)<a class="code" href="interface_individual_list_view_controller.html#a91a5eeb3e50bc2f23856705f532b0fc2">viewDidUnload</a> {
 <a name="l00101"></a>00101     [<span class="keyword">super</span> viewDidUnload];
 <a name="l00102"></a>00102     <span class="comment">// Release any retained subviews of the main view.</span>
 <a name="l00103"></a>00103     <span class="comment">// e.g. self.myOutlet = nil;</span>
-<a name="l00104"></a>00104 }
+<a name="l00104"></a><a class="code" href="interface_individual_list_view_controller.html#afc0d19630413973c690e0714042c77bf">00104</a> }
 <a name="l00105"></a>00105 
 <a name="l00106"></a>00106 
-<a name="l00107"></a>00107 - (void)dealloc {
+<a name="l00107"></a>00107 - (void)<a class="code" href="interface_individual_list_view_controller.html#afc0d19630413973c690e0714042c77bf">dealloc</a> {
 <a name="l00108"></a>00108     [<span class="keyword">super</span> dealloc];
 <a name="l00109"></a>00109 }
 <a name="l00110"></a>00110 
@@ -141,7 +141,7 @@
 <a name="l00112"></a>00112 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 17 2011 13:23:35 for Handla by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 17 2011 17:37:33 for Handla by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

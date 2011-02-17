@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$interface_core_data_table_view_controller.html#a3be1069bd20911667af080d5d4b88357" title="&#45;[CoreDataTableViewController fetchedResultsControllerForTableView:]" alt="" coords="532,5,1036,35"/>
+<area shape="rect" id="node7" href="$interface_core_data_table_view_controller.html#a233f44c57738b64ce90fa647acff8c83" title="&#45;[CoreDataTableViewController tableView:cellForManagedObject:]" alt="" coords="549,59,1019,88"/>
+<area shape="rect" id="node5" href="$interface_core_data_table_view_controller.html#a95673568e6e1a4e1d27c485a17250338" title="&#45;[CoreDataTableViewController performFetchForTableView:]" alt="" coords="1113,5,1540,35"/>
+<area shape="rect" id="node9" href="$interface_core_data_table_view_controller.html#ad58bf532b4506ec01f6c0b4732a725b0" title="&#45;[CoreDataTableViewController accessoryTypeForManagedObject:]" alt="" coords="1089,59,1564,88"/>
+<area shape="rect" id="node11" href="$interface_core_data_table_view_controller.html#a16a87338a529fdea3888a760b18c1f1b" title="&#45;[CoreDataTableViewController thumbnailImageForManagedObject:]" alt="" coords="1085,112,1568,141"/>
+</map>

@@ -58,6 +58,15 @@ Collaboration diagram for HandlaAppDelegate:</div>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(NSURL *)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_handla_app_delegate.html#a31ac0ef35db74d2f89b1f3c5a73ab46c">applicationDocumentsDirectory</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_handla_app_delegate.html#a574adb4a9ea01fd5108bbb693a780426">saveContext</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_handla_app_delegate.html#a3c99cf331bfd7015e2643a2e268f109f">awakeFromNib</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_handla_app_delegate.html#a6a8277ecbc73209d14ac97160c5ccda2">application:didFinishLaunchingWithOptions:</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_handla_app_delegate.html#a5705a9e7c85deebe1c069dd0694001dd">applicationWillResignActive:</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_handla_app_delegate.html#aa659f1da2a0cc3db7b8b6102ccf9619c">applicationDidEnterBackground:</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_handla_app_delegate.html#a7d753482ea181808d4fc631c9c4d5b66">applicationWillEnterForeground:</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_handla_app_delegate.html#adfbec61a5d2c9cee6a5706b07c6b977f">applicationDidBecomeActive:</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_handla_app_delegate.html#af7f6b56b36f8917b65e1a554e8a18ec7">applicationWillTerminate:</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_handla_app_delegate.html#a84a51f72ba7fd7dbb4cb5e68cd7e9ba0">applicationDidReceiveMemoryWarning:</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_handla_app_delegate.html#a95e99b44d1f5193c860f337b7c40a435">dealloc</a><code> [implementation]</code></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">UIWindow *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_handla_app_delegate.html#acb1cca1d67446f0b1e988052de3aa17c">window</a></td></tr>
@@ -80,6 +89,104 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_handla_app_delegate_8h_source.html#l00015">15</a> of file <a class="el" href="_handla_app_delegate_8h_source.html">HandlaAppDelegate.h</a>.</p>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a6a8277ecbc73209d14ac97160c5ccda2"></a><!-- doxytag: member="HandlaAppDelegate::application:didFinishLaunchingWithOptions:" ref="a6a8277ecbc73209d14ac97160c5ccda2" args="(UIApplication *application,[didFinishLaunchingWithOptions] NSDictionary *launchOptions)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) application: </td>
+          <td></td>
+          <td class="paramtype">(UIApplication *)&nbsp;</td>
+          <td class="paramname"> <em>application</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">didFinishLaunchingWithOptions:</td>
+          <td></td>
+          <td class="paramtype">(NSDictionary *)&nbsp;</td>
+          <td class="paramname"> <em>launchOptions</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_handla_app_delegate_8m_source.html#l00024">24</a> of file <a class="el" href="_handla_app_delegate_8m_source.html">HandlaAppDelegate.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adfbec61a5d2c9cee6a5706b07c6b977f"></a><!-- doxytag: member="HandlaAppDelegate::applicationDidBecomeActive:" ref="adfbec61a5d2c9cee6a5706b07c6b977f" args="(UIApplication *application)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) applicationDidBecomeActive: </td>
+          <td></td>
+          <td class="paramtype">(UIApplication *)&nbsp;</td>
+          <td class="paramname"> <em>application</em></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_handla_app_delegate_8m_source.html#l00058">58</a> of file <a class="el" href="_handla_app_delegate_8m_source.html">HandlaAppDelegate.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa659f1da2a0cc3db7b8b6102ccf9619c"></a><!-- doxytag: member="HandlaAppDelegate::applicationDidEnterBackground:" ref="aa659f1da2a0cc3db7b8b6102ccf9619c" args="(UIApplication *application)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) applicationDidEnterBackground: </td>
+          <td></td>
+          <td class="paramtype">(UIApplication *)&nbsp;</td>
+          <td class="paramname"> <em>application</em></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_handla_app_delegate_8m_source.html#l00042">42</a> of file <a class="el" href="_handla_app_delegate_8m_source.html">HandlaAppDelegate.m</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="interface_handla_app_delegate_aa659f1da2a0cc3db7b8b6102ccf9619c_cgraph.png" border="0" usemap="#interface_handla_app_delegate_aa659f1da2a0cc3db7b8b6102ccf9619c_cgraph" alt=""/></div>
+<map name="interface_handla_app_delegate_aa659f1da2a0cc3db7b8b6102ccf9619c_cgraph" id="interface_handla_app_delegate_aa659f1da2a0cc3db7b8b6102ccf9619c_cgraph">
+<area shape="rect" id="node3" href="interface_handla_app_delegate.html#a574adb4a9ea01fd5108bbb693a780426" title="&#45;[HandlaAppDelegate saveContext]" alt="" coords="447,5,711,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a84a51f72ba7fd7dbb4cb5e68cd7e9ba0"></a><!-- doxytag: member="HandlaAppDelegate::applicationDidReceiveMemoryWarning:" ref="a84a51f72ba7fd7dbb4cb5e68cd7e9ba0" args="(UIApplication *application)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) applicationDidReceiveMemoryWarning: </td>
+          <td></td>
+          <td class="paramtype">(UIApplication *)&nbsp;</td>
+          <td class="paramname"> <em>application</em></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_handla_app_delegate_8m_source.html#l00188">188</a> of file <a class="el" href="_handla_app_delegate_8m_source.html">HandlaAppDelegate.m</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a31ac0ef35db74d2f89b1f3c5a73ab46c"></a><!-- doxytag: member="HandlaAppDelegate::applicationDocumentsDirectory" ref="a31ac0ef35db74d2f89b1f3c5a73ab46c" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -97,6 +204,114 @@ Private Attributes</h2></td></tr>
 <p>Returns the URL to the application's Documents directory. </p>
 
 <p>Definition at line <a class="el" href="_handla_app_delegate_8m_source.html#l00180">180</a> of file <a class="el" href="_handla_app_delegate_8m_source.html">HandlaAppDelegate.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7d753482ea181808d4fc631c9c4d5b66"></a><!-- doxytag: member="HandlaAppDelegate::applicationWillEnterForeground:" ref="a7d753482ea181808d4fc631c9c4d5b66" args="(UIApplication *application)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) applicationWillEnterForeground: </td>
+          <td></td>
+          <td class="paramtype">(UIApplication *)&nbsp;</td>
+          <td class="paramname"> <em>application</em></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_handla_app_delegate_8m_source.html#l00051">51</a> of file <a class="el" href="_handla_app_delegate_8m_source.html">HandlaAppDelegate.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5705a9e7c85deebe1c069dd0694001dd"></a><!-- doxytag: member="HandlaAppDelegate::applicationWillResignActive:" ref="a5705a9e7c85deebe1c069dd0694001dd" args="(UIApplication *application)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) applicationWillResignActive: </td>
+          <td></td>
+          <td class="paramtype">(UIApplication *)&nbsp;</td>
+          <td class="paramname"> <em>application</em></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_handla_app_delegate_8m_source.html#l00034">34</a> of file <a class="el" href="_handla_app_delegate_8m_source.html">HandlaAppDelegate.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af7f6b56b36f8917b65e1a554e8a18ec7"></a><!-- doxytag: member="HandlaAppDelegate::applicationWillTerminate:" ref="af7f6b56b36f8917b65e1a554e8a18ec7" args="(UIApplication *application)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) applicationWillTerminate: </td>
+          <td></td>
+          <td class="paramtype">(UIApplication *)&nbsp;</td>
+          <td class="paramname"> <em>application</em></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>applicationWillTerminate: saves changes in the application's managed object context before the application terminates. </p>
+
+<p>Definition at line <a class="el" href="_handla_app_delegate_8m_source.html#l00068">68</a> of file <a class="el" href="_handla_app_delegate_8m_source.html">HandlaAppDelegate.m</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="interface_handla_app_delegate_af7f6b56b36f8917b65e1a554e8a18ec7_cgraph.png" border="0" usemap="#interface_handla_app_delegate_af7f6b56b36f8917b65e1a554e8a18ec7_cgraph" alt=""/></div>
+<map name="interface_handla_app_delegate_af7f6b56b36f8917b65e1a554e8a18ec7_cgraph" id="interface_handla_app_delegate_af7f6b56b36f8917b65e1a554e8a18ec7_cgraph">
+<area shape="rect" id="node3" href="interface_handla_app_delegate.html#a574adb4a9ea01fd5108bbb693a780426" title="&#45;[HandlaAppDelegate saveContext]" alt="" coords="399,5,663,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a3c99cf331bfd7015e2643a2e268f109f"></a><!-- doxytag: member="HandlaAppDelegate::awakeFromNib" ref="a3c99cf331bfd7015e2643a2e268f109f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) awakeFromNib </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_handla_app_delegate_8m_source.html#l00019">19</a> of file <a class="el" href="_handla_app_delegate_8m_source.html">HandlaAppDelegate.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a95e99b44d1f5193c860f337b7c40a435"></a><!-- doxytag: member="HandlaAppDelegate::dealloc" ref="a95e99b44d1f5193c860f337b7c40a435" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) dealloc </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_handla_app_delegate_8m_source.html#l00195">195</a> of file <a class="el" href="_handla_app_delegate_8m_source.html">HandlaAppDelegate.m</a>.</p>
 
 </div>
 </div>
@@ -294,7 +509,7 @@ Private Attributes</h2></td></tr>
 <li><a class="el" href="_handla_app_delegate_8m_source.html">HandlaAppDelegate.m</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 17 2011 13:23:36 for Handla by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 17 2011 17:37:34 for Handla by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

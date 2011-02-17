@@ -55,6 +55,13 @@ Collaboration diagram for IndividualListViewController:</div>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(id)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_individual_list_view_controller.html#aeca69f71e146444c99eae51bbafefc71">initWithList:</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_individual_list_view_controller.html#a1c280d37975b4daff695360f1f5281ea">canDeleteManagedObject:</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_individual_list_view_controller.html#ad31fef1b0a7ab0a6695fbec50d429e05">deleteManagedObject:</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_individual_list_view_controller.html#addd1c85a9548dca3e819425740c5a88e">addArticle</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_individual_list_view_controller.html#aa795595da31a4a7340ef529814e4b71e">alertView:clickedButtonAtIndex:</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_individual_list_view_controller.html#a05a39875d471404563f002a10f3d6512">didReceiveMemoryWarning</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_individual_list_view_controller.html#a91a5eeb3e50bc2f23856705f532b0fc2">viewDidUnload</a><code> [implementation]</code></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">(void)&nbsp;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_individual_list_view_controller.html#afc0d19630413973c690e0714042c77bf">dealloc</a><code> [implementation]</code></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_list.html">List</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_individual_list_view_controller.html#a3f268d67dc02b98dd8a058b11a782173">list_</a></td></tr>
@@ -63,6 +70,132 @@ Protected Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_individual_list_view_controller_8h_source.html#l00014">14</a> of file <a class="el" href="_individual_list_view_controller_8h_source.html">IndividualListViewController.h</a>.</p>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="addd1c85a9548dca3e819425740c5a88e"></a><!-- doxytag: member="IndividualListViewController::addArticle" ref="addd1c85a9548dca3e819425740c5a88e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) addArticle </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_individual_list_view_controller_8m_source.html#l00066">66</a> of file <a class="el" href="_individual_list_view_controller_8m_source.html">IndividualListViewController.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa795595da31a4a7340ef529814e4b71e"></a><!-- doxytag: member="IndividualListViewController::alertView:clickedButtonAtIndex:" ref="aa795595da31a4a7340ef529814e4b71e" args="(AlertPrompt *alertPrompt,[clickedButtonAtIndex] NSInteger buttonIndex)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) alertView: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="interface_alert_prompt.html">AlertPrompt</a> *)&nbsp;</td>
+          <td class="paramname"> <em>alertPrompt</em></td>
+        </tr>
+        <tr>
+          <td class="paramkey">clickedButtonAtIndex:</td>
+          <td></td>
+          <td class="paramtype">(NSInteger)&nbsp;</td>
+          <td class="paramname"> <em>buttonIndex</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_individual_list_view_controller_8m_source.html#l00080">80</a> of file <a class="el" href="_individual_list_view_controller_8m_source.html">IndividualListViewController.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1c280d37975b4daff695360f1f5281ea"></a><!-- doxytag: member="IndividualListViewController::canDeleteManagedObject:" ref="a1c280d37975b4daff695360f1f5281ea" args="(NSManagedObject *managedObject)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (BOOL) canDeleteManagedObject: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="class_n_s_managed_object.html">NSManagedObject</a> *)&nbsp;</td>
+          <td class="paramname"> <em>managedObject</em></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_individual_list_view_controller_8m_source.html#l00052">52</a> of file <a class="el" href="_individual_list_view_controller_8m_source.html">IndividualListViewController.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afc0d19630413973c690e0714042c77bf"></a><!-- doxytag: member="IndividualListViewController::dealloc" ref="afc0d19630413973c690e0714042c77bf" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) dealloc </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_individual_list_view_controller_8m_source.html#l00104">104</a> of file <a class="el" href="_individual_list_view_controller_8m_source.html">IndividualListViewController.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad31fef1b0a7ab0a6695fbec50d429e05"></a><!-- doxytag: member="IndividualListViewController::deleteManagedObject:" ref="ad31fef1b0a7ab0a6695fbec50d429e05" args="(NSManagedObject *managedObject)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) deleteManagedObject: </td>
+          <td></td>
+          <td class="paramtype">(<a class="el" href="class_n_s_managed_object.html">NSManagedObject</a> *)&nbsp;</td>
+          <td class="paramname"> <em>managedObject</em></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_individual_list_view_controller_8m_source.html#l00056">56</a> of file <a class="el" href="_individual_list_view_controller_8m_source.html">IndividualListViewController.m</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a05a39875d471404563f002a10f3d6512"></a><!-- doxytag: member="IndividualListViewController::didReceiveMemoryWarning" ref="a05a39875d471404563f002a10f3d6512" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) didReceiveMemoryWarning </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_individual_list_view_controller_8m_source.html#l00090">90</a> of file <a class="el" href="_individual_list_view_controller_8m_source.html">IndividualListViewController.m</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aeca69f71e146444c99eae51bbafefc71"></a><!-- doxytag: member="IndividualListViewController::initWithList:" ref="aeca69f71e146444c99eae51bbafefc71" args="(List *list)" -->
 <div class="memitem">
 <div class="memproto">
@@ -80,6 +213,34 @@ Protected Attributes</h2></td></tr>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="_individual_list_view_controller_8m_source.html#l00015">15</a> of file <a class="el" href="_individual_list_view_controller_8m_source.html">IndividualListViewController.m</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="interface_individual_list_view_controller_aeca69f71e146444c99eae51bbafefc71_cgraph.png" border="0" usemap="#interface_individual_list_view_controller_aeca69f71e146444c99eae51bbafefc71_cgraph" alt=""/></div>
+<map name="interface_individual_list_view_controller_aeca69f71e146444c99eae51bbafefc71_cgraph" id="interface_individual_list_view_controller_aeca69f71e146444c99eae51bbafefc71_cgraph">
+<area shape="rect" id="node3" href="interface_core_data_table_view_controller.html#ace0d05e4ff275ce16f99accbc2dfc02b" title="&#45;[CoreDataTableViewController setFetchedResultsController:]" alt="" coords="363,5,805,35"/><area shape="rect" id="node5" href="interface_core_data_table_view_controller.html#a95673568e6e1a4e1d27c485a17250338" title="&#45;[CoreDataTableViewController performFetchForTableView:]" alt="" coords="853,5,1280,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a91a5eeb3e50bc2f23856705f532b0fc2"></a><!-- doxytag: member="IndividualListViewController::viewDidUnload" ref="a91a5eeb3e50bc2f23856705f532b0fc2" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (void) viewDidUnload </td>
+          <td></td>
+          <td class="paramname"></td>
+          <td>&nbsp;</td>
+          <td><code> [implementation]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_individual_list_view_controller_8m_source.html#l00097">97</a> of file <a class="el" href="_individual_list_view_controller_8m_source.html">IndividualListViewController.m</a>.</p>
 
 </div>
 </div>
@@ -104,7 +265,7 @@ Protected Attributes</h2></td></tr>
 <li><a class="el" href="_individual_list_view_controller_8m_source.html">IndividualListViewController.m</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 17 2011 13:23:36 for Handla by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 17 2011 17:37:34 for Handla by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
