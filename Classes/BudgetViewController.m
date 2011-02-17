@@ -80,11 +80,12 @@
 #pragma mark Event handling
 
 - (void)addPost {
-	if (addBudgetPostViewController == nil) {
-		addBudgetPostViewController = [[AddBudgetPostViewController alloc] initWithStyle:UITableViewStylePlain];
+	//if (addBudgetPostViewController == nil) {
+		addBudgetPostViewController = [[AddBudgetPostViewController alloc] initInManagedObjectContext:self.managedObjectContext];
 		[addBudgetPostViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-	}
+	//}
 	[self.navigationController pushViewController:addBudgetPostViewController animated:YES];
+	[addBudgetPostViewController release];
 }
 
 - (void)showSettings {
@@ -93,6 +94,7 @@
 		[budgetSettingsViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
 	}
 	[self.navigationController pushViewController:budgetSettingsViewController animated:YES];
+	//release??
 }
 
 

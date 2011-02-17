@@ -7,10 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BudgetPost.h"
 
-
-@interface AddBudgetPostViewController : UITableViewController {
-
+@interface AddBudgetPostViewController : UIViewController {
+	NSManagedObjectContext *managedObjectContext_;
+	IBOutlet UITextField* nameBox;
+	IBOutlet UITextField* valueBox;
+	IBOutlet UITextField* commentBox;
+	IBOutlet UISegmentedControl* incomeOrExpense;
+	
 }
+
+- (id)initInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField;
+- (IBAction) doneWithNewBudgetPost:(UIButton*) sender;
+- (void) showMessageWithString:(NSString *) message;
+
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end
