@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class AddBudgetPostViewController;
+@class BudgetSettingsViewController;
 
 @interface BudgetViewController : UITableViewController {
+	AddBudgetPostViewController *addBudgetPostViewController;
+	BudgetSettingsViewController *budgetSettingsViewController;
 	NSManagedObjectContext *managedObjectContext;
 }
+
+- (void)addPost;
+- (void)showSettings;
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 

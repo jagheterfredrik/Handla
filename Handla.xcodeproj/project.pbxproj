@@ -11,9 +11,7 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		28193060112F816700ECF9B4 /* Handla.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2819305F112F816700ECF9B4 /* Handla.xcdatamodeld */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
-		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
 		352EA5FB130ABFC5001D6E7F /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352EA5F7130ABFB9001D6E7F /* GHUnitIOS.framework */; };
 		352EA613130ABFD1001D6E7F /* GHUnitIOSTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 352EA5E7130ABEF3001D6E7F /* GHUnitIOSTestMain.m */; };
@@ -23,6 +21,16 @@
 		352EA63F130AC045001D6E7F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		352EA640130AC045001D6E7F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		352EA641130AC045001D6E7F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		481BFF76130D16E700AC4CC8 /* AddArticleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481BFF75130D16E700AC4CC8 /* AddArticleListViewController.m */; };
+		481BFF8A130D18DC00AC4CC8 /* BudgetSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481BFF88130D18DC00AC4CC8 /* BudgetSettingsViewController.m */; };
+		481BFF98130D1E9B00AC4CC8 /* AddBudgetPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481BFF97130D1E9B00AC4CC8 /* AddBudgetPostViewController.m */; };
+		481BFFAA130D219A00AC4CC8 /* BudgetSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 481BFFA8130D219A00AC4CC8 /* BudgetSettingsViewController.xib */; };
+		481BFFAB130D219A00AC4CC8 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 481BFFA9130D219A00AC4CC8 /* MainWindow.xib */; };
+		481BFFAE130D21B300AC4CC8 /* Handla.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 481BFFAC130D21B300AC4CC8 /* Handla.xcdatamodeld */; };
+		481BFFD0130D220900AC4CC8 /* BudgetIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 481BFFCC130D220900AC4CC8 /* BudgetIcon.png */; };
+		481BFFD1130D220900AC4CC8 /* BudgetIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 481BFFCD130D220900AC4CC8 /* BudgetIcon@2x.png */; };
+		481BFFD2130D220900AC4CC8 /* ListIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 481BFFCE130D220900AC4CC8 /* ListIcon.png */; };
+		481BFFD3130D220900AC4CC8 /* ListIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 481BFFCF130D220900AC4CC8 /* ListIcon@2x.png */; };
 		4848B960130AA95300702E2D /* ListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848B95F130AA95300702E2D /* ListsViewController.m */; };
 		4848B9C5130AB22100702E2D /* BudgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848B9C4130AB22100702E2D /* BudgetViewController.m */; };
 		4848BA5C130AE7EF00702E2D /* AlertPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848BA5B130AE7EF00702E2D /* AlertPrompt.m */; };
@@ -51,8 +59,6 @@
 		1D6058910D05DD3D006BFB54 /* Handla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Handla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		28C3AD890F43EF2300507BA6 /* Handla.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Handla.xcdatamodel; sourceTree = "<group>"; };
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Handla_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Handla_Prefix.pch; sourceTree = "<group>"; };
@@ -62,6 +68,19 @@
 		352EA5F1130ABF95001D6E7F /* Unit tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Unit tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		352EA5F3130ABF95001D6E7F /* Unit tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit tests-Info.plist"; sourceTree = "<group>"; };
 		352EA5F7130ABFB9001D6E7F /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = Unit_testing/GHUnitIOS.framework; sourceTree = "<group>"; };
+		481BFF74130D16E700AC4CC8 /* AddArticleListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddArticleListViewController.h; sourceTree = "<group>"; };
+		481BFF75130D16E700AC4CC8 /* AddArticleListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddArticleListViewController.m; sourceTree = "<group>"; };
+		481BFF87130D18DC00AC4CC8 /* BudgetSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BudgetSettingsViewController.h; sourceTree = "<group>"; };
+		481BFF88130D18DC00AC4CC8 /* BudgetSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BudgetSettingsViewController.m; sourceTree = "<group>"; };
+		481BFF96130D1E9B00AC4CC8 /* AddBudgetPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBudgetPostViewController.h; sourceTree = "<group>"; };
+		481BFF97130D1E9B00AC4CC8 /* AddBudgetPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBudgetPostViewController.m; sourceTree = "<group>"; };
+		481BFFA8130D219A00AC4CC8 /* BudgetSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BudgetSettingsViewController.xib; path = Resources/XIBs/BudgetSettingsViewController.xib; sourceTree = "<group>"; };
+		481BFFA9130D219A00AC4CC8 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/XIBs/MainWindow.xib; sourceTree = "<group>"; };
+		481BFFAD130D21B300AC4CC8 /* Handla.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Handla.xcdatamodel; sourceTree = "<group>"; };
+		481BFFCC130D220900AC4CC8 /* BudgetIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BudgetIcon.png; path = Resources/Images/BudgetIcon.png; sourceTree = "<group>"; };
+		481BFFCD130D220900AC4CC8 /* BudgetIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BudgetIcon@2x.png"; path = "Resources/Images/BudgetIcon@2x.png"; sourceTree = "<group>"; };
+		481BFFCE130D220900AC4CC8 /* ListIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ListIcon.png; path = Resources/Images/ListIcon.png; sourceTree = "<group>"; };
+		481BFFCF130D220900AC4CC8 /* ListIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ListIcon@2x.png"; path = "Resources/Images/ListIcon@2x.png"; sourceTree = "<group>"; };
 		4848B95E130AA95300702E2D /* ListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListsViewController.h; sourceTree = "<group>"; };
 		4848B95F130AA95300702E2D /* ListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListsViewController.m; sourceTree = "<group>"; };
 		4848B9C3130AB22100702E2D /* BudgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BudgetViewController.h; sourceTree = "<group>"; };
@@ -116,14 +135,10 @@
 				4848BBCE130B33D400702E2D /* Base classes */,
 				4848BAC3130AFEE600702E2D /* Database classes */,
 				352EA5EC130ABEF5001D6E7F /* Unit tests */,
+				481BFF73130D15A200AC4CC8 /* Budget classes */,
+				481BFF71130D157700AC4CC8 /* List classes */,
 				1D3623240D0F684500981E51 /* HandlaAppDelegate.h */,
 				1D3623250D0F684500981E51 /* HandlaAppDelegate.m */,
-				4848B95E130AA95300702E2D /* ListsViewController.h */,
-				4848B95F130AA95300702E2D /* ListsViewController.m */,
-				4848BBCF130B342400702E2D /* IndividualListViewController.h */,
-				4848BBD0130B342400702E2D /* IndividualListViewController.m */,
-				4848B9C3130AB22100702E2D /* BudgetViewController.h */,
-				4848B9C4130AB22100702E2D /* BudgetViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -145,7 +160,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				352EA5F3130ABF95001D6E7F /* Unit tests-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -162,9 +176,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2819305F112F816700ECF9B4 /* Handla.xcdatamodeld */,
-				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				481BFFB3130D21E600AC4CC8 /* XIBs */,
+				481BFFB2130D21DD00AC4CC8 /* Models */,
+				481BFFB1130D21D600AC4CC8 /* Images */,
 				8D1107310486CEB800E47090 /* Handla-Info.plist */,
+				352EA5F3130ABF95001D6E7F /* Unit tests-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -189,6 +205,60 @@
 				352EA5E8130ABEF3001D6E7F /* ExampleTestCase.m */,
 			);
 			name = "Unit tests";
+			sourceTree = "<group>";
+		};
+		481BFF71130D157700AC4CC8 /* List classes */ = {
+			isa = PBXGroup;
+			children = (
+				4848B95E130AA95300702E2D /* ListsViewController.h */,
+				4848B95F130AA95300702E2D /* ListsViewController.m */,
+				4848BBCF130B342400702E2D /* IndividualListViewController.h */,
+				4848BBD0130B342400702E2D /* IndividualListViewController.m */,
+				481BFF74130D16E700AC4CC8 /* AddArticleListViewController.h */,
+				481BFF75130D16E700AC4CC8 /* AddArticleListViewController.m */,
+			);
+			name = "List classes";
+			sourceTree = "<group>";
+		};
+		481BFF73130D15A200AC4CC8 /* Budget classes */ = {
+			isa = PBXGroup;
+			children = (
+				4848B9C3130AB22100702E2D /* BudgetViewController.h */,
+				4848B9C4130AB22100702E2D /* BudgetViewController.m */,
+				481BFF87130D18DC00AC4CC8 /* BudgetSettingsViewController.h */,
+				481BFF88130D18DC00AC4CC8 /* BudgetSettingsViewController.m */,
+				481BFF96130D1E9B00AC4CC8 /* AddBudgetPostViewController.h */,
+				481BFF97130D1E9B00AC4CC8 /* AddBudgetPostViewController.m */,
+			);
+			name = "Budget classes";
+			sourceTree = "<group>";
+		};
+		481BFFB1130D21D600AC4CC8 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				481BFFCC130D220900AC4CC8 /* BudgetIcon.png */,
+				481BFFCD130D220900AC4CC8 /* BudgetIcon@2x.png */,
+				481BFFCE130D220900AC4CC8 /* ListIcon.png */,
+				481BFFCF130D220900AC4CC8 /* ListIcon@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		481BFFB2130D21DD00AC4CC8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				481BFFAC130D21B300AC4CC8 /* Handla.xcdatamodeld */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		481BFFB3130D21E600AC4CC8 /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				481BFFA8130D219A00AC4CC8 /* BudgetSettingsViewController.xib */,
+				481BFFA9130D219A00AC4CC8 /* MainWindow.xib */,
+			);
+			name = XIBs;
 			sourceTree = "<group>";
 		};
 		4848BAC3130AFEE600702E2D /* Database classes */ = {
@@ -285,7 +355,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				481BFFAA130D219A00AC4CC8 /* BudgetSettingsViewController.xib in Resources */,
+				481BFFAB130D219A00AC4CC8 /* MainWindow.xib in Resources */,
+				481BFFD0130D220900AC4CC8 /* BudgetIcon.png in Resources */,
+				481BFFD1130D220900AC4CC8 /* BudgetIcon@2x.png in Resources */,
+				481BFFD2130D220900AC4CC8 /* ListIcon.png in Resources */,
+				481BFFD3130D220900AC4CC8 /* ListIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,7 +380,6 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* HandlaAppDelegate.m in Sources */,
-				28193060112F816700ECF9B4 /* Handla.xcdatamodeld in Sources */,
 				4848B960130AA95300702E2D /* ListsViewController.m in Sources */,
 				4848B9C5130AB22100702E2D /* BudgetViewController.m in Sources */,
 				4848BA5C130AE7EF00702E2D /* AlertPrompt.m in Sources */,
@@ -315,6 +389,10 @@
 				4848BAC2130AFEDD00702E2D /* ListArticle.m in Sources */,
 				4848BAF1130B03BF00702E2D /* CoreDataTableViewController.m in Sources */,
 				4848BBD1130B342400702E2D /* IndividualListViewController.m in Sources */,
+				481BFF76130D16E700AC4CC8 /* AddArticleListViewController.m in Sources */,
+				481BFF8A130D18DC00AC4CC8 /* BudgetSettingsViewController.m in Sources */,
+				481BFF98130D1E9B00AC4CC8 /* AddBudgetPostViewController.m in Sources */,
+				481BFFAE130D21B300AC4CC8 /* Handla.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,13 +573,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		2819305F112F816700ECF9B4 /* Handla.xcdatamodeld */ = {
+		481BFFAC130D21B300AC4CC8 /* Handla.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				28C3AD890F43EF2300507BA6 /* Handla.xcdatamodel */,
+				481BFFAD130D21B300AC4CC8 /* Handla.xcdatamodel */,
 			);
-			currentVersion = 28C3AD890F43EF2300507BA6 /* Handla.xcdatamodel */;
-			path = Handla.xcdatamodeld;
+			currentVersion = 481BFFAD130D21B300AC4CC8 /* Handla.xcdatamodel */;
+			name = Handla.xcdatamodeld;
+			path = Resources/Models/Handla.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

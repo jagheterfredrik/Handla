@@ -11,6 +11,7 @@
 #import "List.h"
 #import "ListArticle.h"
 #import "Article.h"
+#import "AddArticleListViewController.h"
 
 @implementation IndividualListViewController
 
@@ -18,7 +19,7 @@
 	if (self = [super initWithStyle:UITableViewStylePlain]) {
 		list_ = list;
 		
-		UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createList)];
+		UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addArticle)];
 		self.navigationItem.rightBarButtonItem = addButton;
 		[addButton release];
 		
@@ -65,9 +66,13 @@
 #pragma mark Events
 
 // Called when the add button is pressed
-- (void)createList {
-	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Lägg till vara" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Lägg till"];
-	[alertPrompt show];
+- (void)addArticle {
+/*	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Lägg till vara" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Lägg till"];
+	[alertPrompt show];*/
+	AddArticleListViewController *addArticleListViewController = [[AddArticleListViewController alloc] initInManagedObjectContext:list_.managedObjectContext];
+	[addArticleListViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+	[self.navigationController presentModalViewController:addArticleListViewController animated:YES];
+	[addArticleListViewController release];
 }
 
 #pragma mark -

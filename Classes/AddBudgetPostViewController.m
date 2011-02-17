@@ -1,18 +1,15 @@
 //
-//  BudgetViewController.m
+//  AddBudgetPostViewController.m
 //  Handla
 //
-//  Created by Fredrik Gustafsson on 2011-02-15.
+//  Created by Fredrik Gustafsson on 2011-02-17.
 //  Copyright 2011 Kungliga Tekniska Högskolan. All rights reserved.
 //
 
-#import "BudgetViewController.h"
 #import "AddBudgetPostViewController.h"
-#import "BudgetSettingsViewController.h"
 
-@implementation BudgetViewController
 
-@synthesize managedObjectContext;
+@implementation AddBudgetPostViewController
 
 
 #pragma mark -
@@ -33,20 +30,14 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-
+/*
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(showSettings)];
-    self.navigationItem.leftBarButtonItem = settingsButton;
-	[settingsButton release];
-	
-	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addPost)];
-	self.navigationItem.rightBarButtonItem = addButton;
-	[addButton release];
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
+*/
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -76,25 +67,6 @@
 }
 */
 
-#pragma mark -
-#pragma mark Event handling
-
-- (void)addPost {
-	if (addBudgetPostViewController == nil) {
-		addBudgetPostViewController = [[AddBudgetPostViewController alloc] initWithStyle:UITableViewStylePlain];
-		[addBudgetPostViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-	}
-	[self.navigationController presentModalViewController:addBudgetPostViewController animated:YES];
-}
-
-- (void)showSettings {
-	if (budgetSettingsViewController == nil) {
-		budgetSettingsViewController = [[BudgetSettingsViewController alloc] initWithNibName:@"BudgetSettingsViewController" bundle:nil];
-		[budgetSettingsViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-	}
-	[self.navigationController presentModalViewController:budgetSettingsViewController animated:YES];
-}
-
 
 #pragma mark -
 #pragma mark Table view data source
@@ -122,7 +94,6 @@
     }
     
     // Configure the cell...
-	cell.textLabel.text = @"Test";
     
     return cell;
 }
@@ -200,7 +171,6 @@
 
 
 - (void)dealloc {
-	[budgetSettingsViewController release];
     [super dealloc];
 }
 
