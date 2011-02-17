@@ -45,7 +45,11 @@
 					<object class="IBUILabel" id="791356843">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
+<<<<<<< HEAD
 						<string key="NSFrame">{{20, 13}, {199, 21}}</string>
+=======
+						<string key="NSFrame">{{20, 20}, {199, 21}}</string>
+>>>>>>> dfc7ca35cf0368ca5f80f6c2701f0329052ceef5
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -166,7 +170,11 @@
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 					</object>
+<<<<<<< HEAD
 					<object class="IBUISegmentedControl" id="614860319">
+=======
+					<object class="IBUISegmentedControl" id="260098379">
+>>>>>>> dfc7ca35cf0368ca5f80f6c2701f0329052ceef5
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 136}, {180, 44}}</string>
@@ -288,7 +296,11 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">incomeOrExpense</string>
 						<reference key="source" ref="372490531"/>
+<<<<<<< HEAD
 						<reference key="destination" ref="614860319"/>
+=======
+						<reference key="destination" ref="260098379"/>
+>>>>>>> dfc7ca35cf0368ca5f80f6c2701f0329052ceef5
 					</object>
 					<int key="connectionID">20</int>
 				</object>
@@ -307,12 +319,21 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+<<<<<<< HEAD
 							<reference ref="272455911"/>
 							<reference ref="447391498"/>
 							<reference ref="733118031"/>
 							<reference ref="1025549350"/>
 							<reference ref="614860319"/>
 							<reference ref="791356843"/>
+=======
+							<reference ref="791356843"/>
+							<reference ref="1025549350"/>
+							<reference ref="272455911"/>
+							<reference ref="447391498"/>
+							<reference ref="260098379"/>
+							<reference ref="733118031"/>
+>>>>>>> dfc7ca35cf0368ca5f80f6c2701f0329052ceef5
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -354,7 +375,11 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">19</int>
+<<<<<<< HEAD
 						<reference key="object" ref="614860319"/>
+=======
+						<reference key="object" ref="260098379"/>
+>>>>>>> dfc7ca35cf0368ca5f80f6c2701f0329052ceef5
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
@@ -384,7 +409,11 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>AddBudgetPostViewController</string>
 					<string>UIResponder</string>
+<<<<<<< HEAD
 					<string>{{867, 308}, {320, 480}}</string>
+=======
+					<string>{{879, 262}, {320, 480}}</string>
+>>>>>>> dfc7ca35cf0368ca5f80f6c2701f0329052ceef5
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -392,11 +421,19 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
+<<<<<<< HEAD
 						<bytes key="NSTransformStruct">P4AAAL+AAABBoAAAwzIAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABBoAAAwhwAAA</bytes>
+=======
+						<bytes key="NSTransformStruct">P4AAAL+AAABBcAAAw0gAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABCTAAAwlAAAA</bytes>
+>>>>>>> dfc7ca35cf0368ca5f80f6c2701f0329052ceef5
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -408,7 +445,11 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
+<<<<<<< HEAD
 						<bytes key="NSTransformStruct">P4AAAL+AAABDZAAAwtIAAA</bytes>
+=======
+						<bytes key="NSTransformStruct">P4AAAL+AAABDZAAAwyMAAA</bytes>
+>>>>>>> dfc7ca35cf0368ca5f80f6c2701f0329052ceef5
 					</object>
 				</object>
 			</object>
@@ -428,7 +469,11 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
+<<<<<<< HEAD
 			<int key="maxID">22</int>
+=======
+			<int key="maxID">20</int>
+>>>>>>> dfc7ca35cf0368ca5f80f6c2701f0329052ceef5
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
