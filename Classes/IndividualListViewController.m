@@ -71,7 +71,7 @@
 	[alertPrompt show];*/
 	AddArticleListViewController *addArticleListViewController = [[AddArticleListViewController alloc] initInManagedObjectContext:list_.managedObjectContext];
 	[addArticleListViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-	[self.navigationController presentModalViewController:addArticleListViewController animated:YES];
+	[self.navigationController pushViewController:addArticleListViewController animated:YES];
 	[addArticleListViewController release];
 }
 

@@ -84,7 +84,7 @@
 		addBudgetPostViewController = [[AddBudgetPostViewController alloc] initWithStyle:UITableViewStylePlain];
 		[addBudgetPostViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
 	}
-	[self.navigationController presentModalViewController:addBudgetPostViewController animated:YES];
+	[self.navigationController pushViewController:addBudgetPostViewController animated:YES];
 }
 
 - (void)showSettings {
@@ -92,7 +92,7 @@
 		budgetSettingsViewController = [[BudgetSettingsViewController alloc] initWithNibName:@"BudgetSettingsViewController" bundle:nil];
 		[budgetSettingsViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
 	}
-	[self.navigationController presentModalViewController:budgetSettingsViewController animated:YES];
+	[self.navigationController pushViewController:budgetSettingsViewController animated:YES];
 }
 
 
