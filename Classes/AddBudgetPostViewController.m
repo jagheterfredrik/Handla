@@ -1,6 +1,10 @@
 //
 //  AddBudgetPostViewController.m
 //  Handla
+//  
+//  Handles the view responsible for adding new posts in the budget. 
+//  It prompts the user for the relevant data, and stores it in the database.
+//
 //
 //  Created by Fredrik Gustafsson on 2011-02-17.
 //  Copyright 2011 Kungliga Tekniska Högskolan. All rights reserved.
@@ -11,39 +15,114 @@
 
 @implementation AddBudgetPostViewController
 
+@synthesize managedObjectContext=managedObjectContext_;
+
 
 #pragma mark -
 #pragma mark Initialization
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization.
-    }
-    return self;
+/**
+ * Should not be called, use initInManagedObjectContext instead.
+ */
+- (id)init
+{
+	[self dealloc];
+	@throw [NSException exceptionWithName:@"WrongInitializerException" reason:@"use initInManagedObjectContext instead" userInfo:nil];
+	return nil;
 }
-*/
+
+/**
+ * Initializes with the mangedObjectContext needed to acces the database.
+ */
+- (id)initInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
+	{
+		managedObjectContext_ = managedObjectContext;
+	}
+	return self;
+}
 
 
 #pragma mark -
 #pragma mark View lifecycle
 
-/*
+/**
+ * hides the keyboard when done button is clicked.
+ */
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    [theTextField resignFirstResponder];
+    return YES;
+}
+
+/**
+ * When done button is clicked, the values in the view shoud be stored in the database.
+ */
+- (IBAction) doneWithNewBudgetPost:(UIButton*) sender{
+	if (([valueBox.text length]==0)&&([nameBox.text length]==0)){
+		[self showMessageWithString:@"Du måste ange ett namn och en summa för budgetposten!"];
+		return;
+	}
+	if ([nameBox.text length]==0){
+		[self showMessageWithString:@"Du måste ange ett namn på budgetposten!"];
+		return;
+	}
+	if ([valueBox.text length]==0){
+		[self showMessageWithString:@"Du måste ange en summa för budgetposten!"];
+		return;
+	}
+	BudgetPost* newBudgetPost = [NSEntityDescription insertNewObjectForEntityForName:@"BudgetPost" inManagedObjectContext:self.managedObjectContext];
+	
+	newBudgetPost.name = nameBox.text;
+	
+	//TODO: Check for valid number! i.e only 2 decimals
+	NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+	[f setGeneratesDecimalNumbers:YES];
+	[f setNumberStyle:NSNumberFormatterDecimalStyle];
+	NSDecimalNumber * value = (NSDecimalNumber*)[f numberFromString:valueBox.text];
+	[f release];
+	if ([incomeOrExpense isEnabledForSegmentAtIndex:1]) {
+		
+		value = [value decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
+	}
+	newBudgetPost.amount = value;
+
+	
+	newBudgetPost.comment = commentBox.text;
+	
+	NSDate* tempDate = [[NSDate alloc] init];
+	newBudgetPost.timeStamp = tempDate;
+	[tempDate release];
+	[self.managedObjectContext save:NULL];	
+	[self.navigationController popViewControllerAnimated:YES];
+}
+
+/**
+ * Visar ett meddelande "actionsheet" med en ok-knapp.
+ */
+-(void) showMessageWithString:(NSString *) message {
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:message
+															 delegate:nil
+													cancelButtonTitle:@"OK"
+											   destructiveButtonTitle:nil
+													otherButtonTitles:nil];
+	[actionSheet showInView:[[self view] window]];
+	[actionSheet autorelease];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	self.title = @"Ny budgetpost";
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-*/
 
-/*
+
 - (void)viewWillAppear:(BOOL)animated {
+	valueBox.keyboardType = UIKeyboardTypeDecimalPad;
     [super viewWillAppear:animated];
 }
-*/
+
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
