@@ -16,10 +16,14 @@
 
 @interface ListTest : GHTestCase {
 }
-- (void)testInsertion; /** Tests insertion of objects into a list */
-- (void)testRemoval; /** Tests removal of objects from a list */
-- (void)setUp; /** Ran before each test */
-- (void)tearDown; /** Ran after each test */
+/** Tests insertion of objects into a list */
+- (void)testInsertion; 
+/** Tests removal of objects from a list */
+- (void)testRemoval;
+/** Ran before each test */
+- (void)setUp;
+/** Ran after each test */
+- (void)tearDown;
 @end
 
 

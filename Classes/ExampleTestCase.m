@@ -21,9 +21,12 @@
 @interface ExampleTestCase : GHTestCase {
 	int number;
 }
-- (void)testMath; /** Runs a math test */
-- (void)setUp; /** Ran before each test */
-- (void)tearDown; /** Ran after each test */
+/** Runs a math test */
+- (void)testMath; 
+/** Ran before each test */
+- (void)setUp;
+/** Ran after each test */
+- (void)tearDown; 
 @end
 
 
