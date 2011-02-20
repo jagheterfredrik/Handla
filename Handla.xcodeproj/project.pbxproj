@@ -40,6 +40,7 @@
 		4848BAC2130AFEDD00702E2D /* ListArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848BABE130AFEDD00702E2D /* ListArticle.m */; };
 		4848BAF1130B03BF00702E2D /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848BAF0130B03BF00702E2D /* CoreDataTableViewController.m */; };
 		4848BBD1130B342400702E2D /* IndividualListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848BBD0130B342400702E2D /* IndividualListViewController.m */; };
+		48F0D8BB131194EE003D0352 /* AddBudgetPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48F0D8BA131194EE003D0352 /* AddBudgetPostViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		4848BAF0130B03BF00702E2D /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		4848BBCF130B342400702E2D /* IndividualListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualListViewController.h; sourceTree = "<group>"; };
 		4848BBD0130B342400702E2D /* IndividualListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualListViewController.m; sourceTree = "<group>"; };
+		48F0D8BA131194EE003D0352 /* AddBudgetPostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AddBudgetPostViewController.xib; path = Resources/XIBs/AddBudgetPostViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Handla-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Handla-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -255,6 +257,7 @@
 		481BFFB3130D21E600AC4CC8 /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
+				48F0D8BA131194EE003D0352 /* AddBudgetPostViewController.xib */,
 				481BFFA8130D219A00AC4CC8 /* BudgetSettingsViewController.xib */,
 				481BFFA9130D219A00AC4CC8 /* MainWindow.xib */,
 			);
@@ -361,6 +364,7 @@
 				481BFFD1130D220900AC4CC8 /* BudgetIcon@2x.png in Resources */,
 				481BFFD2130D220900AC4CC8 /* ListIcon.png in Resources */,
 				481BFFD3130D220900AC4CC8 /* ListIcon@2x.png in Resources */,
+				48F0D8BB131194EE003D0352 /* AddBudgetPostViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

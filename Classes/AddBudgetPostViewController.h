@@ -20,8 +20,9 @@
 
 - (id)initInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField;
-- (IBAction) doneWithNewBudgetPost:(UIButton*) sender;
-- (void) showMessageWithString:(NSString *) message;
+- (IBAction)doneClick:(id) sender;
+- (IBAction)cancelClick:(id)sender;
+- (void)showMessageWithString:(NSString *) message;
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 

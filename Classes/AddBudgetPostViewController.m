@@ -46,17 +46,31 @@
 #pragma mark View lifecycle
 
 /**
- * hides the keyboard when done button is clicked.
+ * Changes to next keyboard when the next button is clicked.
+ * If the name input is first responder then the comment
+ * box becomes first responder. If the comment box is the
+ * first responder, the value box becomes first responder.
  */
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
-    [theTextField resignFirstResponder];
+    if ([theTextField isEqual:nameBox]) {
+		[commentBox becomeFirstResponder];
+	} else if ([theTextField isEqual:commentBox]) {
+		[valueBox becomeFirstResponder];
+	}
     return YES;
+}
+
+/**
+ * When cancel button is clicked, the view should be dismissed.
+ */
+- (IBAction)cancelClick:(id) sender {
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 /**
  * When done button is clicked, the values in the view shoud be stored in the database.
  */
-- (IBAction) doneWithNewBudgetPost:(UIButton*) sender{
+- (IBAction)doneClick:(id) sender{
 	if (([valueBox.text length]==0)&&([nameBox.text length]==0)){
 		[self showMessageWithString:@"Du måste ange ett namn och en summa för budgetposten!"];
 		return;
@@ -119,8 +133,9 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
-	valueBox.keyboardType = UIKeyboardTypeDecimalPad;
     [super viewWillAppear:animated];
+	valueBox.keyboardType = UIKeyboardTypeDecimalPad;
+	[nameBox becomeFirstResponder];
 }
 
 /*

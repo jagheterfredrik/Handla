@@ -80,11 +80,8 @@
 #pragma mark Event handling
 
 - (void)addPost {
-	//if (addBudgetPostViewController == nil) {
-		addBudgetPostViewController = [[AddBudgetPostViewController alloc] initInManagedObjectContext:self.managedObjectContext];
-		[addBudgetPostViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-	//}
-	[self.navigationController pushViewController:addBudgetPostViewController animated:YES];
+	addBudgetPostViewController = [[AddBudgetPostViewController alloc] initInManagedObjectContext:self.managedObjectContext];
+	[self presentModalViewController:addBudgetPostViewController animated:YES];
 	[addBudgetPostViewController release];
 }
 
