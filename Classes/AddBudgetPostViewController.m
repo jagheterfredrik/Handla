@@ -106,7 +106,7 @@
 	newBudgetPost.timeStamp = tempDate;
 	[tempDate release];
 	[self.managedObjectContext save:NULL];	
-	[self.navigationController popViewControllerAnimated:YES];
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 /**
