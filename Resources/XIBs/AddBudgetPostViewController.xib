@@ -124,10 +124,11 @@
 					<object class="IBUISegmentedControl" id="614860319">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{69, 149}, {180, 44}}</string>
+						<string key="NSFrame">{{69, 151}, {180, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBSegmentControlStyle">3</int>
 						<int key="IBNumberOfSegments">2</int>
 						<int key="IBSelectedSegmentIndex">0</int>
 						<object class="NSArray" key="IBSegmentTitles">
@@ -154,6 +155,10 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="NSNull" id="4"/>
 							<reference ref="4"/>
+						</object>
+						<object class="NSColor" key="IBTintColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MCAwIDAAA</bytes>
 						</object>
 					</object>
 					<object class="IBUINavigationBar" id="146450433">
@@ -391,7 +396,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>AddBudgetPostViewController</string>
 					<string>UIResponder</string>
-					<string>{{515, 209}, {320, 480}}</string>
+					<string>{{424, 209}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">

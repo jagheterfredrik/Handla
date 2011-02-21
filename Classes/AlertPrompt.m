@@ -10,6 +10,10 @@
 @implementation AlertPrompt
 @synthesize textField;
 @synthesize enteredText;
+
+/**
+ * Initializes a UIAlertView and adds a UITextField to it.
+ */
 - (id)initWithTitle:(NSString *)title delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle okButtonTitle:(NSString *)okayButtonTitle
 {
 	
@@ -30,11 +34,19 @@
     }
     return self;
 }
+
+/**
+ * Shows the alert prompt.
+ */
 - (void)show
 {
     [textField becomeFirstResponder];
     [super show];
 }
+
+/**
+ * Retireves the text entered in the text field.
+ */
 - (NSString *)enteredText
 {
     return textField.text;

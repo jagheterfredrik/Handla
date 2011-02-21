@@ -11,6 +11,7 @@
 
 @interface AddBudgetPostViewController : UIViewController {
 	NSManagedObjectContext *managedObjectContext_;
+	BudgetPost *budgetPost_;
 	IBOutlet UITextField* nameBox;
 	IBOutlet UITextField* valueBox;
 	IBOutlet UITextField* commentBox;
@@ -19,6 +20,7 @@
 }
 
 - (id)initInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+- (id)initWithBudgetPost:(BudgetPost*)budgetPost;
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField;
 - (IBAction)doneClick:(id) sender;
 - (IBAction)cancelClick:(id)sender;

@@ -33,10 +33,23 @@
 
 /**
  * Initializes with the mangedObjectContext needed to acces the database.
+ * This init method is used when the view is to be used to make a new BudgetPost.
  */
 - (id)initInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
 	{
 		managedObjectContext_ = managedObjectContext;
+		budgetPost_ = nil;
+	}
+	return self;
+}
+
+/**
+ * Initializes the view with an already existing BudgetPost.
+ */
+- (id)initWithBudgetPost:(BudgetPost*)budgetPost {
+	{
+		managedObjectContext_ = budgetPost.managedObjectContext;
+		budgetPost_ = budgetPost;
 	}
 	return self;
 }
@@ -83,7 +96,14 @@
 		[self showMessageWithString:@"Du måste ange en summa för budgetposten!"];
 		return;
 	}
-	BudgetPost* newBudgetPost = [NSEntityDescription insertNewObjectForEntityForName:@"BudgetPost" inManagedObjectContext:self.managedObjectContext];
+	BudgetPost* newBudgetPost;
+	if (budgetPost_ == nil) {
+		newBudgetPost = [NSEntityDescription insertNewObjectForEntityForName:@"BudgetPost" inManagedObjectContext:self.managedObjectContext];
+	} else {
+		newBudgetPost = budgetPost_;
+	}
+
+
 	
 	newBudgetPost.name = nameBox.text;
 	
@@ -93,8 +113,7 @@
 	[f setNumberStyle:NSNumberFormatterDecimalStyle];
 	NSDecimalNumber * value = (NSDecimalNumber*)[f numberFromString:valueBox.text];
 	[f release];
-	if ([incomeOrExpense isEnabledForSegmentAtIndex:1]) {
-		
+	if ([incomeOrExpense selectedSegmentIndex] == 1) {
 		value = [value decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
 	}
 	newBudgetPost.amount = value;
@@ -125,10 +144,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	if (budgetPost_ == nil) {
+		self.title = @"Ny budgetpost";
+	} else {
+		self.title = budgetPost_.name;
+		nameBox.text = budgetPost_.name;
+		if ([budgetPost_.amount compare:[NSNumber numberWithInt:0]] == NSOrderedAscending) {
+			valueBox.text = [[budgetPost_.amount decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]] description];
+			incomeOrExpense.selectedSegmentIndex = 1;
+		} else {
+			valueBox.text = [budgetPost_.amount description];
+			incomeOrExpense.selectedSegmentIndex = 0;
+		}
 
-	self.title = @"Ny budgetpost";
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	}
+
 }
 
 
