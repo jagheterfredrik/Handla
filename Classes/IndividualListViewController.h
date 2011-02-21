@@ -1,20 +1,22 @@
 //
-//  IndividualListViewController.h
+//  TestViewController.h
 //  Handla
 //
-//  Created by Fredrik Gustafsson on 2011-02-15.
+//  Created by Fredrik Gustafsson on 2011-02-17.
 //  Copyright 2011 Kungliga Tekniska Högskolan. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "CoreDataTableViewController.h"
+#import "IndividualListTableViewController.h"
+#import "List.h"
 
-@class List;
-
-@interface IndividualListViewController : CoreDataTableViewController<UIAlertViewDelegate> {
+@interface IndividualListViewController : UIViewController {
+	IBOutlet IndividualListTableViewController *individualListTableViewController;
+	IBOutlet UITableView *tableView;
+	IBOutlet UITableView *realTableView;
 	List* list_;
 }
 
-- (id)initWithList:(List*)list;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil list:(List*)list;
 
 @end

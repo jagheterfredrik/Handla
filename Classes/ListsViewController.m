@@ -21,7 +21,7 @@
 
 - (void)managedObjectSelected:(NSManagedObject *)managedObject
 {
-	IndividualListViewController *individualListViewController = [[IndividualListViewController alloc] initWithList:(List*)managedObject];
+	IndividualListViewController *individualListViewController = [[IndividualListViewController alloc] initWithNibName:@"IndividualListViewController" bundle:nil list:(List*)managedObject];
 	[self.navigationController pushViewController:individualListViewController animated:YES];
 	[individualListViewController release];
 }
@@ -77,6 +77,8 @@
 	
 	self.titleKey = @"name";
 	self.searchKey = @"name";
+	
+	self.title = @"Listor";
 }
 
 #pragma mark -

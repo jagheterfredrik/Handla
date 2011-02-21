@@ -39,8 +39,10 @@
 		4848BAC1130AFEDD00702E2D /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848BABC130AFEDD00702E2D /* Article.m */; };
 		4848BAC2130AFEDD00702E2D /* ListArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848BABE130AFEDD00702E2D /* ListArticle.m */; };
 		4848BAF1130B03BF00702E2D /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848BAF0130B03BF00702E2D /* CoreDataTableViewController.m */; };
-		4848BBD1130B342400702E2D /* IndividualListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848BBD0130B342400702E2D /* IndividualListViewController.m */; };
+		4848BBD1130B342400702E2D /* IndividualListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848BBD0130B342400702E2D /* IndividualListTableViewController.m */; };
 		48F0D8BB131194EE003D0352 /* AddBudgetPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48F0D8BA131194EE003D0352 /* AddBudgetPostViewController.xib */; };
+		48F0D9011311B05E003D0352 /* IndividualListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F0D8FF1311B05E003D0352 /* IndividualListViewController.m */; };
+		48F0DA441311DE84003D0352 /* IndividualListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48F0DA431311DE84003D0352 /* IndividualListViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,9 +100,12 @@
 		4848BABE130AFEDD00702E2D /* ListArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListArticle.m; sourceTree = "<group>"; };
 		4848BAEF130B03BF00702E2D /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		4848BAF0130B03BF00702E2D /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
-		4848BBCF130B342400702E2D /* IndividualListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualListViewController.h; sourceTree = "<group>"; };
-		4848BBD0130B342400702E2D /* IndividualListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualListViewController.m; sourceTree = "<group>"; };
+		4848BBCF130B342400702E2D /* IndividualListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualListTableViewController.h; sourceTree = "<group>"; };
+		4848BBD0130B342400702E2D /* IndividualListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualListTableViewController.m; sourceTree = "<group>"; };
 		48F0D8BA131194EE003D0352 /* AddBudgetPostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AddBudgetPostViewController.xib; path = Resources/XIBs/AddBudgetPostViewController.xib; sourceTree = "<group>"; };
+		48F0D8FE1311B05E003D0352 /* IndividualListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualListViewController.h; sourceTree = "<group>"; };
+		48F0D8FF1311B05E003D0352 /* IndividualListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualListViewController.m; sourceTree = "<group>"; };
+		48F0DA431311DE84003D0352 /* IndividualListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IndividualListViewController.xib; path = Resources/XIBs/IndividualListViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Handla-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Handla-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -214,8 +219,10 @@
 			children = (
 				4848B95E130AA95300702E2D /* ListsViewController.h */,
 				4848B95F130AA95300702E2D /* ListsViewController.m */,
-				4848BBCF130B342400702E2D /* IndividualListViewController.h */,
-				4848BBD0130B342400702E2D /* IndividualListViewController.m */,
+				4848BBCF130B342400702E2D /* IndividualListTableViewController.h */,
+				4848BBD0130B342400702E2D /* IndividualListTableViewController.m */,
+				48F0D8FE1311B05E003D0352 /* IndividualListViewController.h */,
+				48F0D8FF1311B05E003D0352 /* IndividualListViewController.m */,
 				481BFF74130D16E700AC4CC8 /* AddArticleListViewController.h */,
 				481BFF75130D16E700AC4CC8 /* AddArticleListViewController.m */,
 			);
@@ -259,6 +266,7 @@
 			children = (
 				48F0D8BA131194EE003D0352 /* AddBudgetPostViewController.xib */,
 				481BFFA8130D219A00AC4CC8 /* BudgetSettingsViewController.xib */,
+				48F0DA431311DE84003D0352 /* IndividualListViewController.xib */,
 				481BFFA9130D219A00AC4CC8 /* MainWindow.xib */,
 			);
 			name = XIBs;
@@ -365,6 +373,7 @@
 				481BFFD2130D220900AC4CC8 /* ListIcon.png in Resources */,
 				481BFFD3130D220900AC4CC8 /* ListIcon@2x.png in Resources */,
 				48F0D8BB131194EE003D0352 /* AddBudgetPostViewController.xib in Resources */,
+				48F0DA441311DE84003D0352 /* IndividualListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,11 +401,12 @@
 				4848BAC1130AFEDD00702E2D /* Article.m in Sources */,
 				4848BAC2130AFEDD00702E2D /* ListArticle.m in Sources */,
 				4848BAF1130B03BF00702E2D /* CoreDataTableViewController.m in Sources */,
-				4848BBD1130B342400702E2D /* IndividualListViewController.m in Sources */,
+				4848BBD1130B342400702E2D /* IndividualListTableViewController.m in Sources */,
 				481BFF76130D16E700AC4CC8 /* AddArticleListViewController.m in Sources */,
 				481BFF8A130D18DC00AC4CC8 /* BudgetSettingsViewController.m in Sources */,
 				481BFF98130D1E9B00AC4CC8 /* AddBudgetPostViewController.m in Sources */,
 				481BFFAE130D21B300AC4CC8 /* Handla.xcdatamodeld in Sources */,
+				48F0D9011311B05E003D0352 /* IndividualListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
