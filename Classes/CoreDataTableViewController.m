@@ -2,6 +2,9 @@
 //  CoreDataTableViewController.m
 //
 //  Created for Stanford CS193p Spring 2010
+//  Modified by Fredrik Gustafsson 2011
+//  With added support for sorting by relationproperties
+//  and a small bugfix
 //
 
 #import "CoreDataTableViewController.h"
@@ -96,7 +99,7 @@
 	controller.delegate = self;
 	normalPredicate = [self.fetchedResultsController.fetchRequest.predicate retain];
 	if (!self.title) self.title = controller.fetchRequest.entity.name;
-	if (self.view.window) [self performFetchForTableView:self.tableView];
+	[self performFetchForTableView:self.tableView];
 }
 
 - (UITableViewCellAccessoryType)accessoryTypeForManagedObject:(NSManagedObject *)managedObject

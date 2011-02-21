@@ -2,6 +2,9 @@
 //  CoreDataTableViewController.h
 //
 //  Created for Stanford CS193p Spring 2010
+//  Modified by Fredrik Gustafsson 2011
+//  With added support for sorting by relationproperties
+//  and a small bugfix
 //
 
 #import <UIKit/UIKit.h>
