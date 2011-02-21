@@ -38,7 +38,7 @@
     [super viewDidLoad];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(showSettings)];
+	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(showSettings)];
     self.navigationItem.leftBarButtonItem = settingsButton;
 	[settingsButton release];
 	
@@ -91,7 +91,6 @@
 		[budgetSettingsViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
 	}
 	[self.navigationController pushViewController:budgetSettingsViewController animated:YES];
-	//release??
 }
 
 
