@@ -1,5 +1,5 @@
 //
-//  AddBudgetPostViewController.h
+//  BudgetPostDetailViewController.h
 //  Handla
 //
 //  Created by Fredrik Gustafsson on 2011-02-17.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BudgetPost.h"
 
-@interface AddBudgetPostViewController : UIViewController<UIActionSheetDelegate> {
+@interface BudgetPostDetailViewController : UIViewController<UIActionSheetDelegate> {
 	NSManagedObjectContext *managedObjectContext_;
 	BudgetPost *budgetPost_;
 	UIDatePicker *datePicker;

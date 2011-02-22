@@ -47,19 +47,23 @@
 #pragma mark -
 #pragma mark Core data table view controller overrides
 
+- (void)managedObjectSelected:(NSManagedObject *)managedObject {
+	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+}
+
 - (BOOL)canDeleteManagedObject:(NSManagedObject *)managedObject {
 	return YES;
 }
 
 - (void)deleteManagedObject:(NSManagedObject *)managedObject {
-	Article *article = ((ListArticle*)managedObject).article;
+	ListArticle *article = (ListArticle*)managedObject;
 	[list_.managedObjectContext deleteObject:managedObject];
 	[list_.managedObjectContext deleteObject:article];
 }
 
-- (UITableViewCellAccessoryType)accessoryTypeForManagedObject:(NSManagedObject *)managedObject {
+/*- (UITableViewCellAccessoryType)accessoryTypeForManagedObject:(NSManagedObject *)managedObject {
 	return UITableViewCellAccessoryDetailDisclosureButton;
-}
+}*/
 
 #pragma mark -
 #pragma mark Events
@@ -68,7 +72,7 @@
 - (void)addArticle {
 /*	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Lägg till vara" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Lägg till"];
 	[alertPrompt show];*/
-	AddArticleListViewController *addArticleListViewController = [[AddArticleListViewController alloc] initInManagedObjectContext:list_.managedObjectContext];
+	AddArticleListViewController *addArticleListViewController = [[AddArticleListViewController alloc] initWithList:list_];
 	[addArticleListViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
 	[self.navigationController pushViewController:addArticleListViewController animated:YES];
 	[addArticleListViewController release];

@@ -8,14 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "CoreDataTableViewController.h"
+#import "List.h"
 
 
 @interface AddArticleListViewController : CoreDataTableViewController {
-	NSManagedObjectContext *managedObjectContext_;
+	List *list_;
 }
 
-- (id)initInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
-
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+- (id)initWithList:(List*)list;
 
 @end

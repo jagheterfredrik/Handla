@@ -157,6 +157,14 @@
     // [anotherViewController release];
 }
 
+- (void)managedObjectAccessoryTapped:(NSManagedObject *)managedObject
+{
+    // Navigation logic may go here. Create and push another view controller.
+    // AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
+    // [self.navigationController pushViewController:anotherViewController];
+    // [anotherViewController release];	
+}
+
 - (void)deleteManagedObject:(NSManagedObject *)managedObject
 {
 }
@@ -218,6 +226,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[self managedObjectSelected:[[self fetchedResultsControllerForTableView:tableView] objectAtIndexPath:indexPath]];
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+	[self managedObjectAccessoryTapped:[[self fetchedResultsControllerForTableView:tableView] objectAtIndexPath:indexPath]];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

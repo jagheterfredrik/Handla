@@ -42,6 +42,9 @@
 // called when a cell representing the specified managedObject is selected (does nothing by default)
 - (void)managedObjectSelected:(NSManagedObject *)managedObject;
 
+// called when a cell representing the specified managedObject's accessory button is tapped (does nothing by default)
+- (void)managedObjectAccessoryTapped:(NSManagedObject *)managedObject;
+
 // called to see if the specified managed object is allowed to be deleted (default is NO)
 - (BOOL)canDeleteManagedObject:(NSManagedObject *)managedObject;
 

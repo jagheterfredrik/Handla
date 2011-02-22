@@ -7,7 +7,7 @@
 //
 
 #import "BudgetViewController.h"
-#import "AddBudgetPostViewController.h"
+#import "BudgetPostDetailViewController.h"
 #import "BudgetSettingsViewController.h"
 
 @implementation BudgetViewController
@@ -83,7 +83,7 @@
 #pragma mark Event handling
 
 - (void)addPost {
-	addBudgetPostViewController = [[AddBudgetPostViewController alloc] initInManagedObjectContext:self.managedObjectContext];
+	addBudgetPostViewController = [[BudgetPostDetailViewController alloc] initInManagedObjectContext:self.managedObjectContext];
 	[self.navigationController pushViewController:addBudgetPostViewController animated:YES];
 	[addBudgetPostViewController release];
 }

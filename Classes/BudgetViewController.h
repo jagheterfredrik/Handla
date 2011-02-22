@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "BudgetTableViewController.h"
 
-@class AddBudgetPostViewController;
+@class BudgetPostDetailViewController;
 @class BudgetSettingsViewController;
 
 @interface BudgetViewController : UIViewController {
-	AddBudgetPostViewController *addBudgetPostViewController;
+	BudgetPostDetailViewController *addBudgetPostViewController;
 	BudgetSettingsViewController *budgetSettingsViewController;
 	IBOutlet BudgetTableViewController *budgetTableViewController;
 	NSManagedObjectContext *managedObjectContext_;

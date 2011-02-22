@@ -15,7 +15,7 @@
 @implementation IndividualListViewController
 
 - (void)addListArticle {
-	AddArticleListViewController *addArticleListViewController = [[AddArticleListViewController alloc] initInManagedObjectContext:list_.managedObjectContext];
+	AddArticleListViewController *addArticleListViewController = [[AddArticleListViewController alloc] initWithList:list_];
 	[self.navigationController pushViewController:addArticleListViewController animated:YES];
 	[addArticleListViewController release];
 }

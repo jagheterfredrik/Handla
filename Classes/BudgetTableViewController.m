@@ -10,7 +10,7 @@
 #import "BudgetTableViewCell.h"
 #import "BudgetViewController.h"
 #import "BudgetPost.h"
-#import "AddBudgetPostViewController.h"
+#import "BudgetPostDetailViewController.h"
 
 @implementation BudgetTableViewController
 
@@ -53,7 +53,7 @@
 
 - (void)managedObjectSelected:(NSManagedObject *)managedObject
 {
-	AddBudgetPostViewController *addBudgetPostViewController = [[AddBudgetPostViewController alloc] initWithBudgetPost:(BudgetPost*)managedObject];
+	BudgetPostDetailViewController *addBudgetPostViewController = [[BudgetPostDetailViewController alloc] initWithBudgetPost:(BudgetPost*)managedObject];
 	[budgetViewController.navigationController pushViewController:addBudgetPostViewController animated:YES];
 	[addBudgetPostViewController release];
 	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];

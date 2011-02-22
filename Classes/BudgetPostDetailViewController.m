@@ -1,5 +1,5 @@
 //
-//  AddBudgetPostViewController.m
+//  BudgetPostDetailViewController.m
 //  Handla
 //  
 //  Handles the view responsible for adding new posts in the budget. 
@@ -10,10 +10,10 @@
 //  Copyright 2011 Kungliga Tekniska Högskolan. All rights reserved.
 //
 
-#import "AddBudgetPostViewController.h"
+#import "BudgetPostDetailViewController.h"
 
 
-@implementation AddBudgetPostViewController
+@implementation BudgetPostDetailViewController
 
 @synthesize managedObjectContext=managedObjectContext_;
 
@@ -169,14 +169,14 @@
 }
 
 - (IBAction)setDateButtonClicked:(UIButton*) sender {
-	UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:@"Välj datum" 
+	UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:@"Välj datum"
 													  delegate:self
 											 cancelButtonTitle:nil
 										destructiveButtonTitle:nil
-											 otherButtonTitles:@"OK",nil];    
+											 otherButtonTitles:@"OK", nil];    
 	// Add the picker
 	[menu addSubview:datePicker];
-	[menu showInView:self.view];        
+	[menu showInView:self.view];
 	
 	CGRect menuRect = menu.frame;
 	CGFloat orgHeight = menuRect.size.height;

@@ -19,6 +19,19 @@
 #pragma mark -
 #pragma mark Core data table view overrides
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForManagedObject:(NSManagedObject *)managedObject {
+	static NSString *cellIdentifier = @"BudgetPostCell";
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+	if (cell == nil) {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	}
+	List* list = (List*)managedObject;
+	cell.textLabel.text = list.name;
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"%i varor", [(NSSet*)list.articles count]];
+	return cell;
+}
+
 - (void)managedObjectSelected:(NSManagedObject *)managedObject
 {
 	IndividualListViewController *individualListViewController = [[IndividualListViewController alloc] initWithNibName:@"IndividualListViewController" bundle:nil list:(List*)managedObject];

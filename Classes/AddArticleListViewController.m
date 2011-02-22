@@ -7,11 +7,9 @@
 //
 
 #import "AddArticleListViewController.h"
-
+#import "ArticleDetailViewController.h"
 
 @implementation AddArticleListViewController
-
-@synthesize managedObjectContext=managedObjectContext_;
 
 #pragma mark -
 #pragma mark Initialization
@@ -27,9 +25,10 @@
 }
 */
 
-- (id)initInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
+
+- (id)initWithList:(List*)list {
 	if (self = [super initWithStyle:UITableViewStylePlain]) {
-		managedObjectContext_ = managedObjectContext;
+		list_ = list;
 	}
 	return self;
 }
@@ -39,7 +38,9 @@
 #pragma mark Events
 
 - (void)addArticle {
-	
+	ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil managedObjectContext:list_.managedObjectContext];
+	[self.navigationController pushViewController:articleDetailViewController animated:YES];
+	[articleDetailViewController release];
 }
 
 
@@ -58,7 +59,7 @@
 	
 	//Setup the data source.
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	request.entity = [NSEntityDescription entityForName:@"Article" inManagedObjectContext:managedObjectContext_];
+	request.entity = [NSEntityDescription entityForName:@"Article" inManagedObjectContext:list_.managedObjectContext];
 	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
 																					 ascending:YES
 																					  selector:@selector(caseInsensitiveCompare:)]];
@@ -67,7 +68,7 @@
 	
 	NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
 									   initWithFetchRequest:request
-									   managedObjectContext:managedObjectContext_
+									   managedObjectContext:list_.managedObjectContext
 									   sectionNameKeyPath:nil
 									   cacheName:nil];
 	frc.delegate = self;
@@ -115,8 +116,31 @@
 #pragma mark -
 #pragma mark Core data table view controller overrides
 
+- (void)managedObjectAccessoryTapped:(NSManagedObject *)managedObject {
+	ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil article:(Article*)managedObject];
+	[self.navigationController pushViewController:articleDetailViewController animated:YES];
+	[articleDetailViewController release];
+}
+
+- (void)managedObjectSelected:(NSManagedObject *)managedObject
+{
+	ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
+	listArticle.list = list_;
+	listArticle.article = (Article*)managedObject;
+	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+	[self.navigationController popViewControllerAnimated:YES];
+}
+
 - (UITableViewCellAccessoryType)accessoryTypeForManagedObject:(NSManagedObject *)managedObject {
 	return UITableViewCellAccessoryDetailDisclosureButton;
+}
+
+- (BOOL)canDeleteManagedObject:(NSManagedObject *)managedObject {
+	return YES;
+}
+
+- (void)deleteManagedObject:(NSManagedObject *)managedObject {
+	[list_.managedObjectContext deleteObject:managedObject];
 }
 
 #pragma mark -
