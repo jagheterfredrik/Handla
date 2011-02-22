@@ -24,8 +24,6 @@
 		481BFF76130D16E700AC4CC8 /* AddArticleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481BFF75130D16E700AC4CC8 /* AddArticleListViewController.m */; };
 		481BFF8A130D18DC00AC4CC8 /* BudgetSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481BFF88130D18DC00AC4CC8 /* BudgetSettingsViewController.m */; };
 		481BFF98130D1E9B00AC4CC8 /* AddBudgetPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481BFF97130D1E9B00AC4CC8 /* AddBudgetPostViewController.m */; };
-		481BFFAA130D219A00AC4CC8 /* BudgetSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 481BFFA8130D219A00AC4CC8 /* BudgetSettingsViewController.xib */; };
-		481BFFAB130D219A00AC4CC8 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 481BFFA9130D219A00AC4CC8 /* MainWindow.xib */; };
 		481BFFAE130D21B300AC4CC8 /* Handla.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 481BFFAC130D21B300AC4CC8 /* Handla.xcdatamodeld */; };
 		481BFFD0130D220900AC4CC8 /* BudgetIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 481BFFCC130D220900AC4CC8 /* BudgetIcon.png */; };
 		481BFFD1130D220900AC4CC8 /* BudgetIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 481BFFCD130D220900AC4CC8 /* BudgetIcon@2x.png */; };
@@ -41,12 +39,14 @@
 		4848BAF1130B03BF00702E2D /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848BAF0130B03BF00702E2D /* CoreDataTableViewController.m */; };
 		4848BBD1130B342400702E2D /* IndividualListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848BBD0130B342400702E2D /* IndividualListTableViewController.m */; };
 		48C3F5A81312F4A700EAE609 /* BudgetTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C3F5A71312F4A700EAE609 /* BudgetTableViewController.m */; };
-		48C3F5B01312F5D200EAE609 /* BudgetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48C3F5AF1312F5D200EAE609 /* BudgetViewController.xib */; };
 		48C3F5F61312FA1000EAE609 /* BudgetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C3F5F51312FA1000EAE609 /* BudgetTableViewCell.m */; };
-		48C3F6011312FB1800EAE609 /* BudgetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48C3F6001312FB1800EAE609 /* BudgetTableViewCell.xib */; };
-		48F0D8BB131194EE003D0352 /* AddBudgetPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48F0D8BA131194EE003D0352 /* AddBudgetPostViewController.xib */; };
+		48C3F71213140F5800EAE609 /* AddBudgetPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48C3F70C13140F5800EAE609 /* AddBudgetPostViewController.xib */; };
+		48C3F71313140F5800EAE609 /* BudgetSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48C3F70D13140F5800EAE609 /* BudgetSettingsViewController.xib */; };
+		48C3F71413140F5800EAE609 /* BudgetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48C3F70E13140F5800EAE609 /* BudgetTableViewCell.xib */; };
+		48C3F71513140F5800EAE609 /* BudgetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48C3F70F13140F5800EAE609 /* BudgetViewController.xib */; };
+		48C3F71613140F5800EAE609 /* IndividualListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48C3F71013140F5800EAE609 /* IndividualListViewController.xib */; };
+		48C3F71713140F5800EAE609 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48C3F71113140F5800EAE609 /* MainWindow.xib */; };
 		48F0D9011311B05E003D0352 /* IndividualListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F0D8FF1311B05E003D0352 /* IndividualListViewController.m */; };
-		48F0DA441311DE84003D0352 /* IndividualListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48F0DA431311DE84003D0352 /* IndividualListViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,8 +81,6 @@
 		481BFF88130D18DC00AC4CC8 /* BudgetSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BudgetSettingsViewController.m; sourceTree = "<group>"; };
 		481BFF96130D1E9B00AC4CC8 /* AddBudgetPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBudgetPostViewController.h; sourceTree = "<group>"; };
 		481BFF97130D1E9B00AC4CC8 /* AddBudgetPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBudgetPostViewController.m; sourceTree = "<group>"; };
-		481BFFA8130D219A00AC4CC8 /* BudgetSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BudgetSettingsViewController.xib; path = Resources/XIBs/BudgetSettingsViewController.xib; sourceTree = "<group>"; };
-		481BFFA9130D219A00AC4CC8 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/XIBs/MainWindow.xib; sourceTree = "<group>"; };
 		481BFFAD130D21B300AC4CC8 /* Handla.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Handla.xcdatamodel; sourceTree = "<group>"; };
 		481BFFCC130D220900AC4CC8 /* BudgetIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BudgetIcon.png; path = Resources/Images/BudgetIcon.png; sourceTree = "<group>"; };
 		481BFFCD130D220900AC4CC8 /* BudgetIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BudgetIcon@2x.png"; path = "Resources/Images/BudgetIcon@2x.png"; sourceTree = "<group>"; };
@@ -108,14 +106,16 @@
 		4848BBD0130B342400702E2D /* IndividualListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualListTableViewController.m; sourceTree = "<group>"; };
 		48C3F5A61312F4A700EAE609 /* BudgetTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BudgetTableViewController.h; sourceTree = "<group>"; };
 		48C3F5A71312F4A700EAE609 /* BudgetTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BudgetTableViewController.m; sourceTree = "<group>"; };
-		48C3F5AF1312F5D200EAE609 /* BudgetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BudgetViewController.xib; sourceTree = "<group>"; };
 		48C3F5F41312FA1000EAE609 /* BudgetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BudgetTableViewCell.h; sourceTree = "<group>"; };
 		48C3F5F51312FA1000EAE609 /* BudgetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BudgetTableViewCell.m; sourceTree = "<group>"; };
-		48C3F6001312FB1800EAE609 /* BudgetTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BudgetTableViewCell.xib; sourceTree = "<group>"; };
-		48F0D8BA131194EE003D0352 /* AddBudgetPostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AddBudgetPostViewController.xib; path = Resources/XIBs/AddBudgetPostViewController.xib; sourceTree = "<group>"; };
+		48C3F70C13140F5800EAE609 /* AddBudgetPostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AddBudgetPostViewController.xib; path = Resources/XIBs/AddBudgetPostViewController.xib; sourceTree = "<group>"; };
+		48C3F70D13140F5800EAE609 /* BudgetSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BudgetSettingsViewController.xib; path = Resources/XIBs/BudgetSettingsViewController.xib; sourceTree = "<group>"; };
+		48C3F70E13140F5800EAE609 /* BudgetTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BudgetTableViewCell.xib; path = Resources/XIBs/BudgetTableViewCell.xib; sourceTree = "<group>"; };
+		48C3F70F13140F5800EAE609 /* BudgetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BudgetViewController.xib; path = Resources/XIBs/BudgetViewController.xib; sourceTree = "<group>"; };
+		48C3F71013140F5800EAE609 /* IndividualListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IndividualListViewController.xib; path = Resources/XIBs/IndividualListViewController.xib; sourceTree = "<group>"; };
+		48C3F71113140F5800EAE609 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/XIBs/MainWindow.xib; sourceTree = "<group>"; };
 		48F0D8FE1311B05E003D0352 /* IndividualListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualListViewController.h; sourceTree = "<group>"; };
 		48F0D8FF1311B05E003D0352 /* IndividualListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualListViewController.m; sourceTree = "<group>"; };
-		48F0DA431311DE84003D0352 /* IndividualListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IndividualListViewController.xib; path = Resources/XIBs/IndividualListViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Handla-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Handla-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -278,12 +278,12 @@
 		481BFFB3130D21E600AC4CC8 /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
-				48F0D8BA131194EE003D0352 /* AddBudgetPostViewController.xib */,
-				481BFFA8130D219A00AC4CC8 /* BudgetSettingsViewController.xib */,
-				48F0DA431311DE84003D0352 /* IndividualListViewController.xib */,
-				481BFFA9130D219A00AC4CC8 /* MainWindow.xib */,
-				48C3F5AF1312F5D200EAE609 /* BudgetViewController.xib */,
-				48C3F6001312FB1800EAE609 /* BudgetTableViewCell.xib */,
+				48C3F70C13140F5800EAE609 /* AddBudgetPostViewController.xib */,
+				48C3F70D13140F5800EAE609 /* BudgetSettingsViewController.xib */,
+				48C3F70E13140F5800EAE609 /* BudgetTableViewCell.xib */,
+				48C3F70F13140F5800EAE609 /* BudgetViewController.xib */,
+				48C3F71013140F5800EAE609 /* IndividualListViewController.xib */,
+				48C3F71113140F5800EAE609 /* MainWindow.xib */,
 			);
 			name = XIBs;
 			sourceTree = "<group>";
@@ -382,16 +382,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				481BFFAA130D219A00AC4CC8 /* BudgetSettingsViewController.xib in Resources */,
-				481BFFAB130D219A00AC4CC8 /* MainWindow.xib in Resources */,
 				481BFFD0130D220900AC4CC8 /* BudgetIcon.png in Resources */,
 				481BFFD1130D220900AC4CC8 /* BudgetIcon@2x.png in Resources */,
 				481BFFD2130D220900AC4CC8 /* ListIcon.png in Resources */,
 				481BFFD3130D220900AC4CC8 /* ListIcon@2x.png in Resources */,
-				48F0D8BB131194EE003D0352 /* AddBudgetPostViewController.xib in Resources */,
-				48F0DA441311DE84003D0352 /* IndividualListViewController.xib in Resources */,
-				48C3F5B01312F5D200EAE609 /* BudgetViewController.xib in Resources */,
-				48C3F6011312FB1800EAE609 /* BudgetTableViewCell.xib in Resources */,
+				48C3F71213140F5800EAE609 /* AddBudgetPostViewController.xib in Resources */,
+				48C3F71313140F5800EAE609 /* BudgetSettingsViewController.xib in Resources */,
+				48C3F71413140F5800EAE609 /* BudgetTableViewCell.xib in Resources */,
+				48C3F71513140F5800EAE609 /* BudgetViewController.xib in Resources */,
+				48C3F71613140F5800EAE609 /* IndividualListViewController.xib in Resources */,
+				48C3F71713140F5800EAE609 /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
