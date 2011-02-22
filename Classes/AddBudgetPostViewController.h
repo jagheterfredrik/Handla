@@ -9,14 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "BudgetPost.h"
 
-@interface AddBudgetPostViewController : UIViewController {
+@interface AddBudgetPostViewController : UIViewController<UIActionSheetDelegate> {
 	NSManagedObjectContext *managedObjectContext_;
 	BudgetPost *budgetPost_;
+	UIDatePicker *datePicker;
+	NSDateFormatter *dateFormatter;
 	IBOutlet UITextField* nameBox;
 	IBOutlet UITextField* valueBox;
 	IBOutlet UITextField* commentBox;
 	IBOutlet UISegmentedControl* incomeOrExpense;
-	IBOutlet UIDatePicker* datePicker;
 	IBOutlet UIButton* dateShower;
 	IBOutlet UIBarItem* doneButton;
 }

@@ -56,9 +56,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	dateFormatter = [[NSDateFormatter alloc] init];
+	//ISO 8601
+	[dateFormatter setDateFormat:@"yyyy-MM-dd"];
 	if (budgetPost_ == nil) {
 		self.title = @"Ny budgetpost";
 		doneButton.title = @"Skapa";
+		datePicker = [[UIDatePicker alloc] init];
+		datePicker.datePickerMode = UIDatePickerModeDate;
+		[datePicker setDate:[NSDate date]];
+		[dateShower setTitle:[dateFormatter stringFromDate:[NSDate date]] forState:UIControlStateNormal];
 	} else {
 		self.title = budgetPost_.name;
 		nameBox.text = budgetPost_.name;
@@ -70,9 +77,11 @@
 			incomeOrExpense.selectedSegmentIndex = 0;
 		}
 		doneButton.title = @"Ändra";
-		
+		datePicker = [[UIDatePicker alloc] init];
+		datePicker.datePickerMode = UIDatePickerModeDate;
+		[datePicker setDate:budgetPost_.timeStamp];
+		[dateShower setTitle:[dateFormatter stringFromDate:budgetPost_.timeStamp] forState:UIControlStateNormal];
 	}
-	
 }
 
 
@@ -98,6 +107,10 @@
 		[valueBox becomeFirstResponder];
 	}
     return YES;
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	[dateShower setTitle:[dateFormatter stringFromDate:datePicker.date] forState:UIControlStateNormal];
 }
 
 /**
@@ -146,16 +159,33 @@
 	newBudgetPost.amount = value;
 	newBudgetPost.comment = commentBox.text;
 	
-	if (budgetPost_ == nil) {
-		newBudgetPost.timeStamp = [NSDate date];
-	}
+	newBudgetPost.timeStamp = datePicker.date;
 
 	[self.managedObjectContext save:NULL];
 	[self dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)setDateButtonClicked:(UIButton*) sender {
-	//TODO: Fix.
+	UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:@"Välj datum" 
+													  delegate:self
+											 cancelButtonTitle:nil
+										destructiveButtonTitle:nil
+											 otherButtonTitles:@"OK",nil];    
+	// Add the picker
+	[menu addSubview:datePicker];
+	[menu showInView:self.view];        
+	
+	CGRect menuRect = menu.frame;
+	CGFloat orgHeight = menuRect.size.height;
+	menuRect.origin.y -= 214;
+	menuRect.size.height = orgHeight+214;
+	menu.frame = menuRect;
+	
+	CGRect pickerRect = datePicker.frame;
+	pickerRect.origin.y = orgHeight;
+	datePicker.frame = pickerRect;
+	
+	[menu release]; 
 }
 
 /**
@@ -168,7 +198,7 @@
 											   destructiveButtonTitle:nil
 													otherButtonTitles:nil];
 	[actionSheet showInView:[[self view] window]];
-	[actionSheet autorelease];
+	[actionSheet release];
 }
 
 
@@ -193,6 +223,9 @@
 	[commentBox release];
 	[nameBox release];
 	[incomeOrExpense release];
+	[datePicker release];
+	[managedObjectContext_ release];
+	[dateFormatter release];
     [super dealloc];
 }
 

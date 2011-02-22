@@ -14,6 +14,12 @@
 
 @implementation BudgetTableViewController
 
+- (void)viewDidLoad {
+	dateFormatter = [[NSDateFormatter alloc] init];
+	//ISO 8601
+	[dateFormatter setDateFormat:@"yyyy-MM-dd"];
+}
+
 - (void)setManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
 	managedObjectContext_ = managedObjectContext;
 	
@@ -69,7 +75,7 @@
 	}
 	BudgetPost *budgetPost = (BudgetPost*)managedObject;
 	cell.nameLabel.text = budgetPost.name;
-	cell.dateLabel.text = [budgetPost.timeStamp description];
+	cell.dateLabel.text = [dateFormatter stringFromDate:budgetPost.timeStamp];
 	cell.priceLabel.text = [budgetPost.amount stringValue];
 	if ([budgetPost.amount compare:[NSNumber numberWithInt:0]] == NSOrderedAscending)
 		cell.priceLabel.textColor = [UIColor redColor];
@@ -98,6 +104,7 @@
 
 
 - (void)dealloc {
+	[dateFormatter release];
     [super dealloc];
 }
 

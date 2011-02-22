@@ -12,6 +12,7 @@
 
 @interface BudgetTableViewController : CoreDataTableViewController {
 	NSManagedObjectContext *managedObjectContext_;
+	NSDateFormatter *dateFormatter;
 	IBOutlet BudgetViewController *budgetViewController;
 }
 - (void)setManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
