@@ -56,6 +56,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:self action:@selector(doneClick)];
+	self.navigationItem.rightBarButtonItem = doneButton;
+	[doneButton release];
+	
 	dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateStyle:NSDateFormatterShortStyle];
 	
@@ -66,7 +71,7 @@
 	
 	if (budgetPost_ == nil) {
 		self.title = @"Ny budgetpost";
-		doneButton.title = @"Skapa";
+		self.navigationItem.rightBarButtonItem.title = @"Skapa";
 		datePicker = [[UIDatePicker alloc] init];
 		datePicker.datePickerMode = UIDatePickerModeDate;
 		[datePicker setDate:[NSDate date]];
@@ -80,7 +85,7 @@
 			incomeOrExpense.selectedSegmentIndex = 0;
 		}
 		valueBox.text = [amountFormatter stringFromNumber:budgetPost_.amount];
-		doneButton.title = @"Ändra";
+		self.navigationItem.rightBarButtonItem.title = @"Ändra";
 		datePicker = [[UIDatePicker alloc] init];
 		datePicker.datePickerMode = UIDatePickerModeDate;
 		[datePicker setDate:budgetPost_.timeStamp];
@@ -119,16 +124,9 @@
 }
 
 /**
- * When cancel button is clicked, the view should be dismissed.
- */
-- (IBAction)cancelClick:(id) sender {
-	[self dismissModalViewControllerAnimated:YES];
-}
-
-/**
  * When done button is clicked, the values in the view shoud be stored in the database.
  */
-- (IBAction)doneClick:(id) sender{
+- (IBAction)doneClick {
 	if (([valueBox.text length]==0)&&([nameBox.text length]==0)){
 		[self showMessageWithString:@"Du måste ange ett namn och en summa för budgetposten!"];
 		return;

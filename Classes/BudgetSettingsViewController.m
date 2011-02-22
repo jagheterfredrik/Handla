@@ -44,13 +44,8 @@
 	//TODO: Apply settings? Implement delegate?
 	
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	
-	if (monthOrWeek.selectedSegmentIndex == 0) {
-		[defaults setBool:YES forKey:@"budgetViewIsMonth"];
-	}
-	else {
-		[defaults setBool:NO forKey:@"budgetViewIsMonth"];
-	}
+
+	[defaults setBool:(monthOrWeek.selectedSegmentIndex == 0) forKey:@"budgetViewIsMonth"];
 		
 	[self.navigationController popViewControllerAnimated:YES];
 }

@@ -19,14 +19,12 @@
 	IBOutlet UITextField* commentBox;
 	IBOutlet UISegmentedControl* incomeOrExpense;
 	IBOutlet UIButton* dateShower;
-	IBOutlet UIBarItem* doneButton;
 }
 
 - (id)initInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 - (id)initWithBudgetPost:(BudgetPost*)budgetPost;
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField;
-- (IBAction)doneClick:(id) sender;
-- (IBAction)cancelClick:(id)sender;
+- (IBAction)doneClick;
 - (void)showMessageWithString:(NSString *) message;
 - (IBAction)setDateButtonClicked:(UIButton*) sender;
 

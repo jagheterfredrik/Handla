@@ -38,7 +38,7 @@
     [super viewDidLoad];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(showSettings)];
+	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithTitle:@"Inställningar" style:UIBarButtonItemStylePlain target:self action:@selector(showSettings)];
     self.navigationItem.leftBarButtonItem = settingsButton;
 	[settingsButton release];
 	
@@ -84,7 +84,7 @@
 
 - (void)addPost {
 	addBudgetPostViewController = [[AddBudgetPostViewController alloc] initInManagedObjectContext:self.managedObjectContext];
-	[self presentModalViewController:addBudgetPostViewController animated:YES];
+	[self.navigationController pushViewController:addBudgetPostViewController animated:YES];
 	[addBudgetPostViewController release];
 }
 

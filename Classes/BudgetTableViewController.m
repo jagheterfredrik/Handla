@@ -54,8 +54,9 @@
 - (void)managedObjectSelected:(NSManagedObject *)managedObject
 {
 	AddBudgetPostViewController *addBudgetPostViewController = [[AddBudgetPostViewController alloc] initWithBudgetPost:(BudgetPost*)managedObject];
-	[budgetViewController presentModalViewController:addBudgetPostViewController animated:YES];
+	[budgetViewController.navigationController pushViewController:addBudgetPostViewController animated:YES];
 	[addBudgetPostViewController release];
+	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 - (BOOL)canDeleteManagedObject:(NSManagedObject *)managedObject {
