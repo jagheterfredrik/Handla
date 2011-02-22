@@ -10,6 +10,8 @@
 
 
 @interface BudgetSettingsViewController : UIViewController {
+	
+	IBOutlet UISegmentedControl* monthOrWeek;
 
 }
 

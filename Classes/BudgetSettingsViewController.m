@@ -18,6 +18,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	self.navigationItem.title = @"Budgetinställningar";
+	
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	
+	if([defaults boolForKey:@"budgetViewIsMonth"])		
+	{
+		monthOrWeek.selectedSegmentIndex = 0;
+	}
+	else {
+		monthOrWeek.selectedSegmentIndex = 1;
+	}
+
+	
 	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneClick)];
 	self.navigationItem.leftBarButtonItem = doneButton;
 	[doneButton release];
@@ -29,6 +42,16 @@
 
 - (void)doneClick {
 	//TODO: Apply settings? Implement delegate?
+	
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	
+	if (monthOrWeek.selectedSegmentIndex == 0) {
+		[defaults setBool:YES forKey:@"budgetViewIsMonth"];
+	}
+	else {
+		[defaults setBool:NO forKey:@"budgetViewIsMonth"];
+	}
+		
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
