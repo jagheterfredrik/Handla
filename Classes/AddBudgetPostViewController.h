@@ -16,7 +16,8 @@
 	IBOutlet UITextField* valueBox;
 	IBOutlet UITextField* commentBox;
 	IBOutlet UISegmentedControl* incomeOrExpense;
-	
+	IBOutlet UIDatePicker* datePicker;
+	IBOutlet UIButton* dateShower;
 }
 
 - (id)initInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
@@ -25,6 +26,7 @@
 - (IBAction)doneClick:(id) sender;
 - (IBAction)cancelClick:(id)sender;
 - (void)showMessageWithString:(NSString *) message;
+- (IBAction)setDateButtonClicked:(UIButton*) sender;
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 

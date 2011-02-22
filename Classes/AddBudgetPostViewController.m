@@ -124,7 +124,7 @@
 	NSDate* tempDate = [[NSDate alloc] init];
 	newBudgetPost.timeStamp = tempDate;
 	[tempDate release];
-	[self.managedObjectContext save:NULL];	//TODO: THIS TAKES TOO #€%&/%/( LONG! 
+	[self.managedObjectContext save:NULL];
 	[self dismissModalViewControllerAnimated:YES];
 }
 
