@@ -57,8 +57,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	dateFormatter = [[NSDateFormatter alloc] init];
-	//ISO 8601
-	[dateFormatter setDateFormat:@"yyyy-MM-dd"];
+	[dateFormatter setDateStyle:NSDateFormatterShortStyle];
+	
+	NSNumberFormatter *amountFormatter = [[NSNumberFormatter alloc] init];
+	[amountFormatter setNumberStyle: NSNumberFormatterDecimalStyle];
+	[amountFormatter setMinusSign:@""];
+	[amountFormatter setMinimumFractionDigits:2];
+	
 	if (budgetPost_ == nil) {
 		self.title = @"Ny budgetpost";
 		doneButton.title = @"Skapa";
@@ -70,18 +75,18 @@
 		self.title = budgetPost_.name;
 		nameBox.text = budgetPost_.name;
 		if ([budgetPost_.amount compare:[NSNumber numberWithInt:0]] == NSOrderedAscending) {
-			valueBox.text = [[budgetPost_.amount decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]] description];
 			incomeOrExpense.selectedSegmentIndex = 1;
 		} else {
-			valueBox.text = [budgetPost_.amount description];
 			incomeOrExpense.selectedSegmentIndex = 0;
 		}
+		valueBox.text = [amountFormatter stringFromNumber:budgetPost_.amount];
 		doneButton.title = @"Ändra";
 		datePicker = [[UIDatePicker alloc] init];
 		datePicker.datePickerMode = UIDatePickerModeDate;
 		[datePicker setDate:budgetPost_.timeStamp];
 		[dateShower setTitle:[dateFormatter stringFromDate:budgetPost_.timeStamp] forState:UIControlStateNormal];
 	}
+	[amountFormatter release];
 }
 
 
