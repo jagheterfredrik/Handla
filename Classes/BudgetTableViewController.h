@@ -14,5 +14,6 @@
 	NSManagedObjectContext *managedObjectContext_;
 	IBOutlet BudgetViewController *budgetViewController;
 }
+- (void)setManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
 @end

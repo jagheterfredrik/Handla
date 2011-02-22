@@ -18,6 +18,7 @@
 	IBOutlet UISegmentedControl* incomeOrExpense;
 	IBOutlet UIDatePicker* datePicker;
 	IBOutlet UIButton* dateShower;
+	IBOutlet UIBarItem* doneButton;
 }
 
 - (id)initInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;

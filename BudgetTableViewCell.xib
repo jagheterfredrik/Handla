@@ -72,7 +72,7 @@
 							<object class="IBUILabel" id="161611884">
 								<reference key="NSNextResponder" ref="399322244"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 23}, {153, 16}}</string>
+								<string key="NSFrame">{{20, 21}, {153, 16}}</string>
 								<reference key="NSSuperview" ref="399322244"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -93,7 +93,7 @@
 							<object class="IBUILabel" id="186386900">
 								<reference key="NSNextResponder" ref="399322244"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{224, 9}, {76, 21}}</string>
+								<string key="NSFrame">{{215, 9}, {76, 21}}</string>
 								<reference key="NSSuperview" ref="399322244"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -108,7 +108,7 @@
 								<int key="IBUITextAlignment">2</int>
 							</object>
 						</object>
-						<string key="NSFrameSize">{320, 44}</string>
+						<string key="NSFrameSize">{300, 40}</string>
 						<reference key="NSSuperview" ref="383655212"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -121,7 +121,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 44}</string>
+				<string key="NSFrameSize">{320, 40}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -129,6 +129,8 @@
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISeparatorStyle">1</int>
+				<int key="IBUISelectionStyle">2</int>
+				<int key="IBUIAccessoryType">1</int>
 				<reference key="IBUIContentView" ref="399322244"/>
 				<string key="IBUIReuseIdentifier">BudgetTableViewCell</string>
 			</object>
@@ -228,7 +230,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UIResponder</string>
 					<string>BudgetTableViewCell</string>
-					<string>{{354, 655}, {320, 44}}</string>
+					<string>{{379, 374}, {320, 40}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -240,7 +242,7 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">AUGgAABAQAAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDYAAAweAAAA</bytes>
 					</object>
 				</object>
 			</object>

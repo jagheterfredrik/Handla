@@ -54,6 +54,33 @@
 	return self;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+	if (budgetPost_ == nil) {
+		self.title = @"Ny budgetpost";
+		doneButton.title = @"Skapa";
+	} else {
+		self.title = budgetPost_.name;
+		nameBox.text = budgetPost_.name;
+		if ([budgetPost_.amount compare:[NSNumber numberWithInt:0]] == NSOrderedAscending) {
+			valueBox.text = [[budgetPost_.amount decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]] description];
+			incomeOrExpense.selectedSegmentIndex = 1;
+		} else {
+			valueBox.text = [budgetPost_.amount description];
+			incomeOrExpense.selectedSegmentIndex = 0;
+		}
+		doneButton.title = @"Ändra";
+		
+	}
+	
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+	valueBox.keyboardType = UIKeyboardTypeDecimalPad;
+	[nameBox becomeFirstResponder];
+}
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -117,15 +144,18 @@
 		value = [value decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
 	}
 	newBudgetPost.amount = value;
-
-	
 	newBudgetPost.comment = commentBox.text;
 	
-	NSDate* tempDate = [[NSDate alloc] init];
-	newBudgetPost.timeStamp = tempDate;
-	[tempDate release];
+	if (budgetPost_ == nil) {
+		newBudgetPost.timeStamp = [NSDate date];
+	}
+
 	[self.managedObjectContext save:NULL];
 	[self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)setDateButtonClicked:(UIButton*) sender {
+	//TODO: Fix.
 }
 
 /**
@@ -140,56 +170,6 @@
 	[actionSheet showInView:[[self view] window]];
 	[actionSheet autorelease];
 }
-
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-	if (budgetPost_ == nil) {
-		self.title = @"Ny budgetpost";
-	} else {
-		self.title = budgetPost_.name;
-		nameBox.text = budgetPost_.name;
-		if ([budgetPost_.amount compare:[NSNumber numberWithInt:0]] == NSOrderedAscending) {
-			valueBox.text = [[budgetPost_.amount decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]] description];
-			incomeOrExpense.selectedSegmentIndex = 1;
-		} else {
-			valueBox.text = [budgetPost_.amount description];
-			incomeOrExpense.selectedSegmentIndex = 0;
-		}
-
-	}
-
-}
-
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-	valueBox.keyboardType = UIKeyboardTypeDecimalPad;
-	[nameBox becomeFirstResponder];
-}
-
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 
 #pragma mark -
