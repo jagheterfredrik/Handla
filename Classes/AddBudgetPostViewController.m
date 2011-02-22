@@ -165,7 +165,7 @@
 	newBudgetPost.timeStamp = datePicker.date;
 
 	[self.managedObjectContext save:NULL];
-	[self dismissModalViewControllerAnimated:YES];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)setDateButtonClicked:(UIButton*) sender {
