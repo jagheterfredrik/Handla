@@ -1,5 +1,6 @@
 Handla!
 =======
+En applikation till iPhone som stöd till personer med kognitiva funktionsnedsättningar, i första hand neuropsykiatriska nedsättningar. Framtagandet sker i samverkan med Hjälpmedelsinstitutet.Applikationen ska tillhandahålla ett stöd vid inköp av dagligvaror i form av inköpslista med bilder och ett mindre budgetprogram.
 
 Licens
 ------
