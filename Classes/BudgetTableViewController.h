@@ -15,7 +15,9 @@
 	NSDateFormatter *dateFormatter;
 	NSNumberFormatter *amountFormatter;
 	IBOutlet BudgetViewController *budgetViewController;
+	IBOutlet UILabel *totalBalance;
 }
+@property (nonatomic,readonly) IBOutlet UILabel *totalBalance;
 - (void)setManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
 @end

@@ -3,6 +3,7 @@
 //  Handla
 //
 //  Created by Fredrik Gustafsson on 2011-02-21.
+//  Harald Hartwig och Wilhelm Kärde
 //  Copyright 2011 Kungliga Tekniska Högskolan. All rights reserved.
 //
 
@@ -12,13 +13,16 @@
 #import "BudgetPost.h"
 #import "BudgetPostDetailViewController.h"
 
+
 @implementation BudgetTableViewController
+@synthesize totalBalance;
 
 - (void)viewDidLoad {
 	//Setup the date formatter
 	dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateStyle:NSDateFormatterLongStyle];
 	
+
 	//Setup the amount formatter	
 	amountFormatter = [[NSNumberFormatter alloc] init];
 	[amountFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
@@ -32,7 +36,17 @@
 	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"timeStamp"
 																					 ascending:YES
 																					  selector:@selector(compare:)]];
-	request.predicate = nil;//[NSPredicate predicateWithFormat:@"list = %@", list_];
+	/*Fetching intervall for the budget table list
+	 *
+	 *TODO: Fixa med månad/vecko-intervall för att fetcha rätt budgetposter. 
+	 *
+	 
+	NSDate *startIntervall = [[NSDate alloc] initWithString:@"2011-02-18 00:00:00 +0100"];
+	NSDate *endIntervall = [[NSDate alloc] initWithString:@"2011-02-22 23:59:59 +0100"];
+	request.predicate = [NSPredicate predicateWithFormat:@"(timeStamp >= %@) AND (timeStamp <= %@)", startIntervall, endIntervall];
+*/
+	request.predicate = nil;
+	
 	request.fetchBatchSize = 20;
 	
 	NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
@@ -43,12 +57,28 @@
 	frc.delegate = self;
 	
 	[request release];
+//	[startIntervall release];
+//	[endIntervall release];
 	
 	[self setFetchedResultsController:frc];
 	[frc release];
 	
 	self.titleKey = @"name";
 	self.searchKey = @"name";
+
+	
+	// Calculate total balance. Kan vara väldigt felplacerad?
+	NSDecimalNumber *amountBalance = [NSDecimalNumber decimalNumberWithString:@"0"];
+	for (NSManagedObject *object in [self.fetchedResultsController fetchedObjects]) {
+		NSDecimalNumber *objectExpenseNumber = [object valueForKey:@"amount"];
+		amountBalance = [amountBalance decimalNumberByAdding:objectExpenseNumber];
+	}
+	
+	self.totalBalance.text = [amountFormatter stringFromNumber:amountBalance];;
+	if ([amountBalance compare:[NSNumber numberWithInt:0]] == NSOrderedAscending)
+		self.totalBalance.textColor = [UIColor redColor];
+	else
+		self.totalBalance.textColor = [UIColor greenColor];	
 }
 
 - (void)managedObjectSelected:(NSManagedObject *)managedObject
@@ -105,6 +135,11 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	
+
 }
 
 
