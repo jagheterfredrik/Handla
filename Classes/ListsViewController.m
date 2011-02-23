@@ -70,12 +70,10 @@
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	request.entity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext_];
-	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
-																					 ascending:YES
-																					  selector:@selector(caseInsensitiveCompare:)]];
+	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"lastUsed"
+																					 ascending:NO]];
 	request.predicate = nil;
 	request.fetchBatchSize = 20;
-	
 	NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
 									   initWithFetchRequest:request
 									   managedObjectContext:managedObjectContext_
@@ -88,9 +86,7 @@
 	[self setFetchedResultsController:frc];
 	[frc release];
 	
-	self.titleKey = @"name";
 	self.searchKey = @"name";
-	
 	self.title = @"Listor";
 }
 

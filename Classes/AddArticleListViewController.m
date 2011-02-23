@@ -29,6 +29,7 @@
 - (id)initWithList:(List*)list {
 	if (self = [super initWithStyle:UITableViewStylePlain]) {
 		list_ = list;
+		list.lastUsed = [NSDate	date];
 	}
 	return self;
 }
