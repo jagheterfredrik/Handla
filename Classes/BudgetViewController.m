@@ -30,6 +30,30 @@
 */
 
 
+//TODO: Make it more loosely coupled? i.e remove budgetTableViewController-references
+- (void)calculateBudgetSum {
+	NSNumberFormatter *amountFormatter = [[NSNumberFormatter alloc] init];
+	[amountFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
+	
+	NSDecimalNumber *amountBalance = [NSDecimalNumber decimalNumberWithString:@"0"];
+	for (NSManagedObject *object in [budgetTableViewController.fetchedResultsController fetchedObjects]) {
+		NSDecimalNumber *objectExpenseNumber = [object valueForKey:@"amount"];
+		amountBalance = [amountBalance decimalNumberByAdding:objectExpenseNumber];
+	}
+	
+	totalBalance.text = [amountFormatter stringFromNumber:amountBalance];;
+	if ([amountBalance compare:[NSNumber numberWithInt:0]] == NSOrderedAscending)
+		totalBalance.textColor = [UIColor redColor];
+	else
+		totalBalance.textColor = [UIColor greenColor];
+	
+	[amountFormatter release];
+}
+
+- (void)budgetPostUpdated:(NSNotification*)notification {
+	[self calculateBudgetSum];
+}
+
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -47,7 +71,11 @@
 	[addButton release];
 	
 	[budgetTableViewController setManagedObjectContext:managedObjectContext_];
+
+	[self calculateBudgetSum];
 	
+	//Observer pattern
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(budgetPostUpdated:) name:@"BudgetPostUpdated" object:nil];
 }
 
 
@@ -83,9 +111,9 @@
 #pragma mark Event handling
 
 - (void)addPost {
-	addBudgetPostViewController = [[BudgetPostDetailViewController alloc] initInManagedObjectContext:self.managedObjectContext];
-	[self.navigationController pushViewController:addBudgetPostViewController animated:YES];
-	[addBudgetPostViewController release];
+	budgetPostDetailViewController = [[BudgetPostDetailViewController alloc] initInManagedObjectContext:self.managedObjectContext];
+	[self.navigationController pushViewController:budgetPostDetailViewController animated:YES];
+	[budgetPostDetailViewController release];
 }
 
 - (void)showSettings {
@@ -107,8 +135,7 @@
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

@@ -71,8 +71,10 @@
 	UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:self action:@selector(doneClick)];
 	if (article_ != nil) {
 		rightButton.title = @"Ändra";
+		self.title = article_.name;
 	} else {
 		rightButton.title = @"Skapa";
+		self.title = @"Ny vara";
 	}
 
 	self.navigationItem.rightBarButtonItem = rightButton;

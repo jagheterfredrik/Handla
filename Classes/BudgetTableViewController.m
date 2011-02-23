@@ -15,7 +15,6 @@
 
 
 @implementation BudgetTableViewController
-@synthesize totalBalance;
 
 - (void)viewDidLoad {
 	//Setup the date formatter
@@ -65,27 +64,18 @@
 	
 	self.titleKey = @"name";
 	self.searchKey = @"name";
+}
 
-	
-	// Calculate total balance. Kan vara väldigt felplacerad?
-	NSDecimalNumber *amountBalance = [NSDecimalNumber decimalNumberWithString:@"0"];
-	for (NSManagedObject *object in [self.fetchedResultsController fetchedObjects]) {
-		NSDecimalNumber *objectExpenseNumber = [object valueForKey:@"amount"];
-		amountBalance = [amountBalance decimalNumberByAdding:objectExpenseNumber];
-	}
-	
-	self.totalBalance.text = [amountFormatter stringFromNumber:amountBalance];;
-	if ([amountBalance compare:[NSNumber numberWithInt:0]] == NSOrderedAscending)
-		self.totalBalance.textColor = [UIColor redColor];
-	else
-		self.totalBalance.textColor = [UIColor greenColor];	
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+	[super controllerDidChangeContent:controller];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"BudgetPostUpdated" object:self];
 }
 
 - (void)managedObjectSelected:(NSManagedObject *)managedObject
 {
-	BudgetPostDetailViewController *addBudgetPostViewController = [[BudgetPostDetailViewController alloc] initWithBudgetPost:(BudgetPost*)managedObject];
-	[budgetViewController.navigationController pushViewController:addBudgetPostViewController animated:YES];
-	[addBudgetPostViewController release];
+	BudgetPostDetailViewController *budgetPostDetailViewController = [[BudgetPostDetailViewController alloc] initWithBudgetPost:(BudgetPost*)managedObject];
+	[budgetViewController.navigationController pushViewController:budgetPostDetailViewController animated:YES];
+	[budgetPostDetailViewController release];
 	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 

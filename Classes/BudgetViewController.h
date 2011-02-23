@@ -13,9 +13,10 @@
 @class BudgetSettingsViewController;
 
 @interface BudgetViewController : UIViewController {
-	BudgetPostDetailViewController *addBudgetPostViewController;
+	BudgetPostDetailViewController *budgetPostDetailViewController;
 	BudgetSettingsViewController *budgetSettingsViewController;
 	IBOutlet BudgetTableViewController *budgetTableViewController;
+	IBOutlet UILabel *totalBalance;
 	NSManagedObjectContext *managedObjectContext_;
 }
 
