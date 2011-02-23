@@ -21,6 +21,8 @@
 		352EA63F130AC045001D6E7F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		352EA640130AC045001D6E7F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		352EA641130AC045001D6E7F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		359DED75131519CD00F3D4F1 /* ArticleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 359DED73131519CD00F3D4F1 /* ArticleTest.m */; };
+		359DED76131519CD00F3D4F1 /* ListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 359DED74131519CD00F3D4F1 /* ListTest.m */; };
 		481BFF76130D16E700AC4CC8 /* AddArticleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481BFF75130D16E700AC4CC8 /* AddArticleListViewController.m */; };
 		481BFF8A130D18DC00AC4CC8 /* BudgetSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481BFF88130D18DC00AC4CC8 /* BudgetSettingsViewController.m */; };
 		481BFF98130D1E9B00AC4CC8 /* BudgetPostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481BFF97130D1E9B00AC4CC8 /* BudgetPostDetailViewController.m */; };
@@ -77,6 +79,8 @@
 		352EA5F1130ABF95001D6E7F /* Unit tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Unit tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		352EA5F3130ABF95001D6E7F /* Unit tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit tests-Info.plist"; sourceTree = "<group>"; };
 		352EA5F7130ABFB9001D6E7F /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = Unit_testing/GHUnitIOS.framework; sourceTree = "<group>"; };
+		359DED73131519CD00F3D4F1 /* ArticleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleTest.m; sourceTree = "<group>"; };
+		359DED74131519CD00F3D4F1 /* ListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTest.m; sourceTree = "<group>"; };
 		481BFF74130D16E700AC4CC8 /* AddArticleListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddArticleListViewController.h; sourceTree = "<group>"; };
 		481BFF75130D16E700AC4CC8 /* AddArticleListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddArticleListViewController.m; sourceTree = "<group>"; };
 		481BFF87130D18DC00AC4CC8 /* BudgetSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BudgetSettingsViewController.h; sourceTree = "<group>"; };
@@ -222,6 +226,8 @@
 		352EA5EC130ABEF5001D6E7F /* Unit tests */ = {
 			isa = PBXGroup;
 			children = (
+				359DED73131519CD00F3D4F1 /* ArticleTest.m */,
+				359DED74131519CD00F3D4F1 /* ListTest.m */,
 				352EA5E7130ABEF3001D6E7F /* GHUnitIOSTestMain.m */,
 				352EA5E6130ABEF3001D6E7F /* TestingConstants.m */,
 				352EA5E8130ABEF3001D6E7F /* ExampleTestCase.m */,
@@ -447,6 +453,8 @@
 				352EA613130ABFD1001D6E7F /* GHUnitIOSTestMain.m in Sources */,
 				352EA614130ABFD1001D6E7F /* TestingConstants.m in Sources */,
 				352EA615130ABFD1001D6E7F /* ExampleTestCase.m in Sources */,
+				359DED75131519CD00F3D4F1 /* ArticleTest.m in Sources */,
+				359DED76131519CD00F3D4F1 /* ListTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
