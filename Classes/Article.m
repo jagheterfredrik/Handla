@@ -13,6 +13,7 @@
 
 @dynamic picture;
 @dynamic name;
+@dynamic barcode;
 @dynamic listArticles;
 
 @end
