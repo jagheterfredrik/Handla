@@ -44,7 +44,8 @@
 }
 
 /**
- * Initializes the view with an already existing BudgetPost.
+ * Initializes the view with an already existing BudgetPost. Since the budgetPost 
+ * contains the managedObjectContext, no need to provide this as well.
  */
 - (id)initWithBudgetPost:(BudgetPost*)budgetPost {
 	{
@@ -72,10 +73,12 @@
 	if (budgetPost_ == nil) {
 		self.title = @"Ny budgetpost";
 		self.navigationItem.rightBarButtonItem.title = @"Skapa";
+		//initialize the date picker
 		datePicker = [[UIDatePicker alloc] init];
 		datePicker.datePickerMode = UIDatePickerModeDate;
 		[datePicker setDate:[NSDate date]];
 		[dateShower setTitle:[dateFormatter stringFromDate:[NSDate date]] forState:UIControlStateNormal];
+		
 	} else {
 		self.title = budgetPost_.name;
 		nameBox.text = budgetPost_.name;
@@ -176,7 +179,7 @@
 											 otherButtonTitles:@"OK", nil];    
 	// Add the picker
 	[menu addSubview:datePicker];
-	[menu showInView:self.view];
+	[menu showFromTabBar:self.tabBarController.tabBar];
 	
 	CGRect menuRect = menu.frame;
 	CGFloat orgHeight = menuRect.size.height;
