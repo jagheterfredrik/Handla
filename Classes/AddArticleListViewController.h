@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "CoreDataTableViewController.h"
 #import "List.h"
+#import "Article.h"
 
 
 @interface AddArticleListViewController : CoreDataTableViewController {
 	List *list_;
+	Article *objectToDelete;
 }
 
 - (id)initWithList:(List*)list;
