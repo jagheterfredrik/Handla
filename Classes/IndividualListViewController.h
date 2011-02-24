@@ -13,7 +13,6 @@
 @interface IndividualListViewController : UIViewController {
 	IBOutlet IndividualListTableViewController *individualListTableViewController;
 	IBOutlet UITableView *tableView;
-	IBOutlet UITableView *realTableView;
 	List* list_;
 }
 

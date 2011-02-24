@@ -10,13 +10,6 @@
 #import "CoreDataTableViewController.h"
 @class BudgetViewController;
 
-
-@protocol BudgetDataDelegate
-@optional
-- (void)didGetNewBudgetPost;
-@end
-
-
 @interface BudgetTableViewController : CoreDataTableViewController {
 	NSManagedObjectContext *managedObjectContext_;
 	NSDateFormatter *dateFormatter;

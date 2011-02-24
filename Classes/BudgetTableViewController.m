@@ -79,6 +79,10 @@
 	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	return @"Vecka/Månad placeholder";
+}
+
 - (BOOL)canDeleteManagedObject:(NSManagedObject *)managedObject {
 	return YES;
 }
