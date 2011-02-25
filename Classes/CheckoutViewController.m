@@ -10,19 +10,51 @@
 
 
 @implementation CheckoutViewController
-@synthesize amountToBePayed;
 
+@synthesize managedObjectContext=managedObjectContext_;
+@synthesize amountToBePayed;
+@synthesize budgetPostToBeAdded;
+@synthesize list;
 
 //=========================================================== 
-//  Initializes with the amount to be payed.
+//  Initializes with the manegedObjectContext and the amount to be payed.
 //
 //=========================================================== 
-- (id) initWithAmountToPay: (NSDecimalNumber*)amount
+- (id) initWithList:(List*) list AmountToPay: (NSDecimalNumber*)amount
 {
+	self.managedObjectContext = list.managedObjectContext;
 	self.amountToBePayed = amount;
+	self.list = list;
 	return self;
 }
 
+
+//=========================================================== 
+//  when the done button is pressed, save the list sum to the database and go to budget view.
+//
+//=========================================================== 
+- (IBAction) paymentCompleteButtonPressed: (id) sender
+{
+	BudgetPost* newBudgetPost = [NSEntityDescription insertNewObjectForEntityForName:
+					 @"BudgetPost" inManagedObjectContext:self.managedObjectContext];
+	newBudgetPost.name = self.list.name;
+	newBudgetPost.timeStamp = [NSDate date];
+	newBudgetPost.amount = self.amountToBePayed; //TODO: this should be rounded if we pay with cash; since there are no femtioörings anymore 
+	
+	//TODO: add comment!
+	//[NSString stringWithFormat:@"Automatiskt sparat inköp %s", [[NSDate date] description]];
+	
+	
+	[self.managedObjectContext save:NULL];
+	
+	
+	//go to budget mode
+	[self.tabBarController setSelectedIndex:1];
+	
+	//go to list view. Maybe even listSview???
+	[self.navigationController popViewControllerAnimated:NO];
+	
+}
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -38,9 +70,12 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	
+	//TODO: remember the öres!
     [super viewDidLoad];
 	NSInteger remaining = [self.amountToBePayed intValue];
 	totalAmount.text = [self.amountToBePayed stringValue];
+	nameOfPurchase.text = self.list.name;
 	
 	femhundringar.text = [NSString stringWithFormat:@"%i", remaining/500];
 	remaining = remaining%500;
