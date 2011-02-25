@@ -11,6 +11,7 @@
 #import "ListArticle.h"
 #import "BudgetViewController.h"
 #import "AddArticleListViewController.h"
+#import "CheckoutViewController.h"
 
 @implementation IndividualListViewController
 
@@ -19,6 +20,17 @@
 	[self.navigationController pushViewController:addArticleListViewController animated:YES];
 	[addArticleListViewController release];
 }
+
+/**
+ * when the user clicks the "avsluta köp" button, we go to CheckoutViewController.
+ */
+-(IBAction) purchase {
+	CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithAmountToPay:
+										[NSDecimalNumber decimalNumberWithString:@"612.50"]];
+	[self.navigationController pushViewController:checkOut animated:YES];
+	[checkOut release];
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil list:(List*)list {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

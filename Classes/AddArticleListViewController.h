@@ -18,5 +18,4 @@
 }
 
 - (id)initWithList:(List*)list;
-
 @end

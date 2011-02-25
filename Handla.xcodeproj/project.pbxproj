@@ -63,6 +63,8 @@
 		48C3F9241314650F00EAE609 /* ArticleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C3F9221314650F00EAE609 /* ArticleDetailViewController.m */; };
 		48C3F9251314650F00EAE609 /* ArticleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48C3F9231314650F00EAE609 /* ArticleDetailViewController.xib */; };
 		48F0D9011311B05E003D0352 /* IndividualListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F0D8FF1311B05E003D0352 /* IndividualListViewController.m */; };
+		774259F61317AE95001436BC /* CheckoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 774259F51317AE95001436BC /* CheckoutViewController.xib */; };
+		77425A0C1317AFC5001436BC /* CheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77425A0B1317AFC5001436BC /* CheckoutViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +171,9 @@
 		48C3F9231314650F00EAE609 /* ArticleDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ArticleDetailViewController.xib; path = Classes/ArticleDetailViewController.xib; sourceTree = "<group>"; };
 		48F0D8FE1311B05E003D0352 /* IndividualListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualListViewController.h; sourceTree = "<group>"; };
 		48F0D8FF1311B05E003D0352 /* IndividualListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualListViewController.m; sourceTree = "<group>"; };
+		774259F51317AE95001436BC /* CheckoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CheckoutViewController.xib; path = Classes/CheckoutViewController.xib; sourceTree = "<group>"; };
+		77425A0A1317AFC5001436BC /* CheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheckoutViewController.h; path = /Users/viktor/KTH/MVK/handla/Classes/CheckoutViewController.h; sourceTree = "<absolute>"; };
+		77425A0B1317AFC5001436BC /* CheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheckoutViewController.m; path = /Users/viktor/KTH/MVK/handla/Classes/CheckoutViewController.m; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Handla-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Handla-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -294,6 +299,8 @@
 		481BFF71130D157700AC4CC8 /* List classes */ = {
 			isa = PBXGroup;
 			children = (
+				77425A0A1317AFC5001436BC /* CheckoutViewController.h */,
+				77425A0B1317AFC5001436BC /* CheckoutViewController.m */,
 				4848B95E130AA95300702E2D /* ListsViewController.h */,
 				4848B95F130AA95300702E2D /* ListsViewController.m */,
 				4848BBCF130B342400702E2D /* IndividualListTableViewController.h */,
@@ -349,6 +356,7 @@
 		481BFFB3130D21E600AC4CC8 /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
+				774259F51317AE95001436BC /* CheckoutViewController.xib */,
 				48C3F9231314650F00EAE609 /* ArticleDetailViewController.xib */,
 				48C3F70C13140F5800EAE609 /* BudgetPostDetailViewController.xib */,
 				48C3F70D13140F5800EAE609 /* BudgetSettingsViewController.xib */,
@@ -534,6 +542,7 @@
 				483CD36E1316DEBB00671D5A /* zbar-samples.png in Resources */,
 				483CD4FB1317A12D00671D5A /* Cogwheel.png in Resources */,
 				483CD4FC1317A12D00671D5A /* Cogwheel@2x.png in Resources */,
+				774259F61317AE95001436BC /* CheckoutViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,6 +579,7 @@
 				48C3F5A81312F4A700EAE609 /* BudgetTableViewController.m in Sources */,
 				48C3F5F61312FA1000EAE609 /* BudgetTableViewCell.m in Sources */,
 				48C3F9241314650F00EAE609 /* ArticleDetailViewController.m in Sources */,
+				77425A0C1317AFC5001436BC /* CheckoutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
