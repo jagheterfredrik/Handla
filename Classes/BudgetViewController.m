@@ -62,7 +62,7 @@
     [super viewDidLoad];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithTitle:@"Inställningar" style:UIBarButtonItemStylePlain target:self action:@selector(showSettings)];
+	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Cogwheel"] style:UIBarButtonItemStylePlain target:self action:@selector(showSettings)];
     self.navigationItem.leftBarButtonItem = settingsButton;
 	[settingsButton release];
 	
@@ -70,7 +70,11 @@
 	self.navigationItem.rightBarButtonItem = addButton;
 	[addButton release];
 	
+	self.navigationItem.titleView = topView;
+	
 	[budgetTableViewController setManagedObjectContext:managedObjectContext_];
+	//Hide searchbar
+	budgetTableViewController.tableView.contentOffset = CGPointMake(0.0, 44.0);
 
 	[self calculateBudgetSum];
 	

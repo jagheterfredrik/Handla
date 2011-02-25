@@ -17,6 +17,7 @@
 	BudgetSettingsViewController *budgetSettingsViewController;
 	IBOutlet BudgetTableViewController *budgetTableViewController;
 	IBOutlet UILabel *totalBalance;
+	IBOutlet UIView *topView;
 	NSManagedObjectContext *managedObjectContext_;
 }
 
