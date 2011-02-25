@@ -52,6 +52,9 @@
 		4848BAC2130AFEDD00702E2D /* ListArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848BABE130AFEDD00702E2D /* ListArticle.m */; };
 		4848BAF1130B03BF00702E2D /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848BAF0130B03BF00702E2D /* CoreDataTableViewController.m */; };
 		4848BBD1130B342400702E2D /* IndividualListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848BBD0130B342400702E2D /* IndividualListTableViewController.m */; };
+		48A853681317DABC00026C1B /* ArticleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A853661317DABC00026C1B /* ArticleDetailViewController.xib */; };
+		48A853691317DABC00026C1B /* CheckoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A853671317DABC00026C1B /* CheckoutViewController.xib */; };
+		48A8536C1317DAD200026C1B /* CheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A8536B1317DAD200026C1B /* CheckoutViewController.m */; };
 		48C3F5A81312F4A700EAE609 /* BudgetTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C3F5A71312F4A700EAE609 /* BudgetTableViewController.m */; };
 		48C3F5F61312FA1000EAE609 /* BudgetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C3F5F51312FA1000EAE609 /* BudgetTableViewCell.m */; };
 		48C3F71213140F5800EAE609 /* BudgetPostDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48C3F70C13140F5800EAE609 /* BudgetPostDetailViewController.xib */; };
@@ -61,10 +64,7 @@
 		48C3F71613140F5800EAE609 /* IndividualListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48C3F71013140F5800EAE609 /* IndividualListViewController.xib */; };
 		48C3F71713140F5800EAE609 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48C3F71113140F5800EAE609 /* MainWindow.xib */; };
 		48C3F9241314650F00EAE609 /* ArticleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C3F9221314650F00EAE609 /* ArticleDetailViewController.m */; };
-		48C3F9251314650F00EAE609 /* ArticleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48C3F9231314650F00EAE609 /* ArticleDetailViewController.xib */; };
 		48F0D9011311B05E003D0352 /* IndividualListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F0D8FF1311B05E003D0352 /* IndividualListViewController.m */; };
-		774259F61317AE95001436BC /* CheckoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 774259F51317AE95001436BC /* CheckoutViewController.xib */; };
-		77425A0C1317AFC5001436BC /* CheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77425A0B1317AFC5001436BC /* CheckoutViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +156,10 @@
 		4848BAF0130B03BF00702E2D /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		4848BBCF130B342400702E2D /* IndividualListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualListTableViewController.h; sourceTree = "<group>"; };
 		4848BBD0130B342400702E2D /* IndividualListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualListTableViewController.m; sourceTree = "<group>"; };
+		48A853661317DABC00026C1B /* ArticleDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ArticleDetailViewController.xib; path = Resources/XIBs/ArticleDetailViewController.xib; sourceTree = "<group>"; };
+		48A853671317DABC00026C1B /* CheckoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CheckoutViewController.xib; path = Resources/XIBs/CheckoutViewController.xib; sourceTree = "<group>"; };
+		48A8536A1317DAD200026C1B /* CheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutViewController.h; sourceTree = "<group>"; };
+		48A8536B1317DAD200026C1B /* CheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckoutViewController.m; sourceTree = "<group>"; };
 		48C3F5A61312F4A700EAE609 /* BudgetTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BudgetTableViewController.h; sourceTree = "<group>"; };
 		48C3F5A71312F4A700EAE609 /* BudgetTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BudgetTableViewController.m; sourceTree = "<group>"; };
 		48C3F5F41312FA1000EAE609 /* BudgetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BudgetTableViewCell.h; sourceTree = "<group>"; };
@@ -168,12 +172,8 @@
 		48C3F71113140F5800EAE609 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/XIBs/MainWindow.xib; sourceTree = "<group>"; };
 		48C3F9211314650F00EAE609 /* ArticleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleDetailViewController.h; sourceTree = "<group>"; };
 		48C3F9221314650F00EAE609 /* ArticleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleDetailViewController.m; sourceTree = "<group>"; };
-		48C3F9231314650F00EAE609 /* ArticleDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ArticleDetailViewController.xib; path = Classes/ArticleDetailViewController.xib; sourceTree = "<group>"; };
 		48F0D8FE1311B05E003D0352 /* IndividualListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualListViewController.h; sourceTree = "<group>"; };
 		48F0D8FF1311B05E003D0352 /* IndividualListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualListViewController.m; sourceTree = "<group>"; };
-		774259F51317AE95001436BC /* CheckoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CheckoutViewController.xib; path = Classes/CheckoutViewController.xib; sourceTree = "<group>"; };
-		77425A0A1317AFC5001436BC /* CheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheckoutViewController.h; path = /Users/viktor/KTH/MVK/handla/Classes/CheckoutViewController.h; sourceTree = "<absolute>"; };
-		77425A0B1317AFC5001436BC /* CheckoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheckoutViewController.m; path = /Users/viktor/KTH/MVK/handla/Classes/CheckoutViewController.m; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Handla-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Handla-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -299,8 +299,6 @@
 		481BFF71130D157700AC4CC8 /* List classes */ = {
 			isa = PBXGroup;
 			children = (
-				77425A0A1317AFC5001436BC /* CheckoutViewController.h */,
-				77425A0B1317AFC5001436BC /* CheckoutViewController.m */,
 				4848B95E130AA95300702E2D /* ListsViewController.h */,
 				4848B95F130AA95300702E2D /* ListsViewController.m */,
 				4848BBCF130B342400702E2D /* IndividualListTableViewController.h */,
@@ -311,6 +309,8 @@
 				481BFF75130D16E700AC4CC8 /* AddArticleListViewController.m */,
 				48C3F9211314650F00EAE609 /* ArticleDetailViewController.h */,
 				48C3F9221314650F00EAE609 /* ArticleDetailViewController.m */,
+				48A8536A1317DAD200026C1B /* CheckoutViewController.h */,
+				48A8536B1317DAD200026C1B /* CheckoutViewController.m */,
 			);
 			name = "List classes";
 			sourceTree = "<group>";
@@ -356,12 +356,12 @@
 		481BFFB3130D21E600AC4CC8 /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
-				774259F51317AE95001436BC /* CheckoutViewController.xib */,
-				48C3F9231314650F00EAE609 /* ArticleDetailViewController.xib */,
+				48A853661317DABC00026C1B /* ArticleDetailViewController.xib */,
 				48C3F70C13140F5800EAE609 /* BudgetPostDetailViewController.xib */,
 				48C3F70D13140F5800EAE609 /* BudgetSettingsViewController.xib */,
 				48C3F70E13140F5800EAE609 /* BudgetTableViewCell.xib */,
 				48C3F70F13140F5800EAE609 /* BudgetViewController.xib */,
+				48A853671317DABC00026C1B /* CheckoutViewController.xib */,
 				48C3F71013140F5800EAE609 /* IndividualListViewController.xib */,
 				48C3F71113140F5800EAE609 /* MainWindow.xib */,
 			);
@@ -535,14 +535,14 @@
 				48C3F71513140F5800EAE609 /* BudgetViewController.xib in Resources */,
 				48C3F71613140F5800EAE609 /* IndividualListViewController.xib in Resources */,
 				48C3F71713140F5800EAE609 /* MainWindow.xib in Resources */,
-				48C3F9251314650F00EAE609 /* ArticleDetailViewController.xib in Resources */,
 				483CD36B1316DEBB00671D5A /* zbar-back.png in Resources */,
 				483CD36C1316DEBB00671D5A /* zbar-help.html in Resources */,
 				483CD36D1316DEBB00671D5A /* zbar-helpicons.png in Resources */,
 				483CD36E1316DEBB00671D5A /* zbar-samples.png in Resources */,
 				483CD4FB1317A12D00671D5A /* Cogwheel.png in Resources */,
 				483CD4FC1317A12D00671D5A /* Cogwheel@2x.png in Resources */,
-				774259F61317AE95001436BC /* CheckoutViewController.xib in Resources */,
+				48A853681317DABC00026C1B /* ArticleDetailViewController.xib in Resources */,
+				48A853691317DABC00026C1B /* CheckoutViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,7 +579,7 @@
 				48C3F5A81312F4A700EAE609 /* BudgetTableViewController.m in Sources */,
 				48C3F5F61312FA1000EAE609 /* BudgetTableViewCell.m in Sources */,
 				48C3F9241314650F00EAE609 /* ArticleDetailViewController.m in Sources */,
-				77425A0C1317AFC5001436BC /* CheckoutViewController.m in Sources */,
+				48A8536C1317DAD200026C1B /* CheckoutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
