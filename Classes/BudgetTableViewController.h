@@ -15,8 +15,14 @@
 	NSDateFormatter *dateFormatter;
 	NSNumberFormatter *amountFormatter;
 	IBOutlet BudgetViewController *budgetViewController;
+	NSDate *startDate;
+	NSDate *endDate;
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+- (void)setDurationStartDate:(NSDate*)startDate endDate:(NSDate*)endDate;
+
+@property (nonatomic, retain) NSDate *startDate;
+@property (nonatomic, retain) NSDate *endDate;
 
 @end

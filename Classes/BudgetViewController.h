@@ -30,6 +30,7 @@
 
 - (IBAction)previousCalendarClick:(id)sender;
 - (IBAction)nextCalendarClick:(id)sender;
+- (IBAction)calendarLabelClick:(id)sender;
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSDate *displayedDate;

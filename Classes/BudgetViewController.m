@@ -56,14 +56,29 @@
 
 - (void)updateCalendarLabel {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	
+	NSDateComponents *start = [cal components:( NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:displayedDate];
+	NSDateComponents *end = [cal components:( NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:displayedDate];
+	[start setSecond:0]; [start setMinute:0]; [start setHour:0];
+	[end setSecond:59]; [end setMinute:59]; [end setHour:23];
+	
 	if (isMonthView) {
 		[formatter setDateFormat:@"MMMM, YYYY"];
+		[start setDay:1];
+		[end setMonth:[end month]+1];
+		[end setDay:0];
 	} else {
 		[formatter setDateFormat:@"'Vecka' ww, YYYY"];
+		[start setWeekday:2];
+		[end setWeekday:1];
 	}
 
+	[budgetTableViewController setDurationStartDate:[cal dateFromComponents:start] endDate:[cal dateFromComponents:end]];
 	calendarLabel.text = [formatter stringFromDate:self.displayedDate];
-	[formatter release];	
+	[formatter release];
+	
+	[self calculateBudgetSum];
 }
 
 #pragma mark -
@@ -164,6 +179,11 @@
 		components.day = 7;
 	self.displayedDate = [[NSCalendar currentCalendar] dateByAddingComponents:components toDate:displayedDate options:0];
 	[components release];
+	[self updateCalendarLabel];
+}
+
+- (IBAction)calendarLabelClick:(id)sender {
+	self.displayedDate = [NSDate date];
 	[self updateCalendarLabel];
 }
 

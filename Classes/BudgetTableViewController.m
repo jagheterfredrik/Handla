@@ -16,6 +16,8 @@
 
 @implementation BudgetTableViewController
 
+@synthesize startDate, endDate;
+
 - (void)viewDidLoad {
 	//Setup the date formatter
 	dateFormatter = [[NSDateFormatter alloc] init];
@@ -35,15 +37,6 @@
 	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"timeStamp"
 																					 ascending:YES
 																					  selector:@selector(compare:)]];
-	/*Fetching intervall for the budget table list
-	 *
-	 *TODO: Fixa med månad/vecko-intervall för att fetcha rätt budgetposter. 
-	 *
-	 
-	NSDate *startIntervall = [[NSDate alloc] initWithString:@"2011-02-18 00:00:00 +0100"];
-	NSDate *endIntervall = [[NSDate alloc] initWithString:@"2011-02-22 23:59:59 +0100"];
-	request.predicate = [NSPredicate predicateWithFormat:@"(timeStamp >= %@) AND (timeStamp <= %@)", startIntervall, endIntervall];
-*/
 	request.predicate = nil;
 	
 	request.fetchBatchSize = 20;
@@ -64,6 +57,14 @@
 	
 	self.titleKey = @"name";
 	self.searchKey = @"name";
+}
+
+- (void)setDurationStartDate:(NSDate*)startDate_ endDate:(NSDate*)endDate_ {
+	self.startDate = startDate_;
+	self.endDate = endDate_;
+	
+	normalPredicate = [NSPredicate predicateWithFormat:@"(timeStamp >= %@) AND (timeStamp <= %@)", startDate_, endDate_];
+	[self.tableView reloadData];
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
@@ -140,6 +141,8 @@
 
 
 - (void)dealloc {
+	[startDate release];
+	[endDate release];
 	[dateFormatter release];
     [super dealloc];
 }
