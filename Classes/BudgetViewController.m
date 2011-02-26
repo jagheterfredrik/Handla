@@ -73,15 +73,15 @@
 	self.navigationItem.titleView = topView;
 	
 	[budgetTableViewController setManagedObjectContext:managedObjectContext_];
-	//Hide searchbar
-	budgetTableViewController.tableView.contentOffset = CGPointMake(0.0, 44.0);
 
 	[self calculateBudgetSum];
 	
 	//Observer pattern
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(budgetPostUpdated:) name:@"BudgetPostUpdated" object:nil];
+	
+	CGAffineTransform mirror = CGAffineTransformMakeScale(-1.f, 1.f);
+	[previousCalendarButton setTransform:mirror];
 }
-
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -126,6 +126,14 @@
 		[budgetSettingsViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
 	}
 	[self.navigationController pushViewController:budgetSettingsViewController animated:YES];
+}
+
+- (IBAction)previousCalendarClick:(id)sender {
+	
+}
+
+- (IBAction)nextCalendarClick:(id)sender {
+	
 }
 
 #pragma mark -

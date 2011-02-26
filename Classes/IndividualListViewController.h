@@ -18,7 +18,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil list:(List*)list;
 
-- (IBAction) purchase;
+- (IBAction)purchase;
 
 
 @end

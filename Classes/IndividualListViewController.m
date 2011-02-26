@@ -24,7 +24,7 @@
 /**
  * when the user clicks the "avsluta köp" button, we go to CheckoutViewController.
  */
--(IBAction) purchase {
+- (IBAction)purchase {
 	CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
 																		AmountToPay:[NSDecimalNumber decimalNumberWithString:@"612.50"]];
 	[self.navigationController pushViewController:checkOut animated:YES];

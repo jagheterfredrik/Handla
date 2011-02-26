@@ -16,6 +16,7 @@
 	NSManagedObjectContext *managedObjectContext_;
 	NSDecimalNumber* amountToBePayed;
 	NSString* listName;
+	BudgetPost* budgetPostToBeAdded;
 	IBOutlet UILabel* totalAmount;
 	IBOutlet UILabel* femhundringar;
 	IBOutlet UILabel* hundringar;
@@ -27,15 +28,12 @@
 	
 	IBOutlet UILabel* nameOfPurchase;
 	
+	List* list_;
 }
 
 - (id) initWithList:(List*) list AmountToPay: (NSDecimalNumber*)amount;
 - (IBAction) paymentCompleteButtonPressed: (id) sender;
 
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property(nonatomic, retain) NSDecimalNumber* amountToBePayed;
-@property(nonatomic, retain) BudgetPost* budgetPostToBeAdded;
-@property(nonatomic, retain) List* list;
-
+@property (nonatomic,retain) NSDecimalNumber* amountToBePayed;
 
 @end

@@ -10,11 +10,7 @@
 
 
 @implementation CheckoutViewController
-
-@synthesize managedObjectContext=managedObjectContext_;
 @synthesize amountToBePayed;
-@synthesize budgetPostToBeAdded;
-@synthesize list;
 
 //=========================================================== 
 //  Initializes with the manegedObjectContext and the amount to be payed.
@@ -22,9 +18,8 @@
 //=========================================================== 
 - (id) initWithList:(List*) list AmountToPay: (NSDecimalNumber*)amount
 {
-	self.managedObjectContext = list.managedObjectContext;
 	self.amountToBePayed = amount;
-	self.list = list;
+	list_ = list;
 	return self;
 }
 
@@ -36,16 +31,18 @@
 - (IBAction) paymentCompleteButtonPressed: (id) sender
 {
 	BudgetPost* newBudgetPost = [NSEntityDescription insertNewObjectForEntityForName:
-					 @"BudgetPost" inManagedObjectContext:self.managedObjectContext];
-	newBudgetPost.name = self.list.name;
+					 @"BudgetPost" inManagedObjectContext:list_.managedObjectContext];
+	newBudgetPost.name = list_.name;
 	newBudgetPost.timeStamp = [NSDate date];
-	newBudgetPost.amount = self.amountToBePayed; //TODO: this should be rounded if we pay with cash; since there are no femtioörings anymore 
+	//TODO: this should be rounded if we pay with cash; since there are no femtioörings anymore 
+	newBudgetPost.amount = [amountToBePayed decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
+	
 	
 	//TODO: add comment!
 	//[NSString stringWithFormat:@"Automatiskt sparat inköp %s", [[NSDate date] description]];
 	
 	
-	[self.managedObjectContext save:NULL];
+	[list_.managedObjectContext save:NULL];
 	
 	
 	//go to budget mode
@@ -73,9 +70,9 @@
 	
 	//TODO: remember the öres!
     [super viewDidLoad];
-	NSInteger remaining = [self.amountToBePayed intValue];
-	totalAmount.text = [self.amountToBePayed stringValue];
-	nameOfPurchase.text = self.list.name;
+	NSInteger remaining = [amountToBePayed intValue];
+	totalAmount.text = [amountToBePayed stringValue];
+	nameOfPurchase.text = list_.name;
 	
 	femhundringar.text = [NSString stringWithFormat:@"%i", remaining/500];
 	remaining = remaining%500;
@@ -123,6 +120,7 @@
 
 
 - (void)dealloc {
+	[amountToBePayed release];
     [super dealloc];
 }
 

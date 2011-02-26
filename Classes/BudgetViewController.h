@@ -18,11 +18,16 @@
 	IBOutlet BudgetTableViewController *budgetTableViewController;
 	IBOutlet UILabel *totalBalance;
 	IBOutlet UIView *topView;
+	IBOutlet UIButton *previousCalendarButton;
+	IBOutlet UILabel *calendarLabel;
 	NSManagedObjectContext *managedObjectContext_;
 }
 
 - (void)addPost;
 - (void)showSettings;
+
+- (IBAction)previousCalendarClick:(id)sender;
+- (IBAction)nextCalendarClick:(id)sender;
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
