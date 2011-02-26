@@ -31,8 +31,8 @@
 	List* list_;
 }
 
-- (id) initWithList:(List*) list AmountToPay: (NSDecimalNumber*)amount;
-- (IBAction) paymentCompleteButtonPressed: (id) sender;
+- (id)initWithList:(List*)list AmountToPay:(NSDecimalNumber*)amount;
+- (IBAction)paymentCompleteButtonPressed:(id)sender;
 
 @property (nonatomic,retain) NSDecimalNumber* amountToBePayed;
 

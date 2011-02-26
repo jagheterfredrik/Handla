@@ -21,6 +21,8 @@
 	IBOutlet UIButton *previousCalendarButton;
 	IBOutlet UILabel *calendarLabel;
 	NSManagedObjectContext *managedObjectContext_;
+	NSDate *displayedDate;
+	BOOL isMonthView;
 }
 
 - (void)addPost;
@@ -30,5 +32,6 @@
 - (IBAction)nextCalendarClick:(id)sender;
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSDate *displayedDate;
 
 @end

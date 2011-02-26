@@ -12,7 +12,7 @@
 
 @implementation BudgetViewController
 
-@synthesize managedObjectContext=managedObjectContext_;
+@synthesize managedObjectContext=managedObjectContext_, displayedDate;
 
 
 #pragma mark -
@@ -54,6 +54,18 @@
 	[self calculateBudgetSum];
 }
 
+- (void)updateCalendarLabel {
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	if (isMonthView) {
+		[formatter setDateFormat:@"MMMM, YYYY"];
+	} else {
+		[formatter setDateFormat:@"'Vecka' ww, YYYY"];
+	}
+
+	calendarLabel.text = [formatter stringFromDate:self.displayedDate];
+	[formatter release];	
+}
+
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -81,13 +93,18 @@
 	
 	CGAffineTransform mirror = CGAffineTransformMakeScale(-1.f, 1.f);
 	[previousCalendarButton setTransform:mirror];
+	
+	self.displayedDate = [NSDate date];
 }
 
-/*
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	isMonthView = [defaults boolForKey:@"budgetViewIsMonth"];
+	[self updateCalendarLabel];
 }
-*/
+
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -129,11 +146,25 @@
 }
 
 - (IBAction)previousCalendarClick:(id)sender {
-	
+	NSDateComponents *components = [[NSDateComponents alloc] init];
+	if(isMonthView)
+		components.month = -1;
+	else
+		components.day = -7;
+	self.displayedDate = [[NSCalendar currentCalendar] dateByAddingComponents:components toDate:displayedDate options:0];
+	[components release];
+	[self updateCalendarLabel];
 }
 
 - (IBAction)nextCalendarClick:(id)sender {
-	
+	NSDateComponents *components = [[NSDateComponents alloc] init];
+	if(isMonthView)
+		components.month = 1;
+	else
+		components.day = 7;
+	self.displayedDate = [[NSCalendar currentCalendar] dateByAddingComponents:components toDate:displayedDate options:0];
+	[components release];
+	[self updateCalendarLabel];
 }
 
 #pragma mark -
@@ -148,6 +179,7 @@
 
 - (void)viewDidUnload {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[displayedDate release];
 }
 
 
