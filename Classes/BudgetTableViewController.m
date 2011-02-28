@@ -49,8 +49,6 @@
 	frc.delegate = self;
 	
 	[request release];
-//	[startIntervall release];
-//	[endIntervall release];
 	
 	[self setFetchedResultsController:frc];
 	[frc release];

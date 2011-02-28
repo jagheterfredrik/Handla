@@ -8,15 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "CoreDataTableViewController.h"
+#import "List.h"
 
 @interface ListsViewController : CoreDataTableViewController<UIAlertViewDelegate> {
 
 @private
     NSManagedObjectContext *managedObjectContext_;
+	List *list_;
 }
 
 - (void)createList;
 
+
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) List *list;
+
 
 @end
