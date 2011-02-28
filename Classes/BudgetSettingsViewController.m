@@ -22,14 +22,7 @@
 	
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	
-	if([defaults boolForKey:@"budgetViewIsMonth"])		
-	{
-		monthOrWeek.selectedSegmentIndex = 0;
-	}
-	else {
-		monthOrWeek.selectedSegmentIndex = 1;
-	}
-
+	dateInterval.selectedSegmentIndex = [defaults integerForKey:@"budgetViewDateInterval"];
 	
 	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneClick)];
 	self.navigationItem.leftBarButtonItem = doneButton;
@@ -40,12 +33,10 @@
 #pragma mark -
 #pragma mark Events
 
-- (void)doneClick {
-	//TODO: Apply settings? Implement delegate?
-	
+- (void)doneClick {	
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 
-	[defaults setBool:(monthOrWeek.selectedSegmentIndex == 0) forKey:@"budgetViewIsMonth"];
+	[defaults setInteger:dateInterval.selectedSegmentIndex forKey:@"budgetViewDateInterval"];
 		
 	[self.navigationController popViewControllerAnimated:YES];
 }

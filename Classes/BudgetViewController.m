@@ -63,16 +63,22 @@
 	[start setSecond:0]; [start setMinute:0]; [start setHour:0];
 	[end setSecond:59]; [end setMinute:59]; [end setHour:23];
 	
-	if (isMonthView) {
+	if (dateInterval == YearInterval) {
+		[formatter setDateFormat:@"YYYY"];
+		[start setDay:1]; [start setMonth:1];
+		[end setMonth:12];
+		[end setDay:31];
+	} else if (dateInterval == WeekInterval) {
+		[formatter setDateFormat:@"'Vecka' ww, YYYY"];
+		[start setWeekday:2];
+		[end setWeekday:1];
+	} else {
 		[formatter setDateFormat:@"MMMM, YYYY"];
 		[start setDay:1];
 		[end setMonth:[end month]+1];
 		[end setDay:0];
-	} else {
-		[formatter setDateFormat:@"'Vecka' ww, YYYY"];
-		[start setWeekday:2];
-		[end setWeekday:1];
 	}
+
 
 	[budgetTableViewController setDurationStartDate:[cal dateFromComponents:start] endDate:[cal dateFromComponents:end]];
 	calendarLabel.text = [formatter stringFromDate:self.displayedDate];
@@ -116,7 +122,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	isMonthView = [defaults boolForKey:@"budgetViewIsMonth"];
+	dateInterval = [defaults integerForKey:@"budgetViewDateInterval"];
 	[self updateCalendarLabel];
 }
 
@@ -162,10 +168,12 @@
 
 - (IBAction)previousCalendarClick:(id)sender {
 	NSDateComponents *components = [[NSDateComponents alloc] init];
-	if(isMonthView)
-		components.month = -1;
-	else
+	if(dateInterval == YearInterval)
+		components.year = -1;
+	else if (dateInterval == WeekInterval)
 		components.day = -7;
+	else
+		components.month = -1;
 	self.displayedDate = [[NSCalendar currentCalendar] dateByAddingComponents:components toDate:displayedDate options:0];
 	[components release];
 	[self updateCalendarLabel];
@@ -173,10 +181,12 @@
 
 - (IBAction)nextCalendarClick:(id)sender {
 	NSDateComponents *components = [[NSDateComponents alloc] init];
-	if(isMonthView)
-		components.month = 1;
-	else
+	if(dateInterval == YearInterval)
+		components.year = 1;
+	else if (dateInterval == WeekInterval)
 		components.day = 7;
+	else
+		components.month = 1;
 	self.displayedDate = [[NSCalendar currentCalendar] dateByAddingComponents:components toDate:displayedDate options:0];
 	[components release];
 	[self updateCalendarLabel];

@@ -24,8 +24,15 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    
     // Override point for customization after application launch.
+	
+	// Setup defaults
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	if (![userDefaults boolForKey:@"haveStartedBefore"]) {
+		[userDefaults setBool:YES forKey:@"haveStartedBefore"];
+		[userDefaults setInteger:1 forKey:@"budgetViewDateInterval"];
+	}
+	
     [window addSubview:tabBarController.view];
     [self.window makeKeyAndVisible];
     
