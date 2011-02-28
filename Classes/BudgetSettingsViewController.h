@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum Date_Interval {
+	WeekInterval,
+	MonthInterval,
+	YearInterval
+} Date_Interval;
 
 @interface BudgetSettingsViewController : UIViewController {
 	
-	IBOutlet UISegmentedControl* monthOrWeek;
+	IBOutlet UISegmentedControl* dateInterval;
 
 }
 

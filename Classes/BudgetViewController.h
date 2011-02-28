@@ -22,7 +22,7 @@
 	IBOutlet UILabel *calendarLabel;
 	NSManagedObjectContext *managedObjectContext_;
 	NSDate *displayedDate;
-	BOOL isMonthView;
+	NSInteger dateInterval;
 }
 
 - (void)addPost;
