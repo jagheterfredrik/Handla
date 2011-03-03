@@ -10,16 +10,26 @@
 
 
 @implementation CheckoutViewController
-@synthesize amountToBePayed;
+@synthesize list;
+
 
 //=========================================================== 
 //  Initializes with the manegedObjectContext and the amount to be payed.
 //
 //=========================================================== 
-- (id) initWithList:(List*) list AmountToPay: (NSDecimalNumber*)amount
+- (id) initWithList:(List*) theList AmountToPay: (NSDecimalNumber*)amount
 {
-	self.amountToBePayed = amount;
-	list_ = list;
+	//TODO: FIX roundoff behaviour
+	amountToBePayed = [amount integerValue];
+	
+	self.list = theList;
+	currentFemhundringar=0;
+	currentHundringar=0;
+	currentFemtiolappar=0;
+	currentTjugolappar=0;
+	currentTior=0;
+	currentFemmor=0;
+	currentEnkronor=0;
 	return self;
 }
 
@@ -35,9 +45,8 @@
 	newBudgetPost.name = list_.name;
 	newBudgetPost.timeStamp = [NSDate date];
 	//TODO: this should be rounded if we pay with cash; since there are no femtioörings anymore 
-	newBudgetPost.amount = [amountToBePayed decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
-	
-	
+	newBudgetPost.amount = [NSDecimalNumber decimalNumberWithString:
+							[NSString stringWithFormat:@"%i", (amountToBePayed*-1)]];
 	//TODO: add comment!
 	//[NSString stringWithFormat:@"Automatiskt sparat inköp %s", [[NSDate date] description]];
 	
@@ -68,31 +77,12 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	
-	//TODO: remember the öres!
+	//TODO: remember the öres! round up and stuff!
     [super viewDidLoad];
-	NSInteger remaining = [amountToBePayed intValue];
-	totalAmount.text = [amountToBePayed stringValue];
+	totalAmount.text = [NSString stringWithFormat:@"%i", amountToBePayed];
 	nameOfPurchase.text = list_.name;
-	
-	femhundringar.text = [NSString stringWithFormat:@"%i", remaining/500];
-	remaining = remaining%500;
-	
-	hundringar.text =  [NSString stringWithFormat:@"%i", remaining/100];
-	remaining = remaining%100;
-	
-	femtiolappar.text =  [NSString stringWithFormat:@"%i", remaining/50];
-	remaining = remaining%50;
-	
-	tjugolappar.text =  [NSString stringWithFormat:@"%i", remaining/20];
-	remaining = remaining%20;
-	
-	tior.text =  [NSString stringWithFormat:@"%i", remaining/10];
-	remaining = remaining%10;
-	
-	femmor.text =  [NSString stringWithFormat:@"%i", remaining/5];
-	remaining = remaining%5;
-	
-	enkronor.text =  [NSString stringWithFormat:@"%i", remaining/1];
+	[self refreshSelectedValuesDisplay];
+
 }
 
 
@@ -119,9 +109,107 @@
 
 
 - (void)dealloc {
-	[amountToBePayed release];
     [super dealloc];
 }
 
 
-@end
+//=========================================================== 
+// - (void)refreshSelectedValuesDisplay
+//
+//=========================================================== 
+- (void)refreshSelectedValuesDisplay
+{
+	femhundringar.text = [NSString stringWithFormat:@"%i", currentFemhundringar];	
+	hundringar.text =  [NSString stringWithFormat:@"%i", currentHundringar];
+	femtiolappar.text =  [NSString stringWithFormat:@"%i", currentFemtiolappar];	
+	tjugolappar.text =  [NSString stringWithFormat:@"%i", currentTjugolappar];	
+	tior.text =  [NSString stringWithFormat:@"%i", currentTior];
+	femmor.text =  [NSString stringWithFormat:@"%i", currentFemmor];	
+	enkronor.text =  [NSString stringWithFormat:@"%i", currentEnkronor];
+	
+	remaining.text = [NSString stringWithFormat:@"%i", (amountToBePayed-[self getTotalSelectedAmount])];
+	if ((amountToBePayed-[self getTotalSelectedAmount])<=0) {
+		doneButton.enabled = YES;
+	}
+
+
+} 
+
+//=========================================================== 
+// - (NSInteger) getTotalSelectedAmount
+//
+//=========================================================== 
+- (NSInteger) getTotalSelectedAmount
+{
+	return (500*currentFemhundringar+100*currentHundringar+
+	50*currentFemtiolappar+20*currentTjugolappar
+	+10*currentTior+5*currentFemmor+1*currentEnkronor);
+}
+
+//=========================================================== 
+// - (IBAction)femhundringButtonPressed:(UIButton*)sender
+//
+//=========================================================== 
+- (IBAction)femhundringButtonPressed:(UIButton*)sender
+{
+	currentFemhundringar++;
+	[self refreshSelectedValuesDisplay];
+	
+}
+//=========================================================== 
+// - (IBAction)hundringButtonPressed:(UIButton*)sender
+//
+//=========================================================== 
+- (IBAction)hundringButtonPressed:(UIButton*)sender
+{
+	currentHundringar++;
+	[self refreshSelectedValuesDisplay];
+}
+//=========================================================== 
+// - (IBAction)femtiolappButtonPressed:(UIButton*)sender
+//
+//=========================================================== 
+- (IBAction)femtiolappButtonPressed:(UIButton*)sender
+{
+	currentFemtiolappar++;
+	[self refreshSelectedValuesDisplay];
+}
+//=========================================================== 
+// - (IBAction)tjugolappButtonPressed:(UIButton*)sender
+//
+//=========================================================== 
+- (IBAction)tjugolappButtonPressed:(UIButton*)sender
+{
+	currentTjugolappar++;
+	[self refreshSelectedValuesDisplay];
+}
+//=========================================================== 
+// - (IBAction)tiaButtonPressed:(UIButton*)sender
+//
+//=========================================================== 
+- (IBAction)tiaButtonPressed:(UIButton*)sender
+{
+	currentTior++;
+	[self refreshSelectedValuesDisplay];
+}
+//=========================================================== 
+// - (IBAction)femmaButtonPressed:(UIButton*)sender
+//
+//=========================================================== 
+- (IBAction)femmaButtonPressed:(UIButton*)sender
+{
+	currentFemmor++;
+	[self refreshSelectedValuesDisplay];
+}
+//=========================================================== 
+// - (IBAction)enkronaButtonPressed:(UIButton*)sender
+//
+//=========================================================== 
+- (IBAction)enkronaButtonPressed:(UIButton*)sender
+{
+	currentEnkronor++;
+	[self refreshSelectedValuesDisplay];
+}
+
+@
+end
