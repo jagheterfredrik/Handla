@@ -11,6 +11,7 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		20572A7E131B7EB700B63671 /* IndividualListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20572A7D131B7EB700B63671 /* IndividualListCell.xib */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
 		352EA5FB130ABFC5001D6E7F /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352EA5F7130ABFB9001D6E7F /* GHUnitIOS.framework */; };
@@ -83,6 +84,7 @@
 		1D3623250D0F684500981E51 /* HandlaAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandlaAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Handla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Handla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		20572A7D131B7EB700B63671 /* IndividualListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IndividualListCell.xib; path = Resources/XIBs/IndividualListCell.xib; sourceTree = "<group>"; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				48A853671317DABC00026C1B /* CheckoutViewController.xib */,
 				48C3F71013140F5800EAE609 /* IndividualListViewController.xib */,
 				48C3F71113140F5800EAE609 /* MainWindow.xib */,
+				20572A7D131B7EB700B63671 /* IndividualListCell.xib */,
 			);
 			name = XIBs;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				483CD4FC1317A12D00671D5A /* Cogwheel@2x.png in Resources */,
 				48A853681317DABC00026C1B /* ArticleDetailViewController.xib in Resources */,
 				48A853691317DABC00026C1B /* CheckoutViewController.xib in Resources */,
+				20572A7E131B7EB700B63671 /* IndividualListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

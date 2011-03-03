@@ -31,7 +31,6 @@
 	[checkOut release];
 }
 
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil list:(List*)list {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
