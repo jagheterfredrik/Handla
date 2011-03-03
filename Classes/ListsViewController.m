@@ -105,7 +105,17 @@
 #define alertViewButtonOK 1
 
 - (void)alertView:(AlertPrompt *)alertPrompt clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == alertViewButtonOK) {
+	if (buttonIndex == alertViewButtonOK && [alertPrompt.textField.text length] == 0) {
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Du måste ange ett namn för listan"
+																 delegate:nil
+														cancelButtonTitle:@"OK"
+												   destructiveButtonTitle:nil
+														otherButtonTitles:nil];
+		[actionSheet showInView:[[self view] window]];
+		AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp din lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Lägg till"];
+		[alertPrompt show];
+	}
+	if (buttonIndex == alertViewButtonOK && [alertPrompt.textField.text length] != 0) {
 		List *list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:self.managedObjectContext];
 		list.name = alertPrompt.textField.text;
 		list.creationDate = [NSDate date];
