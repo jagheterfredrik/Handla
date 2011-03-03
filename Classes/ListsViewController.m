@@ -62,13 +62,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	NSInteger numRows = [[[[self fetchedResultsControllerForTableView:tableView] sections] objectAtIndex:section] numberOfObjects];
+	NSInteger numRows = [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
 	if (numRows == 0) {
 		showHelp = YES;
 		UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AddListHelp"]];
 		CGAffineTransform trans = CGAffineTransformMakeTranslation(0, 40);
 		imageView.transform = trans;
-//		[self.view addSubview:imageView];
 		imageView.contentMode = UIViewContentModeTop;
 		tableView.backgroundView = imageView;
 		tableView.scrollEnabled = NO;

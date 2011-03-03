@@ -370,9 +370,9 @@
 				48C3F70E13140F5800EAE609 /* BudgetTableViewCell.xib */,
 				48C3F70F13140F5800EAE609 /* BudgetViewController.xib */,
 				48A853671317DABC00026C1B /* CheckoutViewController.xib */,
+				20572A7D131B7EB700B63671 /* IndividualListCell.xib */,
 				48C3F71013140F5800EAE609 /* IndividualListViewController.xib */,
 				48C3F71113140F5800EAE609 /* MainWindow.xib */,
-				20572A7D131B7EB700B63671 /* IndividualListCell.xib */,
 			);
 			name = XIBs;
 			sourceTree = "<group>";
