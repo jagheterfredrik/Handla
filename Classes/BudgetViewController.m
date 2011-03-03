@@ -12,7 +12,7 @@
 
 @implementation BudgetViewController
 
-@synthesize managedObjectContext=managedObjectContext_;
+@synthesize managedObjectContext=managedObjectContext_, displayedDate;
 
 
 #pragma mark -
@@ -54,6 +54,39 @@
 	[self calculateBudgetSum];
 }
 
+- (void)updateCalendarLabel {
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	
+	NSDateComponents *start = [cal components:( NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:displayedDate];
+	NSDateComponents *end = [cal components:( NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:displayedDate];
+	[start setSecond:0]; [start setMinute:0]; [start setHour:0];
+	[end setSecond:59]; [end setMinute:59]; [end setHour:23];
+	
+	if (dateInterval == YearInterval) {
+		[formatter setDateFormat:@"YYYY"];
+		[start setDay:1]; [start setMonth:1];
+		[end setMonth:12];
+		[end setDay:31];
+	} else if (dateInterval == WeekInterval) {
+		[formatter setDateFormat:@"'Vecka' ww, YYYY"];
+		[start setWeekday:2];
+		[end setWeekday:1];
+	} else {
+		[formatter setDateFormat:@"MMMM, YYYY"];
+		[start setDay:1];
+		[end setMonth:[end month]+1];
+		[end setDay:0];
+	}
+
+
+	[budgetTableViewController setDurationStartDate:[cal dateFromComponents:start] endDate:[cal dateFromComponents:end]];
+	calendarLabel.text = [formatter stringFromDate:self.displayedDate];
+	[formatter release];
+	
+	[self calculateBudgetSum];
+}
+
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -62,7 +95,7 @@
     [super viewDidLoad];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithTitle:@"Inställningar" style:UIBarButtonItemStylePlain target:self action:@selector(showSettings)];
+	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Cogwheel"] style:UIBarButtonItemStylePlain target:self action:@selector(showSettings)];
     self.navigationItem.leftBarButtonItem = settingsButton;
 	[settingsButton release];
 	
@@ -70,20 +103,29 @@
 	self.navigationItem.rightBarButtonItem = addButton;
 	[addButton release];
 	
+	self.navigationItem.titleView = topView;
+	
 	[budgetTableViewController setManagedObjectContext:managedObjectContext_];
 
 	[self calculateBudgetSum];
 	
 	//Observer pattern
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(budgetPostUpdated:) name:@"BudgetPostUpdated" object:nil];
+	
+	CGAffineTransform mirror = CGAffineTransformMakeScale(-1.f, 1.f);
+	[previousCalendarButton setTransform:mirror];
+	
+	self.displayedDate = [NSDate date];
 }
 
 
-/*
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	dateInterval = [defaults integerForKey:@"budgetViewDateInterval"];
+	[self updateCalendarLabel];
 }
-*/
+
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -124,6 +166,37 @@
 	[self.navigationController pushViewController:budgetSettingsViewController animated:YES];
 }
 
+- (IBAction)previousCalendarClick:(id)sender {
+	NSDateComponents *components = [[NSDateComponents alloc] init];
+	if(dateInterval == YearInterval)
+		components.year = -1;
+	else if (dateInterval == WeekInterval)
+		components.day = -7;
+	else
+		components.month = -1;
+	self.displayedDate = [[NSCalendar currentCalendar] dateByAddingComponents:components toDate:displayedDate options:0];
+	[components release];
+	[self updateCalendarLabel];
+}
+
+- (IBAction)nextCalendarClick:(id)sender {
+	NSDateComponents *components = [[NSDateComponents alloc] init];
+	if(dateInterval == YearInterval)
+		components.year = 1;
+	else if (dateInterval == WeekInterval)
+		components.day = 7;
+	else
+		components.month = 1;
+	self.displayedDate = [[NSCalendar currentCalendar] dateByAddingComponents:components toDate:displayedDate options:0];
+	[components release];
+	[self updateCalendarLabel];
+}
+
+- (IBAction)calendarLabelClick:(id)sender {
+	self.displayedDate = [NSDate date];
+	[self updateCalendarLabel];
+}
+
 #pragma mark -
 #pragma mark Memory management
 
@@ -136,6 +209,7 @@
 
 - (void)viewDidUnload {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[displayedDate release];
 }
 
 

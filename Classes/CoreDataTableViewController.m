@@ -19,7 +19,6 @@
 	if (self.searchKey.length) {
 		if (self.tableView && !self.tableView.tableHeaderView) {
 			UISearchBar *searchBar = [[[UISearchBar alloc] init] autorelease];
-			[searchBar setBarStyle:UIBarStyleBlackOpaque];
 			[[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
 			self.searchDisplayController.searchResultsDelegate = self;
 			self.searchDisplayController.searchResultsDataSource = self;
@@ -197,6 +196,7 @@
 {
 	[super viewWillAppear:animated];
 	[self performFetchForTableView:self.tableView];
+	self.tableView.contentOffset = CGPointMake(0.0, 40.0);
 }
 
 #pragma mark UITableViewDataSource methods
@@ -219,7 +219,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
+{
 	return [self tableView:tableView cellForManagedObject:[[self fetchedResultsControllerForTableView:tableView] objectAtIndexPath:indexPath]];
 }
 
@@ -300,6 +300,7 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+	self.tableView.contentOffset = CGPointMake(0.0, 40.0);
 }
 
 #pragma mark dealloc

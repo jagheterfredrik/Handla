@@ -14,7 +14,7 @@
 
 @implementation ListsViewController
 
-@synthesize managedObjectContext=managedObjectContext_;
+@synthesize managedObjectContext=managedObjectContext_, list=list_;
 
 #pragma mark -
 #pragma mark Core data table view overrides
@@ -24,7 +24,7 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	if (cell == nil) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	}
 	List* list = (List*)managedObject;
 	cell.textLabel.text = list.name;
@@ -51,6 +51,15 @@
 	}
 	//Remove the list
 	[managedObjectContext_ deleteObject:managedObject];
+}
+
+- (void)managedObjectAccessoryTapped:(NSManagedObject *)managedObject {
+	self.list = (List*) managedObject;
+	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp om din lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
+	alertPrompt.textField.text = list_.name;
+	[alertPrompt show];
+	
+	
 }
 
 
@@ -95,6 +104,7 @@
 
 // Called when the add button is pressed
 - (void)createList {
+	self.list = nil;
 	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp din lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Lägg till"];
 	[alertPrompt show];
 }
@@ -116,11 +126,16 @@
 		[alertPrompt show];
 	}
 	if (buttonIndex == alertViewButtonOK && [alertPrompt.textField.text length] != 0) {
-		List *list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:self.managedObjectContext];
-		list.name = alertPrompt.textField.text;
-		list.creationDate = [NSDate date];
+		if(list_ == nil) {
+			List *list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:self.managedObjectContext];
+			list.name = alertPrompt.textField.text;
+			list.creationDate = [NSDate date];
+		} else {
+			list_.name = alertPrompt.textField.text;
+		}
 	}
 }
+
 
 #pragma mark -
 #pragma mark Memory management
@@ -139,7 +154,10 @@
 
 
 - (void)dealloc {
+	[list_ release];
+	[managedObjectContext_ release];
     [super dealloc];
+	
 }
 
 

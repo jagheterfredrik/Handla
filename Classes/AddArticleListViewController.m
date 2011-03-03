@@ -115,6 +115,16 @@
 */
 
 #pragma mark -
+#pragma mark Events
+
+- (void)performRemoval {
+	for (id object in objectToDelete.listArticles)
+		[list_.managedObjectContext deleteObject:object];
+	[list_.managedObjectContext deleteObject:objectToDelete];
+	objectToDelete = nil;
+}
+
+#pragma mark -
 #pragma mark Core data table view controller overrides
 
 - (void)managedObjectAccessoryTapped:(NSManagedObject *)managedObject {
@@ -141,7 +151,27 @@
 }
 
 - (void)deleteManagedObject:(NSManagedObject *)managedObject {
-	[list_.managedObjectContext deleteObject:managedObject];
+	objectToDelete = (Article*)managedObject;
+	NSUInteger listArticleCount = [objectToDelete.listArticles count];
+	if (listArticleCount > 0) {
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Bekräfta borttagning" 
+												message:[NSString stringWithFormat:@"Varan du försöker ta bort finns redan i %i listor, tar du bort varan kommer även dessa tas bort.", listArticleCount]
+												delegate:self
+												cancelButtonTitle:@"Avrbyt"
+												  otherButtonTitles:@"Ta bort", nil];
+		[alertView show];
+		return;
+	}
+	[self performRemoval];
+}
+
+#pragma mark -
+#pragma mark Alert view delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == 1) {
+		[self performRemoval];
+	}
 }
 
 #pragma mark -

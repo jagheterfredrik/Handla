@@ -47,16 +47,52 @@
 															destructiveButtonTitle:nil
 															otherButtonTitles:nil];
 		[actionSheet showInView:[[self view] window]];
+		return;
 	}
 	if (article_ == nil) {
-		Article *article = [NSEntityDescription insertNewObjectForEntityForName:@"Article" inManagedObjectContext:managedObjectContext_];
-		article.name = nameField.text;
-	} else {
-		article_.name = nameField.text;
+		article_ = [NSEntityDescription insertNewObjectForEntityForName:@"Article" inManagedObjectContext:managedObjectContext_];
 	}
-
+	if ([nameField.text length] != 0) {
+		article_.name = nameField.text;
+		article_.barcode = scanField.text;
+	}
 	[managedObjectContext_ save:NULL];
 	[self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void) imagePickerController:(UIImagePickerController*)reader didFinishPickingMediaWithInfo:(NSDictionary*)info {
+	id<NSFastEnumeration> results =
+	[info objectForKey: ZBarReaderControllerResults];
+    ZBarSymbol *symbol = nil;
+    for(symbol in results)
+        // EXAMPLE: just grab the first barcode
+        break;
+	
+    // EXAMPLE: do something useful with the barcode data
+    scanField.text = symbol.data;
+	[reader dismissModalViewControllerAnimated: YES];
+}
+
+- (IBAction)scanClick:(id)sender {
+	ZBarReaderViewController *reader = [ZBarReaderViewController new];
+    reader.readerDelegate = self;
+	
+    ZBarImageScanner *scanner = reader.scanner;
+    // TODO: (optional) additional reader configuration here
+	
+    // disable rarely used I2/5 to improve performance
+    [scanner setSymbology: ZBAR_I25
+				   config: ZBAR_CFG_ENABLE
+					   to: 0];
+	
+    // present and release the controller
+    [self presentModalViewController: reader
+							animated: YES];
+    [reader release];
+}
+
+- (IBAction)cameraClick:(id)sender {
+	
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -72,6 +108,8 @@
 	if (article_ != nil) {
 		rightButton.title = @"Ändra";
 		self.title = article_.name;
+		nameField.text = article_.name;
+		scanField.text = article_.barcode;
 	} else {
 		rightButton.title = @"Skapa";
 		self.title = @"Ny vara";

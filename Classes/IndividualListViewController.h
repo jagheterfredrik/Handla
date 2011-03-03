@@ -13,10 +13,13 @@
 @interface IndividualListViewController : UIViewController {
 	IBOutlet IndividualListTableViewController *individualListTableViewController;
 	IBOutlet UITableView *tableView;
-	IBOutlet UITableView *realTableView;
+	IBOutlet UILabel *progressLabel;
+	IBOutlet UIProgressView *progressBar;
 	List* list_;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil list:(List*)list;
+
+- (IBAction)purchase;
 
 @end

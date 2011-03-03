@@ -17,12 +17,22 @@
 	BudgetSettingsViewController *budgetSettingsViewController;
 	IBOutlet BudgetTableViewController *budgetTableViewController;
 	IBOutlet UILabel *totalBalance;
+	IBOutlet UIView *topView;
+	IBOutlet UIButton *previousCalendarButton;
+	IBOutlet UILabel *calendarLabel;
 	NSManagedObjectContext *managedObjectContext_;
+	NSDate *displayedDate;
+	NSInteger dateInterval;
 }
 
 - (void)addPost;
 - (void)showSettings;
 
+- (IBAction)previousCalendarClick:(id)sender;
+- (IBAction)nextCalendarClick:(id)sender;
+- (IBAction)calendarLabelClick:(id)sender;
+
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSDate *displayedDate;
 
 @end
