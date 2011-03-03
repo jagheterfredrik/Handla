@@ -23,7 +23,7 @@
 	static NSString *cellIdentifier = @"BudgetPostCell";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	if (cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier] autorelease];
 		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	}
 	List* list = (List*)managedObject;
@@ -58,6 +58,7 @@
 	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp om din lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
 	alertPrompt.textField.text = list_.name;
 	[alertPrompt show];
+	[alertPrompt release];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -127,6 +128,7 @@
 	self.list = nil;
 	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp din lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Lägg till"];
 	[alertPrompt show];
+	[alertPrompt release];
 }
 
 #pragma mark -
@@ -142,8 +144,10 @@
 												   destructiveButtonTitle:nil
 														otherButtonTitles:nil];
 		[actionSheet showInView:[[self view] window]];
+		[actionSheet release];
 		AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp din lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Lägg till"];
 		[alertPrompt show];
+		[alertPrompt release];
 	}
 	if (buttonIndex == alertViewButtonOK && [alertPrompt.textField.text length] != 0) {
 		if(list_ == nil) {

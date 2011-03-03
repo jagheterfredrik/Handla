@@ -47,6 +47,7 @@
 															destructiveButtonTitle:nil
 															otherButtonTitles:nil];
 		[actionSheet showInView:[[self view] window]];
+		[actionSheet release];
 		return;
 	}
 	if (article_ == nil) {

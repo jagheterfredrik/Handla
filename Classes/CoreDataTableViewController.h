@@ -17,6 +17,7 @@
 	NSString *titleKey;
 	NSString *subtitleKey;
 	NSString *searchKey;
+	UISearchDisplayController *searchDisplayController;
 	NSFetchedResultsController *fetchedResultsController;
 }
 
