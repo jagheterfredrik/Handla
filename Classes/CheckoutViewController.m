@@ -40,9 +40,8 @@
 //=========================================================== 
 - (IBAction) paymentCompleteButtonPressed: (id) sender
 {
-	BudgetPost* newBudgetPost = [NSEntityDescription insertNewObjectForEntityForName:
-					 @"BudgetPost" inManagedObjectContext:list_.managedObjectContext];
-	newBudgetPost.name = list_.name;
+	BudgetPost* newBudgetPost = [NSEntityDescription insertNewObjectForEntityForName:@"BudgetPost" inManagedObjectContext:self.list.managedObjectContext];
+	newBudgetPost.name = self.list.name;
 	newBudgetPost.timeStamp = [NSDate date];
 	//TODO: this should be rounded if we pay with cash; since there are no femtioörings anymore 
 	newBudgetPost.amount = [NSDecimalNumber decimalNumberWithString:
