@@ -129,11 +129,11 @@
 
 - (void)managedObjectAccessoryTapped:(NSManagedObject *)managedObject {
 	selectedArticle = (Article *) managedObject;
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Options"
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:selectedArticle.name
 															 delegate:self
-													cancelButtonTitle:@"Cancel"
-											   destructiveButtonTitle:@"Delete"
-													otherButtonTitles:@"Ändra namn",nil];
+													cancelButtonTitle:@"Avbryt"
+											   destructiveButtonTitle:@"Ta bort"
+													otherButtonTitles:@"Redigera",nil];
 	[actionSheet showInView:[[self view] window]];
 	[actionSheet release];
 }
