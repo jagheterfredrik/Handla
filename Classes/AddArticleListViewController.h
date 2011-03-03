@@ -12,9 +12,9 @@
 #import "Article.h"
 
 
-@interface AddArticleListViewController : CoreDataTableViewController {
+@interface AddArticleListViewController : CoreDataTableViewController<UIActionSheetDelegate> {
 	List *list_;
-	Article *objectToDelete;
+	Article *selectedArticle;
 }
 
 - (id)initWithList:(List*)list;

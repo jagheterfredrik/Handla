@@ -118,19 +118,37 @@
 #pragma mark Events
 
 - (void)performRemoval {
-	for (id object in objectToDelete.listArticles)
+	for (id object in selectedArticle.listArticles)
 		[list_.managedObjectContext deleteObject:object];
-	[list_.managedObjectContext deleteObject:objectToDelete];
-	objectToDelete = nil;
+	[list_.managedObjectContext deleteObject:selectedArticle];
+	selectedArticle = nil;
 }
 
 #pragma mark -
 #pragma mark Core data table view controller overrides
 
 - (void)managedObjectAccessoryTapped:(NSManagedObject *)managedObject {
-	ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil article:(Article*)managedObject];
-	[self.navigationController pushViewController:articleDetailViewController animated:YES];
-	[articleDetailViewController release];
+	selectedArticle = (Article *) managedObject;
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Options"
+															 delegate:self
+													cancelButtonTitle:@"Cancel"
+											   destructiveButtonTitle:@"Delete"
+													otherButtonTitles:@"Ändra namn",nil];
+	[actionSheet showInView:[[self view] window]];
+	[actionSheet release];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	NSLog(@"%i", buttonIndex);
+	if (buttonIndex == 1) {
+		ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil article:(Article*)selectedArticle];
+		[self.navigationController pushViewController:articleDetailViewController animated:YES];
+		[articleDetailViewController release];
+	}
+	if (buttonIndex == 0) {
+		[self deleteManagedObject:selectedArticle];
+	}
 }
 
 - (void)managedObjectSelected:(NSManagedObject *)managedObject
@@ -151,8 +169,8 @@
 }
 
 - (void)deleteManagedObject:(NSManagedObject *)managedObject {
-	objectToDelete = (Article*)managedObject;
-	NSUInteger listArticleCount = [objectToDelete.listArticles count];
+	selectedArticle = (Article*)managedObject;
+	NSUInteger listArticleCount = [selectedArticle.listArticles count];
 	if (listArticleCount > 0) {
 		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Bekräfta borttagning" 
 												message:[NSString stringWithFormat:@"Varan du försöker ta bort finns redan i %i listor, tar du bort varan kommer även dessa tas bort.", listArticleCount]
