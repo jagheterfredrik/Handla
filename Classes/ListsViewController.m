@@ -58,8 +58,29 @@
 	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp om din lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
 	alertPrompt.textField.text = list_.name;
 	[alertPrompt show];
-	
-	
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	NSInteger numRows = [[[[self fetchedResultsControllerForTableView:tableView] sections] objectAtIndex:section] numberOfObjects];
+	if (numRows == 0) {
+		showHelp = YES;
+		UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AddListHelp"]];
+		CGAffineTransform trans = CGAffineTransformMakeTranslation(0, 40);
+		imageView.transform = trans;
+//		[self.view addSubview:imageView];
+		imageView.contentMode = UIViewContentModeTop;
+		tableView.backgroundView = imageView;
+		tableView.scrollEnabled = NO;
+		tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+		[imageView release];
+	} else {
+		showHelp = NO;
+		tableView.backgroundView = nil;
+		tableView.scrollEnabled = YES;
+		tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+	}
+	return numRows;
 }
 
 

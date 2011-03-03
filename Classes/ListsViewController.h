@@ -14,7 +14,9 @@
 
 @private
     NSManagedObjectContext *managedObjectContext_;
+	
 	List *list_;
+	BOOL showHelp;
 }
 
 - (void)createList;
@@ -22,6 +24,5 @@
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) List *list;
-
 
 @end
