@@ -47,13 +47,15 @@
 															destructiveButtonTitle:nil
 															otherButtonTitles:nil];
 		[actionSheet showInView:[[self view] window]];
+		return;
 	}
 	if (article_ == nil) {
 		article_ = [NSEntityDescription insertNewObjectForEntityForName:@"Article" inManagedObjectContext:managedObjectContext_];
 	}
-	article_.name = nameField.text;
-	article_.barcode = scanField.text;
-
+	if ([nameField.text length] != 0) {
+		article_.name = nameField.text;
+		article_.barcode = scanField.text;
+	}
 	[managedObjectContext_ save:NULL];
 	[self.navigationController popViewControllerAnimated:YES];
 }

@@ -127,7 +127,7 @@
 }
 
 /**
- * When done button is clicked, the values in the view shoud be stored in the database.
+ * When done button is clicked, the values in the view should be stored in the database.
  */
 - (IBAction)doneClick {
 	if (([valueBox.text length]==0)&&([nameBox.text length]==0)){
@@ -169,6 +169,7 @@
 
 	[self.managedObjectContext save:NULL];
 	[self.navigationController popViewControllerAnimated:YES];
+	
 }
 
 - (IBAction)setDateButtonClicked:(UIButton*) sender {

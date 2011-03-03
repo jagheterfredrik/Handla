@@ -45,7 +45,7 @@
 	if ([amountBalance compare:[NSNumber numberWithInt:0]] == NSOrderedAscending)
 		totalBalance.textColor = [UIColor redColor];
 	else
-		totalBalance.textColor = [UIColor greenColor];
+		totalBalance.textColor = [UIColor colorWithRed:0.f green:0.55f blue:0.f alpha:1.f];
 	
 	[amountFormatter release];
 }
