@@ -82,8 +82,9 @@
 
 	[budgetTableViewController setDurationStartDate:[cal dateFromComponents:start] endDate:[cal dateFromComponents:end]];
 	calendarLabel.text = [formatter stringFromDate:self.displayedDate];
-	[formatter release];
-	
+	[cal release];
+	[formatter release];	
+
 	[self calculateBudgetSum];
 }
 

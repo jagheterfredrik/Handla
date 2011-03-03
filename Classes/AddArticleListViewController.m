@@ -178,6 +178,7 @@
 												cancelButtonTitle:@"Avrbyt"
 												  otherButtonTitles:@"Ta bort", nil];
 		[alertView show];
+		[alertView release];
 		return;
 	}
 	[self performRemoval];

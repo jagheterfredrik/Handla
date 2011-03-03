@@ -93,7 +93,6 @@
 	remaining = remaining%5;
 	
 	enkronor.text =  [NSString stringWithFormat:@"%i", remaining/1];
-	remaining = remaining%1;
 }
 
 
