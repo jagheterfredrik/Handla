@@ -69,6 +69,12 @@
 		48C3F71713140F5800EAE609 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48C3F71113140F5800EAE609 /* MainWindow.xib */; };
 		48C3F9241314650F00EAE609 /* ArticleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C3F9221314650F00EAE609 /* ArticleDetailViewController.m */; };
 		48F0D9011311B05E003D0352 /* IndividualListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F0D8FF1311B05E003D0352 /* IndividualListViewController.m */; };
+		7768DFDD1320FAFA0094A5F1 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7768DFD71320FAFA0094A5F1 /* 1.jpg */; };
+		7768DFDE1320FAFA0094A5F1 /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7768DFD81320FAFA0094A5F1 /* 5.jpg */; };
+		7768DFDF1320FAFA0094A5F1 /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7768DFD91320FAFA0094A5F1 /* 10.jpg */; };
+		7768DFE01320FAFA0094A5F1 /* 50.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7768DFDA1320FAFA0094A5F1 /* 50.JPG */; };
+		7768DFE11320FAFA0094A5F1 /* 100.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7768DFDB1320FAFA0094A5F1 /* 100.jpg */; };
+		7768DFE21320FAFA0094A5F1 /* 500.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7768DFDC1320FAFA0094A5F1 /* 500.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,6 +188,12 @@
 		48C3F9221314650F00EAE609 /* ArticleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleDetailViewController.m; sourceTree = "<group>"; };
 		48F0D8FE1311B05E003D0352 /* IndividualListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualListViewController.h; sourceTree = "<group>"; };
 		48F0D8FF1311B05E003D0352 /* IndividualListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualListViewController.m; sourceTree = "<group>"; };
+		7768DFD71320FAFA0094A5F1 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		7768DFD81320FAFA0094A5F1 /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
+		7768DFD91320FAFA0094A5F1 /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpg; sourceTree = "<group>"; };
+		7768DFDA1320FAFA0094A5F1 /* 50.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 50.JPG; sourceTree = "<group>"; };
+		7768DFDB1320FAFA0094A5F1 /* 100.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 100.jpg; sourceTree = "<group>"; };
+		7768DFDC1320FAFA0094A5F1 /* 500.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 500.jpg; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Handla-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Handla-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -343,7 +355,13 @@
 		481BFFB1130D21D600AC4CC8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7768DFD71320FAFA0094A5F1 /* 1.jpg */,
+				7768DFD81320FAFA0094A5F1 /* 5.jpg */,
+				7768DFD91320FAFA0094A5F1 /* 10.jpg */,
 				4854D9221320F9B700EBFA53 /* 20.jpg */,
+				7768DFDA1320FAFA0094A5F1 /* 50.JPG */,
+				7768DFDB1320FAFA0094A5F1 /* 100.jpg */,
+				7768DFDC1320FAFA0094A5F1 /* 500.jpg */,
 				489B0712131F90FB00FF8346 /* AddListHelp.png */,
 				489B0713131F90FB00FF8346 /* AddListHelp@2x.png */,
 				481BFFCC130D220900AC4CC8 /* BudgetIcon.png */,
@@ -559,6 +577,12 @@
 				489B0714131F90FB00FF8346 /* AddListHelp.png in Resources */,
 				489B0715131F90FB00FF8346 /* AddListHelp@2x.png in Resources */,
 				4854D9231320F9B700EBFA53 /* 20.jpg in Resources */,
+				7768DFDD1320FAFA0094A5F1 /* 1.jpg in Resources */,
+				7768DFDE1320FAFA0094A5F1 /* 5.jpg in Resources */,
+				7768DFDF1320FAFA0094A5F1 /* 10.jpg in Resources */,
+				7768DFE01320FAFA0094A5F1 /* 50.JPG in Resources */,
+				7768DFE11320FAFA0094A5F1 /* 100.jpg in Resources */,
+				7768DFE21320FAFA0094A5F1 /* 500.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
