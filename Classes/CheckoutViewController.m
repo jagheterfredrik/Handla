@@ -179,6 +179,14 @@
 //=========================================================== 
 - (IBAction)tjugolappButtonPressed:(UIButton*)sender
 {
+	UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"20.jpg"]];
+	imgView.frame = CGRectMake(215, 139, 72, 37);
+	[self.view addSubview:imgView];
+	[UIView beginAnimations:@"slide" context:nil];
+	imgView.frame = CGRectMake(10+currentTjugolappar*10, 139+(currentTjugolappar%5)*3, 72, 37);
+	[UIView setAnimationDuration:1];
+	[UIView commitAnimations];
+	[imgView release];
 	currentTjugolappar++;
 	[self refreshSelectedValuesDisplay];
 }
