@@ -33,6 +33,10 @@
 	return self;
 }
 
+- (IBAction)cancelClick:(id)sender 
+{
+	[self dismissModalViewControllerAnimated:YES];
+}
 
 //=========================================================== 
 //  when the done button is pressed, save the list sum to the database and go to budget view.
@@ -53,11 +57,11 @@
 	[list_.managedObjectContext save:NULL];
 	
 	
-	//go to budget mode
-	[self.tabBarController setSelectedIndex:1];
+	//go to budget mode (TODO: fix. observer pattern?)
+	[self.parentViewController.tabBarController setSelectedIndex:1];
 	
 	//go to list view. Maybe even listSview???
-	[self.navigationController popViewControllerAnimated:NO];
+	[self dismissModalViewControllerAnimated:YES];
 	
 }
 

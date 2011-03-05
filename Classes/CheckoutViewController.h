@@ -48,6 +48,8 @@
 - (void)refreshSelectedValuesDisplay;
 - (NSInteger) getTotalSelectedAmount;
 
+- (IBAction)cancelClick:(id)sender;
+
 - (IBAction)paymentCompleteButtonPressed:(id)sender;
 - (IBAction)femhundringButtonPressed:(UIButton*)sender;
 - (IBAction)hundringButtonPressed:(UIButton*)sender;

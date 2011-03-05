@@ -27,7 +27,7 @@
 - (IBAction)purchase {
 	CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
 																		AmountToPay:[NSDecimalNumber decimalNumberWithString:@"612.50"]];
-	[self.navigationController pushViewController:checkOut animated:YES];
+	[self.navigationController presentModalViewController:checkOut animated:YES];
 	[checkOut release];
 }
 

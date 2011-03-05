@@ -71,13 +71,16 @@
 		imageView.transform = trans;
 		imageView.contentMode = UIViewContentModeTop;
 		tableView.backgroundView = imageView;
-		tableView.scrollEnabled = NO;
+//		tableView.scrollEnabled = NO;
 		tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+		self.searchDisplayController.searchBar.hidden = YES;
+		tableView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
 		[imageView release];
 	} else {
-		showHelp = NO;
 		tableView.backgroundView = nil;
-		tableView.scrollEnabled = YES;
+		tableView.backgroundColor = [UIColor whiteColor];
+		showHelp = NO;
+		self.searchDisplayController.searchBar.hidden = NO;
 		tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 	}
 	return numRows;
