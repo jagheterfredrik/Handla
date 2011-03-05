@@ -58,6 +58,9 @@
 		article_.barcode = scanField.text;
 	}
 	[managedObjectContext_ save:NULL];
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"ArticleChanged" object:self];
+	
 	[self.navigationController popViewControllerAnimated:YES];
 }
 

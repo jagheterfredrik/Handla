@@ -52,6 +52,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[individualListTableViewController setList:list_];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:tableView selector:@selector(reloadData) name:@"ArticleChanged" object:nil];
 }
 
 /*
@@ -74,6 +76,7 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+	[[NSNotificationCenter defaultCenter] removeObserver:tableView];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
