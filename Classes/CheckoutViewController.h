@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BudgetPost.h"
 #import "list.h"
+#import "UICashView.h"
 
 
 @interface CheckoutViewController : UIViewController {
@@ -51,6 +52,8 @@
 - (NSInteger) getTotalSelectedAmount;
 
 - (IBAction)cancelClick:(id)sender;
+
+- (IBAction)removeCash:(UICashView*)sender;
 
 - (IBAction)paymentCompleteButtonPressed:(id)sender;
 - (IBAction)femhundringButtonPressed:(UIButton*)sender;

@@ -78,6 +78,7 @@
 		7768DFE01320FAFA0094A5F1 /* 50.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7768DFDA1320FAFA0094A5F1 /* 50.JPG */; };
 		7768DFE11320FAFA0094A5F1 /* 100.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7768DFDB1320FAFA0094A5F1 /* 100.jpg */; };
 		7768DFE21320FAFA0094A5F1 /* 500.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7768DFDC1320FAFA0094A5F1 /* 500.jpg */; };
+		77A60A8B13258B7C0038D73A /* UICashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A60A8A13258B7C0038D73A /* UICashView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +201,8 @@
 		7768DFDA1320FAFA0094A5F1 /* 50.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 50.JPG; sourceTree = "<group>"; };
 		7768DFDB1320FAFA0094A5F1 /* 100.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 100.jpg; sourceTree = "<group>"; };
 		7768DFDC1320FAFA0094A5F1 /* 500.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 500.jpg; sourceTree = "<group>"; };
+		77A60A8913258B7C0038D73A /* UICashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICashView.h; sourceTree = "<group>"; };
+		77A60A8A13258B7C0038D73A /* UICashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICashView.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Handla-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Handla-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -325,6 +328,8 @@
 		481BFF71130D157700AC4CC8 /* List classes */ = {
 			isa = PBXGroup;
 			children = (
+				77A60A8913258B7C0038D73A /* UICashView.h */,
+				77A60A8A13258B7C0038D73A /* UICashView.m */,
 				4848B95E130AA95300702E2D /* ListsViewController.h */,
 				4848B95F130AA95300702E2D /* ListsViewController.m */,
 				4848BBCF130B342400702E2D /* IndividualListTableViewController.h */,
@@ -632,6 +637,7 @@
 				48C3F5F61312FA1000EAE609 /* BudgetTableViewCell.m in Sources */,
 				48C3F9241314650F00EAE609 /* ArticleDetailViewController.m in Sources */,
 				48A8536C1317DAD200026C1B /* CheckoutViewController.m in Sources */,
+				77A60A8B13258B7C0038D73A /* UICashView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
