@@ -22,7 +22,9 @@
 	IBOutlet UILabel* totalAmount;
 	IBOutlet UILabel* remaining;
 	
-	IBOutlet UIButton* doneButton;
+	IBOutlet UIBarButtonItem* doneButton;
+	
+	
 	
 	IBOutlet UILabel* femhundringar;
 	IBOutlet UILabel* hundringar;

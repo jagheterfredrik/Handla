@@ -7,6 +7,7 @@
 //
 
 #import "CheckoutViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @implementation CheckoutViewController
@@ -122,17 +123,17 @@
 //=========================================================== 
 - (void)refreshSelectedValuesDisplay
 {
-	femhundringar.text = [NSString stringWithFormat:@"%i", currentFemhundringar];	
-	hundringar.text =  [NSString stringWithFormat:@"%i", currentHundringar];
-	femtiolappar.text =  [NSString stringWithFormat:@"%i", currentFemtiolappar];	
-	tjugolappar.text =  [NSString stringWithFormat:@"%i", currentTjugolappar];	
-	tior.text =  [NSString stringWithFormat:@"%i", currentTior];
-	femmor.text =  [NSString stringWithFormat:@"%i", currentFemmor];	
-	enkronor.text =  [NSString stringWithFormat:@"%i", currentEnkronor];
+	femhundringar.text = [NSString stringWithFormat:@"%i",	500*currentFemhundringar];	
+	hundringar.text =  [NSString stringWithFormat:@"%i",	100*currentHundringar];
+	femtiolappar.text =  [NSString stringWithFormat:@"%i",	50*currentFemtiolappar];	
+	tjugolappar.text =  [NSString stringWithFormat:@"%i",	20*currentTjugolappar];	
+	tior.text =  [NSString stringWithFormat:@"%i",			10*currentTior];
+	femmor.text =  [NSString stringWithFormat:@"%i",		5*currentFemmor];	
+	enkronor.text =  [NSString stringWithFormat:@"%i",		1*currentEnkronor];
 	
 	remaining.text = [NSString stringWithFormat:@"%i", (amountToBePayed-[self getTotalSelectedAmount])];
 	if ((amountToBePayed-[self getTotalSelectedAmount])<=0) {
-		doneButton.enabled = YES;
+		doneButton.style = UIBarButtonItemStyleDone;
 	}
 
 
@@ -155,6 +156,20 @@
 //=========================================================== 
 - (IBAction)femhundringButtonPressed:(UIButton*)sender
 {
+	UIImageView *imgView = [[UIImageView alloc] initWithImage:sender.currentImage];
+	imgView.frame = sender.frame;
+	[imgView.layer setBorderColor: [[UIColor blackColor] CGColor]];
+	[imgView.layer setBorderWidth: 1];
+	
+	[self.view addSubview:imgView];
+	[UIView beginAnimations:@"slide" context:nil];
+	imgView.frame = CGRectMake(50+(currentFemhundringar%10)*10, 
+							   sender.frame.origin.y+((currentFemhundringar%10))*3,
+							   sender.frame.size.width, 
+							   sender.frame.size.height);
+	[UIView setAnimationDuration:55555];
+	[UIView commitAnimations];
+	[imgView release];
 	currentFemhundringar++;
 	[self refreshSelectedValuesDisplay];
 	
@@ -165,6 +180,20 @@
 //=========================================================== 
 - (IBAction)hundringButtonPressed:(UIButton*)sender
 {
+	UIImageView *imgView = [[UIImageView alloc] initWithImage:sender.currentImage];
+	imgView.frame = sender.frame;
+	[imgView.layer setBorderColor: [[UIColor blackColor] CGColor]];
+	[imgView.layer setBorderWidth: 1];
+	
+	[self.view addSubview:imgView];
+	[UIView beginAnimations:@"slide" context:nil];
+	imgView.frame = CGRectMake(50+(currentHundringar%10)*10, 
+							   sender.frame.origin.y+((currentHundringar%10))*3,
+							   sender.frame.size.width, 
+							   sender.frame.size.height);
+	[UIView setAnimationDuration:2];
+	[UIView commitAnimations];
+	[imgView release];
 	currentHundringar++;
 	[self refreshSelectedValuesDisplay];
 }
@@ -174,6 +203,20 @@
 //=========================================================== 
 - (IBAction)femtiolappButtonPressed:(UIButton*)sender
 {
+	UIImageView *imgView = [[UIImageView alloc] initWithImage:sender.currentImage];
+	imgView.frame = sender.frame;
+	[imgView.layer setBorderColor: [[UIColor blackColor] CGColor]];
+	[imgView.layer setBorderWidth: 1];
+	
+	[self.view addSubview:imgView];
+	[UIView beginAnimations:@"slide" context:nil];
+	imgView.frame = CGRectMake(50+(currentFemtiolappar%10)*10, 
+							   sender.frame.origin.y+((currentFemtiolappar%10))*3,
+							   sender.frame.size.width, 
+							   sender.frame.size.height);
+	[UIView setAnimationDuration:2];
+	[UIView commitAnimations];
+	[imgView release];
 	currentFemtiolappar++;
 	[self refreshSelectedValuesDisplay];
 }
@@ -183,11 +226,17 @@
 //=========================================================== 
 - (IBAction)tjugolappButtonPressed:(UIButton*)sender
 {
-	UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"20.jpg"]];
-	imgView.frame = CGRectMake(215, 139, 72, 37);
+	UIImageView *imgView = [[UIImageView alloc] initWithImage:sender.currentImage];
+	imgView.frame = sender.frame;
+	[imgView.layer setBorderColor: [[UIColor blackColor] CGColor]];
+	[imgView.layer setBorderWidth: 1];
+	
 	[self.view addSubview:imgView];
 	[UIView beginAnimations:@"slide" context:nil];
-	imgView.frame = CGRectMake(10+currentTjugolappar*10, 139+(currentTjugolappar%5)*3, 72, 37);
+	imgView.frame = CGRectMake(50+(currentTjugolappar%10)*10, 
+							   sender.frame.origin.y+((currentTjugolappar%10))*3,
+							   sender.frame.size.width, 
+							   sender.frame.size.height);
 	[UIView setAnimationDuration:1];
 	[UIView commitAnimations];
 	[imgView release];
@@ -200,6 +249,20 @@
 //=========================================================== 
 - (IBAction)tiaButtonPressed:(UIButton*)sender
 {
+	UIImageView *imgView = [[UIImageView alloc] initWithImage:sender.currentImage];
+	imgView.frame = sender.frame;
+
+	
+	[self.view addSubview:imgView];
+	[UIView beginAnimations:@"slide" context:nil];
+	imgView.frame = CGRectMake(50+(currentTior%10)*10, 
+							   sender.frame.origin.y,
+							   //+((currentTior%10)%5)*1,
+							   sender.frame.size.width, 
+							   sender.frame.size.height);
+	[UIView setAnimationDuration:1];
+	[UIView commitAnimations];
+	[imgView release];
 	currentTior++;
 	[self refreshSelectedValuesDisplay];
 }
@@ -208,7 +271,20 @@
 //
 //=========================================================== 
 - (IBAction)femmaButtonPressed:(UIButton*)sender
-{
+{	
+	UIImageView *imgView = [[UIImageView alloc] initWithImage:sender.currentImage];
+	imgView.frame = sender.frame;
+	
+	[self.view addSubview:imgView];
+	[UIView beginAnimations:@"slide" context:nil];
+	imgView.frame = CGRectMake(50+(currentFemmor%10)*10, 
+							   sender.frame.origin.y,
+							   //+((currentTior%10)%5)*1,
+							   sender.frame.size.width, 
+							   sender.frame.size.height);
+	[UIView setAnimationDuration:1];
+	[UIView commitAnimations];
+	[imgView release];
 	currentFemmor++;
 	[self refreshSelectedValuesDisplay];
 }
@@ -218,6 +294,19 @@
 //=========================================================== 
 - (IBAction)enkronaButtonPressed:(UIButton*)sender
 {
+	UIImageView *imgView = [[UIImageView alloc] initWithImage:sender.currentImage];
+	imgView.frame = sender.frame;
+	
+	[self.view addSubview:imgView];
+	[UIView beginAnimations:@"slide" context:nil];
+	imgView.frame = CGRectMake(50+(currentEnkronor%10)*10, 
+							   sender.frame.origin.y,
+							   //+((currentTior%10)%5)*1,
+							   sender.frame.size.width, 
+							   sender.frame.size.height);
+	[UIView setAnimationDuration:1];
+	[UIView commitAnimations];
+	[imgView release];
 	currentEnkronor++;
 	[self refreshSelectedValuesDisplay];
 }
