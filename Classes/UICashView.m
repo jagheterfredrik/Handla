@@ -10,17 +10,17 @@
 
 
 @implementation UICashView
-@synthesize value,startingPlace;
+@synthesize value=value_,startingPlace=startingPlace_;
 
 //=========================================================== 
 // - setFrameAndRememberIt:(GCRect) frame
 //
 //=========================================================== 
-- setFrameAndRememberIt:(CGRect)frame withCashValue:(NSInteger) value;
+- (void)setFrameAndRememberIt:(CGRect)frame withCashValue:(NSInteger) value;
 {
 	self.value=value;
 	super.frame=frame;
-	startingPlace=frame;	
+	self.startingPlace=frame;
 }
 
 @end

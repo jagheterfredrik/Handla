@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "Article.h"
 #import "ListArticle.h"
+#import "List.h"
 
 #import "ZBarSDK.h"
 
 @interface ArticleDetailViewController : UIViewController<ZBarReaderDelegate, UIImagePickerControllerDelegate> {
 	Article *article_;
+	List *list_;
 	NSManagedObjectContext *managedObjectContext_;
 	IBOutlet UIButton *photoButton;
 	IBOutlet UITextField *nameField;
@@ -26,5 +28,6 @@
 - (IBAction)cameraClick:(id)sender;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil managedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil article:(Article*)article;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil list:(List*)list;
 
 @end
