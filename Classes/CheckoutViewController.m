@@ -131,13 +131,31 @@
 	femmor.text =  [NSString stringWithFormat:@"%i",		5*currentFemmor];	
 	enkronor.text =  [NSString stringWithFormat:@"%i",		1*currentEnkronor];
 	
-	remaining.text = [NSString stringWithFormat:@"%i", (amountToBePayed-[self getTotalSelectedAmount])];
+	NSInteger moneyRemaining = amountToBePayed-[self getTotalSelectedAmount];
+	remaining.text = [NSString stringWithFormat:@"%i", (moneyRemaining)];
 	if ((amountToBePayed-[self getTotalSelectedAmount])<=0) {
 		doneButton.style = UIBarButtonItemStyleDone;
+	}
+	
+	if (moneyRemaining>=500){
+		[self setRedBoarderButton:ButtonFemhundringar];
 	}
 
 
 } 
+	
+
+//=========================================================== 
+// - (void)setRedBoarderButton:(UIButton theButton)
+//
+//=========================================================== 
+- (void)setRedBoarderButton:(UIButton*) theButton
+{	
+	[theButton.layer setBorderColor: [[UIColor redColor] CGColor]];
+	[theButton.layer setBorderWidth: 2];
+}
+	
+	
 
 //=========================================================== 
 // - (NSInteger) getTotalSelectedAmount

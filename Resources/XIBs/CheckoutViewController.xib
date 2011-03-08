@@ -5032,6 +5032,70 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					</object>
 					<int key="connectionID">76</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ButtonEnkronor</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="850076895"/>
+					</object>
+					<int key="connectionID">82</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ButtonFemhundringar</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1044142121"/>
+					</object>
+					<int key="connectionID">83</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ButtonFemmor</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="390939508"/>
+					</object>
+					<int key="connectionID">84</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ButtonFemtiolappar</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="339678325"/>
+					</object>
+					<int key="connectionID">85</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ButtonHundringar</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="926568643"/>
+					</object>
+					<int key="connectionID">86</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ButtonNameOfPurchase</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="761318749"/>
+					</object>
+					<int key="connectionID">87</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ButtonTior</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="761318749"/>
+					</object>
+					<int key="connectionID">88</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ButtonTjugolappar</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="710572719"/>
+					</object>
+					<int key="connectionID">89</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -5362,7 +5426,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">80</int>
+			<int key="maxID">89</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -5381,6 +5445,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 							<string>femtiolappButtonPressed:</string>
 							<string>hundringButtonPressed:</string>
 							<string>paymentCompleteButtonPressed:</string>
+							<string>removeCash:</string>
 							<string>tiaButtonPressed:</string>
 							<string>tjugolappButtonPressed:</string>
 						</object>
@@ -5393,6 +5458,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>id</string>
+							<string>UICashView</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 						</object>
@@ -5408,6 +5474,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 							<string>femtiolappButtonPressed:</string>
 							<string>hundringButtonPressed:</string>
 							<string>paymentCompleteButtonPressed:</string>
+							<string>removeCash:</string>
 							<string>tiaButtonPressed:</string>
 							<string>tjugolappButtonPressed:</string>
 						</object>
@@ -5442,6 +5509,10 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
+								<string key="name">removeCash:</string>
+								<string key="candidateClassName">UICashView</string>
+							</object>
+							<object class="IBActionInfo">
 								<string key="name">tiaButtonPressed:</string>
 								<string key="candidateClassName">UIButton</string>
 							</object>
@@ -5455,6 +5526,14 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>ButtonEnkronor</string>
+							<string>ButtonFemhundringar</string>
+							<string>ButtonFemmor</string>
+							<string>ButtonFemtiolappar</string>
+							<string>ButtonHundringar</string>
+							<string>ButtonNameOfPurchase</string>
+							<string>ButtonTior</string>
+							<string>ButtonTjugolappar</string>
 							<string>doneButton</string>
 							<string>enkronor</string>
 							<string>femhundringar</string>
@@ -5469,6 +5548,14 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
 							<string>UIBarButtonItem</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
@@ -5486,6 +5573,14 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>ButtonEnkronor</string>
+							<string>ButtonFemhundringar</string>
+							<string>ButtonFemmor</string>
+							<string>ButtonFemtiolappar</string>
+							<string>ButtonHundringar</string>
+							<string>ButtonNameOfPurchase</string>
+							<string>ButtonTior</string>
+							<string>ButtonTjugolappar</string>
 							<string>doneButton</string>
 							<string>enkronor</string>
 							<string>femhundringar</string>
@@ -5500,6 +5595,38 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">ButtonEnkronor</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">ButtonFemhundringar</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">ButtonFemmor</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">ButtonFemtiolappar</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">ButtonHundringar</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">ButtonNameOfPurchase</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">ButtonTior</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">ButtonTjugolappar</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">doneButton</string>
 								<string key="candidateClassName">UIBarButtonItem</string>
@@ -5549,6 +5676,14 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/CheckoutViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UICashView</string>
+					<string key="superclassName">UIButton</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/UICashView.h</string>
 					</object>
 				</object>
 			</object>

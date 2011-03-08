@@ -26,7 +26,7 @@
 	IBOutlet UIBarButtonItem* doneButton;
 	
 	
-	
+	//the counter of how much money is picked up for each value
 	IBOutlet UILabel* femhundringar;
 	IBOutlet UILabel* hundringar;
 	IBOutlet UILabel* femtiolappar;
@@ -36,6 +36,16 @@
 	IBOutlet UILabel* enkronor;	
 	IBOutlet UILabel* nameOfPurchase;
 	
+	//the buttons which can light up to indicate they should be pressed
+	IBOutlet UIButton* ButtonFemhundringar;
+	IBOutlet UIButton* ButtonHundringar;
+	IBOutlet UIButton* ButtonFemtiolappar;
+	IBOutlet UIButton* ButtonTjugolappar;
+	IBOutlet UIButton* ButtonTior;
+	IBOutlet UIButton* ButtonFemmor;
+	IBOutlet UIButton* ButtonEnkronor;	
+	IBOutlet UIButton* ButtonNameOfPurchase;
+
 	NSInteger currentFemhundringar;
 	NSInteger currentHundringar;
 	NSInteger currentFemtiolappar;
@@ -50,6 +60,7 @@
 - (id)initWithList:(List*)list AmountToPay:(NSDecimalNumber*)amount;
 - (void)refreshSelectedValuesDisplay;
 - (NSInteger) getTotalSelectedAmount;
+- (void)setRedBoarderButton:(UIButton*) theButton;
 
 - (IBAction)cancelClick:(id)sender;
 
