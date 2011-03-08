@@ -137,13 +137,13 @@
 		doneButton.style = UIBarButtonItemStyleDone;
 	}
 	
-	[self setRedBoarderButton:ButtonFemhundringar withBoarderSize:0];
-	[self setRedBoarderButton:ButtonHundringar withBoarderSize:0];
-	[self setRedBoarderButton:ButtonFemtiolappar withBoarderSize:0];
-	[self setRedBoarderButton:ButtonTjugolappar withBoarderSize:0];
-	[self setRedBoarderButton:ButtonTior withBoarderSize:0];
-	[self setRedBoarderButton:ButtonFemmor withBoarderSize:0];
-	[self setRedBoarderButton:ButtonEnkronor withBoarderSize:0];
+	[self setRedBorderButton:ButtonFemhundringar withBorderSize:0];
+	[self setRedBorderButton:ButtonHundringar withBorderSize:0];
+	[self setRedBorderButton:ButtonFemtiolappar withBorderSize:0];
+	[self setRedBorderButton:ButtonTjugolappar withBorderSize:0];
+	[self setRedBorderButton:ButtonTior withBorderSize:0];
+	[self setRedBorderButton:ButtonFemmor withBorderSize:0];
+	[self setRedBorderButton:ButtonEnkronor withBorderSize:0];
 	
 	ButtonFemhundringar.alpha =1;
 	ButtonHundringar.alpha = 1;
@@ -153,30 +153,27 @@
 	ButtonFemmor.alpha = 1;
 	ButtonEnkronor.alpha = 1;
 	
-
-	
-	
 	
 	if (moneyRemaining>=500){
-		[self setRedBoarderButton:ButtonFemhundringar withBoarderSize:2.0];
+		[self setRedBorderButton:ButtonFemhundringar withBorderSize:2.0];
 	}
 	else if(moneyRemaining>=100){		
-		[self setRedBoarderButton:ButtonHundringar withBoarderSize:2.0];
+		[self setRedBorderButton:ButtonHundringar withBorderSize:2.0];
 	}
 	else if(moneyRemaining>=50){		
-		[self setRedBoarderButton:ButtonFemtiolappar withBoarderSize:2.0];
+		[self setRedBorderButton:ButtonFemtiolappar withBorderSize:2.0];
 	}
 	else if(moneyRemaining>=20){		
-		[self setRedBoarderButton:ButtonTjugolappar withBoarderSize:2.0];
+		[self setRedBorderButton:ButtonTjugolappar withBorderSize:2.0];
 	}
 	else if(moneyRemaining>=10){		
-		[self setRedBoarderButton:ButtonTior withBoarderSize:2.0];
+		[self setRedBorderButton:ButtonTior withBorderSize:2.0];
 	}
 	else if(moneyRemaining>=5){		
-		[self setRedBoarderButton:ButtonFemmor withBoarderSize:2.0];
+		[self setRedBorderButton:ButtonFemmor withBorderSize:2.0];
 	}
 	else if(moneyRemaining>0){		
-		[self setRedBoarderButton:ButtonEnkronor withBoarderSize:2.0];
+		[self setRedBorderButton:ButtonEnkronor withBorderSize:2.0];
 	}
 	else if(moneyRemaining<=0){
 		ButtonFemhundringar.alpha =0.4;
@@ -192,10 +189,10 @@
 	
 
 //=========================================================== 
-// - (void)setRedBoarderButton:(UIButton theButton)
+// - (void)setRedBorderButton:(UIButton theButton)
 //
 //=========================================================== 
-- (void)setRedBoarderButton:(UIButton*)theButton withBoarderSize:(float)boarderSize  
+- (void)setRedBorderButton:(UIButton*)theButton withBorderSize:(float)boarderSize  
 {	
 	[theButton.layer setBorderColor: [[UIColor redColor] CGColor]];
 	[theButton.layer setBorderWidth: boarderSize];
