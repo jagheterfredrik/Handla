@@ -145,6 +145,9 @@
 	[self setRedBoarderButton:ButtonFemmor withBoarderSize:0];
 	[self setRedBoarderButton:ButtonEnkronor withBoarderSize:0];
 	
+
+	
+	
 	
 	if (moneyRemaining>=500){
 		[self setRedBoarderButton:ButtonFemhundringar withBoarderSize:2.0];
@@ -166,6 +169,15 @@
 	}
 	else if(moneyRemaining>0){		
 		[self setRedBoarderButton:ButtonEnkronor withBoarderSize:2.0];
+	}
+	else if(moneyRemaining<=0){
+		ButtonFemhundringar.alpha =0.4;
+		ButtonHundringar.alpha = 0.4;
+		ButtonFemtiolappar.alpha = 0.4;
+		ButtonTjugolappar.alpha = 0.4;
+		ButtonTior.alpha = 0.4;
+		ButtonFemmor.alpha = 0.4;
+		ButtonEnkronor.alpha = 0.4;
 	}
 
 } 
@@ -262,8 +274,9 @@
 						  delay:0
 						options:UIViewAnimationOptionAllowUserInteraction
 					 animations:^{
-		movingButton.frame = CGRectMake(50+(currentFemhundringar%10)*10, 
-										sender.frame.origin.y+((currentFemhundringar%10))*3,
+		movingButton.frame = CGRectMake(50+(currentFemhundringar%5)*20, 
+										sender.frame.origin.y
+										+((currentFemhundringar%5))*2,
 										sender.frame.size.width, 
 										sender.frame.size.height);
 	} completion:nil];
@@ -292,8 +305,8 @@
 						  delay:0
 						options:UIViewAnimationOptionAllowUserInteraction
 					 animations:^{
-		movingButton.frame = CGRectMake(50+(currentHundringar%10)*10, 
-										sender.frame.origin.y+((currentHundringar%10))*3,
+		movingButton.frame = CGRectMake(50+(currentHundringar%5)*20, 
+										sender.frame.origin.y+((currentHundringar%5))*2,
 										sender.frame.size.width, 
 										sender.frame.size.height);
 	} completion:nil];
@@ -320,8 +333,8 @@
 						  delay:0
 						options:UIViewAnimationOptionAllowUserInteraction
 					 animations:^{
-		movingButton.frame = CGRectMake(50+(currentFemtiolappar%10)*10, 
-										sender.frame.origin.y+((currentFemtiolappar%10))*3,
+		movingButton.frame = CGRectMake(50+(currentFemtiolappar%5)*20, 
+										sender.frame.origin.y+((currentFemtiolappar%5))*2,
 										sender.frame.size.width, 
 										sender.frame.size.height);
 	} completion:nil];
@@ -348,8 +361,8 @@
 						  delay:0
 						options:UIViewAnimationOptionAllowUserInteraction
 					 animations:^{
-		movingButton.frame = CGRectMake(50+(currentTjugolappar%10)*10, 
-										sender.frame.origin.y+((currentTjugolappar%10))*3,
+		movingButton.frame = CGRectMake(50+(currentTjugolappar%5)*20, 
+										sender.frame.origin.y+((currentTjugolappar%5))*2,
 										sender.frame.size.width, 
 										sender.frame.size.height);
 	} completion:nil];
