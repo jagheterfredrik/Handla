@@ -218,6 +218,7 @@
 //=========================================================== 
 - (IBAction)removeCash:(UICashView*)sender
 {
+	sender.enabled = NO;
 	switch (sender.value) {
 		case 500:
 			currentFemhundringar--;
@@ -254,10 +255,13 @@
 	}
 	
 	curr.enabled = NO;
+	if (sender != curr) {
+		sender.enabled = YES;
+	}
 	
 	[UIView animateWithDuration:0.1f
 						  delay:0.f
-						options:UIViewAnimationOptionAllowUserInteraction
+						options:0
 					 animations:^{
 						 curr.frame = curr.startingPlace;
 					 }
