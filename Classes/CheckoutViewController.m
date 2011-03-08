@@ -261,49 +261,14 @@
 }
 
 
-
-//=========================================================== 
-// - (IBAction)femhundringButtonPressed:(UIButton*)sender
-//
-//=========================================================== 
-- (IBAction)femhundringButtonPressed:(UIButton*)sender
-{
+- (void)addMoneyPressed:(UIButton*)sender withMoneyInStack:(NSInteger)currentlyInStack border:(BOOL)border {
 	UICashView *movingButton = [UICashView buttonWithType:UIButtonTypeCustom];
 	[movingButton setImage:sender.currentImage forState:UIControlStateNormal];
-	[movingButton setFrameAndRememberIt:sender.frame withCashValue:500];
-	[movingButton.layer setBorderColor: [[UIColor blackColor] CGColor]];
-	[movingButton.layer setBorderWidth: 1];
-	[movingButton addTarget:self action:@selector(removeCash:) 
-		   forControlEvents:UIControlEventTouchUpInside];
-	
-	[self.view addSubview:movingButton];
-	
-	[UIView animateWithDuration:0.4
-						  delay:0
-						options:UIViewAnimationOptionAllowUserInteraction
-					 animations:^{
-		movingButton.frame = CGRectMake(50+(currentFemhundringar%5)*20, 
-										sender.frame.origin.y
-										+((currentFemhundringar%5))*2,
-										sender.frame.size.width, 
-										sender.frame.size.height);
-	} completion:nil];
-
-	currentFemhundringar++;
-	[self refreshSelectedValuesDisplay];
-	
-}
-//=========================================================== 
-// - (IBAction)hundringButtonPressed:(UIButton*)sender
-//
-//=========================================================== 
-- (IBAction)hundringButtonPressed:(UIButton*)sender
-{
-	UICashView *movingButton = [UICashView buttonWithType:UIButtonTypeCustom];
-	[movingButton setImage:sender.currentImage forState:UIControlStateNormal];
-	[movingButton setFrameAndRememberIt:sender.frame withCashValue:100];
-	[movingButton.layer setBorderColor: [[UIColor blackColor] CGColor]];
-	[movingButton.layer setBorderWidth: 1];
+	[movingButton setFrameAndRememberIt:sender.frame withCashValue:[sender tag]];
+	if (border) {
+		[movingButton.layer setBorderColor: [[UIColor blackColor] CGColor]];
+		[movingButton.layer setBorderWidth: 1];
+	}
 	[movingButton addTarget:self action:@selector(removeCash:)
 		   forControlEvents:UIControlEventTouchUpInside];
 	
@@ -313,13 +278,29 @@
 						  delay:0
 						options:UIViewAnimationOptionAllowUserInteraction
 					 animations:^{
-		movingButton.frame = CGRectMake(50+(currentHundringar%5)*20, 
-										sender.frame.origin.y+((currentHundringar%5))*2,
-										sender.frame.size.width, 
-										sender.frame.size.height);
-	} completion:nil];
-	currentHundringar++;
+						 movingButton.frame = CGRectMake(50+((currentlyInStack-1)%5)*20, 
+														 sender.frame.origin.y+(((currentlyInStack-1)%5))*2,
+														 sender.frame.size.width, 
+														 sender.frame.size.height);
+					 } completion:nil];
 	[self refreshSelectedValuesDisplay];
+}
+
+//=========================================================== 
+// - (IBAction)femhundringButtonPressed:(UIButton*)sender
+//
+//=========================================================== 
+- (IBAction)femhundringButtonPressed:(UIButton*)sender
+{
+	[self addMoneyPressed:sender withMoneyInStack:++currentFemhundringar border:YES];
+}
+//=========================================================== 
+// - (IBAction)hundringButtonPressed:(UIButton*)sender
+//
+//=========================================================== 
+- (IBAction)hundringButtonPressed:(UIButton*)sender
+{
+	[self addMoneyPressed:sender withMoneyInStack:++currentHundringar border:YES];
 }
 //=========================================================== 
 // - (IBAction)femtiolappButtonPressed:(UIButton*)sender
@@ -327,27 +308,7 @@
 //=========================================================== 
 - (IBAction)femtiolappButtonPressed:(UIButton*)sender
 {
-	UICashView *movingButton = [UICashView buttonWithType:UIButtonTypeCustom];
-	[movingButton setImage:sender.currentImage forState:UIControlStateNormal];
-	[movingButton setFrameAndRememberIt:sender.frame withCashValue:50];
-	[movingButton.layer setBorderColor: [[UIColor blackColor] CGColor]];
-	[movingButton.layer setBorderWidth: 1];
-	[movingButton addTarget:self action:@selector(removeCash:) 
-		   forControlEvents:UIControlEventTouchUpInside];
-	
-	[self.view addSubview:movingButton];
-	
-	[UIView animateWithDuration:0.4
-						  delay:0
-						options:UIViewAnimationOptionAllowUserInteraction
-					 animations:^{
-		movingButton.frame = CGRectMake(50+(currentFemtiolappar%5)*20, 
-										sender.frame.origin.y+((currentFemtiolappar%5))*2,
-										sender.frame.size.width, 
-										sender.frame.size.height);
-	} completion:nil];
-	currentFemtiolappar++;
-	[self refreshSelectedValuesDisplay];
+	[self addMoneyPressed:sender withMoneyInStack:++currentFemtiolappar border:YES];
 }
 //=========================================================== 
 // - (IBAction)tjugolappButtonPressed:(UIButton*)sender
@@ -355,27 +316,7 @@
 //=========================================================== 
 - (IBAction)tjugolappButtonPressed:(UIButton*)sender
 {
-	UICashView *movingButton = [UICashView buttonWithType:UIButtonTypeCustom];
-	[movingButton setImage:sender.currentImage forState:UIControlStateNormal];
-	[movingButton setFrameAndRememberIt:sender.frame withCashValue:20];
-	[movingButton.layer setBorderColor: [[UIColor blackColor] CGColor]];
-	[movingButton.layer setBorderWidth: 1];
-	[movingButton addTarget:self action:@selector(removeCash:) 
-		   forControlEvents:UIControlEventTouchUpInside];
-	
-	[self.view addSubview:movingButton];
-	
-	[UIView animateWithDuration:0.4
-						  delay:0
-						options:UIViewAnimationOptionAllowUserInteraction
-					 animations:^{
-		movingButton.frame = CGRectMake(50+(currentTjugolappar%5)*20, 
-										sender.frame.origin.y+((currentTjugolappar%5))*2,
-										sender.frame.size.width, 
-										sender.frame.size.height);
-	} completion:nil];
-	currentTjugolappar++;
-	[self refreshSelectedValuesDisplay];
+		[self addMoneyPressed:sender withMoneyInStack:++currentTjugolappar border:YES];
 }
 //=========================================================== 
 // - (IBAction)tiaButtonPressed:(UIButton*)sender
@@ -383,26 +324,7 @@
 //=========================================================== 
 - (IBAction)tiaButtonPressed:(UIButton*)sender
 {
-	UICashView *movingButton = [UICashView buttonWithType:UIButtonTypeCustom];
-	[movingButton setImage:sender.currentImage forState:UIControlStateNormal];
-	[movingButton setFrameAndRememberIt:sender.frame withCashValue:10];
-	[movingButton addTarget:self action:@selector(removeCash:) 
-		   forControlEvents:UIControlEventTouchUpInside];
-	
-	[self.view addSubview:movingButton];
-	
-	[UIView animateWithDuration:0.4
-						  delay:0
-						options:UIViewAnimationOptionAllowUserInteraction
-					 animations:^{
-		movingButton.frame = CGRectMake(50+(currentTior%10)*10, 
-										sender.frame.origin.y,
-										//+((currentTior%10))*1,
-										sender.frame.size.width, 
-										sender.frame.size.height);
-	} completion:nil];
-	currentTior++;
-	[self refreshSelectedValuesDisplay];
+		[self addMoneyPressed:sender withMoneyInStack:++currentTior border:NO];
 }
 //=========================================================== 
 // - (IBAction)femmaButtonPressed:(UIButton*)sender
@@ -410,26 +332,7 @@
 //=========================================================== 
 - (IBAction)femmaButtonPressed:(UIButton*)sender
 {	
-	UICashView *movingButton = [UICashView buttonWithType:UIButtonTypeCustom];
-	[movingButton setImage:sender.currentImage forState:UIControlStateNormal];
-	[movingButton setFrameAndRememberIt:sender.frame withCashValue:5];
-	[movingButton addTarget:self action:@selector(removeCash:) 
-		   forControlEvents:UIControlEventTouchUpInside];
-	
-	[self.view addSubview:movingButton];
-	
-	[UIView animateWithDuration:0.4
-						  delay:0
-						options:UIViewAnimationOptionAllowUserInteraction
-					 animations:^{
-		movingButton.frame = CGRectMake(50+(currentFemmor%10)*10, 
-										sender.frame.origin.y,
-										//+((currentFemmor%10))*1,
-										sender.frame.size.width, 
-										sender.frame.size.height);
-	} completion:nil];
-	currentFemmor++;
-	[self refreshSelectedValuesDisplay];
+		[self addMoneyPressed:sender withMoneyInStack:++currentFemmor border:NO];
 }
 //=========================================================== 
 // - (IBAction)enkronaButtonPressed:(UIButton*)sender
@@ -437,27 +340,7 @@
 //=========================================================== 
 - (IBAction)enkronaButtonPressed:(UIButton*)sender
 {
-	UICashView *movingButton = [UICashView buttonWithType:UIButtonTypeCustom];
-	[movingButton setImage:sender.currentImage forState:UIControlStateNormal];
-	[movingButton setFrameAndRememberIt:sender.frame withCashValue:1];
-	[movingButton addTarget:self action:@selector(removeCash:) 
-		   forControlEvents:UIControlEventTouchUpInside];
-	
-	[self.view addSubview:movingButton];
-	
-	[UIView animateWithDuration:0.4
-						  delay:0
-						options:UIViewAnimationOptionAllowUserInteraction
-					 animations:^{
-		movingButton.frame = CGRectMake(50+(currentEnkronor%10)*10, 
-										sender.frame.origin.y,
-										//+((currentEnkronor%10))*1,
-										sender.frame.size.width, 
-										sender.frame.size.height);
-	} completion:nil];
-	currentEnkronor++;
-	[self refreshSelectedValuesDisplay];
+		[self addMoneyPressed:sender withMoneyInStack:++currentEnkronor border:NO];
 }
 
-@
-end
+@end
