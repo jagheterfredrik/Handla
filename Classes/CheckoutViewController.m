@@ -123,12 +123,12 @@
 //=========================================================== 
 - (void)refreshSelectedValuesDisplay
 {
-	femhundringar.text = [NSString stringWithFormat:@"%i",	500*currentFemhundringar];	
-	hundringar.text =  [NSString stringWithFormat:@"%i",	100*currentHundringar];
-	femtiolappar.text =  [NSString stringWithFormat:@"%i",	50*currentFemtiolappar];	
-	tjugolappar.text =  [NSString stringWithFormat:@"%i",	20*currentTjugolappar];	
-	tior.text =  [NSString stringWithFormat:@"%i",			10*currentTior];
-	femmor.text =  [NSString stringWithFormat:@"%i",		5*currentFemmor];	
+	femhundringar.text = [NSString stringWithFormat:@"%i",	1*currentFemhundringar];	
+	hundringar.text =  [NSString stringWithFormat:@"%i",	1*currentHundringar];
+	femtiolappar.text =  [NSString stringWithFormat:@"%i",	1*currentFemtiolappar];	
+	tjugolappar.text =  [NSString stringWithFormat:@"%i",	1*currentTjugolappar];	
+	tior.text =  [NSString stringWithFormat:@"%i",			1*currentTior];
+	femmor.text =  [NSString stringWithFormat:@"%i",		1*currentFemmor];	
 	enkronor.text =  [NSString stringWithFormat:@"%i",		1*currentEnkronor];
 	
 	NSInteger moneyRemaining = amountToBePayed-[self getTotalSelectedAmount];
@@ -137,10 +137,36 @@
 		doneButton.style = UIBarButtonItemStyleDone;
 	}
 	
+	[self setRedBoarderButton:ButtonFemhundringar withBoarderSize:0];
+	[self setRedBoarderButton:ButtonHundringar withBoarderSize:0];
+	[self setRedBoarderButton:ButtonFemtiolappar withBoarderSize:0];
+	[self setRedBoarderButton:ButtonTjugolappar withBoarderSize:0];
+	[self setRedBoarderButton:ButtonTior withBoarderSize:0];
+	[self setRedBoarderButton:ButtonFemmor withBoarderSize:0];
+	[self setRedBoarderButton:ButtonEnkronor withBoarderSize:0];
+	
+	
 	if (moneyRemaining>=500){
-		[self setRedBoarderButton:ButtonFemhundringar];
+		[self setRedBoarderButton:ButtonFemhundringar withBoarderSize:2.0];
 	}
-
+	else if(moneyRemaining>=100){		
+		[self setRedBoarderButton:ButtonHundringar withBoarderSize:2.0];
+	}
+	else if(moneyRemaining>=50){		
+		[self setRedBoarderButton:ButtonFemtiolappar withBoarderSize:2.0];
+	}
+	else if(moneyRemaining>=20){		
+		[self setRedBoarderButton:ButtonTjugolappar withBoarderSize:2.0];
+	}
+	else if(moneyRemaining>=10){		
+		[self setRedBoarderButton:ButtonTior withBoarderSize:2.0];
+	}
+	else if(moneyRemaining>=5){		
+		[self setRedBoarderButton:ButtonFemmor withBoarderSize:2.0];
+	}
+	else if(moneyRemaining>0){		
+		[self setRedBoarderButton:ButtonEnkronor withBoarderSize:2.0];
+	}
 
 } 
 	
@@ -149,10 +175,10 @@
 // - (void)setRedBoarderButton:(UIButton theButton)
 //
 //=========================================================== 
-- (void)setRedBoarderButton:(UIButton*) theButton
+- (void)setRedBoarderButton:(UIButton*)theButton withBoarderSize:(float)boarderSize  
 {	
 	[theButton.layer setBorderColor: [[UIColor redColor] CGColor]];
-	[theButton.layer setBorderWidth: 2];
+	[theButton.layer setBorderWidth: boarderSize];
 }
 	
 	

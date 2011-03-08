@@ -60,7 +60,7 @@
 - (id)initWithList:(List*)list AmountToPay:(NSDecimalNumber*)amount;
 - (void)refreshSelectedValuesDisplay;
 - (NSInteger) getTotalSelectedAmount;
-- (void)setRedBoarderButton:(UIButton*) theButton;
+- (void)setRedBoarderButton:(UIButton*)theButton withBoarderSize:(float)boarderSize;  
 
 - (IBAction)cancelClick:(id)sender;
 
