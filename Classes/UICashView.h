@@ -11,12 +11,12 @@
 
 
 @interface UICashView : UIButton {
-	CGRect startingPlace;
-	NSInteger value;
+	CGRect startingPlace_;
+	NSInteger value_;
 
 }
 
-- setFrameAndRememberIt:(CGRect)frame withCashValue:(NSInteger) value;
+- (void)setFrameAndRememberIt:(CGRect)frame withCashValue:(NSInteger) value;
 @property (assign) NSInteger value;
 @property (assign) CGRect startingPlace;
 

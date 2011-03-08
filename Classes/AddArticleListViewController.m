@@ -140,15 +140,16 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	NSLog(@"%i", buttonIndex);
-	if (buttonIndex == 1) {
+	if (buttonIndex == 0) {
+		[self deleteManagedObject:selectedArticle];
+	}
+	else if (buttonIndex == 1)
+	{
 		ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil article:(Article*)selectedArticle];
 		[self.navigationController pushViewController:articleDetailViewController animated:YES];
 		[articleDetailViewController release];
 	}
-	if (buttonIndex == 0) {
-		[self deleteManagedObject:selectedArticle];
-	}
+	
 }
 
 - (void)managedObjectSelected:(NSManagedObject *)managedObject

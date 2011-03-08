@@ -39,6 +39,15 @@
     return self;
 }
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil list:(List*)list {
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        list_ = list;
+		managedObjectContext_ = list_.managedObjectContext;
+    }
+    return self;
+}
+
 - (void)doneClick {
 	if ([nameField.text length] == 0) {
 		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Du måste ange ett namn för varan"
@@ -50,13 +59,22 @@
 		[actionSheet release];
 		return;
 	}
+	
+	//Check if we are editing a article, if not create it
 	if (article_ == nil) {
 		article_ = [NSEntityDescription insertNewObjectForEntityForName:@"Article" inManagedObjectContext:managedObjectContext_];
 	}
-	if ([nameField.text length] != 0) {
-		article_.name = nameField.text;
-		article_.barcode = scanField.text;
+	
+	//See if we're supposed to add the article to a list
+	if (list_ != nil) {
+		ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:managedObjectContext_];
+		listArticle.list = list_;
+		listArticle.article = article_;
 	}
+	
+	article_.name = nameField.text;
+	article_.barcode = scanField.text;
+
 	[managedObjectContext_ save:NULL];
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"ArticleChanged" object:self];
@@ -115,7 +133,7 @@
 		nameField.text = article_.name;
 		scanField.text = article_.barcode;
 	} else {
-		rightButton.title = @"Skapa";
+		rightButton.title = @"Lägg till";
 		self.title = @"Ny vara";
 	}
 

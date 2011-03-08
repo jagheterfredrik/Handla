@@ -232,12 +232,15 @@
 	
 	[self.view addSubview:movingButton];
 	
-	[UIView animateWithDuration:0.4 animations:^{
+	[UIView animateWithDuration:0.4
+						  delay:0
+						options:UIViewAnimationOptionAllowUserInteraction
+					 animations:^{
 		movingButton.frame = CGRectMake(50+(currentFemhundringar%10)*10, 
 										sender.frame.origin.y+((currentFemhundringar%10))*3,
 										sender.frame.size.width, 
 										sender.frame.size.height);
-	}];
+	} completion:nil];
 
 	currentFemhundringar++;
 	[self refreshSelectedValuesDisplay];
@@ -254,17 +257,20 @@
 	[movingButton setFrameAndRememberIt:sender.frame withCashValue:100];
 	[movingButton.layer setBorderColor: [[UIColor blackColor] CGColor]];
 	[movingButton.layer setBorderWidth: 1];
-	[movingButton addTarget:self action:@selector(removeCash:) 
+	[movingButton addTarget:self action:@selector(removeCash:)
 		   forControlEvents:UIControlEventTouchUpInside];
 	
 	[self.view addSubview:movingButton];
 	
-	[UIView animateWithDuration:0.4 animations:^{
+	[UIView animateWithDuration:0.4
+						  delay:0
+						options:UIViewAnimationOptionAllowUserInteraction
+					 animations:^{
 		movingButton.frame = CGRectMake(50+(currentHundringar%10)*10, 
 										sender.frame.origin.y+((currentHundringar%10))*3,
 										sender.frame.size.width, 
 										sender.frame.size.height);
-	}];
+	} completion:nil];
 	currentHundringar++;
 	[self refreshSelectedValuesDisplay];
 }
@@ -284,12 +290,15 @@
 	
 	[self.view addSubview:movingButton];
 	
-	[UIView animateWithDuration:0.4 animations:^{
+	[UIView animateWithDuration:0.4
+						  delay:0
+						options:UIViewAnimationOptionAllowUserInteraction
+					 animations:^{
 		movingButton.frame = CGRectMake(50+(currentFemtiolappar%10)*10, 
 										sender.frame.origin.y+((currentFemtiolappar%10))*3,
 										sender.frame.size.width, 
 										sender.frame.size.height);
-	}];
+	} completion:nil];
 	currentFemtiolappar++;
 	[self refreshSelectedValuesDisplay];
 }
@@ -309,12 +318,15 @@
 	
 	[self.view addSubview:movingButton];
 	
-	[UIView animateWithDuration:0.4 animations:^{
+	[UIView animateWithDuration:0.4
+						  delay:0
+						options:UIViewAnimationOptionAllowUserInteraction
+					 animations:^{
 		movingButton.frame = CGRectMake(50+(currentTjugolappar%10)*10, 
 										sender.frame.origin.y+((currentTjugolappar%10))*3,
 										sender.frame.size.width, 
 										sender.frame.size.height);
-	}];
+	} completion:nil];
 	currentTjugolappar++;
 	[self refreshSelectedValuesDisplay];
 }
@@ -332,13 +344,16 @@
 	
 	[self.view addSubview:movingButton];
 	
-	[UIView animateWithDuration:0.4 animations:^{
+	[UIView animateWithDuration:0.4
+						  delay:0
+						options:UIViewAnimationOptionAllowUserInteraction
+					 animations:^{
 		movingButton.frame = CGRectMake(50+(currentTior%10)*10, 
 										sender.frame.origin.y,
 										//+((currentTior%10))*1,
 										sender.frame.size.width, 
 										sender.frame.size.height);
-	}];
+	} completion:nil];
 	currentTior++;
 	[self refreshSelectedValuesDisplay];
 }
@@ -356,13 +371,16 @@
 	
 	[self.view addSubview:movingButton];
 	
-	[UIView animateWithDuration:0.4 animations:^{
+	[UIView animateWithDuration:0.4
+						  delay:0
+						options:UIViewAnimationOptionAllowUserInteraction
+					 animations:^{
 		movingButton.frame = CGRectMake(50+(currentFemmor%10)*10, 
 										sender.frame.origin.y,
 										//+((currentFemmor%10))*1,
 										sender.frame.size.width, 
 										sender.frame.size.height);
-	}];
+	} completion:nil];
 	currentFemmor++;
 	[self refreshSelectedValuesDisplay];
 }
@@ -380,13 +398,16 @@
 	
 	[self.view addSubview:movingButton];
 	
-	[UIView animateWithDuration:0.4 animations:^{
+	[UIView animateWithDuration:0.4
+						  delay:0
+						options:UIViewAnimationOptionAllowUserInteraction
+					 animations:^{
 		movingButton.frame = CGRectMake(50+(currentEnkronor%10)*10, 
 										sender.frame.origin.y,
 										//+((currentEnkronor%10))*1,
 										sender.frame.size.width, 
 										sender.frame.size.height);
-	}];
+	} completion:nil];
 	currentEnkronor++;
 	[self refreshSelectedValuesDisplay];
 }
