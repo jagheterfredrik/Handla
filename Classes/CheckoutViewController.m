@@ -155,34 +155,34 @@
 	
 	
 	if (moneyRemaining>=500){
-		[self setRedBorderButton:ButtonFemhundringar withBorderSize:2.0];
+		[self setRedBorderButton:ButtonFemhundringar withBorderSize:2.0f];
 	}
 	else if(moneyRemaining>=100){		
-		[self setRedBorderButton:ButtonHundringar withBorderSize:2.0];
+		[self setRedBorderButton:ButtonHundringar withBorderSize:2.0f];
 	}
 	else if(moneyRemaining>=50){		
-		[self setRedBorderButton:ButtonFemtiolappar withBorderSize:2.0];
+		[self setRedBorderButton:ButtonFemtiolappar withBorderSize:2.0f];
 	}
 	else if(moneyRemaining>=20){		
-		[self setRedBorderButton:ButtonTjugolappar withBorderSize:2.0];
+		[self setRedBorderButton:ButtonTjugolappar withBorderSize:2.0f];
 	}
 	else if(moneyRemaining>=10){		
-		[self setRedBorderButton:ButtonTior withBorderSize:2.0];
+		[self setRedBorderButton:ButtonTior withBorderSize:2.0f];
 	}
 	else if(moneyRemaining>=5){		
-		[self setRedBorderButton:ButtonFemmor withBorderSize:2.0];
+		[self setRedBorderButton:ButtonFemmor withBorderSize:2.0f];
 	}
 	else if(moneyRemaining>0){		
-		[self setRedBorderButton:ButtonEnkronor withBorderSize:2.0];
+		[self setRedBorderButton:ButtonEnkronor withBorderSize:2.0f];
 	}
 	else if(moneyRemaining<=0){
-		ButtonFemhundringar.alpha =0.4;
-		ButtonHundringar.alpha = 0.4;
-		ButtonFemtiolappar.alpha = 0.4;
-		ButtonTjugolappar.alpha = 0.4;
-		ButtonTior.alpha = 0.4;
-		ButtonFemmor.alpha = 0.4;
-		ButtonEnkronor.alpha = 0.4;
+		ButtonFemhundringar.alpha =
+		ButtonHundringar.alpha = 
+		ButtonFemtiolappar.alpha = 
+		ButtonTjugolappar.alpha = 
+		ButtonTior.alpha = 
+		ButtonFemmor.alpha = 
+		ButtonEnkronor.alpha = 0.4f;
 	}
 
 } 
@@ -243,26 +243,38 @@
 	}
 	[self refreshSelectedValuesDisplay];
 	
-	sender.enabled = NO;
+	//fuck stacks, lets iterate
+	UICashView *curr = sender;
+	for (id view_ in [self.view subviews]) {
+		if ([view_ isKindOfClass:[UICashView class]]) {
+			if (((UICashView*)view_).value == sender.value) {
+				curr = view_;
+			}
+		}
+	}
 	
-	[UIView animateWithDuration:0.1 
+	curr.enabled = NO;
+	
+	[UIView animateWithDuration:0.1f
+						  delay:0.f
+						options:UIViewAnimationOptionAllowUserInteraction
 					 animations:^{
-						 sender.frame = sender.startingPlace;
+						 curr.frame = curr.startingPlace;
 					 }
 	 
 					 completion:^(BOOL  completed){
-						 [sender removeFromSuperview];
+						 [curr removeFromSuperview];
 					 }
 	 ];
 	
 }
 
 
-- (void)addMoneyPressed:(UIButton*)sender withMoneyInStack:(NSInteger)currentlyInStack border:(BOOL)border {
+- (void)addMoneyPressed:(UIButton*)sender withMoneyInStack:(NSInteger)currentlyInStack coin:(BOOL)coin {
 	UICashView *movingButton = [UICashView buttonWithType:UIButtonTypeCustom];
 	[movingButton setImage:sender.currentImage forState:UIControlStateNormal];
 	[movingButton setFrameAndRememberIt:sender.frame withCashValue:[sender tag]];
-	if (border) {
+	if (!coin) {
 		[movingButton.layer setBorderColor: [[UIColor blackColor] CGColor]];
 		[movingButton.layer setBorderWidth: 1];
 	}
@@ -275,8 +287,9 @@
 						  delay:0
 						options:UIViewAnimationOptionAllowUserInteraction
 					 animations:^{
-						 movingButton.frame = CGRectMake(50+((currentlyInStack-1)%5)*20, 
-														 sender.frame.origin.y+(((currentlyInStack-1)%5))*2,
+						 NSInteger now = currentlyInStack - 1;
+						 movingButton.frame = CGRectMake(50 + (coin ? (now%10)*10 : (now%5)*20), 
+														 sender.frame.origin.y + (coin ? 0 : ((now%5))*2),
 														 sender.frame.size.width, 
 														 sender.frame.size.height);
 					 } completion:nil];
@@ -289,7 +302,7 @@
 //=========================================================== 
 - (IBAction)femhundringButtonPressed:(UIButton*)sender
 {
-	[self addMoneyPressed:sender withMoneyInStack:++currentFemhundringar border:YES];
+	[self addMoneyPressed:sender withMoneyInStack:++currentFemhundringar coin:NO];
 }
 //=========================================================== 
 // - (IBAction)hundringButtonPressed:(UIButton*)sender
@@ -297,7 +310,7 @@
 //=========================================================== 
 - (IBAction)hundringButtonPressed:(UIButton*)sender
 {
-	[self addMoneyPressed:sender withMoneyInStack:++currentHundringar border:YES];
+	[self addMoneyPressed:sender withMoneyInStack:++currentHundringar coin:NO];
 }
 //=========================================================== 
 // - (IBAction)femtiolappButtonPressed:(UIButton*)sender
@@ -305,7 +318,7 @@
 //=========================================================== 
 - (IBAction)femtiolappButtonPressed:(UIButton*)sender
 {
-	[self addMoneyPressed:sender withMoneyInStack:++currentFemtiolappar border:YES];
+	[self addMoneyPressed:sender withMoneyInStack:++currentFemtiolappar coin:NO];
 }
 //=========================================================== 
 // - (IBAction)tjugolappButtonPressed:(UIButton*)sender
@@ -313,7 +326,7 @@
 //=========================================================== 
 - (IBAction)tjugolappButtonPressed:(UIButton*)sender
 {
-		[self addMoneyPressed:sender withMoneyInStack:++currentTjugolappar border:YES];
+		[self addMoneyPressed:sender withMoneyInStack:++currentTjugolappar coin:NO];
 }
 //=========================================================== 
 // - (IBAction)tiaButtonPressed:(UIButton*)sender
@@ -321,7 +334,7 @@
 //=========================================================== 
 - (IBAction)tiaButtonPressed:(UIButton*)sender
 {
-		[self addMoneyPressed:sender withMoneyInStack:++currentTior border:NO];
+		[self addMoneyPressed:sender withMoneyInStack:++currentTior coin:YES];
 }
 //=========================================================== 
 // - (IBAction)femmaButtonPressed:(UIButton*)sender
@@ -329,7 +342,7 @@
 //=========================================================== 
 - (IBAction)femmaButtonPressed:(UIButton*)sender
 {	
-		[self addMoneyPressed:sender withMoneyInStack:++currentFemmor border:NO];
+		[self addMoneyPressed:sender withMoneyInStack:++currentFemmor coin:YES];
 }
 //=========================================================== 
 // - (IBAction)enkronaButtonPressed:(UIButton*)sender
@@ -337,7 +350,7 @@
 //=========================================================== 
 - (IBAction)enkronaButtonPressed:(UIButton*)sender
 {
-		[self addMoneyPressed:sender withMoneyInStack:++currentEnkronor border:NO];
+		[self addMoneyPressed:sender withMoneyInStack:++currentEnkronor coin:YES];
 }
 
 @end
