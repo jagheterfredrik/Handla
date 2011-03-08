@@ -145,6 +145,14 @@
 	[self setRedBoarderButton:ButtonFemmor withBoarderSize:0];
 	[self setRedBoarderButton:ButtonEnkronor withBoarderSize:0];
 	
+	ButtonFemhundringar.alpha =1;
+	ButtonHundringar.alpha = 1;
+	ButtonFemtiolappar.alpha = 1;
+	ButtonTjugolappar.alpha = 1;
+	ButtonTior.alpha = 1;
+	ButtonFemmor.alpha = 1;
+	ButtonEnkronor.alpha = 1;
+	
 
 	
 	
