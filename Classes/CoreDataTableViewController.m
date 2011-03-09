@@ -61,6 +61,7 @@
 		NSLog(@"[CoreDataTableViewController performFetchForTableView:] %@ (%@)", [error localizedDescription], [error localizedFailureReason]);
 	}
 	[tableView reloadData];
+	self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
 }
 
 - (NSFetchedResultsController *)fetchedResultsControllerForTableView:(UITableView *)tableView
@@ -197,7 +198,7 @@
 {
 	[super viewWillAppear:animated];
 	[self performFetchForTableView:self.tableView];
-	self.tableView.contentOffset = CGPointMake(0.0, 40.0);
+	self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
 }
 
 #pragma mark UITableViewDataSource methods
@@ -301,7 +302,6 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
-	self.tableView.contentOffset = CGPointMake(0.0, 40.0);
 }
 
 #pragma mark dealloc

@@ -129,26 +129,27 @@
 
 - (void)managedObjectAccessoryTapped:(NSManagedObject *)managedObject {
 	selectedArticle = (Article *) managedObject;
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Options"
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:selectedArticle.name
 															 delegate:self
-													cancelButtonTitle:@"Cancel"
-											   destructiveButtonTitle:@"Delete"
-													otherButtonTitles:@"Ändra namn",nil];
+													cancelButtonTitle:@"Avbryt"
+											   destructiveButtonTitle:@"Ta bort"
+													otherButtonTitles:@"Redigera",nil];
 	[actionSheet showInView:[[self view] window]];
 	[actionSheet release];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	NSLog(@"%i", buttonIndex);
-	if (buttonIndex == 1) {
+	if (buttonIndex == 0) {
+		[self deleteManagedObject:selectedArticle];
+	}
+	else if (buttonIndex == 1)
+	{
 		ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil article:(Article*)selectedArticle];
 		[self.navigationController pushViewController:articleDetailViewController animated:YES];
 		[articleDetailViewController release];
 	}
-	if (buttonIndex == 0) {
-		[self deleteManagedObject:selectedArticle];
-	}
+	
 }
 
 - (void)managedObjectSelected:(NSManagedObject *)managedObject

@@ -11,14 +11,43 @@
 #import "ListArticle.h"
 #import "BudgetViewController.h"
 #import "AddArticleListViewController.h"
+#import "ArticleDetailViewController.h"
 #import "CheckoutViewController.h"
 
 @implementation IndividualListViewController
 
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	switch (buttonIndex) {
+		case 0:
+		{
+			ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil list:list_];
+			[self.navigationController pushViewController:articleDetailViewController animated:YES];
+			[articleDetailViewController release];
+			break;
+		}
+		case 1:
+		{
+			
+			AddArticleListViewController *addArticleListViewController = [[AddArticleListViewController alloc] initWithList:list_];
+			[self.navigationController pushViewController:addArticleListViewController animated:YES];
+			[addArticleListViewController release];
+			break;
+		}
+		default:
+			break;
+	}
+	
+}
+
 - (void)addListArticle {
-	AddArticleListViewController *addArticleListViewController = [[AddArticleListViewController alloc] initWithList:list_];
-	[self.navigationController pushViewController:addArticleListViewController animated:YES];
-	[addArticleListViewController release];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:list_.name
+															 delegate:self
+													cancelButtonTitle:@"Avbryt"
+											   destructiveButtonTitle:nil
+													otherButtonTitles:@"Skapa ny vara",@"Lägg till tidigare vara",nil];
+	[actionSheet showInView:[[self view] window]];
+	[actionSheet release];
 }
 
 /**
@@ -27,7 +56,7 @@
 - (IBAction)purchase {
 	CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
 																		AmountToPay:[NSDecimalNumber decimalNumberWithString:@"612.50"]];
-	[self.navigationController pushViewController:checkOut animated:YES];
+	[self.navigationController presentModalViewController:checkOut animated:YES];
 	[checkOut release];
 }
 
@@ -52,6 +81,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[individualListTableViewController setList:list_];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:tableView selector:@selector(reloadData) name:@"ArticleChanged" object:nil];
 }
 
 /*
@@ -74,6 +105,7 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+	[[NSNotificationCenter defaultCenter] removeObserver:tableView];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }

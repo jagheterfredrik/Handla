@@ -10,7 +10,7 @@
 #import "IndividualListTableViewController.h"
 #import "List.h"
 
-@interface IndividualListViewController : UIViewController {
+@interface IndividualListViewController : UIViewController<UIActionSheetDelegate> {
 	IBOutlet IndividualListTableViewController *individualListTableViewController;
 	IBOutlet UITableView *tableView;
 	IBOutlet UILabel *progressLabel;

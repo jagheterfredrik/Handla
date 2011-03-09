@@ -102,16 +102,23 @@
 				cell = currentObject;
 				break;
 			}
+		cell.symbolLabel.textAlignment = UITextAlignmentCenter;
 	}
 	BudgetPost *budgetPost = (BudgetPost*)managedObject;
 	cell.nameLabel.text = budgetPost.name;
 	cell.dateLabel.text = [dateFormatter stringFromDate:budgetPost.timeStamp];
 	cell.priceLabel.text = [amountFormatter stringFromNumber:budgetPost.amount];
-	if ([budgetPost.amount compare:[NSNumber numberWithInt:0]] == NSOrderedAscending)
+	if ([budgetPost.amount compare:[NSNumber numberWithInt:0]] == NSOrderedAscending) {
+		cell.symbolLabel.text = @"-";
+		cell.symbolLabel.font = [UIFont fontWithName:@"Helvetica" size:40.f];
+		cell.symbolLabel.textColor = [UIColor redColor];
 		cell.priceLabel.textColor = [UIColor redColor];
-	else
+	} else {
+		cell.symbolLabel.text = @"+";
+		cell.symbolLabel.font = [UIFont fontWithName:@"Helvetica" size:34.f];
+		cell.symbolLabel.textColor = [UIColor colorWithRed:0.f green:0.55f blue:0.f alpha:1.f];
 		cell.priceLabel.textColor = [UIColor colorWithRed:0.f green:0.55f blue:0.f alpha:1.f];
-
+	}
 	return cell;
 }
 
