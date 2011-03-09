@@ -83,7 +83,7 @@
 	
 	//TODO: remember the öres! round up and stuff!
     [super viewDidLoad];
-	totalAmount.text = [NSString stringWithFormat:@"%i", amountToBePayed];
+	totalAmount.text = [NSString stringWithFormat:@"%i kr", amountToBePayed];
 	nameOfPurchase.text = list_.name;
 	[self refreshSelectedValuesDisplay];
 
@@ -131,10 +131,11 @@
 	femmor.text =  [NSString stringWithFormat:@"%i",		1*currentFemmor];	
 	enkronor.text =  [NSString stringWithFormat:@"%i",		1*currentEnkronor];
 	
+	//set everything to standard looks, i.e you have money left to pay
 	NSInteger moneyRemaining = amountToBePayed-[self getTotalSelectedAmount];
-	remaining.text = [NSString stringWithFormat:@"%i", (moneyRemaining)];
+	remaining.text = [NSString stringWithFormat:@"%i kr", (moneyRemaining)];
 	if ((amountToBePayed-[self getTotalSelectedAmount])<=0) {
-		doneButton.style = UIBarButtonItemStyleDone;
+		
 	}
 	
 	[self setRedBorderButton:ButtonFemhundringar withBorderSize:0];
@@ -145,14 +146,30 @@
 	[self setRedBorderButton:ButtonFemmor withBorderSize:0];
 	[self setRedBorderButton:ButtonEnkronor withBorderSize:0];
 	
-	ButtonFemhundringar.alpha =1;
-	ButtonHundringar.alpha = 1;
-	ButtonFemtiolappar.alpha = 1;
-	ButtonTjugolappar.alpha = 1;
-	ButtonTior.alpha = 1;
-	ButtonFemmor.alpha = 1;
-	ButtonEnkronor.alpha = 1;
-	
+	if (moneyRemaining>0) {
+		[UIView animateWithDuration:0.5
+							  delay:0
+							options:UIViewAnimationOptionAllowUserInteraction
+						 animations:^{
+							 ButtonFemhundringar.alpha =1;
+							 ButtonHundringar.alpha = 1;
+							 ButtonFemtiolappar.alpha = 1;
+							 ButtonTjugolappar.alpha = 1;
+							 ButtonTior.alpha = 1;
+							 ButtonFemmor.alpha = 1;
+							 ButtonEnkronor.alpha = 1;	
+							 
+							 doneButton.style = UIBarButtonItemStylePlain;
+							 change.text = @"0 kr";
+							 change.alpha = 
+							 changeStaticText.alpha = 0.3f;
+							 remaining.alpha =
+							 remainingStaticText.alpha = 1.0f;
+						 } completion:nil];
+		
+		
+	}
+
 	
 	if (moneyRemaining>=500){
 		[self setRedBorderButton:ButtonFemhundringar withBorderSize:2.0f];
@@ -176,13 +193,28 @@
 		[self setRedBorderButton:ButtonEnkronor withBorderSize:2.0f];
 	}
 	else if(moneyRemaining<=0){
-		ButtonFemhundringar.alpha =
-		ButtonHundringar.alpha = 
-		ButtonFemtiolappar.alpha = 
-		ButtonTjugolappar.alpha = 
-		ButtonTior.alpha = 
-		ButtonFemmor.alpha = 
-		ButtonEnkronor.alpha = 0.4f;
+		//we are done picking up money
+		[UIView animateWithDuration:0.5
+							  delay:0
+							options:UIViewAnimationOptionAllowUserInteraction
+						 animations:^{
+							 ButtonFemhundringar.alpha =
+							 ButtonHundringar.alpha = 
+							 ButtonFemtiolappar.alpha = 
+							 ButtonTjugolappar.alpha = 
+							 ButtonTior.alpha = 
+							 ButtonFemmor.alpha = 
+							 ButtonEnkronor.alpha = 0.4f;
+							 
+							 doneButton.style = UIBarButtonItemStyleDone;
+							 change.text = [NSString stringWithFormat:@"%i kr", -(moneyRemaining)];
+							 change.alpha = 
+							 changeStaticText.alpha = 1.0f;
+							 remaining.text = @"0 kr";
+							 remaining.alpha =
+							 remainingStaticText.alpha = 0.3f;
+						 } completion:nil];
+		
 	}
 
 } 

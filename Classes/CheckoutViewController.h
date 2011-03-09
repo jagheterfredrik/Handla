@@ -22,6 +22,9 @@
 	BudgetPost* budgetPostToBeAdded;
 	IBOutlet UILabel* totalAmount;
 	IBOutlet UILabel* remaining;
+	IBOutlet UILabel* change;
+	IBOutlet UILabel* changeStaticText;
+	IBOutlet UILabel* remainingStaticText;
 	
 	IBOutlet UIBarButtonItem* doneButton;
 	
@@ -37,6 +40,7 @@
 	IBOutlet UILabel* nameOfPurchase;
 	
 	//the buttons which can light up to indicate they should be pressed
+	//they start with a capital B beacause fuck you, thats why.
 	IBOutlet UIButton* ButtonFemhundringar;
 	IBOutlet UIButton* ButtonHundringar;
 	IBOutlet UIButton* ButtonFemtiolappar;
