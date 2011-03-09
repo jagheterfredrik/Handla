@@ -54,11 +54,30 @@
 }
 
 - (void)managedObjectAccessoryTapped:(NSManagedObject *)managedObject {
-	self.list = (List*) managedObject;
-	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp om din lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
-	alertPrompt.textField.text = list_.name;
-	[alertPrompt show];
-	[alertPrompt release];
+	
+	selectedList = (List  *) managedObject;
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Options"
+															 delegate:self
+													cancelButtonTitle:@"Cancel"
+											   destructiveButtonTitle:@"Delete"
+													otherButtonTitles:@"Ändra namn",nil];
+	[actionSheet showInView:[[self view] window]];
+	[actionSheet release];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	NSLog(@"%i", buttonIndex);
+	if (buttonIndex == 1) {
+		self.list = selectedList;
+		AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp om din lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
+		alertPrompt.textField.text = list_.name;
+		[alertPrompt show];
+		[alertPrompt release];
+	}
+	if (buttonIndex == 0) {
+		[self deleteManagedObject:selectedList];
+	}
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

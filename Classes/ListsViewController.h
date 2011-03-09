@@ -10,13 +10,14 @@
 #import "CoreDataTableViewController.h"
 #import "List.h"
 
-@interface ListsViewController : CoreDataTableViewController<UIAlertViewDelegate> {
+@interface ListsViewController : CoreDataTableViewController<UIAlertViewDelegate, UIActionSheetDelegate> {
 
 @private
     NSManagedObjectContext *managedObjectContext_;
 	
 	List *list_;
 	BOOL showHelp;
+	List *selectedList;
 }
 
 - (void)createList;
