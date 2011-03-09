@@ -47,7 +47,8 @@
 //=========================================================== 
 - (IBAction) paymentCompleteButtonPressed: (id) sender
 {
-	if ((amountToBePayed-[self getTotalSelectedAmount])>0) {
+	NSInteger tempremaining=(amountToBePayed-[self getTotalSelectedAmount]);
+		if (tempremaining>0) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Lägga till budgetpost?" 
 													message:@"Vill du lägga till budgetposten och avsluta köpet direkt?" 
 												   delegate:self 
@@ -56,7 +57,7 @@
 		[alert show];
 		[alert release];
 	}
-	else {
+	else if (tempremaining<0){
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Budgetpost tillagd" 
 														message:[NSString stringWithFormat:@"Erhåll %i kr i växel.",(amountToBePayed-[self getTotalSelectedAmount]) ]
 													   delegate:nil 
@@ -66,6 +67,18 @@
 		[alert release];
 		[self addBudgetPostAndChangeViewToBudgetView];
 	}
+	else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Budgetpost tillagd" 
+														message:[NSString stringWithFormat:@"Jämna pengar, nice!",(amountToBePayed-[self getTotalSelectedAmount]) ]
+													   delegate:nil 
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+		[self addBudgetPostAndChangeViewToBudgetView];
+	}
+
+	
 
 }
 
