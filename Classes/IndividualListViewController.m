@@ -57,6 +57,7 @@
 	CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
 																		AmountToPay:[NSDecimalNumber decimalNumberWithString:@"612.50"]];
 	[self.navigationController presentModalViewController:checkOut animated:YES];
+
 	[checkOut release];
 }
 
@@ -74,8 +75,6 @@
     }
     return self;
 }
-
-
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {

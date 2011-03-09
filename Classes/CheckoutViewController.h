@@ -12,7 +12,7 @@
 #import "UICashView.h"
 
 
-@interface CheckoutViewController : UIViewController {
+@interface CheckoutViewController : UIViewController<UIAlertViewDelegate> {
 	
 	NSManagedObjectContext *managedObjectContext_;
 	
@@ -61,16 +61,21 @@
 	List* list_;
 }
 
-- (id)initWithList:(List*)list AmountToPay:(NSDecimalNumber*)amount;
+- (id)initWithList:(List*)list amountToPay:(NSDecimalNumber*)amount;
 - (void)refreshSelectedValuesDisplay;
 - (NSInteger) getTotalSelectedAmount;
 - (void)setRedBorderButton:(UIButton*)theButton withBorderSize:(float)boarderSize;  
 
 - (IBAction)cancelClick:(id)sender;
 
+
 - (IBAction)removeCash:(UICashView*)sender;
 
 - (IBAction)paymentCompleteButtonPressed:(id)sender;
+- (void)addBudgetPostAndChangeViewToBudgetView;
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+
+
 - (IBAction)femhundringButtonPressed:(UIButton*)sender;
 - (IBAction)hundringButtonPressed:(UIButton*)sender;
 - (IBAction)femtiolappButtonPressed:(UIButton*)sender;

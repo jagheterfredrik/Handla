@@ -8,6 +8,7 @@
 
 #import "CheckoutViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "IndividualListViewController.h"
 
 
 @implementation CheckoutViewController
@@ -18,7 +19,7 @@
 //  Initializes with the manegedObjectContext and the amount to be payed.
 //
 //=========================================================== 
-- (id) initWithList:(List*) theList AmountToPay: (NSDecimalNumber*)amount
+- (id) initWithList:(List*) theList AmountToPay:(NSDecimalNumber*)amount
 {
 	//TODO: FIX roundoff behaviour
 	amountToBePayed = [amount integerValue];
@@ -40,11 +41,50 @@
 }
 
 //=========================================================== 
-//  when the done button is pressed, save the list sum to the database and go to budget view.
+//  when the done button is pressed, display popups. these will then save
+//  the list sum to the database and go to budget view if the user confirms it.
 //
 //=========================================================== 
 - (IBAction) paymentCompleteButtonPressed: (id) sender
 {
+	if ((amountToBePayed-[self getTotalSelectedAmount])>0) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Lägga till budgetpost?" 
+													message:@"Vill du lägga till budgetposten och avsluta köpet direkt?" 
+												   delegate:self 
+										  cancelButtonTitle:@"Nej"
+											  otherButtonTitles:@"Ja", nil];
+		[alert show];
+		[alert release];
+	}
+	else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Budgetpost tillagd" 
+														message:[NSString stringWithFormat:@"Erhåll %i kr i växel.",(amountToBePayed-[self getTotalSelectedAmount]) ]
+													   delegate:nil 
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+		[self addBudgetPostAndChangeViewToBudgetView];
+	}
+
+}
+
+//=========================================================== 
+// - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//
+//=========================================================== 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (alertView.numberOfButtons==2) {
+		if (buttonIndex==1) {
+			//clicked "ja"
+					[self addBudgetPostAndChangeViewToBudgetView];
+			}
+	}
+}
+
+-(void)addBudgetPostAndChangeViewToBudgetView{
+	
 	BudgetPost* newBudgetPost = [NSEntityDescription insertNewObjectForEntityForName:@"BudgetPost" inManagedObjectContext:self.list.managedObjectContext];
 	newBudgetPost.name = self.list.name;
 	newBudgetPost.timeStamp = [NSDate date];
@@ -58,12 +98,13 @@
 	[list_.managedObjectContext save:NULL];
 	
 	
-	//go to budget mode (TODO: fix. observer pattern?)
-	[self.parentViewController.tabBarController setSelectedIndex:1];
+	//go to budget mode
+	//TODO: it would be great if the new budgetpost was highlighted in budgetview
+	[[[(UITabBarController*)self.parentViewController viewControllers] objectAtIndex:0] popViewControllerAnimated:NO]; 
+	[(UITabBarController*)self.parentViewController setSelectedIndex:1];
 	
 	//go to list view. Maybe even listSview???
 	[self dismissModalViewControllerAnimated:YES];
-	
 }
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
