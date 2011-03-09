@@ -59,7 +59,7 @@
 	}
 	else if (tempremaining<0){
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Budgetpost tillagd" 
-														message:[NSString stringWithFormat:@"Erhåll %i kr i växel.",(amountToBePayed-[self getTotalSelectedAmount]) ]
+														message:[NSString stringWithFormat:@"Erhåll %i kr i växel.",-(amountToBePayed-[self getTotalSelectedAmount]) ]
 													   delegate:nil 
 											  cancelButtonTitle:@"OK"
 											  otherButtonTitles:nil];
