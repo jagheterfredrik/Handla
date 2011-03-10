@@ -204,6 +204,7 @@
 		77A60A8913258B7C0038D73A /* UICashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICashView.h; sourceTree = "<group>"; };
 		77A60A8A13258B7C0038D73A /* UICashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICashView.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Handla-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Handla-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		F593C0641328E02500E973EA /* Handla 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Handla 3.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -833,8 +834,9 @@
 			children = (
 				481BFFAD130D21B300AC4CC8 /* Handla.xcdatamodel */,
 				483CD41D1316E5EF00671D5A /* Handla 2.xcdatamodel */,
+				F593C0641328E02500E973EA /* Handla 3.xcdatamodel */,
 			);
-			currentVersion = 483CD41D1316E5EF00671D5A /* Handla 2.xcdatamodel */;
+			currentVersion = F593C0641328E02500E973EA /* Handla 3.xcdatamodel */;
 			name = Handla.xcdatamodeld;
 			path = Resources/Models/Handla.xcdatamodeld;
 			sourceTree = "<group>";
