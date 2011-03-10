@@ -61,7 +61,6 @@
 		NSLog(@"[CoreDataTableViewController performFetchForTableView:] %@ (%@)", [error localizedDescription], [error localizedFailureReason]);
 	}
 	[tableView reloadData];
-	self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
 }
 
 - (NSFetchedResultsController *)fetchedResultsControllerForTableView:(UITableView *)tableView
@@ -191,6 +190,7 @@
 
 - (void)viewDidLoad
 {
+	[super viewDidLoad];
 	[self createSearchBar];
 }
 
