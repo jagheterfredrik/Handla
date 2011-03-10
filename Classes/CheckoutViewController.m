@@ -19,10 +19,16 @@
 //  Initializes with the manegedObjectContext and the amount to be payed.
 //
 //=========================================================== 
-- (id) initWithList:(List*) theList AmountToPay:(NSDecimalNumber*)amount
+- (id) initWithList:(List*) theList amountToPay:(NSDecimalNumber*)amount
 {
-	//TODO: FIX roundoff behaviour
-	amountToBePayed = [amount integerValue];
+	// Correct rounding behaviour
+	NSDecimalNumberHandler *roundHandler = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain
+																								  scale:0
+																					   raiseOnExactness:NO
+																						raiseOnOverflow:NO
+																					   raiseOnUnderflow:NO
+																					raiseOnDivideByZero:NO];
+	amountToBePayed = [[amount decimalNumberByRoundingAccordingToBehavior:roundHandler] integerValue];
 	
 	self.list = theList;
 	currentFemhundringar=0;
