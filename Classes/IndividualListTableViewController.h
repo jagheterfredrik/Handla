@@ -13,12 +13,17 @@
 
 @interface IndividualListTableViewController : CoreDataTableViewController<UIAlertViewDelegate> {
 	List *list_;
+	NSInteger selectedIndex;
+	
+	//Receives the cell created by tableView:cellForManagedObject: and then is set to nil
 	IBOutlet UITableViewCell *cellReceiver;
 }
 
 - (void)setList:(List*)list;
 
-@property (nonatomic,retain) List* list_;
-@property (nonatomic, assign) IBOutlet UITableViewCell *cellReceiver;
+- (void)imageTouched:(id)source;
+
+@property (nonatomic,retain) List *list_;
+@property (nonatomic,assign) IBOutlet UITableViewCell *cellReceiver;
 
 @end

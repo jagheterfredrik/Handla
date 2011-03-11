@@ -31,6 +31,8 @@
 // key to use when searching the table (should usually be the same as displayKey); if nil, no searching allowed
 @property (copy) NSString *searchKey;
 
+- (NSManagedObject *)tableView:(UITableView *)tableView managedObjectForIndexPath:(NSIndexPath *)indexPath;
+
 // gets accessory type (e.g. disclosure indicator) for the given managedObject (default DisclosureIndicator)
 - (UITableViewCellAccessoryType)accessoryTypeForManagedObject:(NSManagedObject *)managedObject;
 

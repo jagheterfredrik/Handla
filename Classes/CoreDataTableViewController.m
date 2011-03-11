@@ -112,6 +112,11 @@
 	return nil;
 }
 
+- (NSManagedObject *)tableView:(UITableView *)tableView managedObjectForIndexPath:(NSIndexPath *)indexPath
+{
+	return [[self fetchedResultsControllerForTableView:tableView] objectAtIndexPath:indexPath];
+}
+
 - (void)configureCell:(UITableViewCell *)cell forManagedObject:(NSManagedObject *)managedObject
 {
 }
