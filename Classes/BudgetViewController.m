@@ -98,6 +98,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addPost)];
 	self.navigationItem.rightBarButtonItem = addButton;
+	self.navigationItem.leftBarButtonItem = budgetTableViewController.editButtonItem;
 	[addButton release];
 	
 	self.navigationItem.titleView = topView;
@@ -148,6 +149,15 @@
 
 #pragma mark -
 #pragma mark Event handling
+
+- (BOOL)canDeleteManagedObject:(NSManagedObject *)managedObject {
+	return YES;
+}
+
+- (void)deleteManagedObject:(NSManagedObject *)managedObject {
+	//Remove the budgetpost
+	[managedObjectContext_ deleteObject:managedObject];
+}
 
 - (void)addPost {
 	budgetPostDetailViewController = [[BudgetPostDetailViewController alloc] initInManagedObjectContext:self.managedObjectContext];
