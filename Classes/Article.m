@@ -15,5 +15,6 @@
 @dynamic name;
 @dynamic barcode;
 @dynamic listArticles;
+@dynamic comment;
 
 @end

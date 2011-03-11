@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSString * picture;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * barcode;
+@property (nonatomic, retain) NSString * comment;
 @property (nonatomic, retain) NSSet* listArticles;
 
 @end

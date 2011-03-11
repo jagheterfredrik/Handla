@@ -149,7 +149,6 @@
 		483CD3B41316E05200671D5A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		483CD3B61316E05200671D5A /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		483CD3B81316E05200671D5A /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
-		483CD41D1316E5EF00671D5A /* Handla 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Handla 2.xcdatamodel"; sourceTree = "<group>"; };
 		483CD4F91317A12D00671D5A /* Cogwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Cogwheel.png; path = Resources/Images/Cogwheel.png; sourceTree = "<group>"; };
 		483CD4FA1317A12D00671D5A /* Cogwheel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cogwheel@2x.png"; path = "Resources/Images/Cogwheel@2x.png"; sourceTree = "<group>"; };
 		4848B95E130AA95300702E2D /* ListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListsViewController.h; sourceTree = "<group>"; };
@@ -202,7 +201,6 @@
 		77A60A8913258B7C0038D73A /* UICashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICashView.h; sourceTree = "<group>"; };
 		77A60A8A13258B7C0038D73A /* UICashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICashView.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Handla-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Handla-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		F593C0641328E02500E973EA /* Handla 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Handla 3.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -829,10 +827,8 @@
 			isa = XCVersionGroup;
 			children = (
 				481BFFAD130D21B300AC4CC8 /* Handla.xcdatamodel */,
-				483CD41D1316E5EF00671D5A /* Handla 2.xcdatamodel */,
-				F593C0641328E02500E973EA /* Handla 3.xcdatamodel */,
 			);
-			currentVersion = F593C0641328E02500E973EA /* Handla 3.xcdatamodel */;
+			currentVersion = 481BFFAD130D21B300AC4CC8 /* Handla.xcdatamodel */;
 			name = Handla.xcdatamodeld;
 			path = Resources/Models/Handla.xcdatamodeld;
 			sourceTree = "<group>";

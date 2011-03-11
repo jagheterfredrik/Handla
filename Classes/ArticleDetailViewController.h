@@ -21,6 +21,7 @@
 	IBOutlet UITextField *nameField;
 	IBOutlet UITextField *scanField;
 	IBOutlet UIImageView *photo;
+	IBOutlet UITextField *commentField;
 	ZBarReaderViewController *barcodeReader;
 	UIImagePickerController *picturePicker;
 }

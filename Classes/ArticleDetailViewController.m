@@ -74,6 +74,7 @@
 	
 	article_.name = nameField.text;
 	article_.barcode = scanField.text;
+	article_.comment = commentField.text;
 
 	[managedObjectContext_ save:NULL];
 	
@@ -132,6 +133,7 @@
 		self.title = article_.name;
 		nameField.text = article_.name;
 		scanField.text = article_.barcode;
+		commentField.text = article_.comment;
 	} else {
 		rightButton.title = @"Lägg till";
 		self.title = @"Ny vara";

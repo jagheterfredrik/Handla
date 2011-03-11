@@ -82,6 +82,7 @@
 	} else {
 		self.title = budgetPost_.name;
 		nameBox.text = budgetPost_.name;
+		commentBox.text = budgetPost_.comment;
 		if ([budgetPost_.amount compare:[NSNumber numberWithInt:0]] == NSOrderedAscending) {
 			incomeOrExpense.selectedSegmentIndex = 1;
 		} else {
