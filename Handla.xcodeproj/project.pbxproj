@@ -18,6 +18,9 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		20055310132A6CD80042ADF5 /* cellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 2005530E132A6CD80042ADF5 /* cellBackground.png */; };
+		20055311132A6CD80042ADF5 /* cellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2005530F132A6CD80042ADF5 /* cellBackground@2x.png */; };
+		20055313132A6CEF0042ADF5 /* IndividualListCellSelected.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20055312132A6CEF0042ADF5 /* IndividualListCellSelected.xib */; };
 		20572A7E131B7EB700B63671 /* IndividualListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20572A7D131B7EB700B63671 /* IndividualListCell.xib */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
@@ -113,6 +116,9 @@
 		1D3623250D0F684500981E51 /* HandlaAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandlaAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Handla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Handla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2005530E132A6CD80042ADF5 /* cellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cellBackground.png; path = Resources/Images/cellBackground.png; sourceTree = "<group>"; };
+		2005530F132A6CD80042ADF5 /* cellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cellBackground@2x.png"; path = "Resources/Images/cellBackground@2x.png"; sourceTree = "<group>"; };
+		20055312132A6CEF0042ADF5 /* IndividualListCellSelected.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IndividualListCellSelected.xib; path = Resources/XIBs/IndividualListCellSelected.xib; sourceTree = "<group>"; };
 		20572A7D131B7EB700B63671 /* IndividualListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IndividualListCell.xib; path = Resources/XIBs/IndividualListCell.xib; sourceTree = "<group>"; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -394,6 +400,8 @@
 		481BFFB1130D21D600AC4CC8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2005530E132A6CD80042ADF5 /* cellBackground.png */,
+				2005530F132A6CD80042ADF5 /* cellBackground@2x.png */,
 				1B5314FF132A691400C328B4 /* icon_cogwheel.png */,
 				4874B68F1329448B006F291A /* 1.png */,
 				4874B6901329448B006F291A /* 5.png */,
@@ -437,6 +445,7 @@
 				48C3F70F13140F5800EAE609 /* BudgetViewController.xib */,
 				48A853671317DABC00026C1B /* CheckoutViewController.xib */,
 				20572A7D131B7EB700B63671 /* IndividualListCell.xib */,
+				20055312132A6CEF0042ADF5 /* IndividualListCellSelected.xib */,
 				48C3F71013140F5800EAE609 /* IndividualListViewController.xib */,
 				48C3F71113140F5800EAE609 /* MainWindow.xib */,
 			);
@@ -634,6 +643,9 @@
 				1B531504132A692D00C328B4 /* AboutViewController.xib in Resources */,
 				1B531505132A692D00C328B4 /* ListSettingsViewController.xib in Resources */,
 				1B531506132A692D00C328B4 /* SettingsViewController.xib in Resources */,
+				20055310132A6CD80042ADF5 /* cellBackground.png in Resources */,
+				20055311132A6CD80042ADF5 /* cellBackground@2x.png in Resources */,
+				20055313132A6CEF0042ADF5 /* IndividualListCellSelected.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

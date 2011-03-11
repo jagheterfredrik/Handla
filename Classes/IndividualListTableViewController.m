@@ -45,45 +45,82 @@
 	self.searchKey = @"article.name";
 }
 
+- (void)imageTouched:(id)source {
+	/*
+	UIButton *button = (UIButton*)source;
+	UITableViewCell *cell = (UITableViewCell*)[[button superview] superview];
+	NSIndexPath *path = [self.tableView indexPathForCell:cell];
+	*/
+}
+
 #pragma mark -
 #pragma mark Core data table view controller overrides
 
 - (float)tableView:(UITableView *)table heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return 60.0f;
+	if (indexPath.row == selectedIndex)
+		return 101.0f;
+	return 57.0f;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForManagedObject:(NSManagedObject *)managedObject {
-    static NSString *ReuseIdentifier = @"IndividualListCell";
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *reuseIdentifier = @"IndividualListCell";
+    static NSString *reuseIdentifierSelected = @"IndividualListCellSelected";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ReuseIdentifier];
-    if (cell == nil) {
-		[[NSBundle mainBundle] loadNibNamed:@"IndividualListCell" owner:self options:nil];
-        cell = cellReceiver;
-        self.cellReceiver = nil;
-    }
-	
-	ListArticle *article = (ListArticle*) managedObject;
+	UITableViewCell *cell;
+	if (indexPath.row != selectedIndex) {
+		cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+		if (cell == nil) {
+			[[NSBundle mainBundle] loadNibNamed:@"IndividualListCell" owner:self options:nil];
+			cell = cellReceiver;
+			self.cellReceiver = nil;
+		}
+	} else {
+		cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierSelected];
+		if (cell == nil) {
+			[[NSBundle mainBundle] loadNibNamed:@"IndividualListCellSelected" owner:self options:nil];
+			cell = cellReceiver;
+			self.cellReceiver = nil;
+		}
+	}
+
+	ListArticle *article = (ListArticle*) [self tableView:tableView managedObjectForIndexPath:indexPath];
 	UIButton *button;
 	UILabel *label;
 	
 	button = (UIButton*) [cell viewWithTag:1];
 //	if (article.article.picture)
 //		button.imageView.image = 
+	[button addTarget:self action:@selector(imageTouched:) forControlEvents:UIControlEventTouchUpInside];
 	
 	label = (UILabel*) [cell viewWithTag:2];
 	label.text = article.article.name;
 	
 	label = (UILabel*) [cell viewWithTag:3];
 	if (article.price)
-		label.text = [NSString stringWithFormat:@"%.2f kr", article.price.doubleValue];
+		label.text = [NSString localizedStringWithFormat:@"%.2f kr", article.price.doubleValue];
 	else
 		label.text = @"";
+
+	
 	
 	return cell;
 }
 
 - (void)managedObjectSelected:(NSManagedObject *)managedObject {
-	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+	NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+	[self.tableView deselectRowAtIndexPath:path animated:NO];
+	
+	NSInteger oldSelection = selectedIndex;
+	if (selectedIndex == path.row)
+		selectedIndex = -1;
+	else
+		selectedIndex = path.row;
+	[self.tableView beginUpdates];
+	NSMutableArray *rows = [NSMutableArray arrayWithCapacity:2];
+	if (selectedIndex >= 0) [rows addObject:[NSIndexPath indexPathForRow:selectedIndex inSection:0]];
+	if (oldSelection  >= 0) [rows addObject:[NSIndexPath indexPathForRow:oldSelection  inSection:0]];
+	[self.tableView reloadRowsAtIndexPaths:rows withRowAnimation:UITableViewRowAnimationNone];
+	[self.tableView endUpdates];
 }
 
 - (BOOL)canDeleteManagedObject:(NSManagedObject *)managedObject {
@@ -127,6 +164,9 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewDidLoad {
+	selectedIndex = -1;
+}
 
 - (void)dealloc {
 	[list_ release];
