@@ -96,10 +96,6 @@
     [super viewDidLoad];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Cogwheel"] style:UIBarButtonItemStylePlain target:self action:@selector(showSettings)];
-    self.navigationItem.leftBarButtonItem = settingsButton;
-	[settingsButton release];
-	
 	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addPost)];
 	self.navigationItem.rightBarButtonItem = addButton;
 	[addButton release];

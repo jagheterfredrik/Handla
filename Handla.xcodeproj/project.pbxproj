@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B598154132A6107005B2BFA /* ListSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B598151132A6107005B2BFA /* ListSettingsViewController.m */; };
+		1B598155132A6107005B2BFA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B598153132A6107005B2BFA /* SettingsViewController.m */; };
+		1B598159132A6129005B2BFA /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B598156132A6129005B2BFA /* AboutViewController.xib */; };
+		1B59815A132A6129005B2BFA /* ListSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B598157132A6129005B2BFA /* ListSettingsViewController.xib */; };
+		1B59815B132A6129005B2BFA /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B598158132A6129005B2BFA /* SettingsViewController.xib */; };
+		1B59815D132A6145005B2BFA /* icon_cogwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B59815C132A6145005B2BFA /* icon_cogwheel.png */; };
+		1B598183132A63CB005B2BFA /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B59814F132A60E5005B2BFA /* AboutViewController.m */; };
 		1D3623260D0F684500981E51 /* HandlaAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* HandlaAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -91,6 +98,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B59814E132A60E5005B2BFA /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		1B59814F132A60E5005B2BFA /* AboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		1B598150132A6107005B2BFA /* ListSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListSettingsViewController.h; sourceTree = "<group>"; };
+		1B598151132A6107005B2BFA /* ListSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListSettingsViewController.m; sourceTree = "<group>"; };
+		1B598152132A6107005B2BFA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		1B598153132A6107005B2BFA /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		1B598156132A6129005B2BFA /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		1B598157132A6129005B2BFA /* ListSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListSettingsViewController.xib; sourceTree = "<group>"; };
+		1B598158132A6129005B2BFA /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		1B59815C132A6145005B2BFA /* icon_cogwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_cogwheel.png; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* HandlaAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandlaAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* HandlaAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandlaAppDelegate.m; sourceTree = "<group>"; };
@@ -239,6 +256,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1B59814D132A60B4005B2BFA /* Settings classes */,
 				483CD34D1316DEBB00671D5A /* ZBarSDK */,
 				4848BBCE130B33D400702E2D /* Base classes */,
 				4848BAC3130AFEE600702E2D /* Database classes */,
@@ -258,6 +276,21 @@
 				352EA5F1130ABF95001D6E7F /* Unit tests.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		1B59814D132A60B4005B2BFA /* Settings classes */ = {
+			isa = PBXGroup;
+			children = (
+				481BFF87130D18DC00AC4CC8 /* BudgetSettingsViewController.h */,
+				481BFF88130D18DC00AC4CC8 /* BudgetSettingsViewController.m */,
+				1B598150132A6107005B2BFA /* ListSettingsViewController.h */,
+				1B598151132A6107005B2BFA /* ListSettingsViewController.m */,
+				1B598152132A6107005B2BFA /* SettingsViewController.h */,
+				1B598153132A6107005B2BFA /* SettingsViewController.m */,
+				1B59814E132A60E5005B2BFA /* AboutViewController.h */,
+				1B59814F132A60E5005B2BFA /* AboutViewController.m */,
+			);
+			name = "Settings classes";
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
@@ -352,8 +385,6 @@
 				48C3F5A71312F4A700EAE609 /* BudgetTableViewController.m */,
 				4848B9C3130AB22100702E2D /* BudgetViewController.h */,
 				4848B9C4130AB22100702E2D /* BudgetViewController.m */,
-				481BFF87130D18DC00AC4CC8 /* BudgetSettingsViewController.h */,
-				481BFF88130D18DC00AC4CC8 /* BudgetSettingsViewController.m */,
 				481BFF96130D1E9B00AC4CC8 /* BudgetPostDetailViewController.h */,
 				481BFF97130D1E9B00AC4CC8 /* BudgetPostDetailViewController.m */,
 			);
@@ -363,6 +394,7 @@
 		481BFFB1130D21D600AC4CC8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1B59815C132A6145005B2BFA /* icon_cogwheel.png */,
 				4874B68F1329448B006F291A /* 1.png */,
 				4874B6901329448B006F291A /* 5.png */,
 				4874B6911329448B006F291A /* 10.png */,
@@ -395,6 +427,9 @@
 		481BFFB3130D21E600AC4CC8 /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
+				1B598156132A6129005B2BFA /* AboutViewController.xib */,
+				1B598157132A6129005B2BFA /* ListSettingsViewController.xib */,
+				1B598158132A6129005B2BFA /* SettingsViewController.xib */,
 				48A853661317DABC00026C1B /* ArticleDetailViewController.xib */,
 				48C3F70C13140F5800EAE609 /* BudgetPostDetailViewController.xib */,
 				48C3F70D13140F5800EAE609 /* BudgetSettingsViewController.xib */,
@@ -595,6 +630,10 @@
 				4874B69E1329448B006F291A /* 500.jpg in Resources */,
 				4874B69F1329448B006F291A /* BarCodeButton.png in Resources */,
 				4874B6A01329448B006F291A /* BarCodeButton@2x.png in Resources */,
+				1B598159132A6129005B2BFA /* AboutViewController.xib in Resources */,
+				1B59815A132A6129005B2BFA /* ListSettingsViewController.xib in Resources */,
+				1B59815B132A6129005B2BFA /* SettingsViewController.xib in Resources */,
+				1B59815D132A6145005B2BFA /* icon_cogwheel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,6 +672,9 @@
 				48C3F9241314650F00EAE609 /* ArticleDetailViewController.m in Sources */,
 				48A8536C1317DAD200026C1B /* CheckoutViewController.m in Sources */,
 				77A60A8B13258B7C0038D73A /* UICashView.m in Sources */,
+				1B598154132A6107005B2BFA /* ListSettingsViewController.m in Sources */,
+				1B598155132A6107005B2BFA /* SettingsViewController.m in Sources */,
+				1B598183132A63CB005B2BFA /* AboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
