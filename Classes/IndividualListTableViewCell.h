@@ -22,6 +22,7 @@
 }
 
 - (id)initReuseIdentifier:(NSString*)reuseIdentifier;
+- (IBAction)changePrice:(id)sender;
 
 @property (nonatomic,retain) ListArticle *listArticle;
 
