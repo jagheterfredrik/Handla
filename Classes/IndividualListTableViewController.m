@@ -67,17 +67,14 @@
 	
 	ListArticle *article = (ListArticle*) [self tableView:tableView managedObjectForIndexPath:indexPath];
 
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+	IndividualListTableViewCell *cell = (IndividualListTableViewCell*)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
 	if (cell == nil) {
-		cell = [[IndividualListTableViewCell alloc] initWithListArticle:article reuseIdentifier:reuseIdentifier];
+		cell = [[IndividualListTableViewCell alloc] initReuseIdentifier:reuseIdentifier];
 		cell.autoresizesSubviews = NO;
 		cell.clipsToBounds = YES;
 		self.cellReceiver = nil;
 	}
-
-	
-
-	
+	cell.listArticle = article;
 	
 	return cell;
 }

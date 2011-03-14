@@ -21,7 +21,7 @@
 	IBOutlet IndividualListTableViewCell *cell;
 }
 
-- (id)initWithListArticle:(ListArticle*)listArticle reuseIdentifier:(NSString*)reuseIdentifier;
+- (id)initReuseIdentifier:(NSString*)reuseIdentifier;
 
 @property (nonatomic,retain) ListArticle *listArticle;
 

@@ -12,15 +12,17 @@
 @implementation IndividualListTableViewCell
 @synthesize listArticle=listArticle_;
 
-- (id)initWithListArticle:(ListArticle*)listArticle reuseIdentifier:(NSString*)reuseIdentifier {
+- (id)initReuseIdentifier:(NSString*)reuseIdentifier {
 	[[NSBundle mainBundle] loadNibNamed:@"IndividualListCell" owner:self options:nil];
-	cell.listArticle = listArticle;
     return cell;
 }
 
 - (void)setListArticle:(ListArticle *)listArticle {
+	NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+	[formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
 	titleLabel.text = listArticle.article.name;
-	priceLabel.text = listArticle.price;
+	priceLabel.text = [formatter stringFromNumber:listArticle.price];
+	[formatter release];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
