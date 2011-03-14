@@ -2,7 +2,7 @@
 //  ListArticle.m
 //  Handla
 //
-//  Created by Fredrik Gustafsson on 2011-02-15.
+//  Created by Fredrik Gustafsson on 2011-03-14.
 //  Copyright 2011 Kungliga Tekniska Högskolan. All rights reserved.
 //
 
@@ -13,12 +13,12 @@
 
 @implementation ListArticle 
 
-@dynamic timeStamp;
 @dynamic amount;
+@dynamic checked;
 @dynamic price;
+@dynamic timeStamp;
 @dynamic weightUnit;
 @dynamic article;
 @dynamic list;
-@dynamic checked;
 
 @end

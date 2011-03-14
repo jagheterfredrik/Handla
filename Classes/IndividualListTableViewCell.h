@@ -19,11 +19,15 @@
 	IBOutlet UILabel *priceLabel;
 	
 	IBOutlet IndividualListTableViewCell *cell;
+	
+	BOOL checked;
 }
 
-- (id)initReuseIdentifier:(NSString*)reuseIdentifier;
+- (id)init;
 - (IBAction)changePriceButtonPressed:(UIButton*) sender;
+- (IBAction)decheckPressed:(UIButton*) sender;
 
 @property (nonatomic,retain) ListArticle *listArticle;
+@property (nonatomic,assign) BOOL checked;
 
 @end

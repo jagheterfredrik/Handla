@@ -44,11 +44,9 @@
 - (NSDecimalNumber*)calculateSumOfElementsInList {
 	//TODO: Does not work
 	NSDecimalNumber *amountBalance = [NSDecimalNumber decimalNumberWithString:@"0"];
-	for (NSManagedObject *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
+	for (ListArticle *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
 	{
-		NSDecimalNumber *objectExpenseNumber = [object valueForKey:@"amount"];
-		NSLog(objectExpenseNumber.stringValue);
-		amountBalance = [amountBalance decimalNumberByAdding:objectExpenseNumber];
+		amountBalance = [amountBalance decimalNumberByAdding:object.price];
 	}
 	
 	return amountBalance;
@@ -57,12 +55,11 @@
 - (NSDecimalNumber*)calculateSumOfCheckedElementsInList {
 	//TODO: Does not work
 	NSDecimalNumber *amountBalance = [NSDecimalNumber decimalNumberWithString:@"0"];
-	for (NSManagedObject *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
+	for (ListArticle *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
 	{
-		NSDecimalNumber *objectExpenseNumber = [object valueForKey:@"amount"];
-		if ([object valueForKey:@"checked"]==YES) {
-			NSLog(objectExpenseNumber.stringValue);
-			amountBalance = [amountBalance decimalNumberByAdding:objectExpenseNumber];
+		if ([[object checked] boolValue]) {
+			NSLog(@"%@'s price is %@", object.article.name, [object.price description]);
+			amountBalance = [amountBalance decimalNumberByAdding:object.price];
 		}
 		
 	}
@@ -110,7 +107,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[individualListTableViewController setList:list_];
-	progressLabel.text = [[self calculateSumOfElementsInList] stringValue];
+	NSNumber *sumChecked = [self calculateSumOfCheckedElementsInList];
+	NSNumber *sumTotal = [self calculateSumOfElementsInList];
+
+	progressLabel.text = [NSString stringWithFormat:@"%@ / %@", [sumChecked stringValue], [sumTotal stringValue]];
+	progressBar.progress = [sumChecked doubleValue] / [sumTotal doubleValue];
 
 	[[NSNotificationCenter defaultCenter] addObserver:tableView selector:@selector(reloadData) name:@"ArticleChanged" object:nil];
 }

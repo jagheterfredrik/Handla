@@ -12,9 +12,11 @@
 
 @implementation IndividualListTableViewCell
 @synthesize listArticle=listArticle_;
+@synthesize checked;
 
-- (id)initReuseIdentifier:(NSString*)reuseIdentifier {
+- (id)init {
 	[[NSBundle mainBundle] loadNibNamed:@"IndividualListCell" owner:self options:nil];
+	NSLog(@"Got here");
     return cell;
 }
 
@@ -25,6 +27,8 @@
 	[formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
 	titleLabel.text = listArticle.article.name;
 	priceLabel.text = [formatter stringFromNumber:listArticle.price];
+	[cell setChecked:[listArticle_.checked boolValue]];
+	[self layoutSubviews];
 	[formatter release];
 }
 
@@ -43,6 +47,10 @@
 	[alertPrompt release];
 }
 
+- (IBAction)decheckPressed:(UIButton*) sender {
+	[self setChecked:NO];
+}
+
 #pragma mark -
 #pragma mark Alert prompt delegate
 
@@ -59,6 +67,12 @@
 	}
 }
 
+- (void)setChecked:(BOOL)checked_ {
+	checked = checked_;
+	listArticle_.checked = [NSNumber numberWithBool:checked_];
+	checkboxImage.alpha = (checked_ ? 1.f : 0.f);
+	thumbnail.alpha = (checked_ ? 0.2f : 1.f);
+}
 
 - (void)dealloc {
 	[listArticle_ release];

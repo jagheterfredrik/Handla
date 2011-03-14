@@ -69,7 +69,7 @@
 
 	IndividualListTableViewCell *cell = (IndividualListTableViewCell*)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
 	if (cell == nil) {
-		cell = [[IndividualListTableViewCell alloc] initReuseIdentifier:reuseIdentifier];
+		cell = [[IndividualListTableViewCell alloc] init];
 		cell.autoresizesSubviews = NO;
 		cell.clipsToBounds = YES;
 		self.cellReceiver = nil;
@@ -83,12 +83,15 @@
 	selectedManagedObject = managedObject;
 	NSIndexPath *path = [self.tableView indexPathForSelectedRow];
 	[self.tableView deselectRowAtIndexPath:path animated:NO];
+	((IndividualListTableViewCell*)[self.tableView cellForRowAtIndexPath:path]).listArticle = (ListArticle*)managedObject;
 	
 	NSInteger oldSelection = selectedIndex;
 	if (selectedIndex == path.row)
 		selectedIndex = -1;
-	else
+	else {
+		((IndividualListTableViewCell*)[self.tableView cellForRowAtIndexPath:path]).checked = YES;
 		selectedIndex = path.row;
+	}
 	[self.tableView beginUpdates];
 	NSMutableArray *rows = [NSMutableArray arrayWithCapacity:2];
 	if (selectedIndex >= 0) [rows addObject:[NSIndexPath indexPathForRow:selectedIndex inSection:0]];

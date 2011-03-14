@@ -150,6 +150,7 @@
 		483BAD91132E7242001A3B03 /* Meatballs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Meatballs.png; path = Resources/Images/Meatballs.png; sourceTree = "<group>"; };
 		483BAE0D132E7BD7001A3B03 /* IndividualListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualListTableViewCell.h; sourceTree = "<group>"; };
 		483BAE0E132E7BD7001A3B03 /* IndividualListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualListTableViewCell.m; sourceTree = "<group>"; };
+		483BB000132ED2C5001A3B03 /* Handla 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Handla 2.xcdatamodel"; sourceTree = "<group>"; };
 		483CD3511316DEBB00671D5A /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
 		483CD3521316DEBB00671D5A /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
 		483CD3531316DEBB00671D5A /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -895,8 +896,9 @@
 			isa = XCVersionGroup;
 			children = (
 				481BFFAD130D21B300AC4CC8 /* Handla.xcdatamodel */,
+				483BB000132ED2C5001A3B03 /* Handla 2.xcdatamodel */,
 			);
-			currentVersion = 481BFFAD130D21B300AC4CC8 /* Handla.xcdatamodel */;
+			currentVersion = 483BB000132ED2C5001A3B03 /* Handla 2.xcdatamodel */;
 			name = Handla.xcdatamodeld;
 			path = Resources/Models/Handla.xcdatamodeld;
 			sourceTree = "<group>";
