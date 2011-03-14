@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CoreDataTableViewController.h"
+#import "IndividualListTableViewCell.h"
 
 @class List;
 
