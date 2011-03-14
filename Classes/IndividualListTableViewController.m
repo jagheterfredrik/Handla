@@ -64,33 +64,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *reuseIdentifier = @"IndividualListCell";
+	
+	ListArticle *article = (ListArticle*) [self tableView:tableView managedObjectForIndexPath:indexPath];
 
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
 	if (cell == nil) {
-		[[NSBundle mainBundle] loadNibNamed:@"IndividualListCell" owner:self options:nil];
-		cell = cellReceiver;
+		cell = [[IndividualListTableViewCell alloc] initWithListArticle:article reuseIdentifier:reuseIdentifier];
 		cell.autoresizesSubviews = NO;
 		cell.clipsToBounds = YES;
 		self.cellReceiver = nil;
 	}
 
-	ListArticle *article = (ListArticle*) [self tableView:tableView managedObjectForIndexPath:indexPath];
-	UIButton *button;
-	UILabel *label;
 	
-	button = (UIButton*) [cell viewWithTag:1];
-//	if (article.article.picture)
-//		button.imageView.image = 
-	[button addTarget:self action:@selector(imageTouched:) forControlEvents:UIControlEventTouchUpInside];
-	
-	label = (UILabel*) [cell viewWithTag:2];
-	label.text = article.article.name;
-	
-	label = (UILabel*) [cell viewWithTag:3];
-	if (article.price)
-		label.text = [NSString localizedStringWithFormat:@"%.2f kr", article.price.doubleValue];
-	else
-		label.text = @"";
 
 	
 	
