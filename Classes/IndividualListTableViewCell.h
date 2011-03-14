@@ -10,7 +10,7 @@
 #import "ListArticle.h"
 #import "Article.h"
 
-@interface IndividualListTableViewCell : UITableViewCell {
+@interface IndividualListTableViewCell : UITableViewCell<UIAlertViewDelegate> {
 	ListArticle *listArticle_;
 	
 	IBOutlet UIButton *thumbnail;
@@ -22,7 +22,7 @@
 }
 
 - (id)initReuseIdentifier:(NSString*)reuseIdentifier;
-- (IBAction)changePrice:(id)sender;
+- (IBAction)changePriceButtonPressed:(UIButton*) sender;
 
 @property (nonatomic,retain) ListArticle *listArticle;
 

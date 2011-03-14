@@ -7,6 +7,7 @@
 //
 
 #import "IndividualListTableViewCell.h"
+#import "AlertPrompt.h"
 
 
 @implementation IndividualListTableViewCell
@@ -30,6 +31,25 @@
     [super setSelected:selected animated:animated];
     
     // Configure the view for the selected state.
+}
+
+- (IBAction)changePriceButtonPressed:(UIButton*) sender{
+	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Nytt pris:" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
+	alertPrompt.textField.keyboardType=UIKeyboardTypeNumbersAndPunctuation;
+	[alertPrompt show];
+	[alertPrompt release];
+}
+
+#pragma mark -
+#pragma mark Alert prompt delegate
+
+#define alertViewButtonOK 1
+
+- (void)alertView:(AlertPrompt *)alertPrompt clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == alertViewButtonOK && [alertPrompt.textField.text length] != 0) { //TODO: Better test
+		self.listArticle.price = 
+		[NSDecimalNumber decimalNumberWithString:alertPrompt.textField.text];
+	}
 }
 
 
