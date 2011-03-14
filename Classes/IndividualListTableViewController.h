@@ -15,6 +15,7 @@
 @interface IndividualListTableViewController : CoreDataTableViewController<UIAlertViewDelegate> {
 	List *list_;
 	NSInteger selectedIndex;
+	NSManagedObject * selectedManagedObject;
 	
 	//Receives the cell created by tableView:cellForManagedObject: and then is set to nil
 	IBOutlet UITableViewCell *cellReceiver;

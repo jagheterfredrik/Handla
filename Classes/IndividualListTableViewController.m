@@ -80,6 +80,7 @@
 }
 
 - (void)managedObjectSelected:(NSManagedObject *)managedObject {
+	selectedManagedObject = managedObject;
 	NSIndexPath *path = [self.tableView indexPathForSelectedRow];
 	[self.tableView deselectRowAtIndexPath:path animated:NO];
 	
@@ -108,6 +109,7 @@
 
 - (IBAction)changePriceButtonPressed:(UIButton*) sender{
 	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Nytt pris:" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
+	alertPrompt.textField.keyboardType=UIKeyboardTypeNumbersAndPunctuation;
 	[alertPrompt show];
 	[alertPrompt release];
 }
@@ -121,6 +123,19 @@
 /*- (UITableViewCellAccessoryType)accessoryTypeForManagedObject:(NSManagedObject *)managedObject {
 	return UITableViewCellAccessoryDetailDisclosureButton;
 }*/
+
+#pragma mark -
+#pragma mark Alert prompt delegate
+
+#define alertViewButtonOK 1
+
+- (void)alertView:(AlertPrompt *)alertPrompt clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == alertViewButtonOK && [alertPrompt.textField.text length] != 0) { //TODO: Better test
+		((ListArticle*)selectedManagedObject).price = 
+			[NSDecimalNumber decimalNumberWithString:alertPrompt.textField.text];
+	}
+}
+
 
 #pragma mark -
 #pragma mark Events

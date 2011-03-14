@@ -36,8 +36,8 @@
  * This init method is used when the view is to be used to make a new BudgetPost.
  */
 - (id)initInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
-	{
-		managedObjectContext_ = managedObjectContext;
+	if (self = [super init]) {
+		self.managedObjectContext = managedObjectContext;
 		budgetPost_ = nil;
 	}
 	return self;
@@ -48,8 +48,8 @@
  * contains the managedObjectContext, no need to provide this as well.
  */
 - (id)initWithBudgetPost:(BudgetPost*)budgetPost {
-	{
-		managedObjectContext_ = budgetPost.managedObjectContext;
+	if (self = [super init]) {
+		self.managedObjectContext = budgetPost.managedObjectContext;
 		budgetPost_ = budgetPost;
 	}
 	return self;
