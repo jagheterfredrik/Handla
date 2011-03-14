@@ -56,7 +56,7 @@
 #pragma mark -
 #pragma mark Core data table view controller overrides
 
-- (float)tableView:(UITableView *)table heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)table heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row == selectedIndex)
 		return 101.0f;
 	return 57.0f;
@@ -64,23 +64,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *reuseIdentifier = @"IndividualListCell";
-    static NSString *reuseIdentifierSelected = @"IndividualListCellSelected";
-    
-	UITableViewCell *cell;
-	if (indexPath.row != selectedIndex) {
-		cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-		if (cell == nil) {
-			[[NSBundle mainBundle] loadNibNamed:@"IndividualListCell" owner:self options:nil];
-			cell = cellReceiver;
-			self.cellReceiver = nil;
-		}
-	} else {
-		cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierSelected];
-		if (cell == nil) {
-			[[NSBundle mainBundle] loadNibNamed:@"IndividualListCellSelected" owner:self options:nil];
-			cell = cellReceiver;
-			self.cellReceiver = nil;
-		}
+
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+	if (cell == nil) {
+		[[NSBundle mainBundle] loadNibNamed:@"IndividualListCell" owner:self options:nil];
+		cell = cellReceiver;
+		cell.autoresizesSubviews = NO;
+		cell.clipsToBounds = YES;
+		self.cellReceiver = nil;
 	}
 
 	ListArticle *article = (ListArticle*) [self tableView:tableView managedObjectForIndexPath:indexPath];
@@ -119,7 +110,11 @@
 	NSMutableArray *rows = [NSMutableArray arrayWithCapacity:2];
 	if (selectedIndex >= 0) [rows addObject:[NSIndexPath indexPathForRow:selectedIndex inSection:0]];
 	if (oldSelection  >= 0) [rows addObject:[NSIndexPath indexPathForRow:oldSelection  inSection:0]];
-	[self.tableView reloadRowsAtIndexPaths:rows withRowAnimation:UITableViewRowAnimationNone];
+	if (oldSelection == [self.tableView numberOfRowsInSection:path.section]-1 || selectedIndex == [self.tableView numberOfRowsInSection:path.section]-1) {
+		[self.tableView reloadRowsAtIndexPaths:rows withRowAnimation:UITableViewRowAnimationFade];
+	} else {
+		[self.tableView reloadRowsAtIndexPaths:rows withRowAnimation:UITableViewRowAnimationNone];
+	}
 	[self.tableView endUpdates];
 }
 
