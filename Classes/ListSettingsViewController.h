@@ -10,6 +10,9 @@
 
 
 @interface ListSettingsViewController : UITableViewController {
+	NSMutableArray *optionSortOrder;
+	UITableViewCell *lastCheckedSortOrder;
+
 
 }
 

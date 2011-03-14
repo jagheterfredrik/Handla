@@ -24,16 +24,28 @@
 	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneClick)];
 	self.navigationItem.leftBarButtonItem = doneButton;
 	[doneButton release];
+
+	
+	optionSortOrder = [[NSMutableArray alloc] initWithCapacity:2];
+	[optionSortOrder addObject:@"Namn"];
+	[optionSortOrder addObject:@"Senast använd"];
+	
 	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 
-- (void)doneClick {	
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	
+- (void)doneClick {
 	[self.navigationController popViewControllerAnimated:YES];
+}
+	 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	if (section == 0) {
+		return @"Sorteringsordning";
+	}
+	return @"";
+	 
 }
 
 /*
@@ -76,7 +88,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 1;
+	if(section == 0){
+		return 2;
+	}else {
+		return 0;
+	}
+
+	
+    
 }
 
 
@@ -89,9 +108,19 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
+	
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	
+	NSInteger lso = [defaults integerForKey:@"listSortOrder"];
     
     // Configure the cell...
-    
+	
+	if (indexPath.section == 0) {
+		cell.textLabel.text = [optionSortOrder objectAtIndex:indexPath.row];
+		if (indexPath.row == lso) {
+			cell.accessoryType = UITableViewCellAccessoryCheckmark;
+		}
+	}
     return cell;
 }
 
@@ -111,10 +140,10 @@
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [tableView deleteRowsAtIndexPaths:[NSArray option1WithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        // Create a new instance of the appropriate class, insert it into the option1, and add a new row to the table view.
     }   
 }
 */
@@ -140,6 +169,30 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	UITableViewCell *cell;
+	
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	
+	
+	if (indexPath.section == 0) {
+		NSInteger lso = [defaults integerForKey:@"listSortOrder"];
+		
+		NSUInteger tmpArray[] = {0, lso};		
+		NSIndexPath *ip = [NSIndexPath indexPathWithIndexes:tmpArray length:2];
+		
+		UITableViewCell *lastCheckedCell = [tableView cellForRowAtIndexPath:ip];
+		lastCheckedCell.accessoryType = UITableViewCellAccessoryNone;
+		
+		cell = [tableView cellForRowAtIndexPath:indexPath];
+		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+		
+		[defaults setInteger:indexPath.row forKey:@"listSortOrder"];
+	}
+	
+	
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
     // Navigation logic may go here. Create and push another view controller.
     /*
     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];

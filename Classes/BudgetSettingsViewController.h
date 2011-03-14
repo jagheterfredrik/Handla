@@ -2,8 +2,8 @@
 //  BudgetSettingsViewController.h
 //  Handla
 //
-//  Created by Fredrik Gustafsson on 2011-02-17.
-//  Copyright 2011 Kungliga Tekniska Högskolan. All rights reserved.
+//  Created by Max Westermark on 3/10/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -14,10 +14,12 @@ typedef enum Date_Interval {
 	YearInterval
 } Date_Interval;
 
-@interface BudgetSettingsViewController : UIViewController {
-	
-	IBOutlet UISegmentedControl* dateInterval;
 
+@interface BudgetSettingsViewController : UITableViewController {
+	NSMutableArray *optionDateInterval;
+	UITableViewCell *lastCheckedDateInterval;
+	
+	
 }
 
 @end
