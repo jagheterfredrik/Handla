@@ -41,6 +41,9 @@
 		481BFFD1130D220900AC4CC8 /* BudgetIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 481BFFCD130D220900AC4CC8 /* BudgetIcon@2x.png */; };
 		481BFFD2130D220900AC4CC8 /* ListIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 481BFFCE130D220900AC4CC8 /* ListIcon.png */; };
 		481BFFD3130D220900AC4CC8 /* ListIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 481BFFCF130D220900AC4CC8 /* ListIcon@2x.png */; };
+		483BAD92132E7242001A3B03 /* Checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 483BAD8F132E7242001A3B03 /* Checkbox.png */; };
+		483BAD93132E7242001A3B03 /* Checkbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 483BAD90132E7242001A3B03 /* Checkbox@2x.png */; };
+		483BAD94132E7242001A3B03 /* Meatballs.png in Resources */ = {isa = PBXBuildFile; fileRef = 483BAD91132E7242001A3B03 /* Meatballs.png */; };
 		483CD36A1316DEBB00671D5A /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 483CD3641316DEBB00671D5A /* libzbar.a */; };
 		483CD36B1316DEBB00671D5A /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 483CD3661316DEBB00671D5A /* zbar-back.png */; };
 		483CD36C1316DEBB00671D5A /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 483CD3671316DEBB00671D5A /* zbar-help.html */; };
@@ -141,6 +144,9 @@
 		481BFFCD130D220900AC4CC8 /* BudgetIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BudgetIcon@2x.png"; path = "Resources/Images/BudgetIcon@2x.png"; sourceTree = "<group>"; };
 		481BFFCE130D220900AC4CC8 /* ListIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ListIcon.png; path = Resources/Images/ListIcon.png; sourceTree = "<group>"; };
 		481BFFCF130D220900AC4CC8 /* ListIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ListIcon@2x.png"; path = "Resources/Images/ListIcon@2x.png"; sourceTree = "<group>"; };
+		483BAD8F132E7242001A3B03 /* Checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Checkbox.png; path = Resources/Images/Checkbox.png; sourceTree = "<group>"; };
+		483BAD90132E7242001A3B03 /* Checkbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Checkbox@2x.png"; path = "Resources/Images/Checkbox@2x.png"; sourceTree = "<group>"; };
+		483BAD91132E7242001A3B03 /* Meatballs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Meatballs.png; path = Resources/Images/Meatballs.png; sourceTree = "<group>"; };
 		483CD3511316DEBB00671D5A /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
 		483CD3521316DEBB00671D5A /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
 		483CD3531316DEBB00671D5A /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -260,13 +266,13 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1B59814D132A60B4005B2BFA /* Settings classes */,
 				483CD34D1316DEBB00671D5A /* ZBarSDK */,
 				4848BBCE130B33D400702E2D /* Base classes */,
 				4848BAC3130AFEE600702E2D /* Database classes */,
 				352EA5EC130ABEF5001D6E7F /* Unit tests */,
 				481BFF73130D15A200AC4CC8 /* Budget classes */,
 				481BFF71130D157700AC4CC8 /* List classes */,
+				1B59814D132A60B4005B2BFA /* Settings classes */,
 				1D3623240D0F684500981E51 /* HandlaAppDelegate.h */,
 				1D3623250D0F684500981E51 /* HandlaAppDelegate.m */,
 			);
@@ -414,10 +420,13 @@
 				4874B6971329448B006F291A /* BarCodeButton@2x.png */,
 				481BFFCC130D220900AC4CC8 /* BudgetIcon.png */,
 				481BFFCD130D220900AC4CC8 /* BudgetIcon@2x.png */,
+				483BAD8F132E7242001A3B03 /* Checkbox.png */,
+				483BAD90132E7242001A3B03 /* Checkbox@2x.png */,
 				483CD4F91317A12D00671D5A /* Cogwheel.png */,
 				483CD4FA1317A12D00671D5A /* Cogwheel@2x.png */,
 				481BFFCE130D220900AC4CC8 /* ListIcon.png */,
 				481BFFCF130D220900AC4CC8 /* ListIcon@2x.png */,
+				483BAD91132E7242001A3B03 /* Meatballs.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -642,6 +651,9 @@
 				20055310132A6CD80042ADF5 /* cellBackground.png in Resources */,
 				20055311132A6CD80042ADF5 /* cellBackground@2x.png in Resources */,
 				20055313132A6CEF0042ADF5 /* IndividualListCell.xib in Resources */,
+				483BAD92132E7242001A3B03 /* Checkbox.png in Resources */,
+				483BAD93132E7242001A3B03 /* Checkbox@2x.png in Resources */,
+				483BAD94132E7242001A3B03 /* Meatballs.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

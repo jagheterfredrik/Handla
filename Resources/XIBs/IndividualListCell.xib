@@ -86,6 +86,10 @@
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">Meatballs.png</string>
+								</object>
 							</object>
 							<object class="IBUILabel" id="252671152">
 								<reference key="NSNextResponder" ref="779551214"/>
@@ -169,6 +173,19 @@
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="405265821"/>
 							</object>
+							<object class="IBUIImageView" id="40295130">
+								<reference key="NSNextResponder" ref="779551214"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{14, 14}, {28, 28}}</string>
+								<reference key="NSSuperview" ref="779551214"/>
+								<int key="IBUITag">6</int>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">Checkbox.png</string>
+								</object>
+							</object>
 						</object>
 						<string key="NSFrameSize">{320, 101}</string>
 						<reference key="NSSuperview" ref="107017316"/>
@@ -234,10 +251,11 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="396186088"/>
 							<reference ref="895137946"/>
-							<reference ref="408110374"/>
 							<reference ref="451163685"/>
 							<reference ref="252671152"/>
 							<reference ref="428537247"/>
+							<reference ref="408110374"/>
+							<reference ref="40295130"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -271,6 +289,11 @@
 						<reference key="object" ref="428537247"/>
 						<reference key="parent" ref="107017316"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">25</int>
+						<reference key="object" ref="40295130"/>
+						<reference key="parent" ref="107017316"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -281,12 +304,15 @@
 					<string>-2.CustomClassName</string>
 					<string>10.IBPluginDependency</string>
 					<string>13.IBPluginDependency</string>
+					<string>13.IBViewBoundsToFrameTransform</string>
 					<string>14.IBPluginDependency</string>
 					<string>2.IBEditorWindowLastContentRect</string>
 					<string>2.IBPluginDependency</string>
 					<string>2.IBViewBoundsToFrameTransform</string>
 					<string>24.IBPluginDependency</string>
 					<string>24.IBViewBoundsToFrameTransform</string>
+					<string>25.IBPluginDependency</string>
+					<string>25.IBViewBoundsToFrameTransform</string>
 					<string>3.IBPluginDependency</string>
 					<string>3.IBViewBoundsToFrameTransform</string>
 					<string>4.IBPluginDependency</string>
@@ -298,8 +324,11 @@
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABCNAAAwsQAAA</bytes>
+					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{486, 584}, {320, 101}}</string>
+					<string>{{524, 510}, {320, 101}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAwmgAAA</bytes>
@@ -307,10 +336,14 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABAQAAAwegAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABCiAAAwkwAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABCggAAwlwAAA</bytes>
 					</object>
 				</object>
 			</object>
@@ -330,7 +363,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">24</int>
+			<int key="maxID">25</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -613,8 +646,19 @@
 		<string key="IBDocument.LastKnownRelativeProjectPath">../../Handla.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">cellBackground.png</string>
-			<string key="NS.object.0">{320, 101}</string>
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>Checkbox.png</string>
+				<string>Meatballs.png</string>
+				<string>cellBackground.png</string>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{28, 28}</string>
+				<string>{58, 58}</string>
+				<string>{320, 101}</string>
+			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">132</string>
 	</data>
