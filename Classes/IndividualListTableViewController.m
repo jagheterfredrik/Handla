@@ -118,8 +118,16 @@
 	[self.tableView endUpdates];
 }
 
+
+
 - (BOOL)canDeleteManagedObject:(NSManagedObject *)managedObject {
 	return YES;
+}
+
+- (IBAction)changePriceButtonPressed:(UIButton*) sender{
+	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Nytt pris:" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
+	[alertPrompt show];
+	[alertPrompt release];
 }
 
 - (void)deleteManagedObject:(NSManagedObject *)managedObject {

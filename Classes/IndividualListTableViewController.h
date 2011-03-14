@@ -22,6 +22,7 @@
 - (void)setList:(List*)list;
 
 - (void)imageTouched:(id)source;
+- (IBAction)changePriceButtonPressed:(UIButton*) sender;
 
 @property (nonatomic,retain) List *list_;
 @property (nonatomic,assign) IBOutlet UITableViewCell *cellReceiver;
