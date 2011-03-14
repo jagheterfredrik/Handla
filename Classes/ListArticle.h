@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSNumber * weightUnit;
 @property (nonatomic, retain) Article * article;
 @property (nonatomic, retain) List * list;
+@property (nonatomic) BOOL checked;
 
 @end
 

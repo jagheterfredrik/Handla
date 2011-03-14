@@ -54,6 +54,21 @@
 	return amountBalance;
 }
 
+- (NSDecimalNumber*)calculateSumOfCheckedElementsInList {
+	//TODO: Does not work
+	NSDecimalNumber *amountBalance = [NSDecimalNumber decimalNumberWithString:@"0"];
+	for (NSManagedObject *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
+	{
+		NSDecimalNumber *objectExpenseNumber = [object valueForKey:@"amount"];
+		if ([object valueForKey:@"checked"]==YES) {
+			NSLog(objectExpenseNumber.stringValue);
+			amountBalance = [amountBalance decimalNumberByAdding:objectExpenseNumber];
+		}
+		
+	}
+	
+	return amountBalance;
+}
 
 - (void)addListArticle {
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:list_.name

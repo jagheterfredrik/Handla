@@ -19,5 +19,6 @@
 @dynamic weightUnit;
 @dynamic article;
 @dynamic list;
+@dynamic checked;
 
 @end
