@@ -37,7 +37,8 @@
 
 - (IBAction)changePriceButtonPressed:(UIButton*) sender{
 	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Nytt pris:" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
-	alertPrompt.textField.keyboardType=UIKeyboardTypeNumbersAndPunctuation;
+	alertPrompt.textField.keyboardType=UIKeyboardTypeDecimalPad;
+	
 	[alertPrompt show];
 	[alertPrompt release];
 }
@@ -50,9 +51,11 @@
 - (void)alertView:(AlertPrompt *)alertPrompt clickedButtonAtIndex:(NSInteger)buttonIndex {
 	NSLog(@"%d", buttonIndex);
 	if (buttonIndex == alertViewButtonOK && [alertPrompt.textField.text length] != 0) { //TODO: Better test
-		listArticle_.price = 
-		[NSDecimalNumber decimalNumberWithString:alertPrompt.textField.text];
-		NSLog(@"%@", [listArticle_.price description]);
+		NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+		[f setGeneratesDecimalNumbers:YES];
+		[f setNumberStyle:NSNumberFormatterDecimalStyle];
+		listArticle_.price = (NSDecimalNumber*)[f numberFromString:alertPrompt.textField.text];
+		[f release];
 	}
 }
 
