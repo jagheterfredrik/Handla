@@ -19,6 +19,8 @@
 }
 
 - (void)setListArticle:(ListArticle *)listArticle {
+	[listArticle_ release];
+	listArticle_ = [listArticle retain];
 	NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
 	[formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
 	titleLabel.text = listArticle.article.name;
@@ -46,9 +48,11 @@
 #define alertViewButtonOK 1
 
 - (void)alertView:(AlertPrompt *)alertPrompt clickedButtonAtIndex:(NSInteger)buttonIndex {
+	NSLog(@"%d", buttonIndex);
 	if (buttonIndex == alertViewButtonOK && [alertPrompt.textField.text length] != 0) { //TODO: Better test
-		self.listArticle.price = 
+		listArticle_.price = 
 		[NSDecimalNumber decimalNumberWithString:alertPrompt.textField.text];
+		NSLog(@"%@", [listArticle_.price description]);
 	}
 }
 
