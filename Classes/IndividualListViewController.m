@@ -13,6 +13,7 @@
 #import "AddArticleListViewController.h"
 #import "ArticleDetailViewController.h"
 #import "CheckoutViewController.h"
+#import "IndividualListTableViewController.h"
 
 @implementation IndividualListViewController
 
@@ -39,6 +40,20 @@
 	}
 	
 }
+
+- (NSDecimalNumber*)calculateSumOfElementsInList {
+	//TODO: Does not work
+	NSDecimalNumber *amountBalance = [NSDecimalNumber decimalNumberWithString:@"0"];
+	for (NSManagedObject *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
+	{
+		NSDecimalNumber *objectExpenseNumber = [object valueForKey:@"amount"];
+		NSLog(objectExpenseNumber.stringValue);
+		amountBalance = [amountBalance decimalNumberByAdding:objectExpenseNumber];
+	}
+	
+	return amountBalance;
+}
+
 
 - (void)addListArticle {
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:list_.name
@@ -80,7 +95,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[individualListTableViewController setList:list_];
-	
+	progressLabel.text = [[self calculateSumOfElementsInList] stringValue];
+
 	[[NSNotificationCenter defaultCenter] addObserver:tableView selector:@selector(reloadData) name:@"ArticleChanged" object:nil];
 }
 

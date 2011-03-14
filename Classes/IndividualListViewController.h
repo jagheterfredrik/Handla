@@ -10,6 +10,7 @@
 #import "IndividualListTableViewController.h"
 #import "List.h"
 
+
 @interface IndividualListViewController : UIViewController<UIActionSheetDelegate> {
 	IBOutlet IndividualListTableViewController *individualListTableViewController;
 	IBOutlet UITableView *tableView;
