@@ -45,6 +45,7 @@
 		483BAD93132E7242001A3B03 /* Checkbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 483BAD90132E7242001A3B03 /* Checkbox@2x.png */; };
 		483BAD94132E7242001A3B03 /* Meatballs.png in Resources */ = {isa = PBXBuildFile; fileRef = 483BAD91132E7242001A3B03 /* Meatballs.png */; };
 		483BAE0F132E7BD7001A3B03 /* IndividualListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 483BAE0E132E7BD7001A3B03 /* IndividualListTableViewCell.m */; };
+		483BB1EE132F7094001A3B03 /* ArrowTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483BB1ED132F7094001A3B03 /* ArrowTabBarController.m */; };
 		483CD36A1316DEBB00671D5A /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 483CD3641316DEBB00671D5A /* libzbar.a */; };
 		483CD36B1316DEBB00671D5A /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 483CD3661316DEBB00671D5A /* zbar-back.png */; };
 		483CD36C1316DEBB00671D5A /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 483CD3671316DEBB00671D5A /* zbar-help.html */; };
@@ -151,6 +152,8 @@
 		483BAE0D132E7BD7001A3B03 /* IndividualListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualListTableViewCell.h; sourceTree = "<group>"; };
 		483BAE0E132E7BD7001A3B03 /* IndividualListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualListTableViewCell.m; sourceTree = "<group>"; };
 		483BB000132ED2C5001A3B03 /* Handla 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Handla 2.xcdatamodel"; sourceTree = "<group>"; };
+		483BB1EC132F7094001A3B03 /* ArrowTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowTabBarController.h; sourceTree = "<group>"; };
+		483BB1ED132F7094001A3B03 /* ArrowTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrowTabBarController.m; sourceTree = "<group>"; };
 		483CD3511316DEBB00671D5A /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
 		483CD3521316DEBB00671D5A /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
 		483CD3531316DEBB00671D5A /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -549,6 +552,8 @@
 				4848BA5B130AE7EF00702E2D /* AlertPrompt.m */,
 				4848BAEF130B03BF00702E2D /* CoreDataTableViewController.h */,
 				4848BAF0130B03BF00702E2D /* CoreDataTableViewController.m */,
+				483BB1EC132F7094001A3B03 /* ArrowTabBarController.h */,
+				483BB1ED132F7094001A3B03 /* ArrowTabBarController.m */,
 			);
 			name = "Base classes";
 			sourceTree = "<group>";
@@ -702,6 +707,7 @@
 				1B598155132A6107005B2BFA /* SettingsViewController.m in Sources */,
 				1B598183132A63CB005B2BFA /* AboutViewController.m in Sources */,
 				483BAE0F132E7BD7001A3B03 /* IndividualListTableViewCell.m in Sources */,
+				483BB1EE132F7094001A3B03 /* ArrowTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
