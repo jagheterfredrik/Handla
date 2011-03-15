@@ -11,7 +11,7 @@
 #import "List.h"
 
 
-@interface IndividualListViewController : UIViewController<UIActionSheetDelegate> {
+@interface IndividualListViewController : UIViewController<UIActionSheetDelegate,UIAlertViewDelegate> {
 	IBOutlet IndividualListTableViewController *individualListTableViewController;
 	IBOutlet UITableView *tableView;
 	IBOutlet UILabel *progressLabel;
@@ -20,6 +20,8 @@
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil list:(List*)list;
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 - (IBAction)purchase;
 

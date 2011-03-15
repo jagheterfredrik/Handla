@@ -1,5 +1,5 @@
 //
-//  IndividualListViewController.h
+//  IndividualListTableViewController.h
 //  Handla
 //
 //  Created by Fredrik Gustafsson on 2011-02-15.
