@@ -41,8 +41,10 @@
 	
 }
 
+/**
+ * returns the sum of the costs in the list
+ */
 - (NSDecimalNumber*)calculateSumOfElementsInList {
-	//TODO: Does not work
 	NSDecimalNumber *amountBalance = [NSDecimalNumber decimalNumberWithString:@"0"];
 	for (ListArticle *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
 	{
@@ -52,8 +54,10 @@
 	return amountBalance;
 }
 
+/**
+ * returns the sum of the checked articles' costs in the list
+ */
 - (NSDecimalNumber*)calculateSumOfCheckedElementsInList {
-	//TODO: Does not work
 	NSDecimalNumber *amountBalance = [NSDecimalNumber decimalNumberWithString:@"0"];
 	for (ListArticle *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
 	{
@@ -67,6 +71,21 @@
 	return amountBalance;
 }
 
+/**
+ * returns the number of checked articles in the list
+ */
+- (NSInteger)countCheckedElementsInList {
+    NSInteger count = 0;
+	for (ListArticle *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
+	{
+		if ([[object checked] boolValue]) {
+			count++;
+		}
+		
+	}	
+	return count;
+}
+
 - (void)addListArticle {
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:list_.name
 															 delegate:self
@@ -78,15 +97,47 @@
 }
 
 /**
- * when the user clicks the "avsluta köp" button, we go to CheckoutViewController.
+ * when the user clicks the "avsluta köp" button, we see if all posts are checked off
+ * and if they are we go to CheckoutViewController. else we show some alerts
  */
 - (IBAction)purchase {
-	CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
-																		amountToPay:[NSDecimalNumber decimalNumberWithString:@"612.50"]];
-	[self.navigationController presentModalViewController:checkOut animated:YES];
+    if ([[individualListTableViewController.fetchedResultsController fetchedObjects] count]==[self countCheckedElementsInList]) {
+        //we are all done with the list
+        CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
+                                                                            amountToPay:[self calculateSumOfCheckedElementsInList]];
+        [self.navigationController presentModalViewController:checkOut animated:YES];
+        
+        [checkOut release];
+    }
+    else {        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Du har inte checkat av alla varor!" 
+                                                        message:@"Vill du ändå avsluta köpet?" 
+                                                       delegate:self 
+                                              cancelButtonTitle:@"Tillbaka"
+											  otherButtonTitles:@"Ja", nil];
+		[alert show];
+		[alert release];
+        
+    }
 
-	[checkOut release];
 }
+
+//=========================================================== 
+// - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//
+//=========================================================== 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+		if (buttonIndex==1) {
+			//clicked "ja"
+            CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
+                                                                                amountToPay:[self calculateSumOfCheckedElementsInList]];
+            [self.navigationController presentModalViewController:checkOut animated:YES];
+            
+            [checkOut release];
+	}
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil list:(List*)list {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
