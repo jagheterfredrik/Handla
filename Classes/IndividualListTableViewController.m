@@ -89,7 +89,8 @@
 	if (selectedIndex == path.row)
 		selectedIndex = -1;
 	else {
-		((IndividualListTableViewCell*)[self.tableView cellForRowAtIndexPath:path]).checked = YES;
+        //TODO fix whatevers goin on here
+		/*((IndividualListTableViewCell*)[self.tableView cellForRowAtIndexPath:path]).checked = YES;*/
 		selectedIndex = path.row;
 	}
 	[self.tableView beginUpdates];

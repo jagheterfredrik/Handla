@@ -25,7 +25,6 @@
 
 - (void)imageTouched:(id)source;
 
-
 @property (nonatomic,retain) List *list_;
 @property (nonatomic,assign) IBOutlet UITableViewCell *cellReceiver;
 
