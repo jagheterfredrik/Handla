@@ -12,7 +12,6 @@
 
 @implementation IndividualListTableViewCell
 @synthesize listArticle=listArticle_;
-@synthesize checked;
 
 - (id)init {
 	[[NSBundle mainBundle] loadNibNamed:@"IndividualListCell" owner:self options:nil];
@@ -23,16 +22,10 @@
 - (void)setListArticle:(ListArticle *)listArticle {
 	[listArticle_ release];
 	listArticle_ = [listArticle retain];
-	NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-	[formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-	titleLabel.text = listArticle.article.name;
-	priceLabel.text = [formatter stringFromNumber:listArticle.price];
-	[cell setChecked:[listArticle_.checked boolValue]];
-	[self layoutSubviews];
-	[formatter release];
+    [self updateView];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (IBAction)setSelected:(BOOL)selected animated:(BOOL)animated {
     
     [super setSelected:selected animated:animated];
     
@@ -47,10 +40,30 @@
 	[alertPrompt release];
 }
 
-- (IBAction)decheckPressed:(UIButton*) sender {
-	[self setChecked:NO];
+
+-(void)updateView{
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+	[formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+	[self layoutSubviews];
+    titleLabel.text = self.listArticle.article.name;
+	priceLabel.text = [formatter stringFromNumber:self.listArticle.price];
+    [formatter release];
+    if ([self.listArticle.checked boolValue]==YES) {
+        checkboxImage.alpha = 1.0f;
+    } else {
+        checkboxImage.alpha = 0.1f;
+    }
+    //Call ILVCs update method!
 }
 
+- (IBAction)flipCheckedStatus{
+    if ([self.listArticle.checked boolValue]==YES) {
+        [self.listArticle setChecked:[NSNumber numberWithBool:NO]];
+    } else {
+        [self.listArticle setChecked:[NSNumber numberWithBool:YES]];
+    }
+    [self updateView];
+}
 #pragma mark -
 #pragma mark Alert prompt delegate
 
@@ -67,12 +80,6 @@
 	}
 }
 
-- (void)setChecked:(BOOL)checked_ {
-	checked = checked_;
-	listArticle_.checked = [NSNumber numberWithBool:checked_];
-	checkboxImage.alpha = (checked_ ? 1.f : 0.f);
-	thumbnail.alpha = (checked_ ? 0.2f : 1.f);
-}
 
 - (void)dealloc {
 	[listArticle_ release];

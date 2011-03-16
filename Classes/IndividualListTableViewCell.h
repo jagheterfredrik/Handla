@@ -17,17 +17,19 @@
 	IBOutlet UIImageView *checkboxImage;
 	IBOutlet UILabel *titleLabel;
 	IBOutlet UILabel *priceLabel;
+    IBOutlet UIButton* markButton;
 	
 	IBOutlet IndividualListTableViewCell *cell;
-	
-	BOOL checked;
 }
 
 - (id)init;
 - (IBAction)changePriceButtonPressed:(UIButton*) sender;
-- (IBAction)decheckPressed:(UIButton*) sender;
+- (IBAction)flipCheckedStatus;
+
+
+- (void)updateView;
+
 
 @property (nonatomic,retain) ListArticle *listArticle;
-@property (nonatomic,assign) BOOL checked;
 
 @end
