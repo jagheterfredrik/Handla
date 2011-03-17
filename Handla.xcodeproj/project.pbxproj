@@ -273,7 +273,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				483CD34D1316DEBB00671D5A /* ZBarSDK */,
 				4848BBCE130B33D400702E2D /* Base classes */,
 				4848BAC3130AFEE600702E2D /* Database classes */,
 				352EA5EC130ABEF5001D6E7F /* Unit tests */,
@@ -548,6 +547,7 @@
 		4848BBCE130B33D400702E2D /* Base classes */ = {
 			isa = PBXGroup;
 			children = (
+				483CD34D1316DEBB00671D5A /* ZBarSDK */,
 				4848BA5A130AE7EF00702E2D /* AlertPrompt.h */,
 				4848BA5B130AE7EF00702E2D /* AlertPrompt.m */,
 				4848BAEF130B03BF00702E2D /* CoreDataTableViewController.h */,

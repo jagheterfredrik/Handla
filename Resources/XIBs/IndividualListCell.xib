@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
-		<string key="IBDocument.SystemVersion">10J567</string>
+		<string key="IBDocument.SystemVersion">10J3210</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1305</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
-		<string key="IBDocument.HIToolboxVersion">462.00</string>
+		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">300</string>
@@ -138,6 +138,11 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">Label</string>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica-Bold</string>
+									<double key="NSSize">17</double>
+									<int key="NSfFlags">16</int>
+								</object>
 								<reference key="IBUITextColor" ref="943048924"/>
 								<reference key="IBUIHighlightedColor" ref="641104038"/>
 								<int key="IBUIBaselineAdjustment">1</int>
@@ -146,7 +151,7 @@
 							<object class="IBUIButton" id="408110374">
 								<reference key="NSNextResponder" ref="779551214"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{41, 60}, {109, 40}}</string>
+								<string key="NSFrame">{{52, 61}, {100, 36}}</string>
 								<reference key="NSSuperview" ref="779551214"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="451163685"/>
@@ -157,7 +162,7 @@
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="90022411"/>
 								<int key="IBUIButtonType">1</int>
-								<string key="IBUINormalTitle">markera</string>
+								<string key="IBUINormalTitle">Toggle</string>
 								<reference key="IBUIHighlightedTitleColor" ref="641104038"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
@@ -168,7 +173,7 @@
 							<object class="IBUIButton" id="451163685">
 								<reference key="NSNextResponder" ref="779551214"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{175, 60}, {100, 40}}</string>
+								<string key="NSFrame">{{170, 61}, {100, 36}}</string>
 								<reference key="NSSuperview" ref="779551214"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -384,6 +389,7 @@
 					<string>10.IBPluginDependency</string>
 					<string>10.IBViewBoundsToFrameTransform</string>
 					<string>13.IBPluginDependency</string>
+					<string>13.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>13.IBViewBoundsToFrameTransform</string>
 					<string>14.IBPluginDependency</string>
 					<string>14.IBViewBoundsToFrameTransform</string>
@@ -409,6 +415,7 @@
 						<bytes key="NSTransformStruct">AUNwAAAAAAAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<real value="0.0"/>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">AUI0AABCcAAAA</bytes>
 					</object>

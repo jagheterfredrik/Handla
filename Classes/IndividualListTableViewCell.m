@@ -40,7 +40,11 @@
 	[alertPrompt release];
 }
 
-
+/**
+ *  Updates the title, price and image to the 
+ *  information available for the current
+ *  ListArticle.
+ */
 -(void)updateView{
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
 	[formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
@@ -48,12 +52,17 @@
     titleLabel.text = self.listArticle.article.name;
 	priceLabel.text = [formatter stringFromNumber:self.listArticle.price];
     [formatter release];
-    if ([self.listArticle.checked boolValue]==YES) {
-        checkboxImage.alpha = 1.0f;
+    if ([self.listArticle.checked boolValue]) {
+        thumbnail.alpha = 0.2f;
+        checkboxImage.alpha = 1.f;
+        //TODO:Kom på bra knapptext
+        //markButton.titleLabel.text = @"";
     } else {
-        checkboxImage.alpha = 0.1f;
+        thumbnail.alpha = 1.f;
+        checkboxImage.alpha = 0.f;
+        //TODO:Kom på bra knapptext
+        //markButton.titleLabel.text = @"";
     }
-    //Call ILVCs update method!
 }
 
 - (IBAction)flipCheckedStatus{
@@ -62,6 +71,7 @@
     } else {
         [self.listArticle setChecked:[NSNumber numberWithBool:YES]];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ListArticleChanged" object:nil];
     [self updateView];
 }
 #pragma mark -
@@ -76,6 +86,7 @@
 		[f setGeneratesDecimalNumbers:YES];
 		[f setNumberStyle:NSNumberFormatterDecimalStyle];
 		listArticle_.price = (NSDecimalNumber*)[f numberFromString:alertPrompt.textField.text];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ListArticleChanged" object:nil];
 		[f release];
 	}
 }

@@ -154,16 +154,22 @@
     return self;
 }
 
+- (void)updatePriceFields {
+    NSNumber *sumChecked = [self calculateSumOfCheckedElementsInList];
+	NSNumber *sumTotal = [self calculateSumOfElementsInList];
+    
+	progressLabel.text = [NSString stringWithFormat:@"%@ / %@", [sumChecked stringValue], [sumTotal stringValue]];
+	progressBar.progress = [sumChecked doubleValue] / [sumTotal doubleValue];
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[individualListTableViewController setList:list_];
-	NSNumber *sumChecked = [self calculateSumOfCheckedElementsInList];
-	NSNumber *sumTotal = [self calculateSumOfElementsInList];
 
-	progressLabel.text = [NSString stringWithFormat:@"%@ / %@", [sumChecked stringValue], [sumTotal stringValue]];
-	progressBar.progress = [sumChecked doubleValue] / [sumTotal doubleValue];
-
+	[self updatePriceFields];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListArticleChanged" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:tableView selector:@selector(reloadData) name:@"ArticleChanged" object:nil];
 }
 
