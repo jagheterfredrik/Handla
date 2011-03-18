@@ -14,6 +14,7 @@
 #import "ArticleDetailViewController.h"
 #import "CheckoutViewController.h"
 #import "IndividualListTableViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation IndividualListViewController
 
@@ -71,20 +72,6 @@
 	return amountBalance;
 }
 
-/**
- * returns the number of checked articles in the list
- */
-- (NSInteger)countCheckedElementsInList {
-    NSInteger count = 0;
-	for (ListArticle *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
-	{
-		if ([[object checked] boolValue]) {
-			count++;
-		}
-		
-	}	
-	return count;
-}
 
 - (void)addListArticle {
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:list_.name
@@ -96,12 +83,36 @@
 	[actionSheet release];
 }
 
+//=========================================================== 
+// - elementsCount property
+//=========================================================== 
+- (NSInteger)elementsCount
+{
+    return [[individualListTableViewController.fetchedResultsController fetchedObjects] count];
+}
+//=========================================================== 
+// - checkedElementsCount property returns the number of checked articles in the list
+//=========================================================== 
+- (NSInteger)checkedElementsCount
+{
+    NSInteger count = 0;
+	for (ListArticle *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
+	{
+		if ([[object checked] boolValue]) {
+			count++;
+		}
+		
+	}	
+	return count;    
+}
+
+
 /**
  * when the user clicks the "avsluta köp" button, we see if all posts are checked off
  * and if they are we go to CheckoutViewController. else we show some alerts
  */
 - (IBAction)purchase {
-    if ([[individualListTableViewController.fetchedResultsController fetchedObjects] count]==[self countCheckedElementsInList]) {
+    if (self.elementsCount == self.checkedElementsCount) {
         //we are all done with the list
         CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
                                                                             amountToPay:[self calculateSumOfCheckedElementsInList]];
@@ -154,6 +165,37 @@
     return self;
 }
 
+
+- (void)updatePriceFields {
+   	progressLabel.text = [NSString stringWithFormat:@"%i / %i", self.checkedElementsCount,self.elementsCount];
+    if ((float)(self.checkedElementsCount/(float)(self.elementsCount)==1)) {
+        [UIView animateWithDuration:0.4f animations:^{
+            [checkoutButton setBackgroundColor:[UIColor greenColor]];
+        }];
+    }
+    else{
+        [UIView animateWithDuration:0.4f animations:^{
+            [checkoutButton setBackgroundColor:[UIColor lightGrayColor]];
+        }];
+    }
+}
+
+/*
+ * method to update the progressbar for animation
+ */
+-(void)updateProgressbar{
+    float animationPercentagePerUpdate = 0.01f;
+    float destinaion = (float)(self.checkedElementsCount/(float)(self.elementsCount));
+    if (destinaion-progressBar.progress>animationPercentagePerUpdate){
+        progressBar.progress += animationPercentagePerUpdate;
+    } else if (destinaion-progressBar.progress<-animationPercentagePerUpdate){
+        progressBar.progress -= animationPercentagePerUpdate;
+    } else {
+        progressBar.progress = (float)(self.checkedElementsCount)/(float)(self.elementsCount);
+    }
+  
+}
+/* Other version of this method
 - (void)updatePriceFields {
     NSNumber *sumChecked = [self calculateSumOfCheckedElementsInList];
 	NSNumber *sumTotal = [self calculateSumOfElementsInList];
@@ -161,16 +203,25 @@
 	progressLabel.text = [NSString stringWithFormat:@"%@ / %@", [sumChecked stringValue], [sumTotal stringValue]];
 	progressBar.progress = [sumChecked doubleValue] / [sumTotal doubleValue];
 }
+ */
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[individualListTableViewController setList:list_];
-
+    
+    //TODO: This is code to make the done button fancy, shold be replaced by a cool image
+    [[checkoutButton layer] setCornerRadius:8.0f];
+    [[checkoutButton layer] setMasksToBounds:YES];
+    [[checkoutButton layer] setBorderWidth:1.0f];
+    //end buttoncooling part
+    
+    progressBar.progress = (float)(self.checkedElementsCount)/(float)(self.elementsCount);
 	[self updatePriceFields];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListArticleChanged" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:tableView selector:@selector(reloadData) name:@"ArticleChanged" object:nil];
+    [NSTimer scheduledTimerWithTimeInterval:0.01f target:self selector:@selector(updateProgressbar) userInfo:nil repeats:YES];
 }
 
 /*

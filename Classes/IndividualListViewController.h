@@ -16,6 +16,7 @@
 	IBOutlet UITableView *tableView;
 	IBOutlet UILabel *progressLabel;
 	IBOutlet UIProgressView *progressBar;
+    IBOutlet UIButton* checkoutButton;
 	List* list_;
 }
 
@@ -24,5 +25,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 - (IBAction)purchase;
+
+@property (readonly) NSInteger elementsCount,checkedElementsCount;
 
 @end
