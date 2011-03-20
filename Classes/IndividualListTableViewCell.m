@@ -15,7 +15,6 @@
 
 - (id)init {
 	[[NSBundle mainBundle] loadNibNamed:@"IndividualListCell" owner:self options:nil];
-	NSLog(@"Got here");
     return cell;
 }
 
@@ -80,7 +79,6 @@
 #define alertViewButtonOK 1
 
 - (void)alertView:(AlertPrompt *)alertPrompt clickedButtonAtIndex:(NSInteger)buttonIndex {
-	NSLog(@"%d", buttonIndex);
 	if (buttonIndex == alertViewButtonOK && [alertPrompt.textField.text length] != 0) { //TODO: Better test
 		NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
 		[f setGeneratesDecimalNumbers:YES];

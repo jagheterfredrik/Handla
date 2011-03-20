@@ -56,6 +56,11 @@
 #pragma mark -
 #pragma mark Core data table view controller overrides
 
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [super controllerDidChangeContent:controller];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ListChanged" object:self];
+}
+
 - (CGFloat)tableView:(UITableView *)table heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row == selectedIndex)
 		return 101.0f;

@@ -63,7 +63,6 @@
 	for (ListArticle *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
 	{
 		if ([[object checked] boolValue]) {
-			NSLog(@"%@'s price is %@", object.article.name, [object.price description]);
 			amountBalance = [amountBalance decimalNumberByAdding:object.price];
 		}
 		
@@ -112,7 +111,7 @@
  * and if they are we go to CheckoutViewController. else we show some alerts
  */
 - (IBAction)purchase {
-    if (self.elementsCount == self.checkedElementsCount) {
+    if ([self elementsCount] == [self checkedElementsCount]) {
         //we are all done with the list
         CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
                                                                             amountToPay:[self calculateSumOfCheckedElementsInList]];
@@ -167,11 +166,16 @@
 
 
 - (void)updatePriceFields {
+    
    	progressLabel.text = [NSString stringWithFormat:@"%i / %i", self.checkedElementsCount,self.elementsCount];
-    if ((float)(self.checkedElementsCount/(float)(self.elementsCount)==1)) {
+    
+    [progressBar setProgress:(float)(self.checkedElementsCount/(float)(self.elementsCount)) animated:YES];
+    
+    if ([self checkedElementsCount] == [self elementsCount]) {
         [UIView animateWithDuration:0.4f animations:^{
-            [checkoutButton setBackgroundColor:[UIColor greenColor]];
+            [checkoutButton setBackgroundColor:[UIColor colorWithRed:0.f green:0.8f blue:0.f alpha:1.f]];
         }];
+        
     }
     else{
         [UIView animateWithDuration:0.4f animations:^{
@@ -179,31 +183,6 @@
         }];
     }
 }
-
-/*
- * method to update the progressbar for animation
- */
--(void)updateProgressbar{
-    float animationPercentagePerUpdate = 0.01f;
-    float destinaion = (float)(self.checkedElementsCount/(float)(self.elementsCount));
-    if (destinaion-progressBar.progress>animationPercentagePerUpdate){
-        progressBar.progress += animationPercentagePerUpdate;
-    } else if (destinaion-progressBar.progress<-animationPercentagePerUpdate){
-        progressBar.progress -= animationPercentagePerUpdate;
-    } else {
-        progressBar.progress = (float)(self.checkedElementsCount)/(float)(self.elementsCount);
-    }
-  
-}
-/* Other version of this method
-- (void)updatePriceFields {
-    NSNumber *sumChecked = [self calculateSumOfCheckedElementsInList];
-	NSNumber *sumTotal = [self calculateSumOfElementsInList];
-    
-	progressLabel.text = [NSString stringWithFormat:@"%@ / %@", [sumChecked stringValue], [sumTotal stringValue]];
-	progressBar.progress = [sumChecked doubleValue] / [sumTotal doubleValue];
-}
- */
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -220,17 +199,9 @@
 	[self updatePriceFields];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListArticleChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListChanged" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:tableView selector:@selector(reloadData) name:@"ArticleChanged" object:nil];
-    [NSTimer scheduledTimerWithTimeInterval:0.01f target:self selector:@selector(updateProgressbar) userInfo:nil repeats:YES];
 }
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 #pragma mark -
 #pragma mark Memory management
@@ -244,6 +215,7 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 	[[NSNotificationCenter defaultCenter] removeObserver:tableView];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

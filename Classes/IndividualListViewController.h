@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "IndividualListTableViewController.h"
+#import "PDColoredProgressView.h"
 #import "List.h"
 
 
@@ -15,7 +16,7 @@
 	IBOutlet IndividualListTableViewController *individualListTableViewController;
 	IBOutlet UITableView *tableView;
 	IBOutlet UILabel *progressLabel;
-	IBOutlet UIProgressView *progressBar;
+	IBOutlet PDColoredProgressView *progressBar;
     IBOutlet UIButton* checkoutButton;
 	List* list_;
 }
