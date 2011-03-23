@@ -228,7 +228,7 @@
 - (void)viewDidUnload {
     [super viewDidUnload];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-	[[NSNotificationCenter defaultCenter] removeObserver:tableView];
+	[[NSNotificationCenter defaultCenter] removeObserver:individualListTableViewController];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }

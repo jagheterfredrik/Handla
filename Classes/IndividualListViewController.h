@@ -14,7 +14,6 @@
 
 @interface IndividualListViewController : UIViewController<UIActionSheetDelegate,UIAlertViewDelegate> {
 	IBOutlet IndividualListTableViewController *individualListTableViewController;
-	IBOutlet UITableView *tableView;
 	IBOutlet UILabel *progressLabel;
 	IBOutlet PDColoredProgressView *progressBar;
     IBOutlet UIButton* checkoutButton;
