@@ -53,6 +53,20 @@
 	*/
 }
 
+- (void)retractAllRows {
+    [self.tableView beginUpdates];
+	NSMutableArray *rows = [NSMutableArray arrayWithCapacity:1];
+	if (selectedIndex >= 0) [rows addObject:[NSIndexPath indexPathForRow:selectedIndex inSection:0]];
+    int oldSelection = selectedIndex;
+    selectedIndex = -1;
+	if (oldSelection == [self.tableView numberOfRowsInSection:0]-1) {
+		[self.tableView reloadRowsAtIndexPaths:rows withRowAnimation:UITableViewRowAnimationFade];
+	} else {
+		[self.tableView reloadRowsAtIndexPaths:rows withRowAnimation:UITableViewRowAnimationNone];
+	}
+	[self.tableView endUpdates];
+}
+
 #pragma mark -
 #pragma mark Core data table view controller overrides
 

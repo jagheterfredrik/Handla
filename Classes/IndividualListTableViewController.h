@@ -22,8 +22,8 @@
 }
 
 - (void)setList:(List*)list;
-
 - (void)imageTouched:(id)source;
+- (void)retractAllRows;
 
 @property (nonatomic,retain) List *list_;
 @property (nonatomic,assign) IBOutlet UITableViewCell *cellReceiver;

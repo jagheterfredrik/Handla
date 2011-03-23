@@ -211,7 +211,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListArticleChanged" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListChanged" object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:tableView selector:@selector(reloadData) name:@"ArticleChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:individualListTableViewController selector:@selector(retractAllRows) name:@"ListChanged" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:individualListTableViewController selector:@selector(reloadData) name:@"ArticleChanged" object:nil];
 }
 
 #pragma mark -
