@@ -111,6 +111,17 @@
  * and if they are we go to CheckoutViewController. else we show some alerts
  */
 - (IBAction)purchase {
+    if([[self calculateSumOfCheckedElementsInList] intValue] == 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Inget att betala!" 
+                                                        message:@"Det totala beloppet av markerade varor är noll!" 
+                                                       delegate:self 
+                                              cancelButtonTitle:@"Ok"
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+        return;
+    }
+    
     if ([self elementsCount] == [self checkedElementsCount]) {
         //we are all done with the list
         CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
