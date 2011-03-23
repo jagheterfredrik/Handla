@@ -14,11 +14,11 @@
 {
     if (self.progress < _targetProgress)
 	{
-        self.progress = MIN(self.progress + 0.02, _targetProgress);
+        self.progress = MIN(self.progress + 0.04, _targetProgress);
     }
     else if(self.progress > _targetProgress)
     {
-        self.progress = MAX(self.progress - 0.02, _targetProgress);
+        self.progress = MAX(self.progress - 0.04, _targetProgress);
     }
     else
 	{
@@ -34,7 +34,7 @@
         _targetProgress = newProgress;
         if (_progressTimer == nil)
 		{
-            _progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(moveProgress) userInfo:nil repeats:YES];
+            _progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(moveProgress) userInfo:nil repeats:YES];
         }
     }
 	else
