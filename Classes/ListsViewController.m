@@ -23,7 +23,7 @@
 	static NSString *cellIdentifier = @"BudgetPostCell";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier] autorelease];
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier] autorelease];
 		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	}
 	List* list = (List*)managedObject;
@@ -82,7 +82,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	NSInteger numRows = [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
-	if (numRows == 0 && !self.searchDisplayController.searchBar.showsCancelButton) {
+    if (self.searchDisplayController.searchBar.showsCancelButton) {
+        tableView.scrollEnabled = YES;
+    } else if (numRows == 0) {
 		showHelp = YES;
 		UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AddListHelp"]];
 		CGAffineTransform trans = CGAffineTransformMakeTranslation(0, 44);
@@ -91,6 +93,9 @@
 		tableView.backgroundView = imageView;
 		tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 		self.searchDisplayController.searchBar.hidden = YES;
+        tableView.scrollEnabled = NO;
+        self.editing = NO;
+        self.navigationItem.leftBarButtonItem = nil;
 		tableView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
 		[imageView release];
 	} else {
@@ -98,6 +103,8 @@
 		tableView.backgroundColor = [UIColor whiteColor];
 		showHelp = NO;
 		self.searchDisplayController.searchBar.hidden = NO;
+        self.navigationItem.leftBarButtonItem = self.editButtonItem;
+        tableView.scrollEnabled = YES;
 		tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 	}
 	return numRows;
@@ -174,6 +181,11 @@
 			List *list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:self.managedObjectContext];
 			list.name = alertPrompt.textField.text;
 			list.creationDate = [NSDate date];
+            self.editing = NO;
+            IndividualListViewController *individualListViewController = [[IndividualListViewController alloc] initWithNibName:@"IndividualListViewController" bundle:nil list:list];
+            [self.navigationController pushViewController:individualListViewController animated:YES];
+            [individualListViewController release];
+            
 		} else {
 			list_.name = alertPrompt.textField.text;
 		}
