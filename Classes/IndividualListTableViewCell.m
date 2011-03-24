@@ -48,7 +48,15 @@
 	[formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
 	[self layoutSubviews];
     titleLabel.text = self.listArticle.article.name;
-	priceLabel.text = [formatter stringFromNumber:self.listArticle.price];
+    if (self.listArticle.price.intValue!=-1) {
+        priceLabel.text = [formatter stringFromNumber:self.listArticle.price];
+        priceLabel.textColor = [UIColor blackColor];
+    }
+    else{
+        priceLabel.text = @"? kr";
+        priceLabel.textColor = [UIColor redColor];
+    }
+	
     [formatter release];
     if ([self.listArticle.checked boolValue]) {
         thumbnail.alpha = 0.2f;
