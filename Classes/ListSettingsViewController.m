@@ -26,9 +26,10 @@
 	[doneButton release];
 
 	
-	optionSortOrder = [[NSMutableArray alloc] initWithCapacity:2];
+	optionSortOrder = [[NSMutableArray alloc] initWithCapacity:3];
 	[optionSortOrder addObject:@"Namn"];
 	[optionSortOrder addObject:@"Senast använd"];
+	[optionSortOrder addObject:@"Senast skapad"];
 	
 	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -89,7 +90,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
 	if(section == 0){
-		return 2;
+		return 3;
 	}else {
 		return 0;
 	}

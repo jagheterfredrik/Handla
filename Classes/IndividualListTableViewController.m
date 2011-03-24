@@ -20,7 +20,6 @@
 
 - (void)setList:(List*)list {
 	self.list_ = list;
-	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	request.entity = [NSEntityDescription entityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
 	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"article.name"
@@ -145,7 +144,7 @@
 
 
 
-#pragma mark -
+#pragma mark -s
 #pragma mark Events
 
 // Called when the add button is pressed

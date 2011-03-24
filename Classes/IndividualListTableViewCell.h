@@ -17,8 +17,7 @@
 	IBOutlet UIImageView *checkboxImage;
 	IBOutlet UILabel *titleLabel;
 	IBOutlet UILabel *priceLabel;
-    IBOutlet UIButton* markButton;
-	
+    IBOutlet UIButton* markButton;	
 	IBOutlet IndividualListTableViewCell *cell;
 }
 

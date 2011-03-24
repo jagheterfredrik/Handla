@@ -18,6 +18,7 @@
 	List *list_;
 	BOOL showHelp;
 	List *selectedList;
+	NSInteger listSortOrder;
 }
 
 - (void)createList;

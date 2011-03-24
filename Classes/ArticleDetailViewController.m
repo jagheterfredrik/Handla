@@ -75,10 +75,12 @@
 	article_.name = nameField.text;
 	article_.barcode = scanField.text;
 	article_.comment = commentField.text;
+	list_.lastUsed = [NSDate date];
 
 	[managedObjectContext_ save:NULL];
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"ArticleChanged" object:self];
+	//Programmet crashar om raden nedan läggs till.
+	//[[NSNotificationCenter defaultCenter] postNotificationName:@"ArticleChanged" object:self];
 	
 	[self.navigationController popViewControllerAnimated:YES];
 }

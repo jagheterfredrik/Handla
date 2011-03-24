@@ -116,7 +116,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+	
     // Add an add-button to the right on the navigationbar
 	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createList)];
 	self.navigationItem.rightBarButtonItem = addButton;
@@ -124,11 +124,11 @@
 	
 	// Add an edit-button to the left on the navigationbar
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-	
+		
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	request.entity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext_];
 	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"lastUsed"
-																					 ascending:NO]];
+																					 ascending:YES]];
 	request.predicate = nil;
 	request.fetchBatchSize = 20;
 	NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
@@ -146,6 +146,43 @@
 	self.searchKey = @"name";
 	self.title = @"Listor";
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	listSortOrder = [defaults integerForKey:@"listSortOrder"];
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	request.entity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext_];
+	if (listSortOrder == 0) {
+		request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
+																						 ascending:YES]];
+	}
+	else if (listSortOrder == 1) {
+		request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"lastUsed"
+																						 ascending:NO]];
+	}
+	else if (listSortOrder == 2) {
+		request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"creationDate"
+																						 ascending:NO]];
+	}
+	request.predicate = nil;
+	request.fetchBatchSize = 20;
+	NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
+									   initWithFetchRequest:request
+									   managedObjectContext:managedObjectContext_
+									   sectionNameKeyPath:nil
+									   cacheName:nil];
+	frc.delegate = self;
+	
+	[request release];
+	
+	[self setFetchedResultsController:frc];
+	[frc release];
+	
+	self.searchKey = @"name";
+	self.title = @"Listor";
+}
+
 
 #pragma mark -
 #pragma mark Events

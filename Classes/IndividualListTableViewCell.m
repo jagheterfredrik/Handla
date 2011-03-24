@@ -34,7 +34,6 @@
 - (IBAction)changePriceButtonPressed:(UIButton*) sender{
 	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Nytt pris:" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
 	alertPrompt.textField.keyboardType=UIKeyboardTypeDecimalPad;
-	
 	[alertPrompt show];
 	[alertPrompt release];
 }

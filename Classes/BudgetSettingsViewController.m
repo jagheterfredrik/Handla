@@ -176,7 +176,8 @@
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	
 	
-	if (indexPath.section == 0) {
+	if (indexPath.section == 0) 
+	{
 		NSInteger lso = [defaults integerForKey:@"budgetViewDateInterval"];
 		
 		NSUInteger tmpArray[] = {0, lso};		
