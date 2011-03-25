@@ -157,6 +157,8 @@
 	ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
 	listArticle.list = list_;
 	listArticle.article = (Article*)managedObject;
+    //TODO: istället för nil ska priset va förra priset
+    listArticle.price = nil; 
 	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 	[self.navigationController popViewControllerAnimated:YES];
 }

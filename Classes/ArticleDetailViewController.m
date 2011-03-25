@@ -70,6 +70,7 @@
 		ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:managedObjectContext_];
 		listArticle.list = list_;
 		listArticle.article = article_;
+        listArticle.price = nil;
 	}
 	
 	article_.name = nameField.text;

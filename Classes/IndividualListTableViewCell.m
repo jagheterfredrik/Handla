@@ -48,7 +48,7 @@
 	[formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
 	[self layoutSubviews];
     titleLabel.text = self.listArticle.article.name;
-    if (self.listArticle.price.intValue!=-1) {
+    if (self.listArticle.price != nil) {
         priceLabel.text = [formatter stringFromNumber:self.listArticle.price];
         priceLabel.textColor = [UIColor blackColor];
     }
