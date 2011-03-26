@@ -49,7 +49,9 @@
 	NSDecimalNumber *amountBalance = [NSDecimalNumber decimalNumberWithString:@"0"];
 	for (ListArticle *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
 	{
+        if (object.price!=nil){
 		amountBalance = [amountBalance decimalNumberByAdding:object.price];
+        }
 	}
 	
 	return amountBalance;
@@ -62,7 +64,7 @@
 	NSDecimalNumber *amountBalance = [NSDecimalNumber decimalNumberWithString:@"0"];
 	for (ListArticle *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
 	{
-		if ([[object checked] boolValue]) {
+		if ([[object checked] boolValue] && object.price!=nil) {
 			amountBalance = [amountBalance decimalNumberByAdding:object.price];
 		}
 		
