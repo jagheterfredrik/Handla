@@ -124,6 +124,22 @@
         return;
     }
     
+    //look for checked articles with no price set
+    for (ListArticle *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
+	{
+		if ([[object checked] boolValue] && object.price==nil) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Det finns avbockade varor utan pris angivet!" 
+                                                            message:@"Vill du ändå avsluta köpet?" 
+                                                           delegate:self 
+                                                  cancelButtonTitle:@"Tillbaka"
+                                                  otherButtonTitles:@"Ja", nil];
+            [alert show];
+            [alert release];
+            return;
+		}
+		
+	}
+    
     if ([self elementsCount] == [self checkedElementsCount]) {
         //we are all done with the list
         CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
