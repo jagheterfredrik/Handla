@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		052057A21340023D00315132 /* SequenceTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 052057A11340023D00315132 /* SequenceTable.m */; };
 		055411F013368B7B00533893 /* PDColoredProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 055411EE13368B7B00533893 /* PDColoredProgressView.m */; };
 		1B531500132A691400C328B4 /* icon_cogwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5314FF132A691400C328B4 /* icon_cogwheel.png */; };
 		1B531504132A692D00C328B4 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B531501132A692D00C328B4 /* AboutViewController.xib */; };
@@ -106,6 +107,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		051EBD0D133FFF0E00FA286B /* Handla 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Handla 3.xcdatamodel"; sourceTree = "<group>"; };
+		052057A01340023D00315132 /* SequenceTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceTable.h; sourceTree = "<group>"; };
+		052057A11340023D00315132 /* SequenceTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceTable.m; sourceTree = "<group>"; };
 		055411ED13368B7B00533893 /* PDColoredProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDColoredProgressView.h; sourceTree = "<group>"; };
 		055411EE13368B7B00533893 /* PDColoredProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDColoredProgressView.m; sourceTree = "<group>"; };
 		1B5314FF132A691400C328B4 /* icon_cogwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_cogwheel.png; path = Resources/Images/icon_cogwheel.png; sourceTree = "<group>"; };
@@ -543,6 +547,8 @@
 				4848BABC130AFEDD00702E2D /* Article.m */,
 				4848BABD130AFEDD00702E2D /* ListArticle.h */,
 				4848BABE130AFEDD00702E2D /* ListArticle.m */,
+				052057A01340023D00315132 /* SequenceTable.h */,
+				052057A11340023D00315132 /* SequenceTable.m */,
 			);
 			name = "Database classes";
 			sourceTree = "<group>";
@@ -714,6 +720,7 @@
 				483BAE0F132E7BD7001A3B03 /* IndividualListTableViewCell.m in Sources */,
 				483BB1EE132F7094001A3B03 /* ArrowTabBarController.m in Sources */,
 				055411F013368B7B00533893 /* PDColoredProgressView.m in Sources */,
+				052057A21340023D00315132 /* SequenceTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -909,8 +916,9 @@
 			children = (
 				481BFFAD130D21B300AC4CC8 /* Handla.xcdatamodel */,
 				483BB000132ED2C5001A3B03 /* Handla 2.xcdatamodel */,
+				051EBD0D133FFF0E00FA286B /* Handla 3.xcdatamodel */,
 			);
-			currentVersion = 483BB000132ED2C5001A3B03 /* Handla 2.xcdatamodel */;
+			currentVersion = 051EBD0D133FFF0E00FA286B /* Handla 3.xcdatamodel */;
 			name = Handla.xcdatamodeld;
 			path = Resources/Models/Handla.xcdatamodeld;
 			sourceTree = "<group>";

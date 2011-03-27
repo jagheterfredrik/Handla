@@ -15,6 +15,7 @@
 @dynamic timeStamp;
 @dynamic name;
 @dynamic comment;
+@dynamic repeatID;
 @dynamic list;
 
 @end

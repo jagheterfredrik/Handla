@@ -81,6 +81,7 @@
     [sumResultController performFetch:NULL];
     self.budgetSum = [[NSDecimalNumber decimalNumberWithString:@"0"] retain];
     for (BudgetPost *post in sumResultController.fetchedObjects) {
+        // TODO: add code for repeatID >= 0
         self.budgetSum = [budgetSum decimalNumberByAdding:post.amount];
     }
     

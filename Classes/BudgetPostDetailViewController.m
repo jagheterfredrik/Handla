@@ -36,7 +36,7 @@
  * This init method is used when the view is to be used to make a new BudgetPost.
  */
 - (id)initInManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.managedObjectContext = managedObjectContext;
 		budgetPost_ = nil;
 	}
@@ -48,7 +48,7 @@
  * contains the managedObjectContext, no need to provide this as well.
  */
 - (id)initWithBudgetPost:(BudgetPost*)budgetPost {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.managedObjectContext = budgetPost.managedObjectContext;
 		budgetPost_ = budgetPost;
 	}
@@ -150,9 +150,8 @@
 		newBudgetPost = budgetPost_;
 	}
 
-
-	
 	newBudgetPost.name = nameBox.text;
+    newBudgetPost.repeatID = [NSNumber numberWithInt:-1];
 	
 	//TODO: Check for valid number! i.e only 2 decimals
 	NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
