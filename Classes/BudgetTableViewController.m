@@ -1,4 +1,4 @@
-    //
+//
 //  BudgetTableViewController.m
 //  Handla
 //
@@ -16,17 +16,19 @@
 
 @implementation BudgetTableViewController
 
-@synthesize startDate, endDate;
+@synthesize startDate, endDate, budgetSum;
 
 - (void)viewDidLoad {
 	//Setup the date formatter
 	dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateStyle:NSDateFormatterLongStyle];
 	
-
+    
 	//Setup the amount formatter	
 	amountFormatter = [[NSNumberFormatter alloc] init];
 	[amountFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
+    
+    self.budgetSum = [NSDecimalNumber decimalNumberWithString:@"0"];
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
@@ -55,12 +57,33 @@
 	
 	self.titleKey = @"name";
 	self.searchKey = @"name";
+    
+    // Setup sum-counting-request
+    [sumResultController release];
+    NSFetchRequest *sumRequest = [[NSFetchRequest alloc] init];
+	sumRequest.entity = [NSEntityDescription entityForName:@"BudgetPost" inManagedObjectContext:managedObjectContext_];
+	
+	sumResultController = [[NSFetchedResultsController alloc]
+                           initWithFetchRequest:request
+                           managedObjectContext:managedObjectContext_
+                           sectionNameKeyPath:nil
+                           cacheName:nil];
+	[sumRequest release];
+	
+	[self setFetchedResultsController:frc];
 }
 
 - (void)setDurationStartDate:(NSDate*)startDate_ endDate:(NSDate*)endDate_ {
 	self.startDate = startDate_;
 	self.endDate = endDate_;
 	
+    sumResultController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(timeStamp < %@)", startDate_];
+    [sumResultController performFetch:NULL];
+    self.budgetSum = [[NSDecimalNumber decimalNumberWithString:@"0"] retain];
+    for (BudgetPost *post in sumResultController.fetchedObjects) {
+        self.budgetSum = [budgetSum decimalNumberByAdding:post.amount];
+    }
+    
 	normalPredicate = [NSPredicate predicateWithFormat:@"(timeStamp >= %@) AND (timeStamp <= %@)", startDate_, endDate_];
 	[self.tableView reloadData];
 }
@@ -79,10 +102,10 @@
 }
 
 /*
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	return @"Vecka/Månad placeholder";
-}
-*/
+ - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+ return @"Vecka/Månad placeholder";
+ }
+ */
 
 - (BOOL)canDeleteManagedObject:(NSManagedObject *)managedObject {
 	return YES;
@@ -122,6 +145,86 @@
 	return cell;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([budgetSum compare:[NSDecimalNumber decimalNumberWithString:@"0"]] != NSOrderedSame) {
+        if (indexPath.row == 0 && indexPath.section == 0) {
+            static NSString *cellIdentifier = @"BudgetPostCell";
+            BudgetTableViewCell *cell = (BudgetTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            if (cell == nil) {
+                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"BudgetTableViewCell" owner:nil options:nil];
+                for (id currentObject in topLevelObjects)
+                    if ([currentObject isKindOfClass:[BudgetTableViewCell class]]) {
+                        cell = currentObject;
+                        break;
+                    }
+                cell.symbolLabel.textAlignment = UITextAlignmentCenter;
+            }
+            cell.nameLabel.text = @"Tidigare budget";
+            cell.dateLabel.text = @"";
+            cell.priceLabel.text = [amountFormatter stringFromNumber:budgetSum];
+            if ([budgetSum compare:[NSNumber numberWithInt:0]] == NSOrderedAscending) {
+                cell.symbolLabel.text = @"-";
+                cell.symbolLabel.font = [UIFont fontWithName:@"Helvetica" size:40.f];
+                cell.symbolLabel.textColor = [UIColor redColor];
+                cell.priceLabel.textColor = [UIColor redColor];
+            } else {
+                cell.symbolLabel.text = @"+";
+                cell.symbolLabel.font = [UIFont fontWithName:@"Helvetica" size:34.f];
+                cell.symbolLabel.textColor = [UIColor colorWithRed:0.f green:0.55f blue:0.f alpha:1.f];
+                cell.priceLabel.textColor = [UIColor colorWithRed:0.f green:0.55f blue:0.f alpha:1.f];
+            }
+            return cell;
+        } else {
+            NSIndexPath *newPath = [NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
+            return [super tableView:tableView cellForRowAtIndexPath:newPath];
+        }
+    } else {
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        if ([budgetSum compare:[NSDecimalNumber decimalNumberWithString:@"0"]] != NSOrderedSame) {
+            if (indexPath.row == 0) {
+                return;
+            } else {
+                NSIndexPath *newPath = [NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
+                return [super tableView:tableView didSelectRowAtIndexPath:newPath];
+            }
+        } else {
+            return [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+        }
+    } else {
+        return [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0 ) {
+        if ([budgetSum compare:[NSDecimalNumber decimalNumberWithString:@"0"]] != NSOrderedSame) {
+            if (indexPath.row == 0) {
+                return NO;
+            } else {
+                NSIndexPath *newPath = [NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
+                return [super tableView:tableView canEditRowAtIndexPath:newPath];
+            }
+        } else {
+            return [super tableView:tableView canEditRowAtIndexPath:indexPath];
+        }
+    } else {
+        return [super tableView:tableView canEditRowAtIndexPath:indexPath];
+    }
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0 && [budgetSum compare:[NSDecimalNumber decimalNumberWithString:@"0"]] != NSOrderedSame) {
+        return [super tableView:tableView numberOfRowsInSection:section]+1;
+    } else {
+        return [super tableView:tableView numberOfRowsInSection:section];
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return 40.f;
 }
@@ -141,11 +244,13 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	
-
+    
 }
 
 
 - (void)dealloc {
+    [sumResultController release];
+    [budgetSum release];
 	[startDate release];
 	[endDate release];
 	[dateFormatter release];

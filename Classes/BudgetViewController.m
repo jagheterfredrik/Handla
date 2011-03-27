@@ -40,6 +40,9 @@
 		NSDecimalNumber *objectExpenseNumber = [object valueForKey:@"amount"];
 		amountBalance = [amountBalance decimalNumberByAdding:objectExpenseNumber];
 	}
+    if (budgetTableViewController.budgetSum) {
+        amountBalance = [amountBalance decimalNumberByAdding:budgetTableViewController.budgetSum];
+    }
 	
 	totalBalance.text = [amountFormatter stringFromNumber:amountBalance];;
 	if ([amountBalance compare:[NSNumber numberWithInt:0]] == NSOrderedAscending)

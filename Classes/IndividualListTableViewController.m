@@ -87,7 +87,7 @@
 
 	IndividualListTableViewCell *cell = (IndividualListTableViewCell*)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
 	if (cell == nil) {
-		cell = [[IndividualListTableViewCell alloc] init];
+		cell = [[[IndividualListTableViewCell alloc] init] autorelease];
 		cell.autoresizesSubviews = NO;
 		cell.clipsToBounds = YES;
 		self.cellReceiver = nil;
