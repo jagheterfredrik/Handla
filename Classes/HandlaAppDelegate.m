@@ -29,9 +29,11 @@
 	// Setup defaults
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	if (![userDefaults boolForKey:@"haveStartedBefore"]) {
-		[userDefaults setBool:NO forKey:@"haveStartedBefore"];
+		[userDefaults setBool:YES forKey:@"haveStartedBefore"];
 		[userDefaults setInteger:1 forKey:@"budgetViewDateInterval"];
 		[userDefaults setInteger:1 forKey:@"listSortOrder"];
+		[userDefaults setBool:YES forKey:@"listCheckoutViewOn"];
+		[userDefaults synchronize];
 	}
 	
     [window addSubview:tabBarController.view];

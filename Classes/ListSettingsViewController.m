@@ -10,7 +10,7 @@
 
 
 @implementation ListSettingsViewController
-
+@synthesize checkoutSwitch;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -31,7 +31,6 @@
 	[optionSortOrder addObject:@"Senast använd"];
 	[optionSortOrder addObject:@"Senast skapad"];
 	
-	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -41,13 +40,6 @@
 	[self.navigationController popViewControllerAnimated:YES];
 }
 	 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	if (section == 0) {
-		return @"Sorteringsordning";
-	}
-	return @"";
-	 
-}
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -83,7 +75,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 
@@ -91,12 +83,21 @@
     // Return the number of rows in the section.
 	if(section == 0){
 		return 3;
+	}else if(section == 1){
+		return 1;
 	}else {
 		return 0;
 	}
+}
 
-	
-    
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	if (section == 0) {
+		return @"Sorteringsordning";
+	}else if (section == 1) {
+		return @"Övrigt";
+	}
+	return @"";
 }
 
 
@@ -111,19 +112,51 @@
     }
 	
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	
-	NSInteger lso = [defaults integerForKey:@"listSortOrder"];
     
     // Configure the cell...
 	
 	if (indexPath.section == 0) {
+		NSInteger lso = [defaults integerForKey:@"listSortOrder"];
 		cell.textLabel.text = [optionSortOrder objectAtIndex:indexPath.row];
 		if (indexPath.row == lso) {
 			cell.accessoryType = UITableViewCellAccessoryCheckmark;
 		}
+	}else if (indexPath.section == 1) {
+		cell.textLabel.text = @"Betalningsvy";
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		checkoutSwitch = [[UISwitch alloc] init];
+		cell.accessoryView = checkoutSwitch;
+		[cell addSubview:checkoutSwitch];
+		[checkoutSwitch addTarget:self action:@selector(checkoutSwitchChanged) forControlEvents:UIControlEventValueChanged];
+		if ([defaults integerForKey:@"listCheckoutViewOn"] == 1) {
+			[checkoutSwitch setOn:YES animated:NO];
+		}else {
+			[checkoutSwitch setOn:NO animated:NO];
+		}
+
+		
 	}
     return cell;
 }
+
+
+-(void) checkoutSwitchChanged{
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	
+	if(checkoutSwitch.on)
+	{
+		[defaults setBool:YES forKey:@"listCheckoutViewOn"];
+		NSLog(@"ON");
+	}
+	else
+	{
+		[defaults setBool:NO forKey:@"listCheckoutViewOn"];
+		NSLog(@"OFF");
+	}
+	
+	[defaults synchronize];
+}
+
 
 
 /*
@@ -189,6 +222,9 @@
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
 		
 		[defaults setInteger:indexPath.row forKey:@"listSortOrder"];
+	}else if (indexPath.section == 1) {
+		
+			
 	}
 	
 	
