@@ -10,12 +10,14 @@
 #import "BudgetPost.h"
 #import "list.h"
 #import "UICashView.h"
+#import "IndividualListTableViewController.h"
+
 
 
 @interface CheckoutViewController : UIViewController<UIAlertViewDelegate> {
-	
+		
 	NSManagedObjectContext *managedObjectContext_;
-	
+
 	NSInteger amountToBePayed;
 	
 	NSString* listName;
@@ -72,6 +74,7 @@
 - (IBAction)removeCash:(UICashView*)sender;
 
 - (IBAction)paymentCompleteButtonPressed:(id)sender;
+- (void)unCheckArticles;
 - (void)addBudgetPostAndChangeViewToBudgetView;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 

@@ -8,7 +8,6 @@
 
 #import "CheckoutViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "IndividualListViewController.h"
 
 
 @implementation CheckoutViewController
@@ -71,6 +70,7 @@
 											  otherButtonTitles:nil];
 		[alert show];
 		[alert release];
+		[self unCheckArticles];
 		[self addBudgetPostAndChangeViewToBudgetView];
 	}
 	else {
@@ -81,10 +81,9 @@
 											  otherButtonTitles:nil];
 		[alert show];
 		[alert release];
+		[self unCheckArticles];
 		[self addBudgetPostAndChangeViewToBudgetView];
 	}
-
-	
 
 }
 
@@ -97,8 +96,20 @@
 	if (alertView.numberOfButtons==2) {
 		if (buttonIndex==1) {
 			//clicked "ja"
-					[self addBudgetPostAndChangeViewToBudgetView];
+						
+			[self unCheckArticles];
+			[self addBudgetPostAndChangeViewToBudgetView];
 			}
+	}
+}
+
+/*
+ Unchecks the articles when the purchase is finished.
+*/
+-(void)unCheckArticles{
+	NSArray *myArray = [list.articles allObjects];
+	for(ListArticle *object in myArray) {
+		[object setChecked:[NSNumber numberWithBool:NO]];
 	}
 }
 
