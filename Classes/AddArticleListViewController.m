@@ -157,8 +157,27 @@
 	ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
 	listArticle.list = list_;
 	listArticle.article = (Article*)managedObject;
-    //TODO: istället för nil ska priset va förra priset
-    listArticle.price = nil; 
+	NSDate *latest = nil;
+	NSArray *myArray = [listArticle.article.listArticles allObjects];
+	for (ListArticle *object in myArray) {
+		if(!latest) {
+			latest = object.timeStamp;
+			NSLog(@"line 1: %@", latest);
+		}
+		if ([object.timeStamp compare:latest] == NSOrderedDescending || object.timeStamp == latest)
+		{
+			latest = object.timeStamp;
+			NSLog(@"line 2, %@", latest);
+			if(object.price != nil)
+			{
+				listArticle.price = object.price;
+			}
+			else 
+			{
+				listArticle.price = nil;
+			}
+		}
+	}
 	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 	[self.navigationController popViewControllerAnimated:YES];
 }

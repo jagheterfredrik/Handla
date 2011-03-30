@@ -49,7 +49,7 @@
 	[self layoutSubviews];
     titleLabel.text = self.listArticle.article.name;
     if (self.listArticle.price != nil) {
-        priceLabel.text = [formatter stringFromNumber:self.listArticle.price];
+        priceLabel.text = [formatter stringFromNumber:listArticle_.price];
         priceLabel.textColor = [UIColor blackColor];
     }
     else{
@@ -91,6 +91,8 @@
 		[f setGeneratesDecimalNumbers:YES];
 		[f setNumberStyle:NSNumberFormatterDecimalStyle];
 		listArticle_.price = (NSDecimalNumber*)[f numberFromString:alertPrompt.textField.text];
+		listArticle_.timeStamp = [NSDate date];
+		NSLog(@"%@", listArticle_.timeStamp);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ListArticleChanged" object:nil];
 		[f release];
 	}
