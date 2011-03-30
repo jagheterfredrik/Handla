@@ -11,9 +11,14 @@
 
 @interface ListSettingsViewController : UITableViewController {
 	NSMutableArray *optionSortOrder;
-	UITableViewCell *lastCheckedSortOrder;
+	UITableViewCell *lastCheckedSortOrder;	
+	UISwitch *checkoutSwitch;
 
 
 }
+
+@property (nonatomic, retain) UISwitch *checkoutSwitch;
+
+-(void) checkoutSwitchChanged;
 
 @end
