@@ -197,7 +197,7 @@
 		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Bekräfta borttagning" 
 												message:[NSString stringWithFormat:@"Varan du försöker ta bort finns redan i %i listor, tar du bort varan kommer även dessa tas bort.", listArticleCount]
 												delegate:self
-												cancelButtonTitle:@"Avrbyt"
+												cancelButtonTitle:@"Avbryt"
 												  otherButtonTitles:@"Ta bort", nil];
 		[alertView show];
 		[alertView release];
