@@ -155,7 +155,7 @@
 	request.entity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext_];
 	if (listSortOrder == 0) {
 		request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
-																						 ascending:YES]];
+																						 ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
 	}
 	else if (listSortOrder == 1) {
 		request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"lastUsed"
