@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		052057A21340023D00315132 /* SequenceTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 052057A11340023D00315132 /* SequenceTable.m */; };
 		055411F013368B7B00533893 /* PDColoredProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 055411EE13368B7B00533893 /* PDColoredProgressView.m */; };
+		05E5EBED1351D6FD00DF6D7A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 05E5EBEC1351D6FD00DF6D7A /* README.md */; };
 		1B531500132A691400C328B4 /* icon_cogwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5314FF132A691400C328B4 /* icon_cogwheel.png */; };
 		1B531504132A692D00C328B4 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B531501132A692D00C328B4 /* AboutViewController.xib */; };
 		1B531505132A692D00C328B4 /* ListSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B531502132A692D00C328B4 /* ListSettingsViewController.xib */; };
@@ -112,6 +113,7 @@
 		052057A11340023D00315132 /* SequenceTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceTable.m; sourceTree = "<group>"; };
 		055411ED13368B7B00533893 /* PDColoredProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDColoredProgressView.h; sourceTree = "<group>"; };
 		055411EE13368B7B00533893 /* PDColoredProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDColoredProgressView.m; sourceTree = "<group>"; };
+		05E5EBEC1351D6FD00DF6D7A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		1B5314FF132A691400C328B4 /* icon_cogwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_cogwheel.png; path = Resources/Images/icon_cogwheel.png; sourceTree = "<group>"; };
 		1B531501132A692D00C328B4 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutViewController.xib; path = Resources/XIBs/AboutViewController.xib; sourceTree = "<group>"; };
 		1B531502132A692D00C328B4 /* ListSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ListSettingsViewController.xib; path = Resources/XIBs/ListSettingsViewController.xib; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				481BFFB1130D21D600AC4CC8 /* Images */,
 				8D1107310486CEB800E47090 /* Handla-Info.plist */,
 				352EA5F3130ABF95001D6E7F /* Unit tests-Info.plist */,
+				05E5EBEC1351D6FD00DF6D7A /* README.md */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -676,6 +679,7 @@
 				483BAD92132E7242001A3B03 /* Checkbox.png in Resources */,
 				483BAD93132E7242001A3B03 /* Checkbox@2x.png in Resources */,
 				483BAD94132E7242001A3B03 /* Meatballs.png in Resources */,
+				05E5EBED1351D6FD00DF6D7A /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
