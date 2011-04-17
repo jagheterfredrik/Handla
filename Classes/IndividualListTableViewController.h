@@ -14,18 +14,12 @@
 
 @interface IndividualListTableViewController : CoreDataTableViewController<UIAlertViewDelegate> {
 	List *list_;
-	NSInteger selectedIndex;
 	NSManagedObject * selectedManagedObject;
-	
-	//Receives the cell created by tableView:cellForManagedObject: and then is set to nil
-	IBOutlet UITableViewCell *cellReceiver;
 }
 
 - (void)setList:(List*)list;
 - (void)imageTouched:(id)source;
-- (void)retractAllRows;
 
 @property (nonatomic,retain) List *list_;
-@property (nonatomic,assign) IBOutlet UITableViewCell *cellReceiver;
 
 @end

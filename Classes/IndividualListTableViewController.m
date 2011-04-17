@@ -16,7 +16,6 @@
 @implementation IndividualListTableViewController
 
 @synthesize list_;
-@synthesize cellReceiver;
 
 - (void)setList:(List*)list {
 	self.list_ = list;
@@ -52,20 +51,6 @@
 	*/
 }
 
-- (void)retractAllRows {
-    [self.tableView beginUpdates];
-	NSMutableArray *rows = [NSMutableArray arrayWithCapacity:1];
-	if (selectedIndex >= 0) [rows addObject:[NSIndexPath indexPathForRow:selectedIndex inSection:0]];
-    int oldSelection = selectedIndex;
-    selectedIndex = -1;
-	if (oldSelection == [self.tableView numberOfRowsInSection:0]-1) {
-		[self.tableView reloadRowsAtIndexPaths:rows withRowAnimation:UITableViewRowAnimationFade];
-	} else {
-		[self.tableView reloadRowsAtIndexPaths:rows withRowAnimation:UITableViewRowAnimationNone];
-	}
-	[self.tableView endUpdates];
-}
-
 #pragma mark -
 #pragma mark Core data table view controller overrides
 
@@ -75,8 +60,6 @@
 }
 
 - (CGFloat)tableView:(UITableView *)table heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.row == selectedIndex)
-		return 101.0f;
 	return 57.0f;
 }
 
@@ -90,7 +73,6 @@
 		cell = [[[IndividualListTableViewCell alloc] init] autorelease];
 		cell.autoresizesSubviews = NO;
 		cell.clipsToBounds = YES;
-		self.cellReceiver = nil;
 	}
 	cell.listArticle = article;
 	
@@ -98,29 +80,14 @@
 }
 
 - (void)managedObjectSelected:(NSManagedObject *)managedObject {
-	selectedManagedObject = managedObject;
-	NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-	[self.tableView deselectRowAtIndexPath:path animated:NO];
-	((IndividualListTableViewCell*)[self.tableView cellForRowAtIndexPath:path]).listArticle = (ListArticle*)managedObject;
-	
-	NSInteger oldSelection = selectedIndex;
-	if (selectedIndex == path.row)
-		selectedIndex = -1;
-	else {
-        //TODO fix whatevers goin on here
-		/*((IndividualListTableViewCell*)[self.tableView cellForRowAtIndexPath:path]).checked = YES;*/
-		selectedIndex = path.row;
-	}
-	[self.tableView beginUpdates];
-	NSMutableArray *rows = [NSMutableArray arrayWithCapacity:2];
-	if (selectedIndex >= 0) [rows addObject:[NSIndexPath indexPathForRow:selectedIndex inSection:0]];
-	if (oldSelection  >= 0) [rows addObject:[NSIndexPath indexPathForRow:oldSelection  inSection:0]];
-	if (oldSelection == [self.tableView numberOfRowsInSection:path.section]-1 || selectedIndex == [self.tableView numberOfRowsInSection:path.section]-1) {
-		[self.tableView reloadRowsAtIndexPaths:rows withRowAnimation:UITableViewRowAnimationFade];
-	} else {
-		[self.tableView reloadRowsAtIndexPaths:rows withRowAnimation:UITableViewRowAnimationNone];
-	}
-	[self.tableView endUpdates];
+    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+    IndividualListTableViewCell *cell = ((IndividualListTableViewCell*)[self.tableView cellForRowAtIndexPath:path]);
+
+    ListArticle *listArticle = (ListArticle*)managedObject;
+    listArticle.checked = [NSNumber numberWithBool:![listArticle.checked boolValue]];
+    
+    [cell updateView];
+    
 }
 
 
@@ -172,7 +139,6 @@
 }
 
 - (void)viewDidLoad {
-	selectedIndex = -1;
 }
 
 - (void)dealloc {
