@@ -62,13 +62,11 @@
     if ([self.listArticle.checked boolValue]) {
         thumbnail.alpha = 0.2f;
         checkboxImage.alpha = 1.f;
-        NSLog(@"Hejjo");
         //TODO:Kom på bra knapptext
         //markButton.titleLabel.text = @"";
     } else {
         thumbnail.alpha = 1.f;
         checkboxImage.alpha = 0.f;
-        NSLog(@"Bajjo");
         //TODO:Kom på bra knapptext
         //markButton.titleLabel.text = @"";
     }

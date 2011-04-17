@@ -65,8 +65,6 @@
 	NSDateComponents *end = [cal components:( NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:displayedDate];
 	[start setSecond:0]; [start setMinute:0]; [start setHour:0];
 	[end setSecond:59]; [end setMinute:59]; [end setHour:23];
-    
-    NSLog(@"%@ - %@", [[cal dateFromComponents:start] description], [[cal dateFromComponents:end] description]);
 	
 	if (dateInterval == YearInterval) {
 		[formatter setDateFormat:@"YYYY"];
@@ -83,8 +81,6 @@
 		[end setMonth:[end month]+1];
 		[end setDay:0];
 	}
-    
-    NSLog(@"%@ - %@", [[cal dateFromComponents:start] description], [[cal dateFromComponents:end] description]);
 
 	[budgetTableViewController setDurationStartDate:[cal dateFromComponents:start] endDate:[cal dateFromComponents:end]];
 	calendarLabel.text = [formatter stringFromDate:self.displayedDate];
