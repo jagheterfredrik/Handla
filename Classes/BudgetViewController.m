@@ -61,10 +61,12 @@
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 	
-	NSDateComponents *start = [cal components:( NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:displayedDate];
-	NSDateComponents *end = [cal components:( NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:displayedDate];
+	NSDateComponents *start = [cal components:( NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:displayedDate];
+	NSDateComponents *end = [cal components:( NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:displayedDate];
 	[start setSecond:0]; [start setMinute:0]; [start setHour:0];
 	[end setSecond:59]; [end setMinute:59]; [end setHour:23];
+    
+    NSLog(@"%@ - %@", [[cal dateFromComponents:start] description], [[cal dateFromComponents:end] description]);
 	
 	if (dateInterval == YearInterval) {
 		[formatter setDateFormat:@"YYYY"];
@@ -73,15 +75,16 @@
 		[end setDay:31];
 	} else if (dateInterval == WeekInterval) {
 		[formatter setDateFormat:@"'Vecka' ww, YYYY"];
-		[start setWeekday:2];
 		[end setWeekday:1];
+        [start setDay:[end day]-6];
 	} else {
 		[formatter setDateFormat:@"MMMM, YYYY"];
 		[start setDay:1];
 		[end setMonth:[end month]+1];
 		[end setDay:0];
 	}
-
+    
+    NSLog(@"%@ - %@", [[cal dateFromComponents:start] description], [[cal dateFromComponents:end] description]);
 
 	[budgetTableViewController setDurationStartDate:[cal dateFromComponents:start] endDate:[cal dateFromComponents:end]];
 	calendarLabel.text = [formatter stringFromDate:self.displayedDate];

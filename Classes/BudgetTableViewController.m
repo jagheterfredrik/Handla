@@ -162,6 +162,7 @@
             }
             cell.nameLabel.text = @"Tidigare budget";
             cell.dateLabel.text = @"";
+            cell.accessoryType = UITableViewCellAccessoryNone;
             cell.priceLabel.text = [amountFormatter stringFromNumber:budgetSum];
             if ([budgetSum compare:[NSNumber numberWithInt:0]] == NSOrderedAscending) {
                 cell.symbolLabel.text = @"-";
