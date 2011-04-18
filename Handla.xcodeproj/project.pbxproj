@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		052057A21340023D00315132 /* SequenceTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 052057A11340023D00315132 /* SequenceTable.m */; };
 		055411F013368B7B00533893 /* PDColoredProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 055411EE13368B7B00533893 /* PDColoredProgressView.m */; };
+		05A0CB10135C2241008AD4D4 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A0CB0F135C2241008AD4D4 /* NSDate+Helper.m */; };
 		05E5EBED1351D6FD00DF6D7A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 05E5EBEC1351D6FD00DF6D7A /* README.md */; };
 		1B531500132A691400C328B4 /* icon_cogwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5314FF132A691400C328B4 /* icon_cogwheel.png */; };
 		1B531504132A692D00C328B4 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B531501132A692D00C328B4 /* AboutViewController.xib */; };
@@ -113,6 +114,8 @@
 		052057A11340023D00315132 /* SequenceTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceTable.m; sourceTree = "<group>"; };
 		055411ED13368B7B00533893 /* PDColoredProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDColoredProgressView.h; sourceTree = "<group>"; };
 		055411EE13368B7B00533893 /* PDColoredProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDColoredProgressView.m; sourceTree = "<group>"; };
+		05A0CB0E135C2241008AD4D4 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
+		05A0CB0F135C2241008AD4D4 /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
 		05E5EBEC1351D6FD00DF6D7A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		1B5314FF132A691400C328B4 /* icon_cogwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_cogwheel.png; path = Resources/Images/icon_cogwheel.png; sourceTree = "<group>"; };
 		1B531501132A692D00C328B4 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutViewController.xib; path = Resources/XIBs/AboutViewController.xib; sourceTree = "<group>"; };
@@ -568,6 +571,8 @@
 				055411EE13368B7B00533893 /* PDColoredProgressView.m */,
 				483BB1EC132F7094001A3B03 /* ArrowTabBarController.h */,
 				483BB1ED132F7094001A3B03 /* ArrowTabBarController.m */,
+				05A0CB0E135C2241008AD4D4 /* NSDate+Helper.h */,
+				05A0CB0F135C2241008AD4D4 /* NSDate+Helper.m */,
 			);
 			name = "Base classes";
 			sourceTree = "<group>";
@@ -725,6 +730,7 @@
 				483BB1EE132F7094001A3B03 /* ArrowTabBarController.m in Sources */,
 				055411F013368B7B00533893 /* PDColoredProgressView.m in Sources */,
 				052057A21340023D00315132 /* SequenceTable.m in Sources */,
+				05A0CB10135C2241008AD4D4 /* NSDate+Helper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

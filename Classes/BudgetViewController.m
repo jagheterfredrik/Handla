@@ -18,39 +18,21 @@
 #pragma mark -
 #pragma mark Initialization
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization.
-    }
-    return self;
-}
-*/
-
-
 //TODO: Make it more loosely coupled? i.e remove budgetTableViewController-references
 - (void)calculateBudgetSum {
-	NSNumberFormatter *amountFormatter = [[NSNumberFormatter alloc] init];
-	[amountFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
-	
-	NSDecimalNumber *amountBalance = [NSDecimalNumber decimalNumberWithString:@"0"];
-	for (NSManagedObject *object in [budgetTableViewController.fetchedResultsController fetchedObjects]) {
-		NSDecimalNumber *objectExpenseNumber = [object valueForKey:@"amount"];
-		amountBalance = [amountBalance decimalNumberByAdding:objectExpenseNumber];
-	}
-    if (budgetTableViewController.budgetSum) {
-        amountBalance = [amountBalance decimalNumberByAdding:budgetTableViewController.budgetSum];
+    NSDecimalNumber *amountBalance = budgetTableViewController.budgetSum;
+    if (amountBalance) {
+        NSNumberFormatter *amountFormatter = [[NSNumberFormatter alloc] init];
+        [amountFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
+        
+        totalBalance.text = [amountFormatter stringFromNumber:amountBalance];
+        if ([amountBalance compare:[NSNumber numberWithInt:0]] == NSOrderedAscending)
+            totalBalance.textColor = [UIColor redColor];
+        else
+            totalBalance.textColor = [UIColor colorWithRed:0.f green:0.55f blue:0.f alpha:1.f];
+        
+        [amountFormatter release];
     }
-	
-	totalBalance.text = [amountFormatter stringFromNumber:amountBalance];;
-	if ([amountBalance compare:[NSNumber numberWithInt:0]] == NSOrderedAscending)
-		totalBalance.textColor = [UIColor redColor];
-	else
-		totalBalance.textColor = [UIColor colorWithRed:0.f green:0.55f blue:0.f alpha:1.f];
-	
-	[amountFormatter release];
 }
 
 - (void)budgetPostUpdated:(NSNotification*)notification {
@@ -59,35 +41,27 @@
 
 - (void)updateCalendarLabel {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-	
-	NSDateComponents *start = [cal components:( NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:displayedDate];
-	NSDateComponents *end = [cal components:( NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:displayedDate];
-	[start setSecond:0]; [start setMinute:0]; [start setHour:0];
-	[end setSecond:59]; [end setMinute:59]; [end setHour:23];
-	
+    NSDate *start, *end;
+    
 	if (dateInterval == YearInterval) {
 		[formatter setDateFormat:@"YYYY"];
-		[start setDay:1]; [start setMonth:1];
-		[end setMonth:12];
-		[end setDay:31];
+        start = [displayedDate beginningOfYear];
+        end = [displayedDate endOfYear];
 	} else if (dateInterval == WeekInterval) {
 		[formatter setDateFormat:@"'Vecka' ww, YYYY"];
-		[end setWeekday:1];
-        [start setDay:[end day]-6];
+        start = [displayedDate beginningOfWeek];
+        end = [displayedDate endOfWeek];
 	} else {
 		[formatter setDateFormat:@"MMMM, YYYY"];
-		[start setDay:1];
-		[end setMonth:[end month]+1];
-		[end setDay:0];
+        start = [displayedDate beginningOfMonth];
+        end = [displayedDate endOfMonth];
 	}
 
-	[budgetTableViewController setDurationStartDate:[cal dateFromComponents:start] endDate:[cal dateFromComponents:end]];
+	[budgetTableViewController setDurationStartDate:start endDate:end];
 	calendarLabel.text = [formatter stringFromDate:self.displayedDate];
-	[cal release];
-	[formatter release];	
-
-	[self calculateBudgetSum];
+	[formatter release];
+    
+    [self calculateBudgetSum];
 }
 
 #pragma mark -

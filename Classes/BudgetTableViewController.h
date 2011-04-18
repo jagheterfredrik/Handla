@@ -16,6 +16,7 @@
 	NSNumberFormatter *amountFormatter;
 	IBOutlet BudgetViewController *budgetViewController;
     NSFetchedResultsController *sumResultController;
+    NSDecimalNumber *previousBudgetSum;
     NSDecimalNumber *budgetSum;
 	NSDate *startDate;
 	NSDate *endDate;
@@ -26,6 +27,7 @@
 
 @property (nonatomic, retain) NSDate *startDate;
 @property (nonatomic, retain) NSDate *endDate;
+@property (nonatomic, retain) NSDecimalNumber *previousBudgetSum;
 @property (nonatomic, retain) NSDecimalNumber *budgetSum;
 
 @end

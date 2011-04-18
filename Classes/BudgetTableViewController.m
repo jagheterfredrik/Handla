@@ -16,7 +16,7 @@
 
 @implementation BudgetTableViewController
 
-@synthesize startDate, endDate, budgetSum;
+@synthesize startDate, endDate, previousBudgetSum, budgetSum;
 
 - (void)viewDidLoad {
 	//Setup the date formatter
@@ -27,8 +27,6 @@
 	//Setup the amount formatter	
 	amountFormatter = [[NSNumberFormatter alloc] init];
 	[amountFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
-    
-    self.budgetSum = [NSDecimalNumber decimalNumberWithString:@"0"];
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
@@ -36,9 +34,11 @@
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	request.entity = [NSEntityDescription entityForName:@"BudgetPost" inManagedObjectContext:managedObjectContext_];
-	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"timeStamp"
-																					 ascending:YES
-																					  selector:@selector(compare:)]];
+	request.sortDescriptors = [NSArray arrayWithObjects:
+        [NSSortDescriptor sortDescriptorWithKey:@"timeStamp" ascending:YES selector:@selector(compare:)],
+        [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(caseInsensitiveCompare:)],
+        nil];
+    
 	request.predicate = nil;
 	
 	request.fetchBatchSize = 20;
@@ -79,11 +79,21 @@
 	
     sumResultController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(timeStamp < %@)", startDate_];
     [sumResultController performFetch:NULL];
-    self.budgetSum = [[NSDecimalNumber decimalNumberWithString:@"0"] retain];
+    self.previousBudgetSum = [[NSDecimalNumber decimalNumberWithString:@"0"] retain];
     for (BudgetPost *post in sumResultController.fetchedObjects) {
         // TODO: add code for repeatID >= 0
+        self.previousBudgetSum = [previousBudgetSum decimalNumberByAdding:post.amount];
+    }
+    
+    sumResultController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(timeStamp >= %@) AND (timeStamp <= %@)", startDate_, endDate_];
+    [sumResultController performFetch:NULL];
+    self.budgetSum = [[NSDecimalNumber decimalNumberWithString:@"0"] retain];
+    self.budgetSum = [self.budgetSum decimalNumberByAdding:self.previousBudgetSum];
+    for (BudgetPost *post in sumResultController.fetchedObjects) {
+        // TODO: add code for repeatID >= 0 ?
         self.budgetSum = [budgetSum decimalNumberByAdding:post.amount];
     }
+
     
 	normalPredicate = [NSPredicate predicateWithFormat:@"(timeStamp >= %@) AND (timeStamp <= %@)", startDate_, endDate_];
 	[self.tableView reloadData];
@@ -147,7 +157,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([budgetSum compare:[NSDecimalNumber decimalNumberWithString:@"0"]] != NSOrderedSame) {
+    if ([previousBudgetSum compare:[NSDecimalNumber decimalNumberWithString:@"0"]] != NSOrderedSame) {
         if (indexPath.row == 0 && indexPath.section == 0) {
             static NSString *cellIdentifier = @"BudgetPostCell";
             BudgetTableViewCell *cell = (BudgetTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -163,8 +173,8 @@
             cell.nameLabel.text = @"Tidigare budget";
             cell.dateLabel.text = @"";
             cell.accessoryType = UITableViewCellAccessoryNone;
-            cell.priceLabel.text = [amountFormatter stringFromNumber:budgetSum];
-            if ([budgetSum compare:[NSNumber numberWithInt:0]] == NSOrderedAscending) {
+            cell.priceLabel.text = [amountFormatter stringFromNumber:previousBudgetSum];
+            if ([previousBudgetSum compare:[NSNumber numberWithInt:0]] == NSOrderedAscending) {
                 cell.symbolLabel.text = @"-";
                 cell.symbolLabel.font = [UIFont fontWithName:@"Helvetica" size:40.f];
                 cell.symbolLabel.textColor = [UIColor redColor];
@@ -187,7 +197,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        if ([budgetSum compare:[NSDecimalNumber decimalNumberWithString:@"0"]] != NSOrderedSame) {
+        if ([previousBudgetSum compare:[NSDecimalNumber decimalNumberWithString:@"0"]] != NSOrderedSame) {
             if (indexPath.row == 0) {
                 return;
             } else {
@@ -204,7 +214,7 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0 ) {
-        if ([budgetSum compare:[NSDecimalNumber decimalNumberWithString:@"0"]] != NSOrderedSame) {
+        if ([previousBudgetSum compare:[NSDecimalNumber decimalNumberWithString:@"0"]] != NSOrderedSame) {
             if (indexPath.row == 0) {
                 return NO;
             } else {
@@ -220,7 +230,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0 && [budgetSum compare:[NSDecimalNumber decimalNumberWithString:@"0"]] != NSOrderedSame) {
+    if (section == 0 && [previousBudgetSum compare:[NSDecimalNumber decimalNumberWithString:@"0"]] != NSOrderedSame) {
         return [super tableView:tableView numberOfRowsInSection:section]+1;
     } else {
         return [super tableView:tableView numberOfRowsInSection:section];
@@ -252,7 +262,7 @@
 
 - (void)dealloc {
     [sumResultController release];
-    [budgetSum release];
+    [previousBudgetSum release];
 	[startDate release];
 	[endDate release];
 	[dateFormatter release];

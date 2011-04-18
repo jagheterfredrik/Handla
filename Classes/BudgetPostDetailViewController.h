@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "BudgetPost.h"
 
+#import "NSDate+Helper.h"
+
 @interface BudgetPostDetailViewController : UIViewController<UIActionSheetDelegate> {
 	NSManagedObjectContext *managedObjectContext_;
 	BudgetPost *budgetPost_;

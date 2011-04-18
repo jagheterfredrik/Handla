@@ -165,7 +165,7 @@
 	newBudgetPost.amount = value;
 	newBudgetPost.comment = commentBox.text;
 	
-	newBudgetPost.timeStamp = datePicker.date;
+	newBudgetPost.timeStamp = [datePicker.date beginningOfDay];
 
 	[self.managedObjectContext save:NULL];
 	[self.navigationController popViewControllerAnimated:YES];
