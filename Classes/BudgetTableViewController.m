@@ -8,7 +8,6 @@
 //
 
 #import "BudgetTableViewController.h"
-#import "BudgetTableViewCell.h"
 #import "BudgetViewController.h"
 #import "BudgetPost.h"
 #import "BudgetPostDetailViewController.h"
@@ -16,17 +15,25 @@
 
 @implementation BudgetTableViewController
 
-@synthesize startDate, endDate, previousBudgetSum, budgetSum;
+@synthesize previousBudgetSum, budgetSum;
 
 - (void)viewDidLoad {
 	//Setup the date formatter
 	dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateStyle:NSDateFormatterLongStyle];
-	
     
 	//Setup the amount formatter	
 	amountFormatter = [[NSNumberFormatter alloc] init];
 	[amountFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
+
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"BudgetTableViewCell" owner:nil options:nil];
+    for (id currentObject in topLevelObjects)
+        if ([currentObject isKindOfClass:[BudgetTableViewCell class]]) {
+            prevCell = [currentObject retain];
+            break;
+        }
+    
+    self.tableView.tableHeaderView = prevCell;
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
@@ -56,7 +63,7 @@
 	[frc release];
 	
 	self.titleKey = @"name";
-	self.searchKey = @"name";
+//	self.searchKey = @"name";
     
     // Setup sum-counting-request
     [sumResultController release];
@@ -74,8 +81,10 @@
 }
 
 - (void)setDurationStartDate:(NSDate*)startDate_ endDate:(NSDate*)endDate_ {
-	self.startDate = startDate_;
-	self.endDate = endDate_;
+    [startDate release];
+    [endDate release];
+	startDate = [startDate_ retain];
+	endDate = [endDate_ retain];
 	
     sumResultController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(timeStamp < %@)", startDate_];
     [sumResultController performFetch:NULL];
@@ -93,7 +102,25 @@
         // TODO: add code for repeatID >= 0 ?
         self.budgetSum = [budgetSum decimalNumberByAdding:post.amount];
     }
-
+    
+    prevCell.symbolLabel.textAlignment = UITextAlignmentCenter;
+    
+    prevCell.nameLabel.text = @"Tidigare budget";
+    prevCell.center = CGPointMake(prevCell.center.x, prevCell.frame.size.height / 2.f);
+    prevCell.dateLabel.text = [NSString stringWithFormat:@"Före %@", [dateFormatter stringFromDate:startDate]];
+    prevCell.accessoryType = UITableViewCellAccessoryNone;
+    prevCell.priceLabel.text = [amountFormatter stringFromNumber:previousBudgetSum];
+    if ([previousBudgetSum compare:[NSNumber numberWithInt:0]] == NSOrderedAscending) {
+        prevCell.symbolLabel.text = @"-";
+        prevCell.symbolLabel.font = [UIFont fontWithName:@"Helvetica" size:40.f];
+        prevCell.symbolLabel.textColor = [UIColor redColor];
+        prevCell.priceLabel.textColor = [UIColor redColor];
+    } else {
+        prevCell.symbolLabel.text = @"+";
+        prevCell.symbolLabel.font = [UIFont fontWithName:@"Helvetica" size:34.f];
+        prevCell.symbolLabel.textColor = [UIColor colorWithRed:0.f green:0.55f blue:0.f alpha:1.f];
+        prevCell.priceLabel.textColor = [UIColor colorWithRed:0.f green:0.55f blue:0.f alpha:1.f];
+    }
     
 	normalPredicate = [NSPredicate predicateWithFormat:@"(timeStamp >= %@) AND (timeStamp <= %@)", startDate_, endDate_];
 	[self.tableView reloadData];
@@ -156,89 +183,8 @@
 	return cell;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([previousBudgetSum compare:[NSDecimalNumber decimalNumberWithString:@"0"]] != NSOrderedSame) {
-        if (indexPath.row == 0 && indexPath.section == 0) {
-            static NSString *cellIdentifier = @"BudgetPostCell";
-            BudgetTableViewCell *cell = (BudgetTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-            if (cell == nil) {
-                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"BudgetTableViewCell" owner:nil options:nil];
-                for (id currentObject in topLevelObjects)
-                    if ([currentObject isKindOfClass:[BudgetTableViewCell class]]) {
-                        cell = currentObject;
-                        break;
-                    }
-                cell.symbolLabel.textAlignment = UITextAlignmentCenter;
-            }
-            cell.nameLabel.text = @"Tidigare budget";
-            cell.dateLabel.text = @"";
-            cell.accessoryType = UITableViewCellAccessoryNone;
-            cell.priceLabel.text = [amountFormatter stringFromNumber:previousBudgetSum];
-            if ([previousBudgetSum compare:[NSNumber numberWithInt:0]] == NSOrderedAscending) {
-                cell.symbolLabel.text = @"-";
-                cell.symbolLabel.font = [UIFont fontWithName:@"Helvetica" size:40.f];
-                cell.symbolLabel.textColor = [UIColor redColor];
-                cell.priceLabel.textColor = [UIColor redColor];
-            } else {
-                cell.symbolLabel.text = @"+";
-                cell.symbolLabel.font = [UIFont fontWithName:@"Helvetica" size:34.f];
-                cell.symbolLabel.textColor = [UIColor colorWithRed:0.f green:0.55f blue:0.f alpha:1.f];
-                cell.priceLabel.textColor = [UIColor colorWithRed:0.f green:0.55f blue:0.f alpha:1.f];
-            }
-            return cell;
-        } else {
-            NSIndexPath *newPath = [NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
-            return [super tableView:tableView cellForRowAtIndexPath:newPath];
-        }
-    } else {
-        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
-    }
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        if ([previousBudgetSum compare:[NSDecimalNumber decimalNumberWithString:@"0"]] != NSOrderedSame) {
-            if (indexPath.row == 0) {
-                return;
-            } else {
-                NSIndexPath *newPath = [NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
-                return [super tableView:tableView didSelectRowAtIndexPath:newPath];
-            }
-        } else {
-            return [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-        }
-    } else {
-        return [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-    }
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0 ) {
-        if ([previousBudgetSum compare:[NSDecimalNumber decimalNumberWithString:@"0"]] != NSOrderedSame) {
-            if (indexPath.row == 0) {
-                return NO;
-            } else {
-                NSIndexPath *newPath = [NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
-                return [super tableView:tableView canEditRowAtIndexPath:newPath];
-            }
-        } else {
-            return [super tableView:tableView canEditRowAtIndexPath:indexPath];
-        }
-    } else {
-        return [super tableView:tableView canEditRowAtIndexPath:indexPath];
-    }
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0 && [previousBudgetSum compare:[NSDecimalNumber decimalNumberWithString:@"0"]] != NSOrderedSame) {
-        return [super tableView:tableView numberOfRowsInSection:section]+1;
-    } else {
-        return [super tableView:tableView numberOfRowsInSection:section];
-    }
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return 40.f;
+	return 36.f;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -250,6 +196,7 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+    [prevCell release];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -258,7 +205,6 @@
 	
     
 }
-
 
 - (void)dealloc {
     [sumResultController release];

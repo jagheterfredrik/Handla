@@ -50,7 +50,7 @@
 	for (ListArticle *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
 	{
         if (object.price!=nil){
-		amountBalance = [amountBalance decimalNumberByAdding:object.price];
+            amountBalance = [amountBalance decimalNumberByAdding:object.price];
         }
 	}
 	
@@ -84,23 +84,24 @@
 	[actionSheet release];
 }
 
-//=========================================================== 
-// - elementsCount property
-//=========================================================== 
+/**
+ * Returns the number of elements in the list. Both checked or unchecked.
+ */
 - (NSInteger)elementsCount
 {
     return [[individualListTableViewController.fetchedResultsController fetchedObjects] count];
 }
-//=========================================================== 
-// - checkedElementsCount property returns the number of checked articles in the list
-//=========================================================== 
+
+/**
+ * Returns the number of checked elements in the list.
+ */
 - (NSInteger)checkedElementsCount
 {
     NSInteger count = 0;
 	for (ListArticle *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
 	{
 		if ([[object checked] boolValue]) {
-			count++;
+			++count;
 		}
 		
 	}	
@@ -109,8 +110,8 @@
 
 
 /**
- * when the user clicks the "avsluta köp" button, we see if all posts are checked off
- * and if they are we go to CheckoutViewController. else we show some alerts
+ * When the user clicks the "avsluta köp" button, we see if all posts are checked off
+ * and if they are we go to CheckoutViewController. else we show some alerts.
  */
 - (IBAction)purchase {
     if([[self calculateSumOfCheckedElementsInList] intValue] == 0) {
@@ -158,22 +159,21 @@
 		[alert release];
         
     }
-
+    
 }
 
-//=========================================================== 
-// - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-//
-//=========================================================== 
+/**
+ * Called when an alertViews is dismissed using any of the buttons.
+ */
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-		if (buttonIndex==1) {
-			//clicked "ja"
-            CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
-                                                                                amountToPay:[self calculateSumOfCheckedElementsInList]];
-            [self.navigationController presentModalViewController:checkOut animated:YES];
-            
-            [checkOut release];
+    if (buttonIndex==1) {
+        //clicked "ja"
+        CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
+                                                                            amountToPay:[self calculateSumOfCheckedElementsInList]];
+        [self.navigationController presentModalViewController:checkOut animated:YES];
+        
+        [checkOut release];
 	}
 }
 
@@ -186,7 +186,7 @@
 		self.navigationItem.rightBarButtonItem = addButton;
 		[addButton release];
 		
-		list_ = list;
+		list_ = [list retain];
 		
 		self.title = list_.name;
     }
@@ -253,6 +253,7 @@
 
 - (void)dealloc {
 	[individualListTableViewController release];
+    [list_ release];
     [super dealloc];
 }
 

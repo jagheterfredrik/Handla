@@ -87,7 +87,6 @@
     listArticle.checked = [NSNumber numberWithBool:![listArticle.checked boolValue]];
     
     [cell updateView];
-    
 }
 
 
@@ -111,7 +110,7 @@
 
 
 
-#pragma mark -s
+#pragma mark -
 #pragma mark Events
 
 // Called when the add button is pressed

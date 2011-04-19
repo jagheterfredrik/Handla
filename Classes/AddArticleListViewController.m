@@ -162,12 +162,10 @@
 	for (ListArticle *object in myArray) {
 		if(!latest) {
 			latest = object.timeStamp;
-			NSLog(@"line 1: %@", latest);
 		}
 		if ([object.timeStamp compare:latest] == NSOrderedDescending || object.timeStamp == latest)
 		{
 			latest = object.timeStamp;
-			NSLog(@"line 2, %@", latest);
 			if(object.price != nil)
 			{
 				listArticle.price = object.price;

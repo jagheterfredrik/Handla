@@ -10,8 +10,7 @@
 
 @implementation PDColoredProgressView
 
-- (void) moveProgress
-{
+- (void)moveProgress {
     if (self.progress < _targetProgress)
 	{
         self.progress = MIN(self.progress + 0.04, _targetProgress);
@@ -27,11 +26,13 @@
     }
 }
 
-- (void) setProgress:(CGFloat)newProgress animated:(BOOL)animated
-{
+- (void)setProgress:(CGFloat)newProgress animated:(BOOL)animated {
     if (animated)
 	{
         _targetProgress = newProgress;
+        if (unlikely(isnan(self.progress))) {
+            self.progress = 0.f;
+        }
         if (_progressTimer == nil)
 		{
             _progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(moveProgress) userInfo:nil repeats:YES];
@@ -43,8 +44,7 @@
     }
 }
 
-- (void) dealloc
-{
+- (void)dealloc {
     [super dealloc];
 }
 

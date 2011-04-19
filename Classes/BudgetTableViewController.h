@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "CoreDataTableViewController.h"
+#import "BudgetTableViewCell.h"
+
 @class BudgetViewController;
 
 @interface BudgetTableViewController : CoreDataTableViewController {
@@ -20,13 +22,13 @@
     NSDecimalNumber *budgetSum;
 	NSDate *startDate;
 	NSDate *endDate;
+    
+    BudgetTableViewCell *prevCell;
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 - (void)setDurationStartDate:(NSDate*)startDate endDate:(NSDate*)endDate;
 
-@property (nonatomic, retain) NSDate *startDate;
-@property (nonatomic, retain) NSDate *endDate;
 @property (nonatomic, retain) NSDecimalNumber *previousBudgetSum;
 @property (nonatomic, retain) NSDecimalNumber *budgetSum;
 
