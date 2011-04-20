@@ -25,6 +25,9 @@
 		20055310132A6CD80042ADF5 /* cellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 2005530E132A6CD80042ADF5 /* cellBackground.png */; };
 		20055311132A6CD80042ADF5 /* cellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2005530F132A6CD80042ADF5 /* cellBackground@2x.png */; };
 		20055313132A6CEF0042ADF5 /* IndividualListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20055312132A6CEF0042ADF5 /* IndividualListCell.xib */; };
+		20E56A46135ED25000C32C59 /* PhotoChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E56A43135ED25000C32C59 /* PhotoChooserViewController.m */; };
+		20E56A47135ED25000C32C59 /* PhotoUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E56A45135ED25000C32C59 /* PhotoUtil.m */; };
+		20E56A49135ED26C00C32C59 /* PhotoChooserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20E56A48135ED26C00C32C59 /* PhotoChooserViewController.xib */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
 		352EA5FB130ABFC5001D6E7F /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352EA5F7130ABFB9001D6E7F /* GHUnitIOS.framework */; };
@@ -135,6 +138,11 @@
 		2005530E132A6CD80042ADF5 /* cellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cellBackground.png; path = Resources/Images/cellBackground.png; sourceTree = "<group>"; };
 		2005530F132A6CD80042ADF5 /* cellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cellBackground@2x.png"; path = "Resources/Images/cellBackground@2x.png"; sourceTree = "<group>"; };
 		20055312132A6CEF0042ADF5 /* IndividualListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IndividualListCell.xib; path = Resources/XIBs/IndividualListCell.xib; sourceTree = "<group>"; };
+		20E56A42135ED25000C32C59 /* PhotoChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoChooserViewController.h; sourceTree = "<group>"; };
+		20E56A43135ED25000C32C59 /* PhotoChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoChooserViewController.m; sourceTree = "<group>"; };
+		20E56A44135ED25000C32C59 /* PhotoUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoUtil.h; sourceTree = "<group>"; };
+		20E56A45135ED25000C32C59 /* PhotoUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoUtil.m; sourceTree = "<group>"; };
+		20E56A48135ED26C00C32C59 /* PhotoChooserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PhotoChooserViewController.xib; path = Resources/XIBs/PhotoChooserViewController.xib; sourceTree = "<group>"; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -387,6 +395,10 @@
 		481BFF71130D157700AC4CC8 /* List classes */ = {
 			isa = PBXGroup;
 			children = (
+				20E56A42135ED25000C32C59 /* PhotoChooserViewController.h */,
+				20E56A43135ED25000C32C59 /* PhotoChooserViewController.m */,
+				20E56A44135ED25000C32C59 /* PhotoUtil.h */,
+				20E56A45135ED25000C32C59 /* PhotoUtil.m */,
 				77A60A8913258B7C0038D73A /* UICashView.h */,
 				77A60A8A13258B7C0038D73A /* UICashView.m */,
 				4848B95E130AA95300702E2D /* ListsViewController.h */,
@@ -463,6 +475,7 @@
 		481BFFB3130D21E600AC4CC8 /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
+				20E56A48135ED26C00C32C59 /* PhotoChooserViewController.xib */,
 				1B531501132A692D00C328B4 /* AboutViewController.xib */,
 				1B531502132A692D00C328B4 /* ListSettingsViewController.xib */,
 				1B531503132A692D00C328B4 /* SettingsViewController.xib */,
@@ -685,6 +698,7 @@
 				483BAD93132E7242001A3B03 /* Checkbox@2x.png in Resources */,
 				483BAD94132E7242001A3B03 /* Meatballs.png in Resources */,
 				05E5EBED1351D6FD00DF6D7A /* README.md in Resources */,
+				20E56A49135ED26C00C32C59 /* PhotoChooserViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,6 +745,8 @@
 				055411F013368B7B00533893 /* PDColoredProgressView.m in Sources */,
 				052057A21340023D00315132 /* SequenceTable.m in Sources */,
 				05A0CB10135C2241008AD4D4 /* NSDate+Helper.m in Sources */,
+				20E56A46135ED25000C32C59 /* PhotoChooserViewController.m in Sources */,
+				20E56A47135ED25000C32C59 /* PhotoUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

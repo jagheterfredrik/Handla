@@ -8,19 +8,9 @@
 
 #import "ArticleDetailViewController.h"
 #import "Article.h"
+#import "PhotoUtil.h"
 
 @implementation ArticleDetailViewController
-
-// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization.
-    }
-    return self;
-}
-*/
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil managedObjectContext:(NSManagedObjectContext*)managedObjectContext {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -76,6 +66,8 @@
 	article_.name = nameField.text;
 	article_.barcode = scanField.text;
 	article_.comment = commentField.text;
+	if (newPhoto)
+		article_.picture = [[PhotoUtil instance] savePhoto:photo.image];
 	list_.lastUsed = [NSDate date];
 
 	[managedObjectContext_ save:NULL];
@@ -118,7 +110,18 @@
 }
 
 - (IBAction)cameraClick:(id)sender {
-	
+	PhotoChooserViewController *photoChooser = [[PhotoChooserViewController alloc] initWithImage:photo.image canChange:YES];
+	photoChooser.delegate = self;
+	[self presentModalViewController:photoChooser animated:YES];
+}
+
+- (void)photoChooserDone:(PhotoChooserViewController *)photoChooser {
+	[self dismissModalViewControllerAnimated:YES];
+	if (photoChooser.newImage) {
+		newPhoto = YES;
+		photo.image = photoChooser.image;
+	}
+	[photoChooser release];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -137,6 +140,8 @@
 		nameField.text = article_.name;
 		scanField.text = article_.barcode;
 		commentField.text = article_.comment;
+		if (article_.picture)
+			photo.image = [[PhotoUtil instance] readPhoto:article_.picture];
 	} else {
 		rightButton.title = @"Lägg till";
 		self.title = @"Ny vara";

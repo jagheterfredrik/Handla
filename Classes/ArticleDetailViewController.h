@@ -10,10 +10,11 @@
 #import "Article.h"
 #import "ListArticle.h"
 #import "List.h"
+#import "PhotoChooserViewController.h"
 
 #import "ZBarSDK.h"
 
-@interface ArticleDetailViewController : UIViewController<ZBarReaderDelegate, UIImagePickerControllerDelegate> {
+@interface ArticleDetailViewController : UIViewController<ZBarReaderDelegate, UIImagePickerControllerDelegate, PhotoChooserDelegate> {
 	Article *article_;
 	List *list_;
 	NSManagedObjectContext *managedObjectContext_;
@@ -24,7 +25,9 @@
 	IBOutlet UITextField *commentField;
 	ZBarReaderViewController *barcodeReader;
 	UIImagePickerController *picturePicker;
+	BOOL newPhoto;
 }
+
 - (IBAction)scanClick:(id)sender;
 - (IBAction)cameraClick:(id)sender;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil managedObjectContext:(NSManagedObjectContext*)managedObjectContext;

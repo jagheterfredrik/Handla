@@ -13,6 +13,7 @@
 #import "Article.h"
 #import "AddArticleListViewController.h"
 
+
 @implementation IndividualListTableViewController
 
 @synthesize list_;
@@ -41,14 +42,6 @@
 	
 	self.titleKey = @"article.name";
 	self.searchKey = @"article.name";
-}
-
-- (void)imageTouched:(id)source {
-	/*
-	UIButton *button = (UIButton*)source;
-	UITableViewCell *cell = (UITableViewCell*)[[button superview] superview];
-	NSIndexPath *path = [self.tableView indexPathForCell:cell];
-	*/
 }
 
 #pragma mark -
@@ -123,18 +116,12 @@
 	[addArticleListViewController release];
 }
 
-
 - (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc. that aren't in use.
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (void)viewDidLoad {

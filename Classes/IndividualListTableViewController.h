@@ -18,7 +18,6 @@
 }
 
 - (void)setList:(List*)list;
-- (void)imageTouched:(id)source;
 
 @property (nonatomic,retain) List *list_;
 

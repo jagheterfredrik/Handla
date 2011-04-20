@@ -15,6 +15,8 @@
 #import "CheckoutViewController.h"
 #import "IndividualListTableViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "PhotoUtil.h"
+#import "PhotoChooserViewController.h"
 
 @implementation IndividualListViewController
 
@@ -213,6 +215,17 @@
     }
 }
 
+
+- (void)imagePressed:(NSNotification*)notification {
+	ListArticle *article = (ListArticle*)[notification object];
+	if (article.article.picture) {
+		UIImage *photo = [[PhotoUtil instance] readPhoto:article.article.picture];
+		PhotoChooserViewController *chooser = [[PhotoChooserViewController alloc] initWithImage:photo canChange:NO];
+		[self presentModalViewController:chooser animated:YES];
+		[chooser release];
+	}
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -227,6 +240,7 @@
     progressBar.progress = (float)(self.checkedElementsCount)/(float)(self.elementsCount);
 	[self updatePriceFields];
     
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imagePressed:) name:@"ListCellImagePressed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListArticleChanged" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListChanged" object:nil];;
 	[[NSNotificationCenter defaultCenter] addObserver:individualListTableViewController.tableView selector:@selector(reloadData) name:@"ArticleChanged" object:nil];

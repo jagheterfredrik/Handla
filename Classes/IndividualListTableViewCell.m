@@ -8,7 +8,7 @@
 
 #import "IndividualListTableViewCell.h"
 #import "AlertPrompt.h"
-
+#import "PhotoUtil.h"
 
 @implementation IndividualListTableViewCell
 @synthesize listArticle=listArticle_;
@@ -38,6 +38,10 @@
 	[alertPrompt release];
 }
 
+- (IBAction)imagePressed {
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"ListCellImagePressed" object:self.listArticle];
+}
+
 /**
  *  Updates the title, price and image to the 
  *  information available for the current
@@ -56,6 +60,11 @@
         priceLabel.text = @"? kr";
         priceLabel.textColor = [UIColor redColor];
     }
+	
+	if (self.listArticle.article.picture) {
+		[thumbnail setImage:[[PhotoUtil instance] readThumbnail:self.listArticle.article.picture] forState:UIControlStateNormal];
+		thumbnail.adjustsImageWhenHighlighted = NO;
+	}
 	
     [formatter release];
     
@@ -81,6 +90,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ListArticleChanged" object:nil];
     [self updateView];
 }
+
 #pragma mark -
 #pragma mark Alert prompt delegate
 
