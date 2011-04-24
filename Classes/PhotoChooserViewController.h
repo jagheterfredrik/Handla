@@ -20,6 +20,7 @@
 @interface PhotoChooserViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
 	BOOL canChange;
 	IBOutlet UIImageView *imageView;
+    NSString *picture_str;
 	IBOutlet UIButton *cameraButton;
 	IBOutlet UIButton *galleryButton;
 }
@@ -28,7 +29,7 @@
 @property (readonly) BOOL newImage;
 @property (readonly) UIImage *image;
 
-- (id)initWithImage:(UIImage*)photo canChange:(BOOL)change;
+- (id)initWithImage:(NSString*)photo canChange:(BOOL)change;
 
 - (IBAction)getPhoto:(id)sender;
 - (IBAction)goBack;

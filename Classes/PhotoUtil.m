@@ -60,7 +60,7 @@ NSString *thumbpath(NSString *base, NSString *name) {
 	
 	//thumbnail
 	CGSize size = CGSizeMake(57, 57);
-	UIGraphicsBeginImageContext(size);
+	UIGraphicsBeginImageContextWithOptions(size, YES, 0.f);
 	[photo drawInRect:CGRectMake(0,0,size.width,size.height)];
 	UIImage *thumbnail = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();

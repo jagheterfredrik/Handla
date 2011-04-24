@@ -219,8 +219,7 @@
 - (void)imagePressed:(NSNotification*)notification {
 	ListArticle *article = (ListArticle*)[notification object];
 	if (article.article.picture) {
-		UIImage *photo = [[PhotoUtil instance] readPhoto:article.article.picture];
-		PhotoChooserViewController *chooser = [[PhotoChooserViewController alloc] initWithImage:photo canChange:NO];
+		PhotoChooserViewController *chooser = [[PhotoChooserViewController alloc] initWithImage:article.article.picture canChange:NO];
 		[self presentModalViewController:chooser animated:YES];
 		[chooser release];
 	}

@@ -113,7 +113,7 @@
 }
 
 - (IBAction)cameraClick:(id)sender {
-	PhotoChooserViewController *photoChooser = [[PhotoChooserViewController alloc] initWithImage:photo.image canChange:YES];
+	PhotoChooserViewController *photoChooser = [[PhotoChooserViewController alloc] initWithImage:article_.picture canChange:YES];
 	photoChooser.delegate = self;
 	[self presentModalViewController:photoChooser animated:YES];
 }
@@ -144,7 +144,7 @@
 		scanField.text = article_.barcode;
 		commentField.text = article_.comment;
 		if (article_.picture)
-			photo.image = [[PhotoUtil instance] readPhoto:article_.picture];
+			photo.image = [[PhotoUtil instance] readThumbnail:article_.picture];
 	} else {
 		rightButton.title = @"Lägg till";
 		self.title = @"Ny vara";

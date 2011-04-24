@@ -8,25 +8,31 @@
 
 #import "PhotoChooserViewController.h"
 
+#import "PhotoUtil.h"
+
 @implementation PhotoChooserViewController
 
 @synthesize delegate;
 @synthesize newImage;
 @synthesize image;
 
-- (id)initWithImage:(UIImage*)photo canChange:(BOOL)change {
-    if (self = [super init]) {
+- (id)initWithImage:(NSString*)photo canChange:(BOOL)change {
+    if ((self = [super init])) {
 		canChange = change;
-		image = photo;
+        picture_str = photo;
+		image = [[PhotoUtil instance] readThumbnail:photo];
     }
     return self;
 }
 
+- (void)loadHighResolution {
+    UIImage *img = [[PhotoUtil instance] readPhoto:picture_str];
+    image = img;
+    imageView.image = image;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-	if (image) {
-		imageView.image = image;
-	}
 	if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
 		[cameraButton setEnabled:NO];
 		[cameraButton setHidden:YES];
@@ -36,6 +42,10 @@
 		[cameraButton setHidden:YES];
 		[galleryButton setEnabled:NO];
 		[galleryButton setHidden:YES];
+	}
+    if (image) {
+		imageView.image = image;
+        [self performSelectorInBackground:@selector(loadHighResolution) withObject:self];
 	}
 }
 
