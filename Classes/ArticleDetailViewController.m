@@ -75,8 +75,7 @@
 
 	[managedObjectContext_ save:NULL];
 	
-	//Programmet crashar om raden nedan läggs till.
-	//[[NSNotificationCenter defaultCenter] postNotificationName:@"ArticleChanged" object:self];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"ArticleChanged" object:self];
 	
 	[self.navigationController popViewControllerAnimated:YES];
 }

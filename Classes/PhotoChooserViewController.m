@@ -26,13 +26,27 @@
 }
 
 - (void)loadHighResolution {
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     UIImage *img = [[PhotoUtil instance] readPhoto:picture_str];
     image = img;
     imageView.image = image;
+    [pool release];
+    [indicator stopAnimating];
+    loading.hidden = YES;
+}
+
+- (void)doThreadcall {
+    [self performSelectorInBackground:@selector(loadHighResolution) withObject:self];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (image) {
+        [indicator startAnimating];
+		imageView.image = image;
+    } else {
+        loading.hidden = YES;
+    }
 	if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
 		[cameraButton setEnabled:NO];
 		[cameraButton setHidden:YES];
@@ -44,8 +58,7 @@
 		[galleryButton setHidden:YES];
 	}
     if (image) {
-		imageView.image = image;
-        [self performSelectorInBackground:@selector(loadHighResolution) withObject:self];
+        [self performSelector:@selector(doThreadcall) withObject:self afterDelay:0.01f];
 	}
 }
 

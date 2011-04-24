@@ -23,6 +23,8 @@
     NSString *picture_str;
 	IBOutlet UIButton *cameraButton;
 	IBOutlet UIButton *galleryButton;
+    IBOutlet UIActivityIndicatorView *indicator;
+    IBOutlet UILabel *loading;
 }
 
 @property (nonatomic,assign) NSObject<PhotoChooserDelegate> *delegate;
