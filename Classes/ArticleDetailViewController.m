@@ -66,8 +66,11 @@
 	article_.name = nameField.text;
 	article_.barcode = scanField.text;
 	article_.comment = commentField.text;
-	if (newPhoto)
+	if (newPhoto) {
+		if (article_.picture)
+			[[PhotoUtil instance] deletePhoto:article_.picture];
 		article_.picture = [[PhotoUtil instance] savePhoto:photo.image];
+	}
 	list_.lastUsed = [NSDate date];
 
 	[managedObjectContext_ save:NULL];

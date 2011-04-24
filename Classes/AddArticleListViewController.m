@@ -8,6 +8,7 @@
 
 #import "AddArticleListViewController.h"
 #import "ArticleDetailViewController.h"
+#import "PhotoUtil.h"
 
 @implementation AddArticleListViewController
 
@@ -121,6 +122,7 @@
 	for (id object in selectedArticle.listArticles)
 		[list_.managedObjectContext deleteObject:object];
 	[list_.managedObjectContext deleteObject:selectedArticle];
+	[[PhotoUtil instance] deletePhoto:selectedArticle.picture];
 	selectedArticle = nil;
 }
 

@@ -13,6 +13,10 @@ NSString *filepath(NSString *base, NSString *name) {
 	return [base stringByAppendingPathComponent:name];
 }
 
+NSString *thumbpath(NSString *base, NSString *name) {
+	return [base stringByAppendingPathComponent:[name stringByAppendingString:@"t"]];
+}
+
 @implementation PhotoUtil
 
 + (void)initialize {
@@ -26,14 +30,12 @@ NSString *filepath(NSString *base, NSString *name) {
 		basePath = [[library stringByAppendingPathComponent:@"Photos"] retain];
 		if (![fileManager fileExistsAtPath:basePath])
 			[fileManager createDirectoryAtPath:basePath withIntermediateDirectories:YES attributes:nil error:NULL];
-		NSLog(@"path: %@", basePath);
 	}
 	return self;
 }
 
 - (UIImage*)readPhoto:(NSString*)name {
 	if (!name) return nil;
-	NSLog(@"read: %@", name);
 	NSString *path = filepath(basePath, name);
 	if (![fileManager fileExistsAtPath:path])
 		return nil;
@@ -41,9 +43,11 @@ NSString *filepath(NSString *base, NSString *name) {
 }
 
 - (UIImage*)readThumbnail:(NSString*)name {
-	//TODO: create and return real thumbnail
-	NSLog(@"thumb");
-	return [self readPhoto:name];
+	if (!name) return nil;
+	NSString *path = thumbpath(basePath, name);
+	if (![fileManager fileExistsAtPath:path])
+		return nil;
+	return [UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
 }
 
 - (NSString*)savePhoto:(UIImage*)photo {
@@ -52,15 +56,24 @@ NSString *filepath(NSString *base, NSString *name) {
 		name = [NSString stringWithFormat:@"%08x", random()];
 		path = filepath(basePath, name);
 	} while ([fileManager fileExistsAtPath:path]);
-	NSLog(@"create: %@", name);
 	[UIImageJPEGRepresentation(photo, 0.7f) writeToFile:path atomically:NO];
+	
+	//thumbnail
+	CGSize size = CGSizeMake(57, 57);
+	UIGraphicsBeginImageContext(size);
+	[photo drawInRect:CGRectMake(0,0,size.width,size.height)];
+	UIImage *thumbnail = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	[UIImageJPEGRepresentation(thumbnail, 0.5f) writeToFile:thumbpath(basePath, name) atomically:NO];
 	return name;
 }
 
 - (void)deletePhoto:(NSString*)name {
 	if (!name) return;
-	NSLog(@"delete: %@", name);
 	NSString *path = filepath(basePath, name);
+	if ([fileManager fileExistsAtPath:path])
+		[fileManager removeItemAtPath:path error:NULL];
+	path = thumbpath(basePath, name);
 	if ([fileManager fileExistsAtPath:path])
 		[fileManager removeItemAtPath:path error:NULL];
 }
