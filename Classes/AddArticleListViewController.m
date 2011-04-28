@@ -10,6 +10,8 @@
 #import "ArticleDetailViewController.h"
 #import "PhotoUtil.h"
 
+#import "HandlaAppDelegate.h"
+
 @implementation AddArticleListViewController
 
 #pragma mark -
@@ -40,7 +42,7 @@
 #pragma mark Events
 
 - (void)addArticle {
-	ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil managedObjectContext:list_.managedObjectContext];
+	ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil managedObjectContext:context_];
 	[self.navigationController pushViewController:articleDetailViewController animated:YES];
 	[articleDetailViewController release];
 }
@@ -61,7 +63,9 @@
 	
 	//Setup the data source.
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	request.entity = [NSEntityDescription entityForName:@"Article" inManagedObjectContext:list_.managedObjectContext];
+    
+    context_ = [(HandlaAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
+	request.entity = [NSEntityDescription entityForName:@"Article" inManagedObjectContext:context_];
 	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
 																					 ascending:YES
 																					  selector:@selector(caseInsensitiveCompare:)]];
@@ -70,7 +74,7 @@
 	
 	NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
 									   initWithFetchRequest:request
-									   managedObjectContext:list_.managedObjectContext
+									   managedObjectContext:context_
 									   sectionNameKeyPath:nil
 									   cacheName:nil];
 	frc.delegate = self;
@@ -84,7 +88,12 @@
 	self.searchKey = @"name";
 	
 	// Set window title.
-	self.title = @"Lägg till vara";
+    if (list_) {
+        self.title = @"Lägg till vara";
+    } else {
+        self.navigationItem.leftBarButtonItem = self.editButtonItem;
+        self.title = @"Artiklar";
+    }
 }
 
 /*
@@ -120,8 +129,8 @@
 
 - (void)performRemoval {
 	for (id object in selectedArticle.listArticles)
-		[list_.managedObjectContext deleteObject:object];
-	[list_.managedObjectContext deleteObject:selectedArticle];
+		[context_ deleteObject:object];
+	[context_ deleteObject:selectedArticle];
 	[[PhotoUtil instance] deletePhoto:selectedArticle.picture];
 	selectedArticle = nil;
 }
@@ -156,6 +165,10 @@
 
 - (void)managedObjectSelected:(NSManagedObject *)managedObject
 {
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    if (!list_) {
+        return;
+    }
 	ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
 	listArticle.list = list_;
 	listArticle.article = (Article*)managedObject;
@@ -178,7 +191,6 @@
 			}
 		}
 	}
-	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -195,7 +207,7 @@
 	NSUInteger listArticleCount = [selectedArticle.listArticles count];
 	if (listArticleCount > 0) {
 		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Bekräfta borttagning" 
-												message:[NSString stringWithFormat:@"Varan du försöker ta bort finns redan i %i listor, tar du bort varan kommer även dessa tas bort.", listArticleCount]
+												message:[NSString stringWithFormat:@"Varan du vill ta bort finns redan i %i listor, tar du bort denna vara kommer den tas bort från de listorna.", listArticleCount]
 												delegate:self
 												cancelButtonTitle:@"Avbryt"
 												  otherButtonTitles:@"Ta bort", nil];

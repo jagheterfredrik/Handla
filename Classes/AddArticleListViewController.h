@@ -14,6 +14,7 @@
 
 @interface AddArticleListViewController : CoreDataTableViewController<UIActionSheetDelegate> {
 	List *list_;
+    NSManagedObjectContext* context_;
 	Article *selectedArticle;
 }
 
