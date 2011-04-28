@@ -75,7 +75,7 @@
 	NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
 									   initWithFetchRequest:request
 									   managedObjectContext:context_
-									   sectionNameKeyPath:nil
+									   sectionNameKeyPath:@"name"
 									   cacheName:nil];
 	frc.delegate = self;
 	
@@ -94,6 +94,7 @@
         self.navigationItem.leftBarButtonItem = self.editButtonItem;
         self.title = @"Artiklar";
     }
+    
 }
 
 /*
@@ -137,7 +138,26 @@
 
 #pragma mark -
 #pragma mark Core data table view controller overrides
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.0f;
+}
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [[fetchedResultsController sections] count];
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    return [fetchedResultsController sectionIndexTitles];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+    return [fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
+}
 - (void)managedObjectAccessoryTapped:(NSManagedObject *)managedObject {
 	selectedArticle = (Article *) managedObject;
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:selectedArticle.name
