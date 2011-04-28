@@ -68,7 +68,7 @@
 	request.entity = [NSEntityDescription entityForName:@"Article" inManagedObjectContext:context_];
 	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
 																					 ascending:YES
-																					  selector:@selector(caseInsensitiveCompare:)]];
+																					  selector:@selector(localizedCaseInsensitiveCompare:)]];
 	request.predicate = nil;
 	request.fetchBatchSize = 20;
 	
@@ -138,6 +138,7 @@
 
 #pragma mark -
 #pragma mark Core data table view controller overrides
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0.0f;
 }
