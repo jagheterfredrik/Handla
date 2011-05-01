@@ -62,6 +62,9 @@
 	return self;
 }
 
+- (void)createSearchBar{
+    //we dont want a search bar in this class
+}
 
 #pragma mark -
 #pragma mark Events
@@ -188,12 +191,15 @@
          }
      }
      //TODO: no sections maybe fucks up this piece of code? test that
+     return 0; //we should not get here,but this supresses warnings.
  } 
 
 
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    return [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
+    return [NSArray arrayWithArray:
+                                 [@"#|A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z|Å|Ä|Ö"
+                                  componentsSeparatedByString:@"|"]];
 }
 
 
