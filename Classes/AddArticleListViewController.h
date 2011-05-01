@@ -16,7 +16,9 @@
 	List *list_;
     NSManagedObjectContext* context_;
 	Article *selectedArticle;
+    
 }
 
 - (id)initWithList:(List*)list;
+
 @end

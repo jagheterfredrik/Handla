@@ -12,6 +12,31 @@
 
 #import "HandlaAppDelegate.h"
 
+//Hack to get first letters from database entries
+@interface NSManagedObject (FirstLetter)
+- (NSString *)uppercaseFirstLetterOfName;
+@end
+
+@implementation NSManagedObject (FirstLetter)
+- (NSString *)uppercaseFirstLetterOfName {
+    [self willAccessValueForKey:@"uppercaseFirstLetterOfName"];
+    NSString *aString = [[self valueForKey:@"name"] uppercaseString];
+    
+    // support UTF-16:
+    NSString *stringToReturn = [aString substringWithRange:[aString rangeOfComposedCharacterSequenceAtIndex:0]];
+    
+    // OR no UTF-16 support:
+    //NSString *stringToReturn = [aString substringToIndex:1];
+    
+    [self didAccessValueForKey:@"uppercaseFirstLetterOfName"];
+    return stringToReturn;
+}
+@end
+
+
+
+
+
 @implementation AddArticleListViewController
 
 #pragma mark -
@@ -75,7 +100,7 @@
 	NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
 									   initWithFetchRequest:request
 									   managedObjectContext:context_
-									   sectionNameKeyPath:@"name"
+									   sectionNameKeyPath:@"uppercaseFirstLetterOfName"
 									   cacheName:nil];
 	frc.delegate = self;
 	
@@ -142,23 +167,41 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0.0f;
 }
+  
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[fetchedResultsController sections] count];
-}
+ - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+     NSArray* sections = self.fetchedResultsController.sections;
+     
+     if ([title isEqualToString:@"#"] || [sections count]==0) {
+         //symbols at the top. this is hardcoded.
+         return 0;
+     }
+     
+     for (NSInteger i = 0; i<[sections count]; i++) {
+         id <NSFetchedResultsSectionInfo> thisSection = [sections objectAtIndex:i];
+         
+         if ([title localizedCaseInsensitiveCompare:thisSection.name]==NSOrderedSame) {
+             return i;
+         }
+         if ([title localizedCaseInsensitiveCompare:thisSection.name]==NSOrderedAscending) {
+             return i-1;
+         }
+     }
+     //TODO: no sections maybe fucks up this piece of code? test that
+ } 
+
+
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    return [fetchedResultsController sectionIndexTitles];
+    return [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    return [fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo numberOfObjects];
 }
+
 - (void)managedObjectAccessoryTapped:(NSManagedObject *)managedObject {
 	selectedArticle = (Article *) managedObject;
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:selectedArticle.name
