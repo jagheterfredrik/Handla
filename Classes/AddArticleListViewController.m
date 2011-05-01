@@ -62,9 +62,6 @@
 	return self;
 }
 
-- (void)createSearchBar{
-    //we dont want a search bar in this class
-}
 
 #pragma mark -
 #pragma mark Events
