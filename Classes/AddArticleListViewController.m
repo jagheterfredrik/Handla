@@ -172,9 +172,13 @@
  - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
      NSArray* sections = self.fetchedResultsController.sections;
      
-     if ([title isEqualToString:@"#"] || [sections count]==0) {
+     if ([title isEqualToString:@"#"] || [sections count]==1) {
          //symbols at the top. this is hardcoded.
          return 0;
+     }
+     if (index == 0) {
+         [tableView setContentOffset:CGPointZero animated:NO];
+         return NSNotFound;
      }
      
      for (NSInteger i = 0; i<[sections count]; i++) {
@@ -198,7 +202,7 @@
         return nil;
     } else {
         return [NSArray arrayWithArray:
-                                 [@"#|A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z|Å|Ä|Ö"
+                                 [@"{search}|A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z|Å|Ä|Ö"
                                   componentsSeparatedByString:@"|"]];
     }
 }
