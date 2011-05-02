@@ -7,10 +7,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AlertPrompt : UIAlertView 
+@interface AlertPrompt : UIAlertView <UITextFieldDelegate>
 {
     UITextField *textField;
 }
+@property (nonatomic, assign) NSInteger maxLength;
 @property (nonatomic, retain) UITextField *textField;
 @property (readonly) NSString *enteredText;
 - (id)initWithTitle:(NSString *)title delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle okButtonTitle:(NSString *)okButtonTitle;

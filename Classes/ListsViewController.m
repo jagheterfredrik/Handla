@@ -191,6 +191,7 @@
 - (void)createList {
 	self.list = nil;
 	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp din lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Lägg till"];
+    alertPrompt.maxLength = 30;
 	[alertPrompt show];
 	[alertPrompt release];
 }

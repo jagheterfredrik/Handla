@@ -96,6 +96,8 @@
 		[dateShower setTitle:[dateFormatter stringFromDate:budgetPost_.timeStamp] forState:UIControlStateNormal];
 	}
 	[amountFormatter release];
+    
+    nameBox.delegate = self;
 }
 
 
@@ -125,6 +127,14 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	[dateShower setTitle:[dateFormatter stringFromDate:datePicker.date] forState:UIControlStateNormal];
+}
+
+#pragma mark -
+#pragma mark Text field delegate methods
+
+- (BOOL)textField:(UITextField *)textField_ shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSUInteger newLength = [textField_.text length] + [string length] - range.length;
+    return (newLength > 30) ? NO : YES;
 }
 
 /**

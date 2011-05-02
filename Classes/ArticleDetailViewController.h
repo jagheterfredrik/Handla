@@ -14,7 +14,7 @@
 
 #import "ZBarSDK.h"
 
-@interface ArticleDetailViewController : UIViewController<ZBarReaderDelegate, UIImagePickerControllerDelegate, PhotoChooserDelegate> {
+@interface ArticleDetailViewController : UIViewController<ZBarReaderDelegate, UIImagePickerControllerDelegate, PhotoChooserDelegate, UITextFieldDelegate> {
 	Article *article_;
 	List *list_;
 	NSManagedObjectContext *managedObjectContext_;

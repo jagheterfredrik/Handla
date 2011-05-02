@@ -127,6 +127,11 @@
 	}
 }
 
+- (BOOL)textField:(UITextField *)textField_ shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSUInteger newLength = [textField_.text length] + [string length] - range.length;
+    return (newLength > 30) ? NO : YES;
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -154,6 +159,7 @@
 	[rightButton release];
 	
 	[nameField becomeFirstResponder];
+    nameField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {

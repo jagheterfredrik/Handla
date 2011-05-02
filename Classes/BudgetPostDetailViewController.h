@@ -11,7 +11,7 @@
 
 #import "NSDate+Helper.h"
 
-@interface BudgetPostDetailViewController : UIViewController<UIActionSheetDelegate> {
+@interface BudgetPostDetailViewController : UIViewController<UIActionSheetDelegate, UITextFieldDelegate> {
 	NSManagedObjectContext *managedObjectContext_;
 	BudgetPost *budgetPost_;
 	UIDatePicker *datePicker;
