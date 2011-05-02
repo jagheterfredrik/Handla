@@ -20,8 +20,8 @@
     [super viewDidLoad];
 	
 	self.title = @"Inställningar";
-	listLabel = @"Listinställningar";
-	budgetLabel = @"Budgetinställningar";
+	listLabel = @"Listor";
+	budgetLabel = @"Budget";
 	aboutLabel = @"Om Hjälpmedelsinstituet";
 	
 	

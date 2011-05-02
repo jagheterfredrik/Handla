@@ -19,12 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.title = @"Listinställningar";
+	self.title = @"Listor";
 	
-	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneClick)];
-	self.navigationItem.leftBarButtonItem = doneButton;
-	[doneButton release];
-
 	
 	optionSortOrder = [[NSMutableArray alloc] initWithCapacity:3];
 	[optionSortOrder addObject:@"Namn"];

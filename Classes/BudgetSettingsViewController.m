@@ -19,11 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.title = @"Budgetinställningar";
-	
-	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneClick)];
-	self.navigationItem.leftBarButtonItem = doneButton;
-	[doneButton release];
+	self.title = @"Budget";
 	
 	
 	optionDateInterval = [[NSMutableArray alloc] initWithCapacity:3];
