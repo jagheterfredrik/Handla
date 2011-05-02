@@ -10,6 +10,8 @@
 
 #import "PhotoUtil.h"
 
+#import "DSActivityView.h"
+
 @implementation PhotoChooserViewController
 
 @synthesize delegate;
@@ -31,9 +33,7 @@
     image = img;
     imageView.image = image;
     [pool release];
-    [indicator stopAnimating];
-    loading.hidden = YES;
-    loadingView.hidden = YES;
+    [DSWhiteActivityView removeView];
 }
 
 - (void)doThreadcall {
@@ -58,11 +58,11 @@
 		[galleryButton setHidden:YES];
 	}
     if (image) {
-        loadingView.hidden = NO;
-        [indicator startAnimating];
-        loading.hidden = NO;
 		imageView.image = image;
-        [self performSelector:@selector(doThreadcall) withObject:self afterDelay:0.01f];
+        
+        [DSWhiteActivityView newActivityViewForView:imageView withLabel:@"Laddar..."];
+        
+        [self performSelector:@selector(doThreadcall) withObject:nil afterDelay:0.01f];
 	}
     
     isInitialized = YES;
@@ -88,16 +88,18 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-	[self dismissModalViewControllerAnimated:YES];
-	[picker release];
+    [picker dismissModalViewControllerAnimated:NO];
 	imageView.image = image = [info objectForKey:UIImagePickerControllerOriginalImage];
 	newImage = YES;
+    [picker release];
+    [self performSelectorOnMainThread:@selector(goBack) withObject:nil waitUntilDone:NO];
 }
 
 - (IBAction)goBack {
 	if (self.delegate) {
 		[self.delegate photoChooserDone:self]; 
 	} else {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 		[self.parentViewController dismissModalViewControllerAnimated:YES];
 	}
 }

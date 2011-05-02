@@ -43,6 +43,8 @@
         title = @"Nytt pris:";
     }
     
+    [formatter release];
+    
 	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:title delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
 	alertPrompt.textField.keyboardType=UIKeyboardTypeDecimalPad;
 	[alertPrompt show];

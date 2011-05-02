@@ -10,6 +10,8 @@
 #import "Article.h"
 #import "PhotoUtil.h"
 
+#import "DSActivityView.h"
+
 @implementation ArticleDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil managedObjectContext:(NSManagedObjectContext*)managedObjectContext {
@@ -38,6 +40,27 @@
     return self;
 }
 
+- (void)doClose {
+    [self.navigationController popViewControllerAnimated:YES];
+    [DSBezelActivityView removeViewAnimated:YES];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ArticleChanged" object:nil];
+}
+
+- (void)showProgress {
+    [DSBezelActivityView newActivityViewForView:placeholder withLabel:@"Sparar..."];
+}
+
+- (void)doSave {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    if (article_.picture)
+        [[PhotoUtil instance] deletePhoto:article_.picture];
+    article_.picture = [[PhotoUtil instance] savePhoto:photo.image];
+    
+    [self performSelectorOnMainThread:@selector(doClose) withObject:nil waitUntilDone:NO];
+    [pool release];
+}
+
 - (void)doneClick {
 	if ([nameField.text length] == 0) {
 		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Du måste ange ett namn för varan"
@@ -49,8 +72,8 @@
 		[actionSheet release];
 		return;
 	}
-	
-	//Check if we are editing a article, if not create it
+    
+    //Check if we are editing an article, if not create it
 	if (article_ == nil) {
 		article_ = [NSEntityDescription insertNewObjectForEntityForName:@"Article" inManagedObjectContext:managedObjectContext_];
 	}
@@ -66,18 +89,15 @@
 	article_.name = nameField.text;
 	article_.barcode = scanField.text;
 	article_.comment = commentField.text;
-	if (newPhoto) {
-		if (article_.picture)
-			[[PhotoUtil instance] deletePhoto:article_.picture];
-		article_.picture = [[PhotoUtil instance] savePhoto:photo.image];
-	}
+	
 	list_.lastUsed = [NSDate date];
-
-	[managedObjectContext_ save:NULL];
-	
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"ArticleChanged" object:self];
-	
-	[self.navigationController popViewControllerAnimated:YES];
+    
+    if (newPhoto) {
+        [self showProgress];
+        [self performSelectorInBackground:@selector(doSave) withObject:nil];
+    } else {
+        [self doClose];
+    }
 }
 
 - (void) imagePickerController:(UIImagePickerController*)reader didFinishPickingMediaWithInfo:(NSDictionary*)info {

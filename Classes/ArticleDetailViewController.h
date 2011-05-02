@@ -26,6 +26,7 @@
 	ZBarReaderViewController *barcodeReader;
 	UIImagePickerController *picturePicker;
     PhotoChooserViewController *photoChooser;
+    IBOutlet UIView *placeholder;
 	BOOL newPhoto;
 }
 

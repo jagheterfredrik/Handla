@@ -117,7 +117,7 @@
         self.title = @"Lägg till vara";
     } else {
         self.navigationItem.leftBarButtonItem = self.editButtonItem;
-        self.title = @"Artiklar";
+        self.title = @"Tidigare varor";
     }
     
 }
@@ -241,36 +241,42 @@
 - (void)managedObjectSelected:(NSManagedObject *)managedObject
 {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    if (!list_) {
-        return;
+    if (list_) {
+        ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
+        listArticle.list = list_;
+        listArticle.article = (Article*)managedObject;
+        NSDate *latest = nil;
+        NSArray *myArray = [listArticle.article.listArticles allObjects];
+        for (ListArticle *object in myArray) {
+            if(!latest) {
+                latest = object.timeStamp;
+            }
+            if ([object.timeStamp compare:latest] == NSOrderedDescending || object.timeStamp == latest)
+            {
+                latest = object.timeStamp;
+                if(object.price != nil)
+                {
+                    listArticle.price = object.price;
+                }
+                else 
+                {
+                    listArticle.price = nil;
+                }
+            }
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil article:(Article*)managedObject];
+		[self.navigationController pushViewController:articleDetailViewController animated:YES];
+		[articleDetailViewController release];   
     }
-	ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
-	listArticle.list = list_;
-	listArticle.article = (Article*)managedObject;
-	NSDate *latest = nil;
-	NSArray *myArray = [listArticle.article.listArticles allObjects];
-	for (ListArticle *object in myArray) {
-		if(!latest) {
-			latest = object.timeStamp;
-		}
-		if ([object.timeStamp compare:latest] == NSOrderedDescending || object.timeStamp == latest)
-		{
-			latest = object.timeStamp;
-			if(object.price != nil)
-			{
-				listArticle.price = object.price;
-			}
-			else 
-			{
-				listArticle.price = nil;
-			}
-		}
-	}
-	[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (UITableViewCellAccessoryType)accessoryTypeForManagedObject:(NSManagedObject *)managedObject {
-	return UITableViewCellAccessoryDetailDisclosureButton;
+    if(list_)
+        return UITableViewCellAccessoryDetailDisclosureButton;
+    else
+        return UITableViewCellAccessoryDisclosureIndicator;
 }
 
 - (BOOL)canDeleteManagedObject:(NSManagedObject *)managedObject {
