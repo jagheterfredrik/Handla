@@ -218,12 +218,42 @@
 	}
     
     if ([self elementsCount] == [self checkedElementsCount]) {
-        //we are all done with the list
-        CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
-                                                                            amountToPay:[self calculateSumOfCheckedElementsInList]];
-        [self.navigationController presentModalViewController:checkOut animated:YES];
+		
+		//if checkout view is off, add new budget post and change view to budget, else goto checkoutview
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		if (![defaults boolForKey:@"listCheckoutViewOn"]) {
+			BudgetPost* newBudgetPost = [NSEntityDescription insertNewObjectForEntityForName:@"BudgetPost" inManagedObjectContext:list_.managedObjectContext];
+			newBudgetPost.name = list_.name;
+			newBudgetPost.timeStamp = [NSDate date];
+			//TODO: this should be rounded if we pay with cash; since there are no femtioörings anymore
+			NSDecimalNumber *amount = [self calculateSumOfCheckedElementsInList];
+			amount = [amount decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
+			newBudgetPost.amount = amount;
+			//TODO: add comment!
+			//[NSString stringWithFormat:@"Automatiskt sparat inköp %s", [[NSDate date] description]];
+			
+			
+			NSArray *myArray = [list_.articles allObjects];
+			for(ListArticle *object in myArray) {
+				[object setChecked:[NSNumber numberWithBool:NO]];
+			}
+			
+			[list_.managedObjectContext save:NULL];
+			
+			//go to budget mode
+			[(UITabBarController*)self.tabBarController setSelectedIndex:2];
+			[self.navigationController popViewControllerAnimated:NO];
+			
+		}else {
+			//we are all done with the list
+			CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
+																				amountToPay:[self calculateSumOfCheckedElementsInList]];
+			[self.navigationController presentModalViewController:checkOut animated:YES];
+			
+			[checkOut release];
+		}
+
         
-        [checkOut release];
     }
     else {        
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Du har inte checkat av alla varor!" 
