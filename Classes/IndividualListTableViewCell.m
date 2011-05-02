@@ -33,7 +33,17 @@
 }
 
 - (IBAction)changePriceButtonPressed:(UIButton*) sender{
-	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Nytt pris:" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+	[formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+
+    NSString *title;
+    if (listArticle_.price) {
+        title = [NSString stringWithFormat:@"Nytt pris (%@):",[formatter stringFromNumber:listArticle_.price]];
+    } else {
+        title = @"Nytt pris:";
+    }
+    
+	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:title delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
 	alertPrompt.textField.keyboardType=UIKeyboardTypeDecimalPad;
 	[alertPrompt show];
 	[alertPrompt release];
