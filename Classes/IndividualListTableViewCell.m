@@ -104,7 +104,6 @@
 		[f setNumberStyle:NSNumberFormatterDecimalStyle];
 		listArticle_.price = (NSDecimalNumber*)[f numberFromString:alertPrompt.textField.text];
 		listArticle_.timeStamp = [NSDate date];
-		NSLog(@"%@", listArticle_.timeStamp);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ListArticleChanged" object:nil];
 		[f release];
 	}

@@ -25,6 +25,7 @@
 	IBOutlet UITextField *commentField;
 	ZBarReaderViewController *barcodeReader;
 	UIImagePickerController *picturePicker;
+    PhotoChooserViewController *photoChooser;
 	BOOL newPhoto;
 }
 

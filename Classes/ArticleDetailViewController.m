@@ -112,18 +112,19 @@
 }
 
 - (IBAction)cameraClick:(id)sender {
-	PhotoChooserViewController *photoChooser = [[PhotoChooserViewController alloc] initWithImage:article_.picture canChange:YES];
+    if (!photoChooser) {
+        photoChooser = [[PhotoChooserViewController alloc] initWithImage:article_.picture canChange:YES];
+    }
 	photoChooser.delegate = self;
 	[self presentModalViewController:photoChooser animated:YES];
 }
 
-- (void)photoChooserDone:(PhotoChooserViewController *)photoChooser {
+- (void)photoChooserDone:(PhotoChooserViewController *)photoChooser_ {
 	[self dismissModalViewControllerAnimated:YES];
-	if (photoChooser.newImage) {
+	if (photoChooser_.newImage) {
 		newPhoto = YES;
-		photo.image = photoChooser.image;
+		photo.image = photoChooser_.image;
 	}
-	[photoChooser release];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -170,6 +171,7 @@
 
 
 - (void)dealloc {
+    [photoChooser release];
     [super dealloc];
 }
 

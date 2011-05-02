@@ -33,6 +33,7 @@
     [pool release];
     [indicator stopAnimating];
     loading.hidden = YES;
+    loadingView.hidden = YES;
 }
 
 - (void)doThreadcall {
@@ -41,12 +42,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (image) {
-        [indicator startAnimating];
-		imageView.image = image;
-    } else {
-        loading.hidden = YES;
+    
+    if (isInitialized) {
+        return;
     }
+
 	if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
 		[cameraButton setEnabled:NO];
 		[cameraButton setHidden:YES];
@@ -58,8 +58,14 @@
 		[galleryButton setHidden:YES];
 	}
     if (image) {
+        loadingView.hidden = NO;
+        [indicator startAnimating];
+        loading.hidden = NO;
+		imageView.image = image;
         [self performSelector:@selector(doThreadcall) withObject:self afterDelay:0.01f];
 	}
+    
+    isInitialized = YES;
 }
 
 - (IBAction)getPhoto:(id)sender {
@@ -80,7 +86,8 @@
 	[picker release];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
 	[self dismissModalViewControllerAnimated:YES];
 	[picker release];
 	imageView.image = image = [info objectForKey:UIImagePickerControllerOriginalImage];

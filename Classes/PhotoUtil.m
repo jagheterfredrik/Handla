@@ -59,7 +59,13 @@ NSString *thumbpath(NSString *base, NSString *name) {
 	[UIImageJPEGRepresentation(photo, 0.7f) writeToFile:path atomically:NO];
 	
 	//thumbnail
-	CGSize size = CGSizeMake(57, 57);
+    CGSize size;
+    CGFloat ratio = photo.size.width / photo.size.height;
+    if (ratio < 1.f) {
+        size = CGSizeMake(57*ratio,57);
+    } else {
+        size = CGSizeMake(57,57/ratio);
+    }
 	UIGraphicsBeginImageContextWithOptions(size, YES, 0.f);
 	[photo drawInRect:CGRectMake(0,0,size.width,size.height)];
 	UIImage *thumbnail = UIGraphicsGetImageFromCurrentImageContext();

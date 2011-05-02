@@ -146,12 +146,8 @@
 	if(checkoutSwitch.on)
 	{
 		[defaults setBool:YES forKey:@"listCheckoutViewOn"];
-		NSLog(@"ON");
-	}
-	else
-	{
+	} else {
 		[defaults setBool:NO forKey:@"listCheckoutViewOn"];
-		NSLog(@"OFF");
 	}
 	
 	[defaults synchronize];

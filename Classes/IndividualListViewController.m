@@ -20,6 +20,60 @@
 
 @implementation IndividualListViewController
 
+- (void) imagePickerController:(UIImagePickerController*)reader didFinishPickingMediaWithInfo:(NSDictionary*)info {
+	id<NSFastEnumeration> results =
+	[info objectForKey: ZBarReaderControllerResults];
+    ZBarSymbol *symbol = nil;
+    for(symbol in results)
+        // EXAMPLE: just grab the first barcode
+        break;
+    
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Article" inManagedObjectContext:list_.managedObjectContext]; 
+    
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease]; 
+    
+    [request setEntity:entityDescription]; 
+    
+    [request setPredicate:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"barcode == '%@'", symbol.data]]];
+    
+    NSError *error = nil; 
+    NSArray *array = [list_.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if ([array count]>0) {
+        ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
+        listArticle.list = list_;
+        listArticle.article = (Article*)[array lastObject];
+        NSDate *latest = nil;
+        NSArray *myArray = [listArticle.article.listArticles allObjects];
+        for (ListArticle *object in myArray) {
+            if(!latest) {
+                latest = object.timeStamp;
+            }
+            if ([object.timeStamp compare:latest] == NSOrderedDescending || object.timeStamp == latest)
+            {
+                latest = object.timeStamp;
+                if(object.price != nil)
+                {
+                    listArticle.price = object.price;
+                }
+                else 
+                {
+                    listArticle.price = nil;
+                }
+            }
+        }
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ingen vara funnen!" 
+                                                        message:@"Den vara du skannade finns ej bland dina tidigare varor." 
+                                                       delegate:self 
+                                              cancelButtonTitle:@"Ok"
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+    }
+    
+	[reader dismissModalViewControllerAnimated: YES];
+}
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	switch (buttonIndex) {
@@ -36,6 +90,26 @@
 			AddArticleListViewController *addArticleListViewController = [[AddArticleListViewController alloc] initWithList:list_];
 			[self.navigationController pushViewController:addArticleListViewController animated:YES];
 			[addArticleListViewController release];
+			break;
+		}
+        case 2:
+		{
+			
+            ZBarReaderViewController *reader = [ZBarReaderViewController new];
+            reader.readerDelegate = self;
+            
+            ZBarImageScanner *scanner = reader.scanner;
+            // TODO: (optional) additional reader configuration here
+            
+            // disable rarely used I2/5 to improve performance
+            [scanner setSymbology: ZBAR_I25
+                           config: ZBAR_CFG_ENABLE
+                               to: 0];
+            
+            // present and release the controller
+            [self presentModalViewController: reader
+                                    animated: YES];
+            [reader release];
 			break;
 		}
 		default:
@@ -81,7 +155,7 @@
 															 delegate:self
 													cancelButtonTitle:@"Avbryt"
 											   destructiveButtonTitle:nil
-													otherButtonTitles:@"Skapa ny vara",@"Lägg till tidigare vara",nil];
+													otherButtonTitles:@"Skapa ny vara",@"Lägg till tidigare vara",@"Skanna in vara", nil];
 	[actionSheet showInView:[[self view] window]];
 	[actionSheet release];
 }
