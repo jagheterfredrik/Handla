@@ -31,7 +31,7 @@
 	NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
 									   initWithFetchRequest:request
 									   managedObjectContext:list_.managedObjectContext
-									   sectionNameKeyPath:nil
+									   sectionNameKeyPath:@"checked"
 									   cacheName:nil];
 	frc.delegate = self;
 	
@@ -46,6 +46,19 @@
 
 #pragma mark -
 #pragma mark Core data table view controller overrides
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if ([[super tableView:tableView titleForHeaderInSection:section] isEqualToString:@"0"]) {
+        return @"Icke hämtade varor";
+    } else {
+        return @"Hämtade varor";
+    }
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    return nil;
+}
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [super controllerDidChangeContent:controller];
