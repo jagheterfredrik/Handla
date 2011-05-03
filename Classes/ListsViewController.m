@@ -97,6 +97,9 @@
         self.editing = NO;
         self.navigationItem.leftBarButtonItem = nil;
 		tableView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+		UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createList)];
+		self.navigationItem.rightBarButtonItem = addButton;
+		[addButton release];
 		[imageView release];
 	} else {
 		tableView.backgroundView = nil;
@@ -104,6 +107,7 @@
 		showHelp = NO;
 		self.searchDisplayController.searchBar.hidden = NO;
         self.navigationItem.leftBarButtonItem = self.editButtonItem;
+		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(turnOnEditing)];
         tableView.scrollEnabled = YES;
 		tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 	}
@@ -122,8 +126,9 @@
 	self.navigationItem.rightBarButtonItem = addButton;
 	[addButton release];
 	
-	// Add an edit-button to the left on the navigationbar
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    //Add an edit-button to the left on the navigationbar
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(turnOnEditing)];
+
 		
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	request.entity = [NSEntityDescription entityForName:@"List" inManagedObjectContext:managedObjectContext_];
@@ -146,6 +151,7 @@
 	self.searchKey = @"name";
 	self.title = @"Listor";
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -196,6 +202,22 @@
 	[alertPrompt release];
 }
 
+- (void)turnOnEditing {
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(turnOffEditing)];
+	self.navigationItem.rightBarButtonItem = nil;
+	[self.tableView setEditing:YES animated:YES];
+	[self.navigationItem.leftBarButtonItem release];
+
+}
+
+- (void)turnOffEditing {
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(turnOnEditing)];
+	[self.tableView setEditing:NO animated:YES];
+	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createList)];
+	self.navigationItem.rightBarButtonItem = addButton;
+	[addButton release];
+	[self.navigationItem.leftBarButtonItem release];
+}
 #pragma mark -
 #pragma mark Alert prompt delegate
 
