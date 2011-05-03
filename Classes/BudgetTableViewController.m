@@ -16,6 +16,7 @@
 @implementation BudgetTableViewController
 
 @synthesize previousBudgetSum, budgetSum;
+@synthesize navItem;
 
 - (void)viewDidLoad {
 	//Setup the date formatter
@@ -78,6 +79,11 @@
 	[sumRequest release];
 	
 	[self setFetchedResultsController:frc];
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    self.navItem.rightBarButtonItem.enabled = !editing;
+    [super setEditing:editing animated:animated];
 }
 
 - (void)setDurationStartDate:(NSDate*)startDate_ endDate:(NSDate*)endDate_ {

@@ -24,11 +24,13 @@
 	NSDate *endDate;
     
     BudgetTableViewCell *prevCell;
+    UINavigationItem *navItem;
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 - (void)setDurationStartDate:(NSDate*)startDate endDate:(NSDate*)endDate;
 
+@property (nonatomic, retain) UINavigationItem *navItem;
 @property (nonatomic, retain) NSDecimalNumber *previousBudgetSum;
 @property (nonatomic, retain) NSDecimalNumber *budgetSum;
 

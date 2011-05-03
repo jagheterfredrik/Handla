@@ -79,6 +79,11 @@
 	}
 }
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    self.navigationItem.rightBarButtonItem.enabled = !editing;
+    [super setEditing:editing animated:animated];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	NSInteger numRows = [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];

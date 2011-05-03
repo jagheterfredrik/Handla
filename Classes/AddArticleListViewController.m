@@ -281,6 +281,11 @@
 	[self performRemoval];
 }
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    self.navigationItem.rightBarButtonItem.enabled = !editing;
+    [super setEditing:editing animated:animated];
+}
+
 #pragma mark -
 #pragma mark Alert view delegate
 
