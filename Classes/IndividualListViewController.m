@@ -43,25 +43,7 @@
         ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
         listArticle.list = list_;
         listArticle.article = (Article*)[array lastObject];
-        NSDate *latest = nil;
-        NSArray *myArray = [listArticle.article.listArticles allObjects];
-        for (ListArticle *object in myArray) {
-            if(!latest) {
-                latest = object.timeStamp;
-            }
-            if ([object.timeStamp compare:latest] == NSOrderedDescending || object.timeStamp == latest)
-            {
-                latest = object.timeStamp;
-                if(object.price != nil)
-                {
-                    listArticle.price = object.price;
-                }
-                else 
-                {
-                    listArticle.price = nil;
-                }
-            }
-        }
+        listArticle.price = listArticle.article.lastPrice;
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ingen vara funnen!" 
                                                         message:@"Den vara du skannade finns ej bland dina tidigare varor." 

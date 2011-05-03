@@ -15,7 +15,6 @@
 
 - (id)init {
 	[[NSBundle mainBundle] loadNibNamed:@"IndividualListCell" owner:self options:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateView) name:@"ArticleChanged" object:nil];
     return cell;
 }
 
