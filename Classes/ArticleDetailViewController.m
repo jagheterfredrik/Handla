@@ -189,7 +189,7 @@
             //Choose existing picture
         {
             UIImagePickerController *imagePicker = [UIImagePickerSingleton sharedInstance];
-            imagePicker.sourceType =  UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            imagePicker.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
             imagePicker.delegate = self;
             imagePicker.allowsEditing = NO;
             [self presentModalViewController:imagePicker animated:YES];
