@@ -30,6 +30,8 @@
 		0536C0341370007300009372 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536C0301370007300009372 /* EGOImageLoadConnection.m */; };
 		0536C0351370007300009372 /* EGOImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536C0321370007300009372 /* EGOImageLoader.m */; };
 		0536C0371370010700009372 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0536C0361370010600009372 /* MessageUI.framework */; };
+		0536C03B13703BFA00009372 /* UIImagePickerSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536C03A13703BF800009372 /* UIImagePickerSingleton.m */; };
+		0536C046137069FE00009372 /* BrutalUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536C045137069FC00009372 /* BrutalUIImageView.m */; };
 		055411F013368B7B00533893 /* PDColoredProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 055411EE13368B7B00533893 /* PDColoredProgressView.m */; };
 		05A0CB10135C2241008AD4D4 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A0CB0F135C2241008AD4D4 /* NSDate+Helper.m */; };
 		05E5EBED1351D6FD00DF6D7A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 05E5EBEC1351D6FD00DF6D7A /* README.md */; };
@@ -172,6 +174,10 @@
 		0536C0321370007300009372 /* EGOImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageLoader.m; sourceTree = "<group>"; };
 		0536C0361370010600009372 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		0536C0381370227A00009372 /* Handla 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Handla 5.xcdatamodel"; sourceTree = "<group>"; };
+		0536C03913703BF700009372 /* UIImagePickerSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImagePickerSingleton.h; sourceTree = "<group>"; };
+		0536C03A13703BF800009372 /* UIImagePickerSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImagePickerSingleton.m; sourceTree = "<group>"; };
+		0536C044137069F900009372 /* BrutalUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrutalUIImageView.h; sourceTree = "<group>"; };
+		0536C045137069FC00009372 /* BrutalUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrutalUIImageView.m; sourceTree = "<group>"; };
 		055411ED13368B7B00533893 /* PDColoredProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDColoredProgressView.h; sourceTree = "<group>"; };
 		055411EE13368B7B00533893 /* PDColoredProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDColoredProgressView.m; sourceTree = "<group>"; };
 		05A0CB0E135C2241008AD4D4 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
@@ -608,6 +614,8 @@
 				48C3F9221314650F00EAE609 /* ArticleDetailViewController.m */,
 				48A8536A1317DAD200026C1B /* CheckoutViewController.h */,
 				48A8536B1317DAD200026C1B /* CheckoutViewController.m */,
+				0536C03913703BF700009372 /* UIImagePickerSingleton.h */,
+				0536C03A13703BF800009372 /* UIImagePickerSingleton.m */,
 			);
 			name = "List classes";
 			sourceTree = "<group>";
@@ -782,6 +790,8 @@
 				05A0CB0F135C2241008AD4D4 /* NSDate+Helper.m */,
 				0536BFE8136EFC0600009372 /* DSActivityView.h */,
 				0536BFE9136EFC0600009372 /* DSActivityView.m */,
+				0536C044137069F900009372 /* BrutalUIImageView.h */,
+				0536C045137069FC00009372 /* BrutalUIImageView.m */,
 			);
 			name = "Base classes";
 			sourceTree = "<group>";
@@ -964,6 +974,8 @@
 				0536C0331370007300009372 /* EGOCache.m in Sources */,
 				0536C0341370007300009372 /* EGOImageLoadConnection.m in Sources */,
 				0536C0351370007300009372 /* EGOImageLoader.m in Sources */,
+				0536C03B13703BFA00009372 /* UIImagePickerSingleton.m in Sources */,
+				0536C046137069FE00009372 /* BrutalUIImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

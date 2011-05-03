@@ -10,9 +10,10 @@
 #import "Article.h"
 #import "ListArticle.h"
 #import "List.h"
-#import "PhotoChooserViewController.h"
 
 #import "ZBarSDK.h"
+
+#import "BrutalUIImageView.h"
 
 @interface ArticleDetailViewController : UIViewController<ZBarReaderDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UIActionSheetDelegate, UINavigationControllerDelegate> {
 	Article *article_;
@@ -21,12 +22,10 @@
 	IBOutlet UIButton *photoButton;
 	IBOutlet UITextField *nameField;
 	IBOutlet UITextField *scanField;
-	IBOutlet UIImageView *photo;
+	IBOutlet BrutalUIImageView *photo;
 	IBOutlet UITextField *commentField;
 	ZBarReaderViewController *barcodeReader;
 	UIImagePickerController *picturePicker;
-    PhotoChooserViewController *photoChooser;
-    IBOutlet UIView *placeholder;
 	BOOL newPhoto;
 }
 

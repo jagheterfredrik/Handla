@@ -10,9 +10,9 @@
 #import "Article.h"
 #import "PhotoUtil.h"
 
-#import "PhotoChooserViewController.h"
-
 #import "DSActivityView.h"
+
+#import "UIImagePickerSingleton.h"
 
 @implementation ArticleDetailViewController
 
@@ -109,18 +109,16 @@
         [info objectForKey: ZBarReaderControllerResults];
         ZBarSymbol *symbol = nil;
         for(symbol in results)
-            // EXAMPLE: just grab the first barcode
             break;
         
-        // EXAMPLE: do something useful with the barcode data
         scanField.text = symbol.data;
         [reader dismissModalViewControllerAnimated: YES];
     } else {
         UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
         newPhoto = YES;
-		photo.image = image;
-        [[reader parentViewController] dismissModalViewControllerAnimated:YES];
-        [reader release];
+        [photo setImage:image];
+        reader.delegate = nil;
+        [reader dismissModalViewControllerAnimated:YES];
     }
 }
 
@@ -141,11 +139,6 @@
 }
 
 - (IBAction)cameraClick:(id)sender {
-/*    if (!photoChooser) {
-        photoChooser = [[PhotoChooserViewController alloc] initWithImage:article_.picture canChange:YES];
-    }
-	photoChooser.delegate = self;
-	[self presentModalViewController:photoChooser animated:YES];*/
     
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
 															 delegate:self
@@ -178,7 +171,7 @@
         {
             //Take picture
             // Create image picker controller
-            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+            UIImagePickerController *imagePicker = [UIImagePickerSingleton sharedInstance];
             if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ingen kamera tillgänglig" message:@"Funktionen kräver att din enhet har en kamera" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [alert show];
@@ -195,7 +188,7 @@
         case 2:
             //Choose existing picture
         {
-            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+            UIImagePickerController *imagePicker = [UIImagePickerSingleton sharedInstance];
             imagePicker.sourceType =  UIImagePickerControllerSourceTypeSavedPhotosAlbum;
             imagePicker.delegate = self;
             imagePicker.allowsEditing = NO;
@@ -210,6 +203,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
 	photoButton.titleLabel.textAlignment = UITextAlignmentCenter;
 	
 	if (article_ != nil) {
@@ -249,16 +243,14 @@
 }
 
 - (void)viewDidUnload {
-    [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    photo.image = nil;
-    [photo release],photo = nil;
+    [super viewDidUnload];
 }
 
 
 - (void)dealloc {
-    [photoChooser release];
+    [photo release];
     [super dealloc];
 }
 
