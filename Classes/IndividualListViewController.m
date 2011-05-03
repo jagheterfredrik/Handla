@@ -344,6 +344,8 @@
     [super viewDidLoad];
 	[individualListTableViewController setList:list_];
     
+    individualListTableViewController.navController = self.navigationController;
+    
     //TODO: This is code to make the done button fancy, shold be replaced by a cool image
 	[[checkoutButton layer] setCornerRadius:8.0f];
 	[[checkoutButton layer] setMasksToBounds:YES];

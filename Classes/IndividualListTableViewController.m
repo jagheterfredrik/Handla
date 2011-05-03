@@ -13,10 +13,11 @@
 #import "Article.h"
 #import "AddArticleListViewController.h"
 
+#import "ArticleDetailViewController.h"
 
 @implementation IndividualListTableViewController
 
-@synthesize list_;
+@synthesize list_, navController;
 
 - (void)setList:(List*)list {
 	self.list_ = list;
@@ -54,7 +55,7 @@
     if ([[super tableView:tableView titleForHeaderInSection:section] isEqualToString:@"0"]) {
         return @"Varor att hämta";
     } else {
-        return @"Redan hämtade varor";
+        return @"Hämtade varor";
     }
 }
 
@@ -97,13 +98,15 @@
     [cell updateView];
 }
 
-
-
 - (BOOL)canDeleteManagedObject:(NSManagedObject *)managedObject {
 	return YES;
 }
 
-
+- (void)managedObjectAccessoryTapped:(NSManagedObject *)managedObject {
+    ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil article:((ListArticle*)managedObject).article];
+    [self.navController pushViewController:articleDetailViewController animated:YES];
+    [articleDetailViewController release];
+}
 
 - (void)deleteManagedObject:(NSManagedObject *)managedObject {
 	ListArticle *article = (ListArticle*)managedObject;
@@ -111,9 +114,9 @@
 	[list_.managedObjectContext deleteObject:article];
 }
 
-/*- (UITableViewCellAccessoryType)accessoryTypeForManagedObject:(NSManagedObject *)managedObject {
+- (UITableViewCellAccessoryType)accessoryTypeForManagedObject:(NSManagedObject *)managedObject {
 	return UITableViewCellAccessoryDetailDisclosureButton;
-}*/
+}
 
 
 #pragma mark -

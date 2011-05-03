@@ -20,5 +20,6 @@
 - (void)setList:(List*)list;
 
 @property (nonatomic,retain) List *list_;
+@property (nonatomic,retain) UINavigationController *navController;
 
 @end
