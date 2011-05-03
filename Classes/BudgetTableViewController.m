@@ -33,8 +33,15 @@
             prevCell = [currentObject retain];
             break;
         }
-    
-    self.tableView.tableHeaderView = prevCell;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"budgetHistory"]) {
+        self.tableView.tableHeaderView = prevCell;
+    } else {
+        self.tableView.tableHeaderView = nil;
+    }
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
@@ -92,13 +99,15 @@
 	startDate = [startDate_ retain];
 	endDate = [endDate_ retain];
 	
-    sumResultController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(timeStamp < %@)", startDate_];
-    [sumResultController performFetch:NULL];
     self.previousBudgetSum = [NSDecimalNumber decimalNumberWithString:@"0"];
-    for (BudgetPost *post in sumResultController.fetchedObjects) {
-        // TODO: add code for repeatID >= 0
-        if (post.amount) {
-            self.previousBudgetSum = [previousBudgetSum decimalNumberByAdding:post.amount];
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"budgetHistory"]) {
+        sumResultController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(timeStamp < %@)", startDate_];
+        [sumResultController performFetch:NULL];
+        for (BudgetPost *post in sumResultController.fetchedObjects) {
+            // TODO: add code for repeatID >= 0
+            if (post.amount) {
+                self.previousBudgetSum = [previousBudgetSum decimalNumberByAdding:post.amount];
+            }
         }
     }
     

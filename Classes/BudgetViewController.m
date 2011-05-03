@@ -101,6 +101,7 @@
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	dateInterval = [defaults integerForKey:@"budgetViewDateInterval"];
 	[self updateCalendarLabel];
+    [budgetTableViewController viewWillAppear:animated];
 }
 
 /*

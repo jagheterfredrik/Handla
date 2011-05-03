@@ -79,7 +79,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 
@@ -88,11 +88,17 @@
 	if(section == 0){
 		return 3;
 	}else {
-		return 0;
+		return 1;
 	}
 	
+}
+
+-(void) checkoutSwitchChanged{
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	
-    
+    [defaults setBool:checkoutSwitch.on forKey:@"budgetHistory"];
+	
+	[defaults synchronize];
 }
 
 
@@ -117,7 +123,15 @@
 		if (indexPath.row == bvdi) {
 			cell.accessoryType = UITableViewCellAccessoryCheckmark;
 		}
-	}
+	} else {
+        cell.textLabel.text = @"Visa tidigare budget";
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		checkoutSwitch = [[UISwitch alloc] init];
+		cell.accessoryView = checkoutSwitch;
+		[cell addSubview:checkoutSwitch];
+		[checkoutSwitch addTarget:self action:@selector(checkoutSwitchChanged) forControlEvents:UIControlEventValueChanged];
+        [checkoutSwitch setOn:[defaults boolForKey:@"budgetHistory"] animated:NO];
+    }
     return cell;
 }
 
