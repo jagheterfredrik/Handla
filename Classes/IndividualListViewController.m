@@ -55,7 +55,6 @@
             amountBalance = [amountBalance decimalNumberByAdding:object.price];
         }
 	}
-	
 	return amountBalance;
 }
 
@@ -201,6 +200,14 @@
    	progressLabel.text = [NSString stringWithFormat:@"%i / %i", self.checkedElementsCount,self.elementsCount];
     
     [progressBar setProgress:(float)(self.checkedElementsCount/(float)(self.elementsCount)) animated:YES];
+	if ([self elementsCount] == 0)
+	{
+		checkoutButton.hidden = YES;
+	}
+	else if([self elementsCount] > 0)
+	{
+		checkoutButton.hidden = NO;
+	}
     
     if ([self checkedElementsCount] == [self elementsCount]) {
         [UIView animateWithDuration:0.4f animations:^{
@@ -231,9 +238,13 @@
 	[individualListTableViewController setList:list_];
     
     //TODO: This is code to make the done button fancy, shold be replaced by a cool image
-    [[checkoutButton layer] setCornerRadius:8.0f];
-    [[checkoutButton layer] setMasksToBounds:YES];
-    [[checkoutButton layer] setBorderWidth:1.0f];
+	[[checkoutButton layer] setCornerRadius:8.0f];
+	[[checkoutButton layer] setMasksToBounds:YES];
+	[[checkoutButton layer] setBorderWidth:1.0f];
+	if ([self elementsCount] == 0)
+	{
+		checkoutButton.hidden = YES;
+	}
     //end buttoncooling part
     
     progressBar.progress = (float)(self.checkedElementsCount)/(float)(self.elementsCount);

@@ -74,7 +74,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addPost)];
 	self.navigationItem.rightBarButtonItem = addButton;
-	self.navigationItem.leftBarButtonItem = budgetTableViewController.editButtonItem;
+	//self.navigationItem.leftBarButtonItem = budgetTableViewController.editButtonItem;
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(turnOnEditing)];
 	[addButton release];
 	
 	self.navigationItem.titleView = topView;
@@ -125,6 +126,23 @@
 
 #pragma mark -
 #pragma mark Event handling
+
+- (void)turnOnEditing {
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(turnOffEditing)];
+	self.navigationItem.rightBarButtonItem = nil;
+	[budgetTableViewController.tableView setEditing:YES animated:YES];
+	[self.navigationItem.leftBarButtonItem release];
+	
+}
+
+- (void)turnOffEditing {
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(turnOnEditing)];
+	[budgetTableViewController.tableView setEditing:NO animated:YES];
+	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addPost)];
+	self.navigationItem.rightBarButtonItem = addButton;
+	[addButton release];
+	[self.navigationItem.leftBarButtonItem release];
+}
 
 - (BOOL)canDeleteManagedObject:(NSManagedObject *)managedObject {
 	return YES;
