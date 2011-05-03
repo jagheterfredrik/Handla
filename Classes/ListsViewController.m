@@ -56,10 +56,10 @@
 - (void)managedObjectAccessoryTapped:(NSManagedObject *)managedObject {
 	
 	selectedList = (List  *) managedObject;
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Options"
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
 															 delegate:self
-													cancelButtonTitle:@"Cancel"
-											   destructiveButtonTitle:@"Delete"
+													cancelButtonTitle:@"Avbryt"
+											   destructiveButtonTitle:@"Ta bort"
 													otherButtonTitles:@"Ändra namn",nil];
 	[actionSheet showInView:[[self view] window]];
 	[actionSheet release];

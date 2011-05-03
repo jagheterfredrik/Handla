@@ -84,13 +84,9 @@
     if ([self.listArticle.checked boolValue]) {
         thumbnail.alpha = 0.2f;
         checkboxImage.alpha = 1.f;
-        //TODO:Kom på bra knapptext
-        //markButton.titleLabel.text = @"";
     } else {
         thumbnail.alpha = 1.f;
         checkboxImage.alpha = 0.f;
-        //TODO:Kom på bra knapptext
-        //markButton.titleLabel.text = @"";
     }
 }
 
@@ -115,6 +111,7 @@
 		[f setGeneratesDecimalNumbers:YES];
 		[f setNumberStyle:NSNumberFormatterDecimalStyle];
 		listArticle_.price = (NSDecimalNumber*)[f numberFromString:alertPrompt.textField.text];
+        listArticle_.article.lastPrice = listArticle_.price;
 		listArticle_.timeStamp = [NSDate date];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ListArticleChanged" object:nil];
 		[f release];

@@ -18,6 +18,8 @@
 #import "PhotoUtil.h"
 #import "PhotoChooserViewController.h"
 
+#import "EGOPhotoGlobal.h"
+
 @implementation IndividualListViewController
 
 - (void) imagePickerController:(UIImagePickerController*)reader didFinishPickingMediaWithInfo:(NSDictionary*)info {
@@ -99,7 +101,6 @@
             reader.readerDelegate = self;
             
             ZBarImageScanner *scanner = reader.scanner;
-            // TODO: (optional) additional reader configuration here
             
             // disable rarely used I2/5 to improve performance
             [scanner setSymbology: ZBAR_I25
@@ -323,9 +324,13 @@
 - (void)imagePressed:(NSNotification*)notification {
 	ListArticle *article = (ListArticle*)[notification object];
 	if (article.article.picture) {
-		PhotoChooserViewController *chooser = [[PhotoChooserViewController alloc] initWithImage:article.article.picture canChange:NO];
-		[self presentModalViewController:chooser animated:YES];
-		[chooser release];
+//		PhotoChooserViewController *chooser = [[PhotoChooserViewController alloc] initWithImage:article.article.picture canChange:NO];
+//		[self presentModalViewController:chooser animated:YES];
+//		[chooser release];
+        EGOPhotoViewController *viewer = [[EGOPhotoViewController alloc] initWithImage:[[PhotoUtil instance] readPhoto:article.article.picture]];
+        
+        [self.navigationController pushViewController:viewer animated:YES];
+        [viewer release];
 	}
 }
 
