@@ -176,7 +176,6 @@
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ingen kamera tillgänglig" message:@"Funktionen kräver att din enhet har en kamera" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [alert show];
                 [alert release];
-                [imagePicker release];
                 break;
             }
             imagePicker.sourceType =  UIImagePickerControllerSourceTypeCamera;
