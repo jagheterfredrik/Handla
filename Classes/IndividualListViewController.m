@@ -311,9 +311,6 @@
 - (void)imagePressed:(NSNotification*)notification {
 	ListArticle *article = (ListArticle*)[notification object];
 	if (article.article.picture) {
-//		PhotoChooserViewController *chooser = [[PhotoChooserViewController alloc] initWithImage:article.article.picture canChange:NO];
-//		[self presentModalViewController:chooser animated:YES];
-//		[chooser release];
         EGOPhotoViewController *viewer = [[EGOPhotoViewController alloc] initWithImage:[[PhotoUtil instance] readPhoto:article.article.picture]];
         
         [self.navigationController pushViewController:viewer animated:YES];

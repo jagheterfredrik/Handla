@@ -57,7 +57,12 @@
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     if (article_.picture)
         [[PhotoUtil instance] deletePhoto:article_.picture];
-    article_.picture = [[PhotoUtil instance] savePhoto:photo.image];
+    if (photo.image) {
+        article_.picture = [[PhotoUtil instance] savePhoto:photo.image];
+    } else {
+        [[PhotoUtil instance] deletePhoto:article_.picture];
+        article_.picture = nil;
+    }
     
     [self performSelectorOnMainThread:@selector(doClose) withObject:nil waitUntilDone:NO];
     [pool release];
@@ -166,6 +171,10 @@
     switch (buttonIndex) {
         case 0:
             //Ta bort bild
+            if (article_.picture) {
+                photo.image = nil;
+                newPhoto = YES;
+            }
             break;
         case 1:
         {
