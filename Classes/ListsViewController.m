@@ -107,7 +107,6 @@
 		showHelp = NO;
 		self.searchDisplayController.searchBar.hidden = NO;
         self.navigationItem.leftBarButtonItem = self.editButtonItem;
-		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(turnOnEditing)];
         tableView.scrollEnabled = YES;
 		tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 	}

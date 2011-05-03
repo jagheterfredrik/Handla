@@ -88,7 +88,7 @@
 	
     sumResultController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(timeStamp < %@)", startDate_];
     [sumResultController performFetch:NULL];
-    self.previousBudgetSum = [[NSDecimalNumber decimalNumberWithString:@"0"] retain];
+    self.previousBudgetSum = [NSDecimalNumber decimalNumberWithString:@"0"];
     for (BudgetPost *post in sumResultController.fetchedObjects) {
         // TODO: add code for repeatID >= 0
         if (post.amount) {
@@ -98,7 +98,7 @@
     
     sumResultController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(timeStamp >= %@) AND (timeStamp <= %@)", startDate_, endDate_];
     [sumResultController performFetch:NULL];
-    self.budgetSum = [[NSDecimalNumber decimalNumberWithString:@"0"] retain];
+    self.budgetSum = [NSDecimalNumber decimalNumberWithString:@"0"];
     self.budgetSum = [self.budgetSum decimalNumberByAdding:self.previousBudgetSum];
     for (BudgetPost *post in sumResultController.fetchedObjects) {
         // TODO: add code for repeatID >= 0
