@@ -139,7 +139,7 @@ NSString *thumbpath(NSString *base, NSString *name) {
 	if (!name) return nil;
 	NSString *path = thumbpath(basePath, name);
 	if (![fileManager fileExistsAtPath:path])
-		return nil;
+		return nil; //TODO: Return no picture-picture!
 	return [UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
 }
 

@@ -254,6 +254,10 @@
     }
 }
 
+- (UIImage *)thumbnailImageForManagedObject:(NSManagedObject *)managedObject {
+    return [[PhotoUtil instance] readThumbnail:((Article*)managedObject).picture];
+}
+
 - (UITableViewCellAccessoryType)accessoryTypeForManagedObject:(NSManagedObject *)managedObject {
     if(list_)
         return UITableViewCellAccessoryDetailDisclosureButton;

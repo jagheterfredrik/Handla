@@ -49,7 +49,6 @@
 		20055310132A6CD80042ADF5 /* cellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 2005530E132A6CD80042ADF5 /* cellBackground.png */; };
 		20055311132A6CD80042ADF5 /* cellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2005530F132A6CD80042ADF5 /* cellBackground@2x.png */; };
 		20055313132A6CEF0042ADF5 /* IndividualListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20055312132A6CEF0042ADF5 /* IndividualListCell.xib */; };
-		20E56A46135ED25000C32C59 /* PhotoChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E56A43135ED25000C32C59 /* PhotoChooserViewController.m */; };
 		20E56A47135ED25000C32C59 /* PhotoUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E56A45135ED25000C32C59 /* PhotoUtil.m */; };
 		20E56A49135ED26C00C32C59 /* PhotoChooserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20E56A48135ED26C00C32C59 /* PhotoChooserViewController.xib */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
@@ -201,8 +200,6 @@
 		2005530E132A6CD80042ADF5 /* cellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cellBackground.png; path = Resources/Images/cellBackground.png; sourceTree = "<group>"; };
 		2005530F132A6CD80042ADF5 /* cellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cellBackground@2x.png"; path = "Resources/Images/cellBackground@2x.png"; sourceTree = "<group>"; };
 		20055312132A6CEF0042ADF5 /* IndividualListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IndividualListCell.xib; path = Resources/XIBs/IndividualListCell.xib; sourceTree = "<group>"; };
-		20E56A42135ED25000C32C59 /* PhotoChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoChooserViewController.h; sourceTree = "<group>"; };
-		20E56A43135ED25000C32C59 /* PhotoChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoChooserViewController.m; sourceTree = "<group>"; };
 		20E56A44135ED25000C32C59 /* PhotoUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoUtil.h; sourceTree = "<group>"; };
 		20E56A45135ED25000C32C59 /* PhotoUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoUtil.m; sourceTree = "<group>"; };
 		20E56A48135ED26C00C32C59 /* PhotoChooserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PhotoChooserViewController.xib; path = Resources/XIBs/PhotoChooserViewController.xib; sourceTree = "<group>"; };
@@ -594,8 +591,6 @@
 		481BFF71130D157700AC4CC8 /* List classes */ = {
 			isa = PBXGroup;
 			children = (
-				20E56A42135ED25000C32C59 /* PhotoChooserViewController.h */,
-				20E56A43135ED25000C32C59 /* PhotoChooserViewController.m */,
 				20E56A44135ED25000C32C59 /* PhotoUtil.h */,
 				20E56A45135ED25000C32C59 /* PhotoUtil.m */,
 				77A60A8913258B7C0038D73A /* UICashView.h */,
@@ -962,7 +957,6 @@
 				055411F013368B7B00533893 /* PDColoredProgressView.m in Sources */,
 				052057A21340023D00315132 /* SequenceTable.m in Sources */,
 				05A0CB10135C2241008AD4D4 /* NSDate+Helper.m in Sources */,
-				20E56A46135ED25000C32C59 /* PhotoChooserViewController.m in Sources */,
 				20E56A47135ED25000C32C59 /* PhotoUtil.m in Sources */,
 				0536BFEA136EFC0600009372 /* DSActivityView.m in Sources */,
 				0536C01A136FFE8300009372 /* EGOPhotoViewController.m in Sources */,
