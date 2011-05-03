@@ -16,8 +16,6 @@
 #import "IndividualListTableViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "PhotoUtil.h"
-#import "PhotoChooserViewController.h"
-
 #import "EGOPhotoGlobal.h"
 
 @implementation IndividualListViewController
