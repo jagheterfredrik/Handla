@@ -10,6 +10,8 @@
 
 #import "PhotoUtil.h"
 
+#import "DSActivityView.h"
+
 @implementation PhotoChooserViewController
 
 @synthesize delegate;
@@ -31,8 +33,7 @@
     image = img;
     imageView.image = image;
     [pool release];
-    [indicator stopAnimating];
-    loading.hidden = YES;
+    [DSWhiteActivityView removeView];
 }
 
 - (void)doThreadcall {
@@ -41,12 +42,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (image) {
-        [indicator startAnimating];
-		imageView.image = image;
-    } else {
-        loading.hidden = YES;
+    
+    if (isInitialized) {
+        return;
     }
+
 	if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
 		[cameraButton setEnabled:NO];
 		[cameraButton setHidden:YES];
@@ -58,8 +58,14 @@
 		[galleryButton setHidden:YES];
 	}
     if (image) {
-        [self performSelector:@selector(doThreadcall) withObject:self afterDelay:0.01f];
+		imageView.image = image;
+        
+        [DSWhiteActivityView newActivityViewForView:imageView withLabel:@"Laddar..."];
+        
+        [self performSelector:@selector(doThreadcall) withObject:nil afterDelay:0.01f];
 	}
+    
+    isInitialized = YES;
 }
 
 - (IBAction)getPhoto:(id)sender {
@@ -80,17 +86,20 @@
 	[picker release];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-	[self dismissModalViewControllerAnimated:YES];
-	[picker release];
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissModalViewControllerAnimated:NO];
 	imageView.image = image = [info objectForKey:UIImagePickerControllerOriginalImage];
 	newImage = YES;
+    [picker release];
+    [self performSelectorOnMainThread:@selector(goBack) withObject:nil waitUntilDone:NO];
 }
 
 - (IBAction)goBack {
 	if (self.delegate) {
 		[self.delegate photoChooserDone:self]; 
 	} else {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 		[self.parentViewController dismissModalViewControllerAnimated:YES];
 	}
 }

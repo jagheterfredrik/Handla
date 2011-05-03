@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString * barcode;
 @property (nonatomic, retain) NSString * comment;
 @property (nonatomic, retain) NSSet* listArticles;
+@property (nonatomic, retain) NSDecimalNumber * lastPrice;
 
 @end
 

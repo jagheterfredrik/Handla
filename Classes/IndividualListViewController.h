@@ -11,8 +11,9 @@
 #import "PDColoredProgressView.h"
 #import "List.h"
 
+#import "ZBarSDK.h"
 
-@interface IndividualListViewController : UIViewController<UIActionSheetDelegate,UIAlertViewDelegate> {
+@interface IndividualListViewController : UIViewController<UIActionSheetDelegate,UIAlertViewDelegate, ZBarReaderDelegate> {
 	IBOutlet IndividualListTableViewController *individualListTableViewController;
 	IBOutlet UITableView *tableView;
 	IBOutlet UILabel *progressLabel;

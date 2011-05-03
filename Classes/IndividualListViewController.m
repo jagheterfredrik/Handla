@@ -18,8 +18,64 @@
 #import "PhotoUtil.h"
 #import "PhotoChooserViewController.h"
 
+#import "EGOPhotoGlobal.h"
+
 @implementation IndividualListViewController
 
+- (void) imagePickerController:(UIImagePickerController*)reader didFinishPickingMediaWithInfo:(NSDictionary*)info {
+	id<NSFastEnumeration> results =
+	[info objectForKey: ZBarReaderControllerResults];
+    ZBarSymbol *symbol = nil;
+    for(symbol in results)
+        // EXAMPLE: just grab the first barcode
+        break;
+    
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Article" inManagedObjectContext:list_.managedObjectContext]; 
+    
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease]; 
+    
+    [request setEntity:entityDescription]; 
+    
+    [request setPredicate:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"barcode == '%@'", symbol.data]]];
+    
+    NSError *error = nil; 
+    NSArray *array = [list_.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if ([array count]>0) {
+        ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
+        listArticle.list = list_;
+        listArticle.article = (Article*)[array lastObject];
+        NSDate *latest = nil;
+        NSArray *myArray = [listArticle.article.listArticles allObjects];
+        for (ListArticle *object in myArray) {
+            if(!latest) {
+                latest = object.timeStamp;
+            }
+            if ([object.timeStamp compare:latest] == NSOrderedDescending || object.timeStamp == latest)
+            {
+                latest = object.timeStamp;
+                if(object.price != nil)
+                {
+                    listArticle.price = object.price;
+                }
+                else 
+                {
+                    listArticle.price = nil;
+                }
+            }
+        }
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ingen vara funnen!" 
+                                                        message:@"Den vara du skannade finns ej bland dina tidigare varor." 
+                                                       delegate:self 
+                                              cancelButtonTitle:@"Ok"
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+    }
+    
+	[reader dismissModalViewControllerAnimated: YES];
+}
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	switch (buttonIndex) {
@@ -36,6 +92,25 @@
 			AddArticleListViewController *addArticleListViewController = [[AddArticleListViewController alloc] initWithList:list_];
 			[self.navigationController pushViewController:addArticleListViewController animated:YES];
 			[addArticleListViewController release];
+			break;
+		}
+        case 2:
+		{
+			
+            ZBarReaderViewController *reader = [ZBarReaderViewController new];
+            reader.readerDelegate = self;
+            
+            ZBarImageScanner *scanner = reader.scanner;
+            
+            // disable rarely used I2/5 to improve performance
+            [scanner setSymbology: ZBAR_I25
+                           config: ZBAR_CFG_ENABLE
+                               to: 0];
+            
+            // present and release the controller
+            [self presentModalViewController: reader
+                                    animated: YES];
+            [reader release];
 			break;
 		}
 		default:
@@ -80,7 +155,7 @@
 															 delegate:self
 													cancelButtonTitle:@"Avbryt"
 											   destructiveButtonTitle:nil
-													otherButtonTitles:@"Skapa ny vara",@"Lägg till tidigare vara",nil];
+													otherButtonTitles:@"Skapa ny vara",@"Lägg till tidigare vara",@"Skanna in vara", nil];
 	[actionSheet showInView:[[self view] window]];
 	[actionSheet release];
 }
@@ -143,12 +218,42 @@
 	}
     
     if ([self elementsCount] == [self checkedElementsCount]) {
-        //we are all done with the list
-        CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
-                                                                            amountToPay:[self calculateSumOfCheckedElementsInList]];
-        [self.navigationController presentModalViewController:checkOut animated:YES];
+		
+		//if checkout view is off, add new budget post and change view to budget, else goto checkoutview
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		if (![defaults boolForKey:@"listCheckoutViewOn"]) {
+			BudgetPost* newBudgetPost = [NSEntityDescription insertNewObjectForEntityForName:@"BudgetPost" inManagedObjectContext:list_.managedObjectContext];
+			newBudgetPost.name = list_.name;
+			newBudgetPost.timeStamp = [NSDate date];
+			//TODO: this should be rounded if we pay with cash; since there are no femtioörings anymore
+			NSDecimalNumber *amount = [self calculateSumOfCheckedElementsInList];
+			amount = [amount decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
+			newBudgetPost.amount = amount;
+			//TODO: add comment!
+			//[NSString stringWithFormat:@"Automatiskt sparat inköp %s", [[NSDate date] description]];
+			
+			
+			NSArray *myArray = [list_.articles allObjects];
+			for(ListArticle *object in myArray) {
+				[object setChecked:[NSNumber numberWithBool:NO]];
+			}
+			
+			[list_.managedObjectContext save:NULL];
+			
+			//go to budget mode
+			[(UITabBarController*)self.tabBarController setSelectedIndex:2];
+			[self.navigationController popViewControllerAnimated:NO];
+			
+		}else {
+			//we are all done with the list
+			CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
+																				amountToPay:[self calculateSumOfCheckedElementsInList]];
+			[self.navigationController presentModalViewController:checkOut animated:YES];
+			
+			[checkOut release];
+		}
+
         
-        [checkOut release];
     }
     else {        
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Du har inte checkat av alla varor!" 
@@ -226,9 +331,13 @@
 - (void)imagePressed:(NSNotification*)notification {
 	ListArticle *article = (ListArticle*)[notification object];
 	if (article.article.picture) {
-		PhotoChooserViewController *chooser = [[PhotoChooserViewController alloc] initWithImage:article.article.picture canChange:NO];
-		[self presentModalViewController:chooser animated:YES];
-		[chooser release];
+//		PhotoChooserViewController *chooser = [[PhotoChooserViewController alloc] initWithImage:article.article.picture canChange:NO];
+//		[self presentModalViewController:chooser animated:YES];
+//		[chooser release];
+        EGOPhotoViewController *viewer = [[EGOPhotoViewController alloc] initWithImage:[[PhotoUtil instance] readPhoto:article.article.picture]];
+        
+        [self.navigationController pushViewController:viewer animated:YES];
+        [viewer release];
 	}
 }
 

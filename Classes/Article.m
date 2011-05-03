@@ -16,5 +16,6 @@
 @dynamic barcode;
 @dynamic listArticles;
 @dynamic comment;
+@dynamic lastPrice;
 
 @end

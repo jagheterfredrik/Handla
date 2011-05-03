@@ -91,7 +91,9 @@
     self.previousBudgetSum = [[NSDecimalNumber decimalNumberWithString:@"0"] retain];
     for (BudgetPost *post in sumResultController.fetchedObjects) {
         // TODO: add code for repeatID >= 0
-        self.previousBudgetSum = [previousBudgetSum decimalNumberByAdding:post.amount];
+        if (post.amount) {
+            self.previousBudgetSum = [previousBudgetSum decimalNumberByAdding:post.amount];
+        }
     }
     
     sumResultController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(timeStamp >= %@) AND (timeStamp <= %@)", startDate_, endDate_];
@@ -99,8 +101,10 @@
     self.budgetSum = [[NSDecimalNumber decimalNumberWithString:@"0"] retain];
     self.budgetSum = [self.budgetSum decimalNumberByAdding:self.previousBudgetSum];
     for (BudgetPost *post in sumResultController.fetchedObjects) {
-        // TODO: add code for repeatID >= 0 ?
-        self.budgetSum = [budgetSum decimalNumberByAdding:post.amount];
+        // TODO: add code for repeatID >= 0
+        if (post.amount) {
+            self.budgetSum = [budgetSum decimalNumberByAdding:post.amount];
+        }
     }
     
     prevCell.symbolLabel.textAlignment = UITextAlignmentCenter;

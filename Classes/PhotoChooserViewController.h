@@ -25,6 +25,8 @@
 	IBOutlet UIButton *galleryButton;
     IBOutlet UIActivityIndicatorView *indicator;
     IBOutlet UILabel *loading;
+    IBOutlet UIView *loadingView;
+    BOOL isInitialized;
 }
 
 @property (nonatomic,assign) NSObject<PhotoChooserDelegate> *delegate;

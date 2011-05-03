@@ -10,6 +10,33 @@
 #import "ArticleDetailViewController.h"
 #import "PhotoUtil.h"
 
+#import "HandlaAppDelegate.h"
+
+//Hack to get first letters from database entries
+@interface NSManagedObject (FirstLetter)
+- (NSString *)uppercaseFirstLetterOfName;
+@end
+
+@implementation NSManagedObject (FirstLetter)
+- (NSString *)uppercaseFirstLetterOfName {
+    [self willAccessValueForKey:@"uppercaseFirstLetterOfName"];
+    NSString *aString = [[self valueForKey:@"name"] uppercaseString];
+    
+    // support UTF-16:
+    NSString *stringToReturn = [aString substringWithRange:[aString rangeOfComposedCharacterSequenceAtIndex:0]];
+    
+    // OR no UTF-16 support:
+    //NSString *stringToReturn = [aString substringToIndex:1];
+    
+    [self didAccessValueForKey:@"uppercaseFirstLetterOfName"];
+    return stringToReturn;
+}
+@end
+
+
+
+
+
 @implementation AddArticleListViewController
 
 #pragma mark -
@@ -40,7 +67,7 @@
 #pragma mark Events
 
 - (void)addArticle {
-	ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil managedObjectContext:list_.managedObjectContext];
+	ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil managedObjectContext:context_];
 	[self.navigationController pushViewController:articleDetailViewController animated:YES];
 	[articleDetailViewController release];
 }
@@ -61,17 +88,19 @@
 	
 	//Setup the data source.
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	request.entity = [NSEntityDescription entityForName:@"Article" inManagedObjectContext:list_.managedObjectContext];
+    
+    context_ = [(HandlaAppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
+	request.entity = [NSEntityDescription entityForName:@"Article" inManagedObjectContext:context_];
 	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
 																					 ascending:YES
-																					  selector:@selector(caseInsensitiveCompare:)]];
+																					  selector:@selector(localizedCaseInsensitiveCompare:)]];
 	request.predicate = nil;
 	request.fetchBatchSize = 20;
 	
 	NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
 									   initWithFetchRequest:request
-									   managedObjectContext:list_.managedObjectContext
-									   sectionNameKeyPath:nil
+									   managedObjectContext:context_
+									   sectionNameKeyPath:@"uppercaseFirstLetterOfName"
 									   cacheName:nil];
 	frc.delegate = self;
 	
@@ -84,7 +113,13 @@
 	self.searchKey = @"name";
 	
 	// Set window title.
-	self.title = @"Lägg till vara";
+    if (list_) {
+        self.title = @"Lägg till vara";
+    } else {
+        self.navigationItem.leftBarButtonItem = self.editButtonItem;
+        self.title = @"Tidigare varor";
+    }
+    
 }
 
 /*
@@ -120,14 +155,63 @@
 
 - (void)performRemoval {
 	for (id object in selectedArticle.listArticles)
-		[list_.managedObjectContext deleteObject:object];
-	[list_.managedObjectContext deleteObject:selectedArticle];
+		[context_ deleteObject:object];
+	[context_ deleteObject:selectedArticle];
 	[[PhotoUtil instance] deletePhoto:selectedArticle.picture];
 	selectedArticle = nil;
 }
 
 #pragma mark -
 #pragma mark Core data table view controller overrides
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.0f;
+}
+  
+
+ - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+     NSArray* sections = self.fetchedResultsController.sections;
+     
+     if ([title isEqualToString:@"#"] || [sections count]==1) {
+         //symbols at the top. this is hardcoded.
+         return 0;
+     }
+     if (index == 0) {
+         [tableView setContentOffset:CGPointZero animated:NO];
+         return NSNotFound;
+     }
+     
+     for (NSInteger i = 0; i<[sections count]; i++) {
+         id <NSFetchedResultsSectionInfo> thisSection = [sections objectAtIndex:i];
+         
+         if ([title localizedCaseInsensitiveCompare:thisSection.name]==NSOrderedSame) {
+             return i;
+         }
+         if ([title localizedCaseInsensitiveCompare:thisSection.name]==NSOrderedAscending) {
+             return i-1;
+         }
+     }
+     //TODO: no sections maybe fucks up this piece of code? test that
+     return 0; //we should not get here,but this supresses warnings.
+ } 
+
+
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    if (super.searchDisplayController.active){
+        return nil;
+    } else {
+        return [NSArray arrayWithArray:
+                                 [@"{search}|A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z|Å|Ä|Ö"
+                                  componentsSeparatedByString:@"|"]];
+    }
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
+}
 
 - (void)managedObjectAccessoryTapped:(NSManagedObject *)managedObject {
 	selectedArticle = (Article *) managedObject;
@@ -156,34 +240,25 @@
 
 - (void)managedObjectSelected:(NSManagedObject *)managedObject
 {
-	ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
-	listArticle.list = list_;
-	listArticle.article = (Article*)managedObject;
-	NSDate *latest = nil;
-	NSArray *myArray = [listArticle.article.listArticles allObjects];
-	for (ListArticle *object in myArray) {
-		if(!latest) {
-			latest = object.timeStamp;
-		}
-		if ([object.timeStamp compare:latest] == NSOrderedDescending || object.timeStamp == latest)
-		{
-			latest = object.timeStamp;
-			if(object.price != nil)
-			{
-				listArticle.price = object.price;
-			}
-			else 
-			{
-				listArticle.price = nil;
-			}
-		}
-	}
-	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-	[self.navigationController popViewControllerAnimated:YES];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    if (list_) {
+        ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
+        listArticle.list = list_;
+        listArticle.article = (Article*)managedObject;
+        listArticle.price = listArticle.article.lastPrice;
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil article:(Article*)managedObject];
+		[self.navigationController pushViewController:articleDetailViewController animated:YES];
+		[articleDetailViewController release];   
+    }
 }
 
 - (UITableViewCellAccessoryType)accessoryTypeForManagedObject:(NSManagedObject *)managedObject {
-	return UITableViewCellAccessoryDetailDisclosureButton;
+    if(list_)
+        return UITableViewCellAccessoryDetailDisclosureButton;
+    else
+        return UITableViewCellAccessoryDisclosureIndicator;
 }
 
 - (BOOL)canDeleteManagedObject:(NSManagedObject *)managedObject {
@@ -195,7 +270,7 @@
 	NSUInteger listArticleCount = [selectedArticle.listArticles count];
 	if (listArticleCount > 0) {
 		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Bekräfta borttagning" 
-												message:[NSString stringWithFormat:@"Varan du försöker ta bort finns redan i %i listor, tar du bort varan kommer även dessa tas bort.", listArticleCount]
+												message:[NSString stringWithFormat:@"Varan du vill ta bort finns redan i %i listor, tar du bort denna vara kommer den tas bort från de listorna.", listArticleCount]
 												delegate:self
 												cancelButtonTitle:@"Avbryt"
 												  otherButtonTitles:@"Ta bort", nil];

@@ -33,7 +33,19 @@
 }
 
 - (IBAction)changePriceButtonPressed:(UIButton*) sender{
-	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Nytt pris:" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+	[formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+
+    NSString *title;
+    if (listArticle_.price) {
+        title = [NSString stringWithFormat:@"Nytt pris (%@):",[formatter stringFromNumber:listArticle_.price]];
+    } else {
+        title = @"Nytt pris:";
+    }
+    
+    [formatter release];
+    
+	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:title delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
 	alertPrompt.textField.keyboardType=UIKeyboardTypeDecimalPad;
 	[alertPrompt show];
 	[alertPrompt release];
@@ -72,13 +84,9 @@
     if ([self.listArticle.checked boolValue]) {
         thumbnail.alpha = 0.2f;
         checkboxImage.alpha = 1.f;
-        //TODO:Kom på bra knapptext
-        //markButton.titleLabel.text = @"";
     } else {
         thumbnail.alpha = 1.f;
         checkboxImage.alpha = 0.f;
-        //TODO:Kom på bra knapptext
-        //markButton.titleLabel.text = @"";
     }
 }
 
@@ -103,8 +111,8 @@
 		[f setGeneratesDecimalNumbers:YES];
 		[f setNumberStyle:NSNumberFormatterDecimalStyle];
 		listArticle_.price = (NSDecimalNumber*)[f numberFromString:alertPrompt.textField.text];
+        listArticle_.article.lastPrice = listArticle_.price;
 		listArticle_.timeStamp = [NSDate date];
-		NSLog(@"%@", listArticle_.timeStamp);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ListArticleChanged" object:nil];
 		[f release];
 	}

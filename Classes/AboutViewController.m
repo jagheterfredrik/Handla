@@ -27,10 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.title = @"Om Hjälpmedelsinstituet";
+
 	
-	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneClick)];
-	self.navigationItem.leftBarButtonItem = doneButton;
-	[doneButton release];
 }
 
 

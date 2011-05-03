@@ -10,6 +10,7 @@
 @implementation AlertPrompt
 @synthesize textField;
 @synthesize enteredText;
+@synthesize maxLength;
 
 /**
  * Initializes a UIAlertView and adds a UITextField to it.
@@ -17,7 +18,7 @@
 - (id)initWithTitle:(NSString *)title delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle okButtonTitle:(NSString *)okayButtonTitle
 {
 	
-    if (self = [super initWithTitle:title message:@"\n" delegate:delegate cancelButtonTitle:cancelButtonTitle otherButtonTitles:okayButtonTitle, nil])
+    if ((self = [super initWithTitle:title message:@"\n" delegate:delegate cancelButtonTitle:cancelButtonTitle otherButtonTitles:okayButtonTitle, nil]))
     {
         UITextField *theTextField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 45.0, 260.0, 25.0)]; 
         theTextField.backgroundColor = [UIColor clearColor];
@@ -28,11 +29,18 @@
 		theTextField.autocorrectionType = UITextAutocorrectionTypeNo;
 		theTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 		theTextField.textAlignment = UITextAlignmentCenter;
+        theTextField.delegate = self;
         [self addSubview:theTextField];
         self.textField = theTextField;
         [theTextField release];
+        maxLength = 50;
     }
     return self;
+}
+
+- (BOOL)textField:(UITextField *)textField_ shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSUInteger newLength = [textField_.text length] + [string length] - range.length;
+    return (newLength > maxLength) ? NO : YES;
 }
 
 /**

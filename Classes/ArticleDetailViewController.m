@@ -10,6 +10,10 @@
 #import "Article.h"
 #import "PhotoUtil.h"
 
+#import "PhotoChooserViewController.h"
+
+#import "DSActivityView.h"
+
 @implementation ArticleDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil managedObjectContext:(NSManagedObjectContext*)managedObjectContext {
@@ -38,6 +42,27 @@
     return self;
 }
 
+- (void)doClose {
+    [self.navigationController popViewControllerAnimated:YES];
+    [DSBezelActivityView removeViewAnimated:YES];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ArticleChanged" object:nil];
+}
+
+- (void)showProgress {
+    [DSBezelActivityView newActivityViewForView:[[self view] window] withLabel:@"Sparar..."];
+}
+
+- (void)doSave {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    if (article_.picture)
+        [[PhotoUtil instance] deletePhoto:article_.picture];
+    article_.picture = [[PhotoUtil instance] savePhoto:photo.image];
+    
+    [self performSelectorOnMainThread:@selector(doClose) withObject:nil waitUntilDone:NO];
+    [pool release];
+}
+
 - (void)doneClick {
 	if ([nameField.text length] == 0) {
 		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Du måste ange ett namn för varan"
@@ -49,8 +74,8 @@
 		[actionSheet release];
 		return;
 	}
-	
-	//Check if we are editing a article, if not create it
+    
+    //Check if we are editing an article, if not create it
 	if (article_ == nil) {
 		article_ = [NSEntityDescription insertNewObjectForEntityForName:@"Article" inManagedObjectContext:managedObjectContext_];
 	}
@@ -60,37 +85,43 @@
 		ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:managedObjectContext_];
 		listArticle.list = list_;
 		listArticle.article = article_;
-        listArticle.price = nil;
+        listArticle.price = article_.lastPrice;
 	}
 	
 	article_.name = nameField.text;
 	article_.barcode = scanField.text;
 	article_.comment = commentField.text;
-	if (newPhoto) {
-		if (article_.picture)
-			[[PhotoUtil instance] deletePhoto:article_.picture];
-		article_.picture = [[PhotoUtil instance] savePhoto:photo.image];
-	}
+    
+	
 	list_.lastUsed = [NSDate date];
-
-	[managedObjectContext_ save:NULL];
-	
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"ArticleChanged" object:self];
-	
-	[self.navigationController popViewControllerAnimated:YES];
+    
+    if (newPhoto) {
+        [self showProgress];
+        [self performSelectorInBackground:@selector(doSave) withObject:nil];
+    } else {
+        [self doClose];
+    }
 }
 
 - (void) imagePickerController:(UIImagePickerController*)reader didFinishPickingMediaWithInfo:(NSDictionary*)info {
-	id<NSFastEnumeration> results =
-	[info objectForKey: ZBarReaderControllerResults];
-    ZBarSymbol *symbol = nil;
-    for(symbol in results)
-        // EXAMPLE: just grab the first barcode
-        break;
-	
-    // EXAMPLE: do something useful with the barcode data
-    scanField.text = symbol.data;
-	[reader dismissModalViewControllerAnimated: YES];
+    if ([reader isMemberOfClass:[ZBarReaderViewController class]]) {
+        id<NSFastEnumeration> results =
+        [info objectForKey: ZBarReaderControllerResults];
+        ZBarSymbol *symbol = nil;
+        for(symbol in results)
+            // EXAMPLE: just grab the first barcode
+            break;
+        
+        // EXAMPLE: do something useful with the barcode data
+        scanField.text = symbol.data;
+        [reader dismissModalViewControllerAnimated: YES];
+    } else {
+        UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        newPhoto = YES;
+		photo.image = image;
+        [[reader parentViewController] dismissModalViewControllerAnimated:YES];
+        [reader release];
+    }
 }
 
 - (IBAction)scanClick:(id)sender {
@@ -98,8 +129,6 @@
     reader.readerDelegate = self;
 	
     ZBarImageScanner *scanner = reader.scanner;
-    // TODO: (optional) additional reader configuration here
-	
     // disable rarely used I2/5 to improve performance
     [scanner setSymbology: ZBAR_I25
 				   config: ZBAR_CFG_ENABLE
@@ -112,18 +141,70 @@
 }
 
 - (IBAction)cameraClick:(id)sender {
-	PhotoChooserViewController *photoChooser = [[PhotoChooserViewController alloc] initWithImage:article_.picture canChange:YES];
+/*    if (!photoChooser) {
+        photoChooser = [[PhotoChooserViewController alloc] initWithImage:article_.picture canChange:YES];
+    }
 	photoChooser.delegate = self;
-	[self presentModalViewController:photoChooser animated:YES];
+	[self presentModalViewController:photoChooser animated:YES];*/
+    
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+															 delegate:self
+													cancelButtonTitle:@"Avbryt"
+											   destructiveButtonTitle:@"Ta bort"
+													otherButtonTitles:@"Ta ny bild med kamera", @"Välj befintlig bild", nil];
+    
+	[actionSheet showInView:[[self view] window]];
+	[actionSheet release];
 }
 
-- (void)photoChooserDone:(PhotoChooserViewController *)photoChooser {
-	[self dismissModalViewControllerAnimated:YES];
-	if (photoChooser.newImage) {
-		newPhoto = YES;
-		photo.image = photoChooser.image;
-	}
-	[photoChooser release];
+#pragma mark -
+#pragma Text field delegate
+
+- (BOOL)textField:(UITextField *)textField_ shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSUInteger newLength = [textField_.text length] + [string length] - range.length;
+    return (newLength > 30) ? NO : YES;
+}
+
+#pragma mark -
+#pragma Action sheet delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            //Ta bort bild
+            break;
+        case 1:
+        {
+            //Take picture
+            // Create image picker controller
+            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+            if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ingen kamera tillgänglig" message:@"Funktionen kräver att din enhet har en kamera" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+                [alert release];
+                [imagePicker release];
+                break;
+            }
+            imagePicker.sourceType =  UIImagePickerControllerSourceTypeCamera;
+            imagePicker.delegate = self;
+            imagePicker.allowsEditing = NO;
+            [self presentModalViewController:imagePicker animated:YES];
+        }
+            break;
+        case 2:
+            //Choose existing picture
+        {
+            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+            imagePicker.sourceType =  UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            imagePicker.delegate = self;
+            imagePicker.allowsEditing = NO;
+            [self presentModalViewController:imagePicker animated:YES];
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -137,7 +218,7 @@
 	
 	UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:self action:@selector(doneClick)];
 	if (article_ != nil) {
-		rightButton.title = @"Ändra";
+		rightButton.title = @"Spara";
 		self.title = article_.name;
 		nameField.text = article_.name;
 		scanField.text = article_.barcode;
@@ -151,8 +232,13 @@
 
 	self.navigationItem.rightBarButtonItem = rightButton;
 	[rightButton release];
-	
+    
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(doClose)];
+    self.navigationItem.leftBarButtonItem = leftButton;
+    [leftButton release];
+    
 	[nameField becomeFirstResponder];
+    nameField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -166,10 +252,13 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    photo.image = nil;
+    [photo release],photo = nil;
 }
 
 
 - (void)dealloc {
+    [photoChooser release];
     [super dealloc];
 }
 
