@@ -22,9 +22,11 @@
 	self.list_ = list;
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	request.entity = [NSEntityDescription entityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
-	request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"article.name"
+	request.sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"checked"
+                                                                                      ascending:YES],
+                               [NSSortDescriptor sortDescriptorWithKey:@"article.name"
 																					 ascending:YES
-																					  selector:@selector(caseInsensitiveCompare:)]];
+																					  selector:@selector(localizedCaseInsensitiveCompare:)],nil];
 	request.predicate = [NSPredicate predicateWithFormat:@"list = %@", list_];
 	request.fetchBatchSize = 20;
 	
@@ -50,9 +52,9 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if ([[super tableView:tableView titleForHeaderInSection:section] isEqualToString:@"0"]) {
-        return @"Icke hämtade varor";
+        return @"Varor att hämta";
     } else {
-        return @"Hämtade varor";
+        return @"Redan hämtade varor";
     }
 }
 
@@ -112,8 +114,6 @@
 /*- (UITableViewCellAccessoryType)accessoryTypeForManagedObject:(NSManagedObject *)managedObject {
 	return UITableViewCellAccessoryDetailDisclosureButton;
 }*/
-
-
 
 
 #pragma mark -
