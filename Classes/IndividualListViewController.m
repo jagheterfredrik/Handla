@@ -341,7 +341,6 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imagePressed:) name:@"ListCellImagePressed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListArticleChanged" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListChanged" object:nil];;
-	[[NSNotificationCenter defaultCenter] addObserver:individualListTableViewController.tableView selector:@selector(reloadData) name:@"ArticleChanged" object:nil];
 }
 
 #pragma mark -
@@ -357,7 +356,6 @@
 - (void)viewDidUnload {
     [super viewDidUnload];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-	[[NSNotificationCenter defaultCenter] removeObserver:individualListTableViewController];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }

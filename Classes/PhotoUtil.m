@@ -136,10 +136,10 @@ NSString *thumbpath(NSString *base, NSString *name) {
 }
 
 - (UIImage*)readThumbnail:(NSString*)name {
-	if (!name) return nil;
+	if (!name) return [UIImage imageNamed:@"NoImage"];
 	NSString *path = thumbpath(basePath, name);
 	if (![fileManager fileExistsAtPath:path])
-		return nil; //TODO: Return no picture-picture!
+		return [UIImage imageNamed:@"NoImage"];
 	return [UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
 }
 

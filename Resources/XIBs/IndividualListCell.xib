@@ -80,7 +80,7 @@
 								</object>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">Meatballs.png</string>
+									<string key="NSResourceName">NoImage.png</string>
 								</object>
 							</object>
 							<object class="IBUILabel" id="252671152">
@@ -118,6 +118,7 @@
 								<string key="NSFrame">{{207, 0}, {68, 57}}</string>
 								<reference key="NSSuperview" ref="779551214"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -520,12 +521,12 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>Checkbox.png</string>
-				<string>Meatballs.png</string>
+				<string>NoImage.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{28, 28}</string>
-				<string>{58, 58}</string>
+				<string>{57, 57}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">301</string>

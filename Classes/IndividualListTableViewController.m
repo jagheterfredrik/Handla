@@ -132,15 +132,23 @@
 	[addArticleListViewController release];
 }
 
+- (void)forceReload {
+    if (self.tableView)
+        [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
 }
 
 - (void)viewDidLoad {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forceReload) name:@"ArticleChanged" object:nil];
 }
 
 - (void)dealloc {

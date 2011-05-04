@@ -51,7 +51,7 @@
 }
 
 - (IBAction)imagePressed {
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"ListCellImagePressed" object:self.listArticle];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ListCellImagePressed" object:self.listArticle];
 }
 
 /**
@@ -116,7 +116,6 @@
 		[f release];
 	}
 }
-
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

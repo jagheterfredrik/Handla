@@ -255,12 +255,7 @@
 }
 
 - (UIImage *)thumbnailImageForManagedObject:(NSManagedObject *)managedObject {
-    UIImage *ret = [[PhotoUtil instance] readThumbnail:((Article*)managedObject).picture];
-    if (ret) {
-        return ret;
-    } else {
-        return [UIImage imageNamed:@"Meatballs.png"];
-    }
+    return [[PhotoUtil instance] readThumbnail:((Article*)managedObject).picture];
 }
 
 - (UITableViewCellAccessoryType)accessoryTypeForManagedObject:(NSManagedObject *)managedObject {

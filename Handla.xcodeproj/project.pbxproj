@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		051D57721371DCC0003F6F9C /* HistoryIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 051D576E1371DCC0003F6F9C /* HistoryIcon.png */; };
+		051D57731371DCC0003F6F9C /* HistoryIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 051D576F1371DCC0003F6F9C /* HistoryIcon@2x.png */; };
+		051D57741371DCC0003F6F9C /* NoImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 051D57701371DCC0003F6F9C /* NoImage.png */; };
+		051D57751371DCC0003F6F9C /* NoImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 051D57711371DCC0003F6F9C /* NoImage@2x.png */; };
+		051D57781371EFE4003F6F9C /* SettingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 051D57761371EFE4003F6F9C /* SettingsIcon.png */; };
+		051D57791371EFE4003F6F9C /* SettingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 051D57771371EFE4003F6F9C /* SettingsIcon@2x.png */; };
 		052057A21340023D00315132 /* SequenceTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 052057A11340023D00315132 /* SequenceTable.m */; };
 		0536BFEA136EFC0600009372 /* DSActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536BFE9136EFC0600009372 /* DSActivityView.m */; };
 		0536C01A136FFE8300009372 /* EGOPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536BFFA136FFE8300009372 /* EGOPhotoViewController.m */; };
@@ -35,7 +41,6 @@
 		055411F013368B7B00533893 /* PDColoredProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 055411EE13368B7B00533893 /* PDColoredProgressView.m */; };
 		05A0CB10135C2241008AD4D4 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A0CB0F135C2241008AD4D4 /* NSDate+Helper.m */; };
 		05E5EBED1351D6FD00DF6D7A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 05E5EBEC1351D6FD00DF6D7A /* README.md */; };
-		1B531500132A691400C328B4 /* icon_cogwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5314FF132A691400C328B4 /* icon_cogwheel.png */; };
 		1B531504132A692D00C328B4 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B531501132A692D00C328B4 /* AboutViewController.xib */; };
 		1B531505132A692D00C328B4 /* ListSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B531502132A692D00C328B4 /* ListSettingsViewController.xib */; };
 		1B531506132A692D00C328B4 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B531503132A692D00C328B4 /* SettingsViewController.xib */; };
@@ -135,6 +140,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		051D576E1371DCC0003F6F9C /* HistoryIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HistoryIcon.png; path = Resources/Images/HistoryIcon.png; sourceTree = "<group>"; };
+		051D576F1371DCC0003F6F9C /* HistoryIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HistoryIcon@2x.png"; path = "Resources/Images/HistoryIcon@2x.png"; sourceTree = "<group>"; };
+		051D57701371DCC0003F6F9C /* NoImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NoImage.png; path = Resources/Images/NoImage.png; sourceTree = "<group>"; };
+		051D57711371DCC0003F6F9C /* NoImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NoImage@2x.png"; path = "Resources/Images/NoImage@2x.png"; sourceTree = "<group>"; };
+		051D57761371EFE4003F6F9C /* SettingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SettingsIcon.png; path = Resources/Images/SettingsIcon.png; sourceTree = "<group>"; };
+		051D57771371EFE4003F6F9C /* SettingsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SettingsIcon@2x.png"; path = "Resources/Images/SettingsIcon@2x.png"; sourceTree = "<group>"; };
 		051EBD0D133FFF0E00FA286B /* Handla 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Handla 3.xcdatamodel"; sourceTree = "<group>"; };
 		052057A01340023D00315132 /* SequenceTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceTable.h; sourceTree = "<group>"; };
 		052057A11340023D00315132 /* SequenceTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceTable.m; sourceTree = "<group>"; };
@@ -182,7 +193,6 @@
 		05A0CB0E135C2241008AD4D4 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
 		05A0CB0F135C2241008AD4D4 /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
 		05E5EBEC1351D6FD00DF6D7A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		1B5314FF132A691400C328B4 /* icon_cogwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_cogwheel.png; path = Resources/Images/icon_cogwheel.png; sourceTree = "<group>"; };
 		1B531501132A692D00C328B4 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutViewController.xib; path = Resources/XIBs/AboutViewController.xib; sourceTree = "<group>"; };
 		1B531502132A692D00C328B4 /* ListSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ListSettingsViewController.xib; path = Resources/XIBs/ListSettingsViewController.xib; sourceTree = "<group>"; };
 		1B531503132A692D00C328B4 /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsViewController.xib; path = Resources/XIBs/SettingsViewController.xib; sourceTree = "<group>"; };
@@ -635,7 +645,6 @@
 			children = (
 				2005530E132A6CD80042ADF5 /* cellBackground.png */,
 				2005530F132A6CD80042ADF5 /* cellBackground@2x.png */,
-				1B5314FF132A691400C328B4 /* icon_cogwheel.png */,
 				4874B68F1329448B006F291A /* 1.png */,
 				4874B6901329448B006F291A /* 5.png */,
 				4874B6911329448B006F291A /* 10.png */,
@@ -656,6 +665,12 @@
 				481BFFCE130D220900AC4CC8 /* ListIcon.png */,
 				481BFFCF130D220900AC4CC8 /* ListIcon@2x.png */,
 				483BAD91132E7242001A3B03 /* Meatballs.png */,
+				051D576E1371DCC0003F6F9C /* HistoryIcon.png */,
+				051D576F1371DCC0003F6F9C /* HistoryIcon@2x.png */,
+				051D57701371DCC0003F6F9C /* NoImage.png */,
+				051D57711371DCC0003F6F9C /* NoImage@2x.png */,
+				051D57761371EFE4003F6F9C /* SettingsIcon.png */,
+				051D57771371EFE4003F6F9C /* SettingsIcon@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -888,7 +903,6 @@
 				4874B69E1329448B006F291A /* 500.jpg in Resources */,
 				4874B69F1329448B006F291A /* BarCodeButton.png in Resources */,
 				4874B6A01329448B006F291A /* BarCodeButton@2x.png in Resources */,
-				1B531500132A691400C328B4 /* icon_cogwheel.png in Resources */,
 				1B531504132A692D00C328B4 /* AboutViewController.xib in Resources */,
 				1B531505132A692D00C328B4 /* ListSettingsViewController.xib in Resources */,
 				1B531506132A692D00C328B4 /* SettingsViewController.xib in Resources */,
@@ -911,6 +925,12 @@
 				0536C025136FFE8300009372 /* egopv_photo_placeholder@2x.png in Resources */,
 				0536C026136FFE8300009372 /* egopv_right.png in Resources */,
 				0536C027136FFE8300009372 /* egopv_right@2x.png in Resources */,
+				051D57721371DCC0003F6F9C /* HistoryIcon.png in Resources */,
+				051D57731371DCC0003F6F9C /* HistoryIcon@2x.png in Resources */,
+				051D57741371DCC0003F6F9C /* NoImage.png in Resources */,
+				051D57751371DCC0003F6F9C /* NoImage@2x.png in Resources */,
+				051D57781371EFE4003F6F9C /* SettingsIcon.png in Resources */,
+				051D57791371EFE4003F6F9C /* SettingsIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
