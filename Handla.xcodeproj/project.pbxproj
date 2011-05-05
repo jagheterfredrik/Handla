@@ -132,6 +132,10 @@
 		48C3F9241314650F00EAE609 /* ArticleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C3F9221314650F00EAE609 /* ArticleDetailViewController.m */; };
 		48F0D9011311B05E003D0352 /* IndividualListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F0D8FF1311B05E003D0352 /* IndividualListViewController.m */; };
 		77A60A8B13258B7C0038D73A /* UICashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A60A8A13258B7C0038D73A /* UICashView.m */; };
+		77AA1A70137301E500DB1940 /* button_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 77AA1A6C137301E500DB1940 /* button_green.png */; };
+		77AA1A71137301E500DB1940 /* button_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77AA1A6D137301E500DB1940 /* button_green@2x.png */; };
+		77AA1A72137301E500DB1940 /* button_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 77AA1A6E137301E500DB1940 /* button_red.png */; };
+		77AA1A73137301E500DB1940 /* button_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77AA1A6F137301E500DB1940 /* button_red@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -334,6 +338,10 @@
 		48F0D8FF1311B05E003D0352 /* IndividualListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualListViewController.m; sourceTree = "<group>"; };
 		77A60A8913258B7C0038D73A /* UICashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICashView.h; sourceTree = "<group>"; };
 		77A60A8A13258B7C0038D73A /* UICashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICashView.m; sourceTree = "<group>"; };
+		77AA1A6C137301E500DB1940 /* button_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_green.png; path = Classes/button_green.png; sourceTree = "<group>"; };
+		77AA1A6D137301E500DB1940 /* button_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_green@2x.png"; path = "Classes/button_green@2x.png"; sourceTree = "<group>"; };
+		77AA1A6E137301E500DB1940 /* button_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_red.png; path = Classes/button_red.png; sourceTree = "<group>"; };
+		77AA1A6F137301E500DB1940 /* button_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button_red@2x.png"; path = "Classes/button_red@2x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Handla-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Handla-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -574,6 +582,10 @@
 				8D1107310486CEB800E47090 /* Handla-Info.plist */,
 				352EA5F3130ABF95001D6E7F /* Unit tests-Info.plist */,
 				051D57841372BC67003F6F9C /* Default@2x.png */,
+				77AA1A6C137301E500DB1940 /* button_green.png */,
+				77AA1A6D137301E500DB1940 /* button_green@2x.png */,
+				77AA1A6E137301E500DB1940 /* button_red.png */,
+				77AA1A6F137301E500DB1940 /* button_red@2x.png */,
 				051D57851372BC67003F6F9C /* Default.png */,
 				051D577A1372B1EF003F6F9C /* Icon.png */,
 				051D577B1372B1EF003F6F9C /* Icon@2x.png */,
@@ -951,6 +963,10 @@
 				051D577F1372B1EF003F6F9C /* iTunesArtwork in Resources */,
 				051D57861372BC67003F6F9C /* Default@2x.png in Resources */,
 				051D57871372BC67003F6F9C /* Default.png in Resources */,
+				77AA1A70137301E500DB1940 /* button_green.png in Resources */,
+				77AA1A71137301E500DB1940 /* button_green@2x.png in Resources */,
+				77AA1A72137301E500DB1940 /* button_red.png in Resources */,
+				77AA1A73137301E500DB1940 /* button_red@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

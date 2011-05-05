@@ -347,14 +347,30 @@
 	}
     
     if ([self checkedElementsCount] == [self elementsCount]) {
-        [UIView animateWithDuration:0.4f animations:^{
-            [checkoutButton setBackgroundColor:[UIColor colorWithRed:0.f green:0.8f blue:0.f alpha:1.f]];
+        [UIView animateWithDuration:0.4f animations:^{            
+          
+            UIImage *image = [UIImage imageNamed:@"button_red.png"];
+            
+            float w = image.size.width / 2, h = image.size.height / 2;
+            UIImage *stretch = [image stretchableImageWithLeftCapWidth:w topCapHeight:h];
+            
+            // Now we'll create a button as per usual
+            [checkoutButton setBackgroundImage:stretch forState:UIControlStateNormal];
+
+        
         }];
         
     }
     else{
         [UIView animateWithDuration:0.4f animations:^{
-            [checkoutButton setBackgroundColor:[UIColor lightGrayColor]];
+            UIImage *image = [UIImage imageNamed:@"button_green.png"];
+            
+            float w = image.size.width / 2, h = image.size.height / 2;
+            UIImage *stretch = [image stretchableImageWithLeftCapWidth:w topCapHeight:h];
+            
+            // Now we'll create a button as per usual
+            [checkoutButton setBackgroundImage:stretch forState:UIControlStateNormal];
+
         }];
     }
 }
@@ -399,7 +415,23 @@
     
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imagePressed:) name:@"ListCellImagePressed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListArticleChanged" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListChanged" object:nil];;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListChanged" object:nil];
+
+    // Load our image normally.
+    UIImage *image = [UIImage imageNamed:@"button_green.png"];
+    
+    // And create the stretchy version.
+    float w = image.size.width / 2, h = image.size.height / 2;
+    UIImage *stretch = [image stretchableImageWithLeftCapWidth:w topCapHeight:h];
+    
+    // Now we'll create a button as per usual.
+    checkoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    checkoutButton.frame = CGRectMake(178.0f, 2.0f, 130.0f, 45.0f);
+    [checkoutButton setBackgroundImage:stretch forState:UIControlStateNormal];
+    [checkoutButton setTitle:@"Avsluta köp" forState:UIControlStateNormal];
+    [bottomBar addSubview:checkoutButton];
+    
+    //TODO: hook up ibaction
 }
 
 #pragma mark -

@@ -19,7 +19,8 @@
 	IBOutlet UITableView *tableView;
 	IBOutlet UILabel *progressLabel;
 	IBOutlet PDColoredProgressView *progressBar;
-    IBOutlet UIButton* checkoutButton;
+    IBOutlet id bottomBar;
+    UIButton* checkoutButton;
 	List* list_;
 }
 
