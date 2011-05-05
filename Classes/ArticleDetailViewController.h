@@ -15,7 +15,7 @@
 
 #import "BrutalUIImageView.h"
 
-@interface ArticleDetailViewController : UIViewController<ZBarReaderDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UIActionSheetDelegate, UINavigationControllerDelegate> {
+@interface ArticleDetailViewController : UIViewController<ZBarReaderDelegate, UITextFieldDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
 	Article *article_;
 	List *list_;
 	NSManagedObjectContext *managedObjectContext_;

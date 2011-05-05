@@ -21,6 +21,22 @@
 @implementation IndividualListViewController
 
 - (void) imagePickerController:(UIImagePickerController*)reader didFinishPickingMediaWithInfo:(NSDictionary*)info {
+    if (![reader isMemberOfClass:[ZBarReaderViewController class]]) {
+        //we are choosing a new image from library, to assign to the clicked article.
+        //TODO actually save it
+        NSLog(@"image chosen");
+        UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        //newPhoto = YES;
+        //[photo setImage:image];
+        reader.delegate = nil;
+        [reader dismissModalViewControllerAnimated:YES];
+        
+        [self dismissModalViewControllerAnimated:YES];
+        
+        
+    } else {
+        
+        
 	id<NSFastEnumeration> results =
 	[info objectForKey: ZBarReaderControllerResults];
     ZBarSymbol *symbol = nil;
@@ -55,9 +71,42 @@
     }
     
 	[reader dismissModalViewControllerAnimated: YES];
+    }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (actionSheet.title==@"lägg till bild för vara") {
+        switch (buttonIndex) {
+            case 0:
+            {
+                    //Take picture
+                    // Create image picker controller
+                    UIImagePickerController *imagePicker = [UIImagePickerSingleton sharedInstance];
+                    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ingen kamera tillgänglig" message:@"Funktionen kräver att din enhet har en kamera" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                        [alert show];
+                        [alert release];
+                        break;
+                    }
+                    imagePicker.sourceType =  UIImagePickerControllerSourceTypeCamera;
+                    imagePicker.delegate = self;
+                    imagePicker.allowsEditing = NO;
+                    [self presentModalViewController:imagePicker animated:YES];
+                }
+                break;
+            case 1:
+                //Choose existing picture
+                {
+                    UIImagePickerController *imagePicker = [UIImagePickerSingleton sharedInstance];
+                    imagePicker.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
+                    imagePicker.delegate = self;
+                    imagePicker.allowsEditing = NO;
+                    [self presentModalViewController:imagePicker animated:YES];
+                }
+            }
+    }
+    else{
+        //barcode mode? i dont know
 	switch (buttonIndex) {
 		case 0:
 		{
@@ -76,7 +125,7 @@
 		}
         case 2:
 		{
-			
+
             ZBarReaderViewController *reader = [ZBarReaderViewController new];
             reader.readerDelegate = self;
             
@@ -96,8 +145,11 @@
 		default:
 			break;
 	}
+    }
 	
 }
+
+
 
 /**
  * returns the sum of the costs in the list
@@ -316,6 +368,13 @@
         [self.navigationController pushViewController:viewer animated:YES];
         [viewer release];
 	}
+    else {
+        //ask to take a new photo
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"lägg till bild för vara" delegate:self cancelButtonTitle:@"avbryt" destructiveButtonTitle:nil otherButtonTitles:@"Ta ny bild med kamera", @"Välj befintlig bild", nil];
+                                      
+        [actionSheet showInView:[[self view] window]];
+        [actionSheet release];
+    }
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

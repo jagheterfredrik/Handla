@@ -10,7 +10,7 @@
 #import "ListArticle.h"
 #import "Article.h"
 
-@interface IndividualListTableViewCell : UITableViewCell<UIAlertViewDelegate> {
+@interface IndividualListTableViewCell : UITableViewCell<UIAlertViewDelegate, UIActionSheetDelegate> {
 	ListArticle *listArticle_;
 	
 	IBOutlet UIButton *thumbnail;

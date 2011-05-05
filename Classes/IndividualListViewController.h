@@ -10,10 +10,11 @@
 #import "IndividualListTableViewController.h"
 #import "PDColoredProgressView.h"
 #import "List.h"
-
+#import "BrutalUIImageView.h"
+#import "UIImagePickerSingleton.h"
 #import "ZBarSDK.h"
 
-@interface IndividualListViewController : UIViewController<UIActionSheetDelegate,UIAlertViewDelegate, ZBarReaderDelegate> {
+@interface IndividualListViewController : UIViewController<UIActionSheetDelegate,UIAlertViewDelegate, ZBarReaderDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
 	IBOutlet IndividualListTableViewController *individualListTableViewController;
 	IBOutlet UITableView *tableView;
 	IBOutlet UILabel *progressLabel;
