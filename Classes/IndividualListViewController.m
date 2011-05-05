@@ -349,7 +349,7 @@
     if ([self checkedElementsCount] == [self elementsCount]) {
         [UIView animateWithDuration:0.4f animations:^{            
           
-            UIImage *image = [UIImage imageNamed:@"button_red.png"];
+            UIImage *image = [UIImage imageNamed:@"button_green.png"];
             
             float w = image.size.width / 2, h = image.size.height / 2;
             UIImage *stretch = [image stretchableImageWithLeftCapWidth:w topCapHeight:h];
@@ -363,7 +363,7 @@
     }
     else{
         [UIView animateWithDuration:0.4f animations:^{
-            UIImage *image = [UIImage imageNamed:@"button_green.png"];
+            UIImage *image = [UIImage imageNamed:@"button_red.png"];
             
             float w = image.size.width / 2, h = image.size.height / 2;
             UIImage *stretch = [image stretchableImageWithLeftCapWidth:w topCapHeight:h];
@@ -418,7 +418,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListChanged" object:nil];
 
     // Load our image normally.
-    UIImage *image = [UIImage imageNamed:@"button_green.png"];
+    UIImage *image = [UIImage imageNamed:@"button_red.png"];
     
     // And create the stretchy version.
     float w = image.size.width / 2, h = image.size.height / 2;
@@ -430,6 +430,8 @@
     [checkoutButton setBackgroundImage:stretch forState:UIControlStateNormal];
     [checkoutButton setTitle:@"Avsluta köp" forState:UIControlStateNormal];
     [bottomBar addSubview:checkoutButton];
+    
+    [checkoutButton addTarget:self action:@selector(purchase) forControlEvents:UIControlEventTouchUpInside];
     
     //TODO: hook up ibaction
 }
