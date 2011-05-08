@@ -34,6 +34,7 @@
 		[userDefaults setInteger:1 forKey:@"listSortOrder"];
 		[userDefaults setBool:YES forKey:@"listCheckoutViewOn"];
         [userDefaults setBool:YES forKey:@"budgetHistory"];
+		[userDefaults setBool:YES forKey:@"individualListSectioning"];
 		[userDefaults synchronize];
 	}
 	

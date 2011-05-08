@@ -13,12 +13,15 @@
 	NSMutableArray *optionSortOrder;
 	UITableViewCell *lastCheckedSortOrder;	
 	UISwitch *checkoutSwitch;
+	UISwitch *sectioningSwitch;
 
 
 }
 
 @property (nonatomic, retain) UISwitch *checkoutSwitch;
+@property (nonatomic, retain) UISwitch *sectioningSwitch;
 
 -(void) checkoutSwitchChanged;
+-(void) sectioningSwitchChanged;
 
 @end

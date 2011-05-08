@@ -23,11 +23,23 @@
 	self.list_ = list;
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	request.entity = [NSEntityDescription entityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
-	request.sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"checked"
-                                                                                      ascending:YES],
-                               [NSSortDescriptor sortDescriptorWithKey:@"article.name"
-																					 ascending:YES
-																					  selector:@selector(localizedCaseInsensitiveCompare:)],nil];
+	
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	if ([defaults boolForKey:@"individualListSectioning"]) {
+		request.sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"checked"
+																						  ascending:YES],
+								   [NSSortDescriptor sortDescriptorWithKey:@"article.name"
+																 ascending:YES
+																  selector:@selector(localizedCaseInsensitiveCompare:)],nil];
+	}
+	else {
+		request.sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"timeStamp"
+																						  ascending:NO],
+								   [NSSortDescriptor sortDescriptorWithKey:@"article.name"
+																 ascending:YES
+																  selector:@selector(localizedCaseInsensitiveCompare:)],nil];
+	}
+
 	request.predicate = [NSPredicate predicateWithFormat:@"list = %@", list_];
 	request.fetchBatchSize = 20;
 	
@@ -52,7 +64,10 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if ([[super tableView:tableView titleForHeaderInSection:section] isEqualToString:@"0"]) {
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	if (![defaults boolForKey:@"individualListSectioning"]) {
+		return nil;
+	} else if ([[super tableView:tableView titleForHeaderInSection:section] isEqualToString:@"0"]) {
         return @"Varor att hämta";
     } else {
         return @"Hämtade varor";

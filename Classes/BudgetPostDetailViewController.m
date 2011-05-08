@@ -153,6 +153,18 @@
 		[self showMessageWithString:@"Du måste ange en summa för budgetposten!"];
 		return;
 	}
+	NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+	[f setGeneratesDecimalNumbers:YES];
+	[f setNumberStyle:NSNumberFormatterDecimalStyle];
+	NSDecimalNumber * value = (NSDecimalNumber*)[f numberFromString:valueBox.text];
+	if (value == nil){
+		[self showMessageWithString:@"Du måste ange en korrekt kostnad!"];
+		[f release];
+		return;
+	}
+	[f release];
+	
+	
 	BudgetPost* newBudgetPost;
 	if (budgetPost_ == nil) {
 		newBudgetPost = [NSEntityDescription insertNewObjectForEntityForName:@"BudgetPost" inManagedObjectContext:self.managedObjectContext];
@@ -163,15 +175,10 @@
 	newBudgetPost.name = nameBox.text;
     newBudgetPost.repeatID = [NSNumber numberWithInt:-1];
 	
-	//TODO: Check for valid number! i.e only 2 decimals
-	NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
-	[f setGeneratesDecimalNumbers:YES];
-	[f setNumberStyle:NSNumberFormatterDecimalStyle];
-	NSDecimalNumber * value = (NSDecimalNumber*)[f numberFromString:valueBox.text];
-	[f release];
 	if ([incomeOrExpense selectedSegmentIndex] == 1) {
 		value = [value decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
 	}
+	
 	newBudgetPost.amount = value;
 	newBudgetPost.comment = commentBox.text;
 	

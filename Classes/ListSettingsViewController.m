@@ -80,7 +80,7 @@
 	if(section == 0){
 		return 3;
 	}else if(section == 1){
-		return 1;
+		return 2;
 	}else {
 		return 0;
 	}
@@ -118,17 +118,33 @@
 			cell.accessoryType = UITableViewCellAccessoryCheckmark;
 		}
 	}else if (indexPath.section == 1) {
-		cell.textLabel.text = @"Betalningsvy";
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
-		checkoutSwitch = [[UISwitch alloc] init];
-		cell.accessoryView = checkoutSwitch;
-		[cell addSubview:checkoutSwitch];
-		[checkoutSwitch addTarget:self action:@selector(checkoutSwitchChanged) forControlEvents:UIControlEventValueChanged];
-		if ([defaults integerForKey:@"listCheckoutViewOn"] == 1) {
-			[checkoutSwitch setOn:YES animated:NO];
-		}else {
-			[checkoutSwitch setOn:NO animated:NO];
+		
+		if (indexPath.row == 0) {
+			cell.textLabel.text = @"Betalningsvy";
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+			checkoutSwitch = [[UISwitch alloc] init];
+			cell.accessoryView = checkoutSwitch;
+			[cell addSubview:checkoutSwitch];
+			[checkoutSwitch addTarget:self action:@selector(checkoutSwitchChanged) forControlEvents:UIControlEventValueChanged];
+			if ([defaults boolForKey:@"listCheckoutViewOn"]) {
+				[checkoutSwitch setOn:YES animated:NO];
+			}else {
+				[checkoutSwitch setOn:NO animated:NO];
+			}
+		}else if (indexPath.row == 1) {
+			cell.textLabel.text = @"Sektionera listor";
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+			sectioningSwitch = [[UISwitch alloc] init];
+			cell.accessoryView = sectioningSwitch;
+			[cell addSubview:sectioningSwitch];
+			[sectioningSwitch addTarget:self action:@selector(sectioningSwitchChanged) forControlEvents:UIControlEventValueChanged];
+			if ([defaults boolForKey:@"individualListSectioning"]) {
+				[sectioningSwitch setOn:YES animated:NO];
+			}else {
+				[sectioningSwitch setOn:NO animated:NO];
+			}
 		}
+		
 
 		
 	}
@@ -139,12 +155,24 @@
 -(void) checkoutSwitchChanged{
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	
-	if(checkoutSwitch.on)
-	{
-		[defaults setBool:YES forKey:@"listCheckoutViewOn"];
-	} else {
-		[defaults setBool:NO forKey:@"listCheckoutViewOn"];
-	}
+	[defaults setBool:checkoutSwitch.on forKey:@"listCheckoutViewOn"];
+	
+	[defaults synchronize];
+}
+
+-(void) sectioningSwitchChanged{
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	
+	[defaults setBool:sectioningSwitch.on forKey:@"individualListSectioning"];
+	
+	if([defaults boolForKey:@"individualListSectioning"])
+		{
+			NSLog(@"YES");
+		}
+		else
+		{
+			NSLog(@"NO");
+		}
 	
 	[defaults synchronize];
 }
