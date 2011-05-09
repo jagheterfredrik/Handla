@@ -165,15 +165,6 @@
 	
 	[defaults setBool:sectioningSwitch.on forKey:@"individualListSectioning"];
 	
-	if([defaults boolForKey:@"individualListSectioning"])
-		{
-			NSLog(@"YES");
-		}
-		else
-		{
-			NSLog(@"NO");
-		}
-	
 	[defaults synchronize];
 }
 
