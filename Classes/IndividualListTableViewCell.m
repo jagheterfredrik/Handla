@@ -59,7 +59,7 @@
  *  information available for the current
  *  ListArticle.
  */
--(void)updateView{
+-(void)updateView{    
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
 	[formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
 	[self layoutSubviews];
@@ -73,10 +73,8 @@
         priceLabel.textColor = [UIColor redColor];
     }
 	
-	if (self.listArticle.article.picture) {
-		[thumbnail setImage:[[PhotoUtil instance] readThumbnail:self.listArticle.article.picture] forState:UIControlStateNormal];
-		thumbnail.adjustsImageWhenHighlighted = NO;
-	}
+    [thumbnail setImage:[[PhotoUtil instance] readThumbnail:self.listArticle.article.picture] forState:UIControlStateNormal];
+    thumbnail.adjustsImageWhenHighlighted = NO;
 	
     [formatter release];
     
