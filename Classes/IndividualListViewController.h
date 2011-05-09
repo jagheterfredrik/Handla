@@ -27,6 +27,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 - (IBAction)purchase;
+- (IBAction)scanListArticle;
 
 @property (readonly) NSInteger elementsCount,checkedElementsCount;
 

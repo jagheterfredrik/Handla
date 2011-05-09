@@ -18,6 +18,9 @@
 #import "PhotoUtil.h"
 #import "EGOPhotoGlobal.h"
 
+#define SCAN_TO_ADD 1
+#define SCAN_TO_CHECK 2
+
 @implementation IndividualListViewController
 
 - (void) imagePickerController:(UIImagePickerController*)reader didFinishPickingMediaWithInfo:(NSDictionary*)info {
@@ -28,31 +31,52 @@
         // EXAMPLE: just grab the first barcode
         break;
     
-    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Article" inManagedObjectContext:list_.managedObjectContext]; 
-    
-    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease]; 
-    
-    [request setEntity:entityDescription]; 
-    
-    [request setPredicate:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"barcode == '%@'", symbol.data]]];
-    
-    NSError *error = nil; 
-    NSArray *array = [list_.managedObjectContext executeFetchRequest:request error:&error];
-    
-    if ([array count]>0) {
-        ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
-        listArticle.list = list_;
-        listArticle.article = (Article*)[array lastObject];
-        listArticle.weightUnit = listArticle.article.lastWeightUnit;
-        listArticle.price = listArticle.article.lastPrice;
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ingen vara funnen!" 
-                                                        message:@"Den vara du skannade finns ej bland dina tidigare varor." 
-                                                       delegate:self 
-                                              cancelButtonTitle:@"Ok"
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
+    if (reader.view.tag == SCAN_TO_ADD) {
+        NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Article" inManagedObjectContext:list_.managedObjectContext]; 
+        
+        NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease]; 
+        
+        [request setEntity:entityDescription]; 
+        
+        [request setPredicate:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"barcode == '%@'", symbol.data]]];
+        
+        NSError *error = nil; 
+        NSArray *array = [list_.managedObjectContext executeFetchRequest:request error:&error];
+        
+        if ([array count]>0) {
+            ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
+            listArticle.list = list_;
+            listArticle.article = (Article*)[array lastObject];
+            listArticle.weightUnit = listArticle.article.lastWeightUnit;
+            listArticle.price = listArticle.article.lastPrice;
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ingen vara funnen!" 
+                                                            message:@"Den vara du skannade finns ej bland dina tidigare varor." 
+                                                           delegate:self 
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+        }
+    } else if (reader.view.tag == SCAN_TO_CHECK) {
+        BOOL found = NO;
+        NSArray *myArray = [list_.articles allObjects];
+        for(ListArticle *object in myArray) {
+            if ([object.article.barcode isEqualToString:symbol.data]) {
+                object.checked = [NSNumber numberWithBool:YES];
+                found = YES;
+            }
+        }
+        
+        if (!found) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ingen vara funnen!" 
+                                                            message:@"Den vara du skannade finns ej i den aktuella listan." 
+                                                           delegate:self 
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+        }
     }
     
 	[reader dismissModalViewControllerAnimated: YES];
@@ -82,6 +106,8 @@
             reader.readerDelegate = self;
             
             ZBarImageScanner *scanner = reader.scanner;
+            
+            reader.view.tag = SCAN_TO_ADD;
             
             // disable rarely used I2/5 to improve performance
             [scanner setSymbology: ZBAR_I25
@@ -166,6 +192,29 @@
 	return count;    
 }
 
+/**
+ *  When the user clicks the scan-button a barcode scan should commence and
+ *  when a barcode is found it should be cross-refernced and checked-off
+ *  the list.
+ */
+- (IBAction)scanListArticle {
+    ZBarReaderViewController *reader = [ZBarReaderViewController new];
+    reader.readerDelegate = self;
+    
+    ZBarImageScanner *scanner = reader.scanner;
+    
+    reader.view.tag = SCAN_TO_CHECK;
+    
+    // disable rarely used I2/5 to improve performance
+    [scanner setSymbology: ZBAR_I25
+                   config: ZBAR_CFG_ENABLE
+                       to: 0];
+    
+    // present and release the controller
+    [self presentModalViewController: reader
+                            animated: YES];
+    [reader release];
+}
 
 /**
  * When the user clicks the "avsluta köp" button, we see if all posts are checked off
