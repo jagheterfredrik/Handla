@@ -15,7 +15,6 @@ static UIImagePickerController *imagePicker = nil;
 
 + (UIImagePickerController*)sharedInstance {
     if (imagePicker == nil) {
-        NSLog(@"Created..");
         imagePicker = [[super alloc] init];
     }
     return imagePicker;

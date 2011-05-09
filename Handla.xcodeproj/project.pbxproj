@@ -23,6 +23,7 @@
 		052C513B1378469A00862745 /* AddArticleHelp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 052C51351378469A00862745 /* AddArticleHelp@2x.png */; };
 		052C513C1378469A00862745 /* AddBudgetPostHelp.png in Resources */ = {isa = PBXBuildFile; fileRef = 052C51361378469A00862745 /* AddBudgetPostHelp.png */; };
 		052C513D1378469A00862745 /* AddBudgetPostHelp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 052C51371378469A00862745 /* AddBudgetPostHelp@2x.png */; };
+		052C5141137892B800862745 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 052C5140137892B800862745 /* UIImage+Resize.m */; };
 		0536BFEA136EFC0600009372 /* DSActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536BFE9136EFC0600009372 /* DSActivityView.m */; };
 		0536C01A136FFE8300009372 /* EGOPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536BFFA136FFE8300009372 /* EGOPhotoViewController.m */; };
 		0536C01B136FFE8300009372 /* EGOQuickPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536C001136FFE8300009372 /* EGOQuickPhoto.m */; };
@@ -167,6 +168,8 @@
 		052C51371378469A00862745 /* AddBudgetPostHelp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AddBudgetPostHelp@2x.png"; path = "Resources/Images/AddBudgetPostHelp@2x.png"; sourceTree = "<group>"; };
 		052C51381378469A00862745 /* AddListHelp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AddListHelp.png; path = Resources/Images/AddListHelp.png; sourceTree = "<group>"; };
 		052C51391378469A00862745 /* AddListHelp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AddListHelp@2x.png"; path = "Resources/Images/AddListHelp@2x.png"; sourceTree = "<group>"; };
+		052C5140137892B800862745 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		052C5142137892BD00862745 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		0536BFE8136EFC0600009372 /* DSActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSActivityView.h; sourceTree = "<group>"; };
 		0536BFE9136EFC0600009372 /* DSActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSActivityView.m; sourceTree = "<group>"; };
 		0536BFF9136FFE8300009372 /* EGOPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOPhotoViewController.h; sourceTree = "<group>"; };
@@ -818,6 +821,8 @@
 		4848BBCE130B33D400702E2D /* Base classes */ = {
 			isa = PBXGroup;
 			children = (
+				052C5142137892BD00862745 /* UIImage+Resize.h */,
+				052C5140137892B800862745 /* UIImage+Resize.m */,
 				0536BFF6136FFE8200009372 /* EGOPhotoViewer */,
 				483CD34D1316DEBB00671D5A /* ZBarSDK */,
 				4848BA5A130AE7EF00702E2D /* AlertPrompt.h */,
@@ -1031,6 +1036,7 @@
 				0536C046137069FE00009372 /* BrutalUIImageView.m in Sources */,
 				05DBB9EA13742AD4001E5154 /* Article.m in Sources */,
 				057E75BD13742FE000B14E92 /* PriceAlertView.m in Sources */,
+				052C5141137892B800862745 /* UIImage+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
