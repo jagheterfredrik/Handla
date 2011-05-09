@@ -43,6 +43,7 @@
         ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
         listArticle.list = list_;
         listArticle.article = (Article*)[array lastObject];
+        listArticle.weightUnit = listArticle.article.lastWeightUnit;
         listArticle.price = listArticle.article.lastPrice;
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ingen vara funnen!" 
@@ -107,7 +108,7 @@
 	for (ListArticle *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
 	{
         if (object.price!=nil){
-            amountBalance = [amountBalance decimalNumberByAdding:object.price];
+            amountBalance = [amountBalance decimalNumberByAdding:[object.price decimalNumberByMultiplyingBy:object.amount]];
         }
 	}
 	return amountBalance;
@@ -121,7 +122,8 @@
 	for (ListArticle *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
 	{
 		if ([[object checked] boolValue] && object.price!=nil) {
-			amountBalance = [amountBalance decimalNumberByAdding:object.price];
+            NSLog(@"%@ x %@kr", object.amount, object.price);
+			amountBalance = [amountBalance decimalNumberByAdding:[object.price decimalNumberByMultiplyingBy:object.amount]];
 		}
 		
 	}

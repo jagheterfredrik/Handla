@@ -7,7 +7,7 @@
 //
 
 #import "IndividualListTableViewCell.h"
-#import "AlertPrompt.h"
+#import "PriceAlertView.h"
 #import "PhotoUtil.h"
 
 @implementation IndividualListTableViewCell
@@ -44,7 +44,7 @@
     
     [formatter release];
     
-	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:title delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
+	PriceAlertView *alertPrompt = [[PriceAlertView alloc] initWithTitle:title delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
 	alertPrompt.textField.keyboardType=UIKeyboardTypeDecimalPad;
 	[alertPrompt show];
 	[alertPrompt release];
@@ -104,12 +104,14 @@
 
 #define alertViewButtonOK 1
 
-- (void)alertView:(AlertPrompt *)alertPrompt clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)alertView:(PriceAlertView *)alertPrompt clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == alertViewButtonOK && [alertPrompt.textField.text length] != 0) { //TODO: Better test
 		NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
 		[f setGeneratesDecimalNumbers:YES];
 		[f setNumberStyle:NSNumberFormatterDecimalStyle];
 		listArticle_.price = (NSDecimalNumber*)[f numberFromString:alertPrompt.textField.text];
+        listArticle_.amount = [NSDecimalNumber decimalNumberWithString:@"1"];
+        listArticle_.article.lastWeightUnit = listArticle_.weightUnit;
         listArticle_.article.lastPrice = listArticle_.price;
 		listArticle_.timeStamp = [NSDate date];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ListArticleChanged" object:nil];

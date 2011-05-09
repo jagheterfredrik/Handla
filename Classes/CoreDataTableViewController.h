@@ -25,11 +25,11 @@
 @property (retain) NSFetchedResultsController *fetchedResultsController;
 
 // key to use when displaying items in the table; defaults to the first sortDescriptor's key
-@property (copy) NSString *titleKey;
+@property (nonatomic,copy) NSString *titleKey;
 // key to use when displaying items in the table for the subtitle; defaults to nil
-@property (copy) NSString *subtitleKey;
+@property (nonatomic,copy) NSString *subtitleKey;
 // key to use when searching the table (should usually be the same as displayKey); if nil, no searching allowed
-@property (copy) NSString *searchKey;
+@property (nonatomic,copy) NSString *searchKey;
 
 - (NSManagedObject *)tableView:(UITableView *)tableView managedObjectForIndexPath:(NSIndexPath *)indexPath;
 

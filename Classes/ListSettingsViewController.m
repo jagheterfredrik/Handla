@@ -10,7 +10,7 @@
 
 
 @implementation ListSettingsViewController
-@synthesize checkoutSwitch;
+@synthesize checkoutSwitch, sectioningSwitch;
 
 #pragma mark -
 #pragma mark View lifecycle

@@ -90,6 +90,8 @@
 		ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:managedObjectContext_];
 		listArticle.list = list_;
 		listArticle.article = article_;
+        listArticle.amount = [NSDecimalNumber decimalNumberWithString:@"1"];
+        listArticle.weightUnit = article_.lastWeightUnit;
         listArticle.price = article_.lastPrice;
 	}
 	

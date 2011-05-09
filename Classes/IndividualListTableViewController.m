@@ -33,11 +33,10 @@
 																  selector:@selector(localizedCaseInsensitiveCompare:)],nil];
 	}
 	else {
-		request.sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"timeStamp"
-																						  ascending:NO],
+		request.sortDescriptors = [NSArray arrayWithObject:
 								   [NSSortDescriptor sortDescriptorWithKey:@"article.name"
 																 ascending:YES
-																  selector:@selector(localizedCaseInsensitiveCompare:)],nil];
+																  selector:@selector(localizedCaseInsensitiveCompare:)]];
 	}
 
 	request.predicate = [NSPredicate predicateWithFormat:@"list = %@", list_];

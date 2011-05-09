@@ -245,6 +245,8 @@
         ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
         listArticle.list = list_;
         listArticle.article = (Article*)managedObject;
+        listArticle.amount = [NSDecimalNumber decimalNumberWithString:@"1"];
+        listArticle.weightUnit = listArticle.article.lastWeightUnit;
         listArticle.price = listArticle.article.lastPrice;
         [self.navigationController popViewControllerAnimated:YES];
     } else {
