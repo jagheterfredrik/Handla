@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
-		<string key="IBDocument.SystemVersion">10J3250</string>
+		<string key="IBDocument.SystemVersion">10J4138</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
@@ -86,7 +86,7 @@
 							<object class="IBUILabel" id="252671152">
 								<reference key="NSNextResponder" ref="779551214"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{65, 0}, {123, 57}}</string>
+								<string key="NSFrame">{{65, 0}, {123, 37}}</string>
 								<reference key="NSSuperview" ref="779551214"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="451163685"/>
@@ -96,7 +96,7 @@
 								<int key="IBUITag">2</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Label</string>
+								<string key="IBUIText">Vara</string>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica</string>
 									<double key="NSSize">20</double>
@@ -108,9 +108,9 @@
 								</object>
 								<reference key="IBUIHighlightedColor" ref="641104038"/>
 								<int key="IBUIBaselineAdjustment">1</int>
-								<float key="IBUIMinimumFontSize">12</float>
+								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUINumberOfLines">2</int>
-								<int key="IBUILineBreakMode">0</int>
+								<int key="IBUILineBreakMode">2</int>
 							</object>
 							<object class="IBUILabel" id="895137946">
 								<reference key="NSNextResponder" ref="779551214"/>
@@ -172,6 +172,28 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">Checkbox.png</string>
 								</object>
+							</object>
+							<object class="IBUILabel" id="747266089">
+								<reference key="NSNextResponder" ref="779551214"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{65, 38}, {123, 15}}</string>
+								<reference key="NSSuperview" ref="779551214"/>
+								<reference key="NSWindow"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">7</int>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<string key="IBUIText">Label</string>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica</string>
+									<double key="NSSize">12</double>
+									<int key="NSfFlags">16</int>
+								</object>
+								<reference key="IBUITextColor" ref="943048924"/>
+								<nil key="IBUIHighlightedColor"/>
+								<int key="IBUIBaselineAdjustment">1</int>
+								<float key="IBUIMinimumFontSize">10</float>
 							</object>
 						</object>
 						<string key="NSFrameSize">{287, 57}</string>
@@ -265,6 +287,14 @@
 					</object>
 					<int key="connectionID">61</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">descriptionLabel</string>
+						<reference key="source" ref="107017316"/>
+						<reference key="destination" ref="747266089"/>
+					</object>
+					<int key="connectionID">67</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -296,6 +326,7 @@
 							<reference ref="396186088"/>
 							<reference ref="252671152"/>
 							<reference ref="451163685"/>
+							<reference ref="747266089"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -325,6 +356,11 @@
 						<reference key="object" ref="396186088"/>
 						<reference key="parent" ref="107017316"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">62</int>
+						<reference key="object" ref="747266089"/>
+						<reference key="parent" ref="107017316"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -347,6 +383,7 @@
 					<string>3.IBViewBoundsToFrameTransform</string>
 					<string>4.IBPluginDependency</string>
 					<string>4.IBViewBoundsToFrameTransform</string>
+					<string>62.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -376,6 +413,7 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">AUKCAAAAAAAAA</bytes>
 					</object>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -390,7 +428,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">61</int>
+			<int key="maxID">67</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -443,6 +481,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>cell</string>
 							<string>checkboxImage</string>
+							<string>descriptionLabel</string>
 							<string>markButton</string>
 							<string>priceLabel</string>
 							<string>thumbnail</string>
@@ -452,6 +491,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>IndividualListTableViewCell</string>
 							<string>UIImageView</string>
+							<string>UILabel</string>
 							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UIButton</string>
@@ -464,6 +504,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>cell</string>
 							<string>checkboxImage</string>
+							<string>descriptionLabel</string>
 							<string>markButton</string>
 							<string>priceLabel</string>
 							<string>thumbnail</string>
@@ -478,6 +519,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">checkboxImage</string>
 								<string key="candidateClassName">UIImageView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">descriptionLabel</string>
+								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">markButton</string>

@@ -90,7 +90,6 @@
     if (self.searchDisplayController.searchBar.showsCancelButton) {
         tableView.scrollEnabled = YES;
     } else if (numRows == 0) {
-		showHelp = YES;
 		UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AddListHelp"]];
 		CGAffineTransform trans = CGAffineTransformMakeTranslation(0, 44);
 		imageView.transform = trans;
@@ -109,7 +108,6 @@
 	} else {
 		tableView.backgroundView = nil;
 		tableView.backgroundColor = [UIColor whiteColor];
-		showHelp = NO;
 		self.searchDisplayController.searchBar.hidden = NO;
         self.navigationItem.leftBarButtonItem = self.editButtonItem;
         tableView.scrollEnabled = YES;

@@ -27,27 +27,13 @@
 - (IBAction)setSelected:(BOOL)selected animated:(BOOL)animated {
     
     [super setSelected:selected animated:animated];
-    
     // Configure the view for the selected state.
 }
 
 - (IBAction)changePriceButtonPressed:(UIButton*) sender{
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-	[formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-
-    NSString *title;
-    if (listArticle_.price) {
-        title = [NSString stringWithFormat:@"Nytt pris (%@):",[formatter stringFromNumber:listArticle_.price]];
-    } else {
-        title = @"Nytt pris:";
-    }
-    
-    [formatter release];
-    
-	PriceAlertView *alertPrompt = [[PriceAlertView alloc] initWithTitle:title delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
-	alertPrompt.textField.keyboardType=UIKeyboardTypeDecimalPad;
+	PriceAlertView *alertPrompt = [[PriceAlertView alloc] initWithListArticle:listArticle_];
 	[alertPrompt show];
-	[alertPrompt release];
+//	[alertPrompt release]; EH?!
 }
 
 - (IBAction)imagePressed {
@@ -63,9 +49,24 @@
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
 	[formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
 	[self layoutSubviews];
+    
     titleLabel.text = self.listArticle.article.name;
+    UIFont *font = [UIFont fontWithName:@"Helvetica" size:20];
+    
+    for(int i = 20; i > 10; --i)
+    {
+        font = [font fontWithSize:i];
+        
+        CGSize constraintSize = CGSizeMake(123.0f, MAXFLOAT);
+        CGSize labelSize = [titleLabel.text sizeWithFont:font constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+        if(labelSize.height <= 37.0f)
+            break;
+    }
+    
+    titleLabel.font = font;
+    
     if (self.listArticle.price != nil) {
-        priceLabel.text = [formatter stringFromNumber:listArticle_.price];
+        priceLabel.text = [formatter stringFromNumber:[listArticle_.amount decimalNumberByMultiplyingBy:listArticle_.price]];
         priceLabel.textColor = [UIColor blackColor];
     }
     else{
@@ -75,6 +76,12 @@
 	
     [thumbnail setImage:[[PhotoUtil instance] readThumbnail:self.listArticle.article.picture] forState:UIControlStateNormal];
     thumbnail.adjustsImageWhenHighlighted = NO;
+    
+    if ([self.listArticle.weightUnit boolValue]) {
+        descriptionLabel.text = [NSString stringWithFormat:@"%.2f kg á %@/kg", [self.listArticle.amount doubleValue], [formatter stringFromNumber:self.listArticle.price]];
+    } else {
+        descriptionLabel.text = [NSString stringWithFormat:@"%i st á %@/st", [self.listArticle.amount intValue], [formatter stringFromNumber:self.listArticle.price]];
+    }
 	
     [formatter release];
     
@@ -85,6 +92,8 @@
         thumbnail.alpha = 1.f;
         checkboxImage.alpha = 0.f;
     }
+    
+
 }
 
 - (IBAction)flipCheckedStatus{
@@ -103,13 +112,13 @@
 #define alertViewButtonOK 1
 
 - (void)alertView:(PriceAlertView *)alertPrompt clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == alertViewButtonOK && [alertPrompt.textField.text length] != 0) { //TODO: Better test
+	if (buttonIndex == alertViewButtonOK && [alertPrompt.enteredPrice length] != 0) { //TODO: Better test
 		NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
 		[f setGeneratesDecimalNumbers:YES];
 		[f setNumberStyle:NSNumberFormatterDecimalStyle];
-		listArticle_.price = (NSDecimalNumber*)[f numberFromString:alertPrompt.textField.text];
-        listArticle_.amount = [NSDecimalNumber decimalNumberWithString:@"1"];
-        listArticle_.article.lastWeightUnit = listArticle_.weightUnit;
+		listArticle_.price = (NSDecimalNumber*)[f numberFromString:alertPrompt.enteredPrice];
+        listArticle_.amount = (NSDecimalNumber*)[f numberFromString:alertPrompt.enteredAmount];
+        listArticle_.article.lastWeightUnit = listArticle_.weightUnit = [NSNumber numberWithBool:alertPrompt.enteredWeightUnit];
         listArticle_.article.lastPrice = listArticle_.price;
 		listArticle_.timeStamp = [NSDate date];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ListArticleChanged" object:nil];

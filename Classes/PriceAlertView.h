@@ -7,14 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ListArticle.h"
+#import "Article.h"
 
-
-@interface PriceAlertView : UIAlertView <UITextFieldDelegate>
+@interface PriceAlertView : UIAlertView <UITextFieldDelegate, UIAlertViewDelegate>
 {
-    UITextField *textField;
+    UITextField *amountField;
+    UITextField *priceField;
+    UILabel *priceLabel;
+    UILabel *amountLabel;
+    UISegmentedControl *weightUnitSwitch;
+    ListArticle *listArticle_;
 }
 @property (nonatomic, assign) NSInteger maxLength;
-@property (nonatomic, retain) UITextField *textField;
-@property (readonly) NSString *enteredText;
-- (id)initWithTitle:(NSString *)title delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle okButtonTitle:(NSString *)okButtonTitle;
+
+@property (readonly) NSString *enteredPrice;
+@property (readonly) NSString *enteredAmount;
+@property (readonly) BOOL enteredWeightUnit;
+
+- (id)initWithListArticle:(ListArticle*)listArticle;
 @end

@@ -12,8 +12,10 @@
 #import "ListArticle.h"
 #import "Article.h"
 #import "AddArticleListViewController.h"
-
 #import "ArticleDetailViewController.h"
+
+#import "UIActionSheet+Blocks.h"
+#import "PriceAlertView.h"
 
 @implementation IndividualListTableViewController
 
@@ -117,9 +119,30 @@
 }
 
 - (void)managedObjectAccessoryTapped:(NSManagedObject *)managedObject {
-    ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil article:((ListArticle*)managedObject).article];
-    [self.navController pushViewController:articleDetailViewController animated:YES];
-    [articleDetailViewController release];
+    RIButtonItem *change = [RIButtonItem itemWithLabel:@"Ändra vara"];
+    change.action = ^
+    {
+        ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil article:((ListArticle*)managedObject).article];
+        [self.navController pushViewController:articleDetailViewController animated:YES];
+        [articleDetailViewController release];
+    };
+    
+    RIButtonItem *delete = [RIButtonItem itemWithLabel:@"Ta bort från listan"];
+    delete.action = ^
+    {
+        [self deleteManagedObject:managedObject];
+    };
+    
+    RIButtonItem *price = [RIButtonItem itemWithLabel:@"Ändra pris"];
+    price.action = ^
+    {
+        PriceAlertView *alertPrompt = [[PriceAlertView alloc] initWithListArticle:(ListArticle*)managedObject];
+        [alertPrompt show];
+    };
+    
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:((ListArticle*)managedObject).article.name cancelButtonItem:[RIButtonItem itemWithLabel:@"Avbryt"] destructiveButtonItem:delete otherButtonItems:change,price, nil];
+    [sheet showInView:self.view.window];
+    [sheet release];
 }
 
 - (void)deleteManagedObject:(NSManagedObject *)managedObject {
