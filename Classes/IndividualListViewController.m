@@ -348,15 +348,33 @@
 	}
     
     if ([self checkedElementsCount] == [self elementsCount]) {
-        [UIView animateWithDuration:0.4f animations:^{
-            [checkoutButton setBackgroundColor:[UIColor colorWithRed:0.f green:0.8f blue:0.f alpha:1.f]];
-        }];
+        //TODO: This is code to make the done button fancy, shold be replaced by a cool image    
+        // Load our image normally.
+        UIImage *image = [UIImage imageNamed:@"button_green.png"];
+        
+        // And create the stretchy version.
+        float w = image.size.width / 2, h = image.size.height / 2;
+        UIImage *stretch = [image stretchableImageWithLeftCapWidth:w topCapHeight:h];
+        
+        // Now we'll create a button as per usual.
+        [checkoutButton setBackgroundImage:stretch forState:UIControlStateNormal];
+        
+        [checkoutButton addTarget:self action:@selector(purchase) forControlEvents:UIControlEventTouchUpInside];
         
     }
     else{
-        [UIView animateWithDuration:0.4f animations:^{
-            [checkoutButton setBackgroundColor:[UIColor lightGrayColor]];
-        }];
+        //TODO: This is code to make the done button fancy, shold be replaced by a cool image    
+        // Load our image normally.
+        UIImage *image = [UIImage imageNamed:@"button_red.png"];
+        
+        // And create the stretchy version.
+        float w = image.size.width / 2, h = image.size.height / 2;
+        UIImage *stretch = [image stretchableImageWithLeftCapWidth:w topCapHeight:h];
+        
+        // Now we'll create a button as per usual.
+        [checkoutButton setBackgroundImage:stretch forState:UIControlStateNormal];
+        
+        [checkoutButton addTarget:self action:@selector(purchase) forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
@@ -380,15 +398,8 @@
 	[individualListTableViewController setList:list_];
     
     individualListTableViewController.navController = self.navigationController;
+
     
-    //TODO: This is code to make the done button fancy, shold be replaced by a cool image
-	[[checkoutButton layer] setCornerRadius:8.0f];
-	[[checkoutButton layer] setMasksToBounds:YES];
-	[[checkoutButton layer] setBorderWidth:1.0f];
-	if ([self elementsCount] == 0)
-	{
-		checkoutButton.hidden = YES;
-	}
     //end buttoncooling part
     
     progressBar.progress = (float)(self.checkedElementsCount)/(float)(self.elementsCount);
