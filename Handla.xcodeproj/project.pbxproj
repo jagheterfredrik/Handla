@@ -54,10 +54,6 @@
 		0536C046137069FE00009372 /* BrutalUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536C045137069FC00009372 /* BrutalUIImageView.m */; };
 		055411F013368B7B00533893 /* PDColoredProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 055411EE13368B7B00533893 /* PDColoredProgressView.m */; };
 		057E75BD13742FE000B14E92 /* PriceAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 057E75BC13742FE000B14E92 /* PriceAlertView.m */; };
-		05864787137974C2007FD51E /* GreenButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 05864783137974C2007FD51E /* GreenButton.png */; };
-		05864788137974C2007FD51E /* GreenButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05864784137974C2007FD51E /* GreenButton@2x.png */; };
-		05864789137974C2007FD51E /* RedButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 05864785137974C2007FD51E /* RedButton.png */; };
-		0586478A137974C2007FD51E /* RedButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05864786137974C2007FD51E /* RedButton@2x.png */; };
 		05A0CB10135C2241008AD4D4 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A0CB0F135C2241008AD4D4 /* NSDate+Helper.m */; };
 		05DBB9EA13742AD4001E5154 /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DBB9E913742AD4001E5154 /* Article.m */; };
 		05E5EBED1351D6FD00DF6D7A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 05E5EBEC1351D6FD00DF6D7A /* README.md */; };
@@ -229,10 +225,6 @@
 		055411EE13368B7B00533893 /* PDColoredProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDColoredProgressView.m; sourceTree = "<group>"; };
 		057E75BB13742FE000B14E92 /* PriceAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceAlertView.h; sourceTree = "<group>"; };
 		057E75BC13742FE000B14E92 /* PriceAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceAlertView.m; sourceTree = "<group>"; };
-		05864783137974C2007FD51E /* GreenButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GreenButton.png; path = Resources/Images/GreenButton.png; sourceTree = "<group>"; };
-		05864784137974C2007FD51E /* GreenButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GreenButton@2x.png"; path = "Resources/Images/GreenButton@2x.png"; sourceTree = "<group>"; };
-		05864785137974C2007FD51E /* RedButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RedButton.png; path = Resources/Images/RedButton.png; sourceTree = "<group>"; };
-		05864786137974C2007FD51E /* RedButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedButton@2x.png"; path = "Resources/Images/RedButton@2x.png"; sourceTree = "<group>"; };
 		05A0CB0E135C2241008AD4D4 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
 		05A0CB0F135C2241008AD4D4 /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
 		05DBB9E713742A8B001E5154 /* Handla.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Handla.xcdatamodel; sourceTree = "<group>"; };
@@ -710,10 +702,6 @@
 				4874B6931329448B006F291A /* 50.JPG */,
 				4874B6941329448B006F291A /* 100.jpg */,
 				4874B6951329448B006F291A /* 500.jpg */,
-				05864783137974C2007FD51E /* GreenButton.png */,
-				05864784137974C2007FD51E /* GreenButton@2x.png */,
-				05864785137974C2007FD51E /* RedButton.png */,
-				05864786137974C2007FD51E /* RedButton@2x.png */,
 				489B0712131F90FB00FF8346 /* AddListHelp.png */,
 				489B0713131F90FB00FF8346 /* AddListHelp@2x.png */,
 				4874B6961329448B006F291A /* BarCodeButton.png */,
@@ -1008,10 +996,6 @@
 				052C513B1378469A00862745 /* AddArticleHelp@2x.png in Resources */,
 				052C513C1378469A00862745 /* AddBudgetPostHelp.png in Resources */,
 				052C513D1378469A00862745 /* AddBudgetPostHelp@2x.png in Resources */,
-				05864787137974C2007FD51E /* GreenButton.png in Resources */,
-				05864788137974C2007FD51E /* GreenButton@2x.png in Resources */,
-				05864789137974C2007FD51E /* RedButton.png in Resources */,
-				0586478A137974C2007FD51E /* RedButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1118,7 +1102,7 @@
 				GCC_PREFIX_HEADER = Handla_Prefix.pch;
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "Handla-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/ZBarSDK\"",
@@ -1140,7 +1124,7 @@
 				GCC_PREFIX_HEADER = Handla_Prefix.pch;
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "Handla-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/ZBarSDK\"",
