@@ -350,7 +350,7 @@
     if ([self checkedElementsCount] == [self elementsCount]) {
         //TODO: This is code to make the done button fancy, shold be replaced by a cool image    
         // Load our image normally.
-        UIImage *image = [UIImage imageNamed:@"button_green.png"];
+        UIImage *image = [UIImage imageNamed:@"GreenButton.png"];
         
         // And create the stretchy version.
         float w = image.size.width / 2, h = image.size.height / 2;
@@ -365,7 +365,7 @@
     else{
         //TODO: This is code to make the done button fancy, shold be replaced by a cool image    
         // Load our image normally.
-        UIImage *image = [UIImage imageNamed:@"button_red.png"];
+        UIImage *image = [UIImage imageNamed:@"RedButton.png"];
         
         // And create the stretchy version.
         float w = image.size.width / 2, h = image.size.height / 2;
