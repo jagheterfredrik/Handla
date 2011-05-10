@@ -24,6 +24,10 @@
 		052C513C1378469A00862745 /* AddBudgetPostHelp.png in Resources */ = {isa = PBXBuildFile; fileRef = 052C51361378469A00862745 /* AddBudgetPostHelp.png */; };
 		052C513D1378469A00862745 /* AddBudgetPostHelp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 052C51371378469A00862745 /* AddBudgetPostHelp@2x.png */; };
 		052C5141137892B800862745 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 052C5140137892B800862745 /* UIImage+Resize.m */; };
+		052C51491378AA6D00862745 /* RIButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 052C51441378AA6C00862745 /* RIButtonItem.m */; };
+		052C514A1378AA6D00862745 /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 052C51461378AA6D00862745 /* UIActionSheet+Blocks.m */; };
+		052C514B1378AA6D00862745 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 052C51481378AA6D00862745 /* UIAlertView+Blocks.m */; };
+		052C514E1378ACA800862745 /* PhotoHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 052C514D1378ACA700862745 /* PhotoHandler.m */; };
 		0536BFEA136EFC0600009372 /* DSActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536BFE9136EFC0600009372 /* DSActivityView.m */; };
 		0536C01A136FFE8300009372 /* EGOPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536BFFA136FFE8300009372 /* EGOPhotoViewController.m */; };
 		0536C01B136FFE8300009372 /* EGOQuickPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536C001136FFE8300009372 /* EGOQuickPhoto.m */; };
@@ -170,6 +174,14 @@
 		052C51391378469A00862745 /* AddListHelp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AddListHelp@2x.png"; path = "Resources/Images/AddListHelp@2x.png"; sourceTree = "<group>"; };
 		052C5140137892B800862745 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		052C5142137892BD00862745 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		052C51431378AA6C00862745 /* RIButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIButtonItem.h; sourceTree = "<group>"; };
+		052C51441378AA6C00862745 /* RIButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIButtonItem.m; sourceTree = "<group>"; };
+		052C51451378AA6C00862745 /* UIActionSheet+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+Blocks.h"; sourceTree = "<group>"; };
+		052C51461378AA6D00862745 /* UIActionSheet+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+Blocks.m"; sourceTree = "<group>"; };
+		052C51471378AA6D00862745 /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
+		052C51481378AA6D00862745 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
+		052C514C1378ACA700862745 /* PhotoHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoHandler.h; sourceTree = "<group>"; };
+		052C514D1378ACA700862745 /* PhotoHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoHandler.m; sourceTree = "<group>"; };
 		0536BFE8136EFC0600009372 /* DSActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSActivityView.h; sourceTree = "<group>"; };
 		0536BFE9136EFC0600009372 /* DSActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSActivityView.m; sourceTree = "<group>"; };
 		0536BFF9136FFE8300009372 /* EGOPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOPhotoViewController.h; sourceTree = "<group>"; };
@@ -658,6 +670,8 @@
 				48A8536B1317DAD200026C1B /* CheckoutViewController.m */,
 				0536C03913703BF700009372 /* UIImagePickerSingleton.h */,
 				0536C03A13703BF800009372 /* UIImagePickerSingleton.m */,
+				052C514C1378ACA700862745 /* PhotoHandler.h */,
+				052C514D1378ACA700862745 /* PhotoHandler.m */,
 			);
 			name = "List classes";
 			sourceTree = "<group>";
@@ -821,6 +835,12 @@
 		4848BBCE130B33D400702E2D /* Base classes */ = {
 			isa = PBXGroup;
 			children = (
+				052C51431378AA6C00862745 /* RIButtonItem.h */,
+				052C51441378AA6C00862745 /* RIButtonItem.m */,
+				052C51451378AA6C00862745 /* UIActionSheet+Blocks.h */,
+				052C51461378AA6D00862745 /* UIActionSheet+Blocks.m */,
+				052C51471378AA6D00862745 /* UIAlertView+Blocks.h */,
+				052C51481378AA6D00862745 /* UIAlertView+Blocks.m */,
 				052C5142137892BD00862745 /* UIImage+Resize.h */,
 				052C5140137892B800862745 /* UIImage+Resize.m */,
 				0536BFF6136FFE8200009372 /* EGOPhotoViewer */,
@@ -1037,6 +1057,10 @@
 				05DBB9EA13742AD4001E5154 /* Article.m in Sources */,
 				057E75BD13742FE000B14E92 /* PriceAlertView.m in Sources */,
 				052C5141137892B800862745 /* UIImage+Resize.m in Sources */,
+				052C51491378AA6D00862745 /* RIButtonItem.m in Sources */,
+				052C514A1378AA6D00862745 /* UIActionSheet+Blocks.m in Sources */,
+				052C514B1378AA6D00862745 /* UIAlertView+Blocks.m in Sources */,
+				052C514E1378ACA800862745 /* PhotoHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

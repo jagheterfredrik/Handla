@@ -3,7 +3,7 @@
 //  Handla
 //
 //  Created by Fredrik Gustafsson on 5/6/11.
-//  Copyright 2011 Spotify. All rights reserved.
+//  Copyright 2011 iGroup. All rights reserved.
 //
 
 #import "PriceAlertView.h"

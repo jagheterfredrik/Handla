@@ -18,6 +18,8 @@
 #import "PhotoUtil.h"
 #import "EGOPhotoGlobal.h"
 
+#import "PhotoHandler.h"
+
 #define SCAN_TO_ADD 1
 #define SCAN_TO_CHECK 2
 
@@ -366,7 +368,10 @@
         
         [self.navigationController pushViewController:viewer animated:YES];
         [viewer release];
-	}
+	} else {
+        PhotoHandler *handler = [[PhotoHandler alloc] initWithViewController:self article:article.article];
+        [handler showAlternatives];
+    }
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

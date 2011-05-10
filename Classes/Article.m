@@ -3,7 +3,7 @@
 //  Handla
 //
 //  Created by Fredrik Gustafsson on 5/6/11.
-//  Copyright (c) 2011 Spotify. All rights reserved.
+//  Copyright (c) 2011 iGroup. All rights reserved.
 //
 
 #import "Article.h"
