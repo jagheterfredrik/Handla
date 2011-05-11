@@ -12,6 +12,9 @@
 @implementation PriceAlertView 
 @synthesize maxLength;
 
+/**
+ * Updates the labels depending on weight or amount unit.
+ */
 - (void)updateLabels {
     if (weightUnitSwitch.selectedSegmentIndex == 0) {
         priceLabel.text = @"Styckpris:";
@@ -23,7 +26,8 @@
 }
 
 /**
- * Initializes a UIAlertView and adds a UITextField to it.
+ * Initializes a UIAlertView and sets it up as a priceWeightView according
+ * to the passed in article.
  */
 - (id)initWithListArticle:(ListArticle*)listArticle
 {
@@ -97,6 +101,9 @@
     return self;
 }
 
+/**
+ * Prevents too long input, as specified by maxLength.
+ */
 - (BOOL)textField:(UITextField *)textField_ shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSUInteger newLength = [textField_.text length] + [string length] - range.length;
     return (newLength > maxLength) ? NO : YES;
@@ -111,6 +118,9 @@
     [super show];
 }
 
+/**
+ * Handles updating the article when pressing OK.
+ */
 - (void)alertView:(PriceAlertView *)alertPrompt clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 1 && [alertPrompt.enteredPrice length] != 0) { //TODO: Better test
 		NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
@@ -137,11 +147,17 @@
     return priceField.text;
 }
 
+/**
+ * The amount entered.
+ */
 - (NSString *)enteredAmount
 {
     return amountField.text;
 }
 
+/**
+ * The unittype selected.
+ */
 - (BOOL)enteredWeightUnit
 {
     return (weightUnitSwitch.selectedSegmentIndex == 1);

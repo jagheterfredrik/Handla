@@ -12,6 +12,8 @@
 #import "ListArticle.h"
 #import "IndividualListViewController.h"
 
+#import "UIActionSheet+Blocks.h"
+
 @implementation ListsViewController
 
 @synthesize managedObjectContext=managedObjectContext_, list=list_;
@@ -54,35 +56,33 @@
 }
 
 - (void)managedObjectAccessoryTapped:(NSManagedObject *)managedObject {
-	
-	selectedList = (List  *) managedObject;
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-															 delegate:self
-													cancelButtonTitle:@"Avbryt"
-											   destructiveButtonTitle:@"Ta bort"
-													otherButtonTitles:@"Ändra namn",nil];
+	List* selList = (List  *) managedObject;
+    
+    RIButtonItem *delete = [RIButtonItem itemWithLabel:@"Ta bort"];
+    delete.action = ^
+    {
+        [self deleteManagedObject:selList];
+    };
+    
+    RIButtonItem *rename = [RIButtonItem itemWithLabel:@"Ändra namn"];
+    rename.action = ^
+    {
+        AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp om din lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
+        alertPrompt.textField.text = selList.name;
+        list_ = selList;
+        alertPrompt.tag = RENAME_LIST;
+        [alertPrompt show];
+        [alertPrompt release];
+    };
+    
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:selList.name
+                                            cancelButtonItem:[RIButtonItem itemWithLabel:@"Avbryt"]
+                                            destructiveButtonItem:delete
+                                            otherButtonItems:rename, nil];
 	[actionSheet showInView:[[self view] window]];
 	[actionSheet release];
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-	if (buttonIndex == 1) {
-		self.list = selectedList;
-		AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp om din lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
-		alertPrompt.textField.text = list_.name;
-		[alertPrompt show];
-		[alertPrompt release];
-	}
-	if (buttonIndex == 0) {
-		[self deleteManagedObject:selectedList];
-	}
-}
-
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
-    self.navigationItem.rightBarButtonItem.enabled = !editing;
-    [super setEditing:editing animated:animated];
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -116,6 +116,10 @@
 	return numRows;
 }
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    self.navigationItem.rightBarButtonItem.enabled = !editing;
+    [super setEditing:editing animated:animated];
+}
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -199,6 +203,7 @@
 - (void)createList {
 	self.list = nil;
 	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp din nya lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Skapa"];
+    alertPrompt.tag = CREATE_LIST;
     alertPrompt.maxLength = 30;
 	[alertPrompt show];
 	[alertPrompt release];
@@ -227,18 +232,25 @@
 
 - (void)alertView:(AlertPrompt *)alertPrompt clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == alertPromptButtonOK && [alertPrompt.textField.text length] != 0) {
-		if(list_ == nil) {
-			List *list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:self.managedObjectContext];
-			list.name = alertPrompt.textField.text;
-			list.creationDate = [NSDate date];
-            self.editing = NO;
-            IndividualListViewController *individualListViewController = [[IndividualListViewController alloc] initWithNibName:@"IndividualListViewController" bundle:nil list:list];
-            [self.navigationController pushViewController:individualListViewController animated:YES];
-            [individualListViewController release];
-            
-		} else {
-			list_.name = alertPrompt.textField.text;
-		}
+		switch (alertPrompt.tag) {
+            case CREATE_LIST:
+            {
+                List *list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:self.managedObjectContext];
+                list.name = alertPrompt.textField.text;
+                list.creationDate = [NSDate date];
+                self.editing = NO;
+                IndividualListViewController *individualListViewController = [[IndividualListViewController alloc] initWithNibName:@"IndividualListViewController" bundle:nil list:list];
+                [self.navigationController pushViewController:individualListViewController animated:YES];
+                [individualListViewController release];
+                
+            }
+                break;
+            case RENAME_LIST:
+                list_.name = alertPrompt.textField.text;
+                break;
+            default:
+                break;
+        }
 	}
 }
 

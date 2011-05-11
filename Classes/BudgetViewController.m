@@ -18,6 +18,9 @@
 #pragma mark -
 #pragma mark Initialization
 
+/**
+ * Calculates the sum of the budget currently displayed.
+ */
 //TODO: Make it more loosely coupled? i.e remove budgetTableViewController-references
 - (void)calculateBudgetSum {
     NSDecimalNumber *amountBalance = budgetTableViewController.budgetSum;
@@ -35,10 +38,16 @@
     }
 }
 
+/**
+ * Called when receiving a BudgetPostUpdated notification.
+ */
 - (void)budgetPostUpdated:(NSNotification*)notification {
 	[self calculateBudgetSum];
 }
 
+/**
+ * Updates the calendar label.
+ */
 - (void)updateCalendarLabel {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     NSDate *start, *end;

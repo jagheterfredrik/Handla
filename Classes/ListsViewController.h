@@ -10,13 +10,15 @@
 #import "CoreDataTableViewController.h"
 #import "List.h"
 
+#define CREATE_LIST 0
+#define RENAME_LIST 1
+
 @interface ListsViewController : CoreDataTableViewController<UIAlertViewDelegate, UIActionSheetDelegate> {
 
 @private
     NSManagedObjectContext *managedObjectContext_;
 	
 	List *list_;
-	List *selectedList;
 	NSInteger listSortOrder;
 }
 

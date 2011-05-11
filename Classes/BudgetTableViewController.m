@@ -44,6 +44,10 @@
     }
 }
 
+/**
+ * Sets the managedObjectContext to be used for getting/setting data.
+ * This function also initializes the CoreDataTableViewController.
+ */
 - (void)setManagedObjectContext:(NSManagedObjectContext*)managedObjectContext {
 	managedObjectContext_ = managedObjectContext;
 	
@@ -71,7 +75,6 @@
 	[frc release];
 	
 	self.titleKey = @"name";
-//	self.searchKey = @"name";
     
     // Setup sum-counting-request
     [sumResultController release];
@@ -88,11 +91,17 @@
 	[self setFetchedResultsController:frc];
 }
 
+/**
+ * Sets the tableview into/outof editing mode and disables/enables the add button.
+ */
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     self.navItem.rightBarButtonItem.enabled = !editing;
     [super setEditing:editing animated:animated];
 }
 
+/**
+ * Sets the time interval to display and fetches BudgetPosts from it.
+ */
 - (void)setDurationStartDate:(NSDate*)startDate_ endDate:(NSDate*)endDate_ {
     [startDate release];
     [endDate release];
@@ -145,6 +154,8 @@
 	[self.tableView reloadData];
 }
 
+#pragma mark - Core data tableview controller overrides
+
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
 	[super controllerDidChangeContent:controller];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"BudgetPostUpdated" object:self];
@@ -157,12 +168,6 @@
 	[budgetPostDetailViewController release];
 	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
-
-/*
- - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
- return @"Vecka/Månad placeholder";
- }
- */
 
 - (BOOL)canDeleteManagedObject:(NSManagedObject *)managedObject {
 	return YES;
@@ -206,6 +211,8 @@
 	return 36.f;
 }
 
+#pragma mark - Life cycle stuff
+
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -218,11 +225,6 @@
     [prevCell release];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-	
-    
 }
 
 - (void)dealloc {

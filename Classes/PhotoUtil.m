@@ -35,8 +35,9 @@ NSString *thumbpath(NSString *base, NSString *name) {
 	return self;
 }
 
-
-
+/**
+ * Get the picture form a picture-id.
+ */
 - (UIImage*)readPhoto:(NSString*)name {
 	if (!name) return nil;
 	NSString *path = filepath(basePath, name);
@@ -45,6 +46,9 @@ NSString *thumbpath(NSString *base, NSString *name) {
 	return [UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
 }
 
+/**
+ * Gets the thumbnail from a picture-id.
+ */
 - (UIImage*)readThumbnail:(NSString*)name {
 	if (!name) return [UIImage imageNamed:@"NoImage"];
 	NSString *path = thumbpath(basePath, name);
@@ -53,6 +57,10 @@ NSString *thumbpath(NSString *base, NSString *name) {
 	return [UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
 }
 
+/**
+ * Randomizes a name and save the photo. The photo is downscaled to a smaller version
+ * before saved and also a thumbnail is saved.
+ */
 - (NSString*)savePhoto:(UIImage*)photo {
 	NSString *name, *path;
 	do {
@@ -82,7 +90,9 @@ NSString *thumbpath(NSString *base, NSString *name) {
 
 static PhotoUtil *sharedInstance = nil;
 
-// Return the singleton instance
+/**
+ * Returns a singleton instance.
+ */
 + (PhotoUtil*)instance {
 	if (!sharedInstance)
 		sharedInstance = [[PhotoUtil alloc] init];

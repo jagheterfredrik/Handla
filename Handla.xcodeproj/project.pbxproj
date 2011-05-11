@@ -52,7 +52,6 @@
 		0536C0371370010700009372 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0536C0361370010600009372 /* MessageUI.framework */; };
 		0536C03B13703BFA00009372 /* UIImagePickerSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536C03A13703BF800009372 /* UIImagePickerSingleton.m */; };
 		0536C046137069FE00009372 /* BrutalUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536C045137069FC00009372 /* BrutalUIImageView.m */; };
-		055411F013368B7B00533893 /* PDColoredProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 055411EE13368B7B00533893 /* PDColoredProgressView.m */; };
 		057E75BD13742FE000B14E92 /* PriceAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 057E75BC13742FE000B14E92 /* PriceAlertView.m */; };
 		059EFF5A137B3E54006B1C45 /* Left.png in Resources */ = {isa = PBXBuildFile; fileRef = 059EFF56137B3E54006B1C45 /* Left.png */; };
 		059EFF5B137B3E54006B1C45 /* Left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 059EFF57137B3E54006B1C45 /* Left@2x.png */; };
@@ -97,7 +96,6 @@
 		483BAD92132E7242001A3B03 /* Checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 483BAD8F132E7242001A3B03 /* Checkbox.png */; };
 		483BAD93132E7242001A3B03 /* Checkbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 483BAD90132E7242001A3B03 /* Checkbox@2x.png */; };
 		483BAE0F132E7BD7001A3B03 /* IndividualListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 483BAE0E132E7BD7001A3B03 /* IndividualListTableViewCell.m */; };
-		483BB1EE132F7094001A3B03 /* ArrowTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483BB1ED132F7094001A3B03 /* ArrowTabBarController.m */; };
 		483CD36A1316DEBB00671D5A /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 483CD3641316DEBB00671D5A /* libzbar.a */; };
 		483CD36B1316DEBB00671D5A /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 483CD3661316DEBB00671D5A /* zbar-back.png */; };
 		483CD36C1316DEBB00671D5A /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 483CD3671316DEBB00671D5A /* zbar-help.html */; };
@@ -231,8 +229,6 @@
 		0536C03A13703BF800009372 /* UIImagePickerSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImagePickerSingleton.m; sourceTree = "<group>"; };
 		0536C044137069F900009372 /* BrutalUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrutalUIImageView.h; sourceTree = "<group>"; };
 		0536C045137069FC00009372 /* BrutalUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrutalUIImageView.m; sourceTree = "<group>"; };
-		055411ED13368B7B00533893 /* PDColoredProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDColoredProgressView.h; sourceTree = "<group>"; };
-		055411EE13368B7B00533893 /* PDColoredProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDColoredProgressView.m; sourceTree = "<group>"; };
 		057E75BB13742FE000B14E92 /* PriceAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceAlertView.h; sourceTree = "<group>"; };
 		057E75BC13742FE000B14E92 /* PriceAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceAlertView.m; sourceTree = "<group>"; };
 		059EFF56137B3E54006B1C45 /* Left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Left.png; path = Resources/Images/Left.png; sourceTree = "<group>"; };
@@ -289,8 +285,6 @@
 		483BAD90132E7242001A3B03 /* Checkbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Checkbox@2x.png"; path = "Resources/Images/Checkbox@2x.png"; sourceTree = "<group>"; };
 		483BAE0D132E7BD7001A3B03 /* IndividualListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualListTableViewCell.h; sourceTree = "<group>"; };
 		483BAE0E132E7BD7001A3B03 /* IndividualListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualListTableViewCell.m; sourceTree = "<group>"; };
-		483BB1EC132F7094001A3B03 /* ArrowTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowTabBarController.h; sourceTree = "<group>"; };
-		483BB1ED132F7094001A3B03 /* ArrowTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrowTabBarController.m; sourceTree = "<group>"; };
 		483CD3511316DEBB00671D5A /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
 		483CD3521316DEBB00671D5A /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
 		483CD3531316DEBB00671D5A /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -879,10 +873,6 @@
 				4848BA5B130AE7EF00702E2D /* AlertPrompt.m */,
 				4848BAEF130B03BF00702E2D /* CoreDataTableViewController.h */,
 				4848BAF0130B03BF00702E2D /* CoreDataTableViewController.m */,
-				055411ED13368B7B00533893 /* PDColoredProgressView.h */,
-				055411EE13368B7B00533893 /* PDColoredProgressView.m */,
-				483BB1EC132F7094001A3B03 /* ArrowTabBarController.h */,
-				483BB1ED132F7094001A3B03 /* ArrowTabBarController.m */,
 				05A0CB0E135C2241008AD4D4 /* NSDate+Helper.h */,
 				05A0CB0F135C2241008AD4D4 /* NSDate+Helper.m */,
 				0536BFE8136EFC0600009372 /* DSActivityView.h */,
@@ -1077,8 +1067,6 @@
 				1B598155132A6107005B2BFA /* SettingsViewController.m in Sources */,
 				1B598183132A63CB005B2BFA /* AboutViewController.m in Sources */,
 				483BAE0F132E7BD7001A3B03 /* IndividualListTableViewCell.m in Sources */,
-				483BB1EE132F7094001A3B03 /* ArrowTabBarController.m in Sources */,
-				055411F013368B7B00533893 /* PDColoredProgressView.m in Sources */,
 				052057A21340023D00315132 /* SequenceTable.m in Sources */,
 				05A0CB10135C2241008AD4D4 /* NSDate+Helper.m in Sources */,
 				20E56A47135ED25000C32C59 /* PhotoUtil.m in Sources */,

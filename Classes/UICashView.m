@@ -12,10 +12,9 @@
 @implementation UICashView
 @synthesize value=value_,startingPlace=startingPlace_;
 
-//=========================================================== 
-// - setFrameAndRememberIt:(GCRect) frame
-//
-//=========================================================== 
+/**
+ * Holds a value and an position origin.
+ */
 - (void)setFrameAndRememberIt:(CGRect)frame withCashValue:(NSInteger) value;
 {
 	self.value=value;

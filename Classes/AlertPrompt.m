@@ -38,6 +38,9 @@
     return self;
 }
 
+/**
+ *  Prevents the AlertPrompt from returning empty if clicking OK.
+ */
 -(void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated {
     if ([textField.text length] == 0 && buttonIndex == 1) {
         UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Någonting måste anges" delegate:nil cancelButtonTitle:@"OK" destructiveButtonTitle:nil otherButtonTitles: nil];
@@ -48,6 +51,9 @@
     }
 }
 
+/**
+ *  Prevents the input to be too long. As specified by maxLength.
+ */
 - (BOOL)textField:(UITextField *)textField_ shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSUInteger newLength = [textField_.text length] + [string length] - range.length;
     return (newLength > maxLength) ? NO : YES;
@@ -69,6 +75,7 @@
 {
     return textField.text;
 }
+
 - (void)dealloc
 {
     [textField release];

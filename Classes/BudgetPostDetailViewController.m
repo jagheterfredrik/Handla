@@ -55,6 +55,9 @@
 	return self;
 }
 
+/**
+ * Initializes the view.
+ */
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
@@ -100,15 +103,13 @@
     nameBox.delegate = self;
 }
 
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-	valueBox.keyboardType = UIKeyboardTypeDecimalPad;
-	[nameBox becomeFirstResponder];
-}
-
 #pragma mark -
-#pragma mark View lifecycle
+#pragma mark Text field delegate methods
+
+- (BOOL)textField:(UITextField *)textField_ shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSUInteger newLength = [textField_.text length] + [string length] - range.length;
+    return (newLength > 30) ? NO : YES;
+}
 
 /**
  * Changes to next keyboard when the next button is clicked.
@@ -127,14 +128,6 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	[dateShower setTitle:[dateFormatter stringFromDate:datePicker.date] forState:UIControlStateNormal];
-}
-
-#pragma mark -
-#pragma mark Text field delegate methods
-
-- (BOOL)textField:(UITextField *)textField_ shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    NSUInteger newLength = [textField_.text length] + [string length] - range.length;
-    return (newLength > 30) ? NO : YES;
 }
 
 /**
@@ -189,6 +182,9 @@
 	
 }
 
+/**
+ * Gets called when the date button is clicked.
+ */
 - (IBAction)setDateButtonClicked:(UIButton*) sender {
 	UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:@"Välj datum"
 													  delegate:self
@@ -213,7 +209,7 @@
 }
 
 /**
- * Visar ett meddelande "actionsheet" med en ok-knapp.
+ * Shows a UIActionSheet with an OK button
  */
 -(void) showMessageWithString:(NSString *) message {
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:message
@@ -227,7 +223,13 @@
 
 
 #pragma mark -
-#pragma mark Memory management
+#pragma mark View lifecycle
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+	valueBox.keyboardType = UIKeyboardTypeDecimalPad;
+	[nameBox becomeFirstResponder];
+}
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
