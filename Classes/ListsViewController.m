@@ -75,10 +75,34 @@
         [alertPrompt release];
     };
     
+    RIButtonItem *duplicate = [RIButtonItem itemWithLabel:@"Duplicera listan"];
+    duplicate.action = ^
+    {
+        List *cloned = [NSEntityDescription
+                                   insertNewObjectForEntityForName:@"List"
+                                   inManagedObjectContext:managedObjectContext_];
+        
+        cloned.name = [NSString stringWithFormat:@"%@ kopia", selList.name];
+        cloned.creationDate = [NSDate date];
+        
+        for (ListArticle *listArticle in selList.articles) {
+            ListArticle *clonedArticle = [NSEntityDescription
+                            insertNewObjectForEntityForName:@"ListArticle"
+                            inManagedObjectContext:managedObjectContext_];
+            clonedArticle.list = cloned;
+            clonedArticle.article = listArticle.article;
+            clonedArticle.amount = listArticle.amount;
+            clonedArticle.price = listArticle.price;
+            clonedArticle.timeStamp = listArticle.timeStamp;
+            clonedArticle.weightUnit = listArticle.weightUnit;
+            clonedArticle.checked = listArticle.checked;
+        }
+    };
+    
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:selList.name
                                             cancelButtonItem:[RIButtonItem itemWithLabel:@"Avbryt"]
                                             destructiveButtonItem:delete
-                                            otherButtonItems:rename, nil];
+                                            otherButtonItems:duplicate, rename, nil];
 	[actionSheet showInView:[[self view] window]];
 	[actionSheet release];
 }
