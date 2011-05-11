@@ -25,7 +25,6 @@
 			self.searchDisplayController.searchResultsDataSource = self;
 			self.searchDisplayController.delegate = self;
 			searchBar.frame = CGRectMake(0, 0, 0, 38);
-			searchBar.delegate = self;
 			self.tableView.tableHeaderView = searchBar;
 		}
 	} else {
@@ -86,30 +85,10 @@
 	return self.fetchedResultsController;
 }
 
-/*
- * Används ej då searchDisplayControllerDidEndSearch körs.
- *
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
-	self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);	
-}
- */
-
-/*
- * Borde dölja searchbaren innan avslutad sökning, men gör det ej.
- * Används ej då searchDisplayControllerDidEndSearch körs.
- *
 - (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
 {
+	// reset the fetch controller for the main (non-searching) table view
 	[self fetchedResultsControllerForTableView:self.tableView];
-	self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
-}
-*/
-
-//Döljer serchbaren efter sökning
--(void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
-{    
-	self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
 }
 
 - (void)setFetchedResultsController:(NSFetchedResultsController *)controller
@@ -328,7 +307,6 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
-	self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
 }
 
 #pragma mark dealloc
