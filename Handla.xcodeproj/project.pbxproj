@@ -142,6 +142,8 @@
 		77228F2F137B2FA90016D8D3 /* GreenButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77228F2B137B2FA90016D8D3 /* GreenButton@2x.png */; };
 		77228F30137B2FA90016D8D3 /* RedButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 77228F2C137B2FA90016D8D3 /* RedButton.png */; };
 		77228F31137B2FA90016D8D3 /* RedButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77228F2D137B2FA90016D8D3 /* RedButton@2x.png */; };
+		77228F34137B37430016D8D3 /* HILogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 77228F32137B37430016D8D3 /* HILogo.png */; };
+		77228F35137B37430016D8D3 /* HILogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77228F33137B37430016D8D3 /* HILogo@2x.png */; };
 		77A60A8B13258B7C0038D73A /* UICashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A60A8A13258B7C0038D73A /* UICashView.m */; };
 		77E72828137B298E008313CE /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = 77E72826137B298E008313CE /* right.png */; };
 		77E72829137B298E008313CE /* right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77E72827137B298E008313CE /* right@2x.png */; };
@@ -365,6 +367,8 @@
 		77228F2B137B2FA90016D8D3 /* GreenButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GreenButton@2x.png"; path = "Resources/Images/GreenButton@2x.png"; sourceTree = "<group>"; };
 		77228F2C137B2FA90016D8D3 /* RedButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RedButton.png; path = Resources/Images/RedButton.png; sourceTree = "<group>"; };
 		77228F2D137B2FA90016D8D3 /* RedButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedButton@2x.png"; path = "Resources/Images/RedButton@2x.png"; sourceTree = "<group>"; };
+		77228F32137B37430016D8D3 /* HILogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HILogo.png; path = Resources/Images/HILogo.png; sourceTree = "<group>"; };
+		77228F33137B37430016D8D3 /* HILogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HILogo@2x.png"; path = "Resources/Images/HILogo@2x.png"; sourceTree = "<group>"; };
 		77A60A8913258B7C0038D73A /* UICashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICashView.h; sourceTree = "<group>"; };
 		77A60A8A13258B7C0038D73A /* UICashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICashView.m; sourceTree = "<group>"; };
 		77E72826137B298E008313CE /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
@@ -715,6 +719,8 @@
 				4874B6901329448B006F291A /* 5.png */,
 				77228F2A137B2FA90016D8D3 /* GreenButton.png */,
 				77228F2B137B2FA90016D8D3 /* GreenButton@2x.png */,
+				77228F32137B37430016D8D3 /* HILogo.png */,
+				77228F33137B37430016D8D3 /* HILogo@2x.png */,
 				77228F2C137B2FA90016D8D3 /* RedButton.png */,
 				77228F2D137B2FA90016D8D3 /* RedButton@2x.png */,
 				4874B6911329448B006F291A /* 10.png */,
@@ -1028,6 +1034,8 @@
 				77228F2F137B2FA90016D8D3 /* GreenButton@2x.png in Resources */,
 				77228F30137B2FA90016D8D3 /* RedButton.png in Resources */,
 				77228F31137B2FA90016D8D3 /* RedButton@2x.png in Resources */,
+				77228F34137B37430016D8D3 /* HILogo.png in Resources */,
+				77228F35137B37430016D8D3 /* HILogo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
