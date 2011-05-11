@@ -139,6 +139,14 @@
 		48C3F9241314650F00EAE609 /* ArticleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C3F9221314650F00EAE609 /* ArticleDetailViewController.m */; };
 		48F0D9011311B05E003D0352 /* IndividualListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F0D8FF1311B05E003D0352 /* IndividualListViewController.m */; };
 		77A60A8B13258B7C0038D73A /* UICashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A60A8A13258B7C0038D73A /* UICashView.m */; };
+		77D6E9A6137973EF00EE9C06 /* button_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 77D6E9A2137973EF00EE9C06 /* button_green.png */; };
+		77D6E9A7137973EF00EE9C06 /* button_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77D6E9A3137973EF00EE9C06 /* button_green@2x.png */; };
+		77D6E9A8137973EF00EE9C06 /* button_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 77D6E9A4137973EF00EE9C06 /* button_red.png */; };
+		77D6E9A9137973EF00EE9C06 /* button_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77D6E9A5137973EF00EE9C06 /* button_red@2x.png */; };
+		77E72828137B298E008313CE /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = 77E72826137B298E008313CE /* right.png */; };
+		77E72829137B298E008313CE /* right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77E72827137B298E008313CE /* right@2x.png */; };
+		77E7282C137B29AD008313CE /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = 77E7282A137B29AD008313CE /* left.png */; };
+		77E7282D137B29AD008313CE /* left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77E7282B137B29AD008313CE /* left@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -355,6 +363,14 @@
 		48F0D8FF1311B05E003D0352 /* IndividualListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualListViewController.m; sourceTree = "<group>"; };
 		77A60A8913258B7C0038D73A /* UICashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICashView.h; sourceTree = "<group>"; };
 		77A60A8A13258B7C0038D73A /* UICashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICashView.m; sourceTree = "<group>"; };
+		77D6E9A2137973EF00EE9C06 /* button_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_green.png; sourceTree = "<group>"; };
+		77D6E9A3137973EF00EE9C06 /* button_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_green@2x.png"; sourceTree = "<group>"; };
+		77D6E9A4137973EF00EE9C06 /* button_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_red.png; sourceTree = "<group>"; };
+		77D6E9A5137973EF00EE9C06 /* button_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_red@2x.png"; sourceTree = "<group>"; };
+		77E72826137B298E008313CE /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
+		77E72827137B298E008313CE /* right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right@2x.png"; sourceTree = "<group>"; };
+		77E7282A137B29AD008313CE /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left.png; sourceTree = "<group>"; };
+		77E7282B137B29AD008313CE /* left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left@2x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Handla-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Handla-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -700,6 +716,10 @@
 				4874B6911329448B006F291A /* 10.png */,
 				4874B6921329448B006F291A /* 20.jpg */,
 				4874B6931329448B006F291A /* 50.JPG */,
+				77E72826137B298E008313CE /* right.png */,
+				77E72827137B298E008313CE /* right@2x.png */,
+				77E7282A137B29AD008313CE /* left.png */,
+				77E7282B137B29AD008313CE /* left@2x.png */,
 				4874B6941329448B006F291A /* 100.jpg */,
 				4874B6951329448B006F291A /* 500.jpg */,
 				489B0712131F90FB00FF8346 /* AddListHelp.png */,
@@ -709,6 +729,10 @@
 				481BFFCC130D220900AC4CC8 /* BudgetIcon.png */,
 				481BFFCD130D220900AC4CC8 /* BudgetIcon@2x.png */,
 				483BAD8F132E7242001A3B03 /* Checkbox.png */,
+				77D6E9A2137973EF00EE9C06 /* button_green.png */,
+				77D6E9A3137973EF00EE9C06 /* button_green@2x.png */,
+				77D6E9A4137973EF00EE9C06 /* button_red.png */,
+				77D6E9A5137973EF00EE9C06 /* button_red@2x.png */,
 				483BAD90132E7242001A3B03 /* Checkbox@2x.png */,
 				483CD4F91317A12D00671D5A /* Cogwheel.png */,
 				483CD4FA1317A12D00671D5A /* Cogwheel@2x.png */,
@@ -996,6 +1020,14 @@
 				052C513B1378469A00862745 /* AddArticleHelp@2x.png in Resources */,
 				052C513C1378469A00862745 /* AddBudgetPostHelp.png in Resources */,
 				052C513D1378469A00862745 /* AddBudgetPostHelp@2x.png in Resources */,
+				77D6E9A6137973EF00EE9C06 /* button_green.png in Resources */,
+				77D6E9A7137973EF00EE9C06 /* button_green@2x.png in Resources */,
+				77D6E9A8137973EF00EE9C06 /* button_red.png in Resources */,
+				77D6E9A9137973EF00EE9C06 /* button_red@2x.png in Resources */,
+				77E72828137B298E008313CE /* right.png in Resources */,
+				77E72829137B298E008313CE /* right@2x.png in Resources */,
+				77E7282C137B29AD008313CE /* left.png in Resources */,
+				77E7282D137B29AD008313CE /* left@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -89,9 +89,6 @@
 	//Observer pattern
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(budgetPostUpdated:) name:@"BudgetPostUpdated" object:nil];
 	
-	CGAffineTransform mirror = CGAffineTransformMakeScale(-1.f, 1.f);
-	[previousCalendarButton setTransform:mirror];
-	
 	self.displayedDate = [NSDate date];
 }
 
