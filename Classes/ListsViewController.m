@@ -198,7 +198,7 @@
 // Called when the add button is pressed
 - (void)createList {
 	self.list = nil;
-	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp din lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Lägg till"];
+	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp din nya lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Skapa"];
     alertPrompt.maxLength = 30;
 	[alertPrompt show];
 	[alertPrompt release];
@@ -223,22 +223,10 @@
 #pragma mark -
 #pragma mark Alert prompt delegate
 
-#define alertViewButtonOK 1
+
 
 - (void)alertView:(AlertPrompt *)alertPrompt clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == alertViewButtonOK && [alertPrompt.textField.text length] == 0) {
-		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Du måste ange ett namn för listan"
-																 delegate:nil
-														cancelButtonTitle:@"OK"
-												   destructiveButtonTitle:nil
-														otherButtonTitles:nil];
-		[actionSheet showInView:[[self view] window]];
-		[actionSheet release];
-		AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp din lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Lägg till"];
-		[alertPrompt show];
-		[alertPrompt release];
-	}
-	if (buttonIndex == alertViewButtonOK && [alertPrompt.textField.text length] != 0) {
+	if (buttonIndex == alertPromptButtonOK && [alertPrompt.textField.text length] != 0) {
 		if(list_ == nil) {
 			List *list = [NSEntityDescription insertNewObjectForEntityForName:@"List" inManagedObjectContext:self.managedObjectContext];
 			list.name = alertPrompt.textField.text;

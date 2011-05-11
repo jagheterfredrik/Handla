@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define alertPromptButtonOK 1
+
 @interface AlertPrompt : UIAlertView <UITextFieldDelegate>
 {
     UITextField *textField;

@@ -38,6 +38,16 @@
     return self;
 }
 
+-(void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated {
+    if ([textField.text length] == 0 && buttonIndex == 1) {
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Någonting måste anges" delegate:nil cancelButtonTitle:@"OK" destructiveButtonTitle:nil otherButtonTitles: nil];
+        [sheet showInView:self.window];
+        [sheet release];
+    } else {
+        [super dismissWithClickedButtonIndex:buttonIndex animated:animated];
+    }
+}
+
 - (BOOL)textField:(UITextField *)textField_ shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSUInteger newLength = [textField_.text length] + [string length] - range.length;
     return (newLength > maxLength) ? NO : YES;

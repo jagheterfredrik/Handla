@@ -7,7 +7,6 @@
 //
 
 #import "IndividualListTableViewController.h"
-#import "AlertPrompt.h"
 #import "List.h"
 #import "ListArticle.h"
 #import "Article.h"
@@ -161,8 +160,6 @@
 
 // Called when the add button is pressed
 - (void)addArticle {
-/*	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Lägg till vara" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Lägg till"];
-	[alertPrompt show];*/
 	AddArticleListViewController *addArticleListViewController = [[AddArticleListViewController alloc] initWithList:list_];
 	[addArticleListViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
 	[self.navigationController pushViewController:addArticleListViewController animated:YES];
