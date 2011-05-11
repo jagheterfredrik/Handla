@@ -47,7 +47,7 @@
 	NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
 									   initWithFetchRequest:request
 									   managedObjectContext:list_.managedObjectContext
-									   sectionNameKeyPath:@"checked"
+									   sectionNameKeyPath:([defaults boolForKey:@"individualListSectioning"] ? @"checked" : nil)
 									   cacheName:nil];
 	frc.delegate = self;
 	
