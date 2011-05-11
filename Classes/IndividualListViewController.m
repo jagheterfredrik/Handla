@@ -150,7 +150,6 @@
 	for (ListArticle *object in [individualListTableViewController.fetchedResultsController fetchedObjects])
 	{
 		if ([[object checked] boolValue] && object.price!=nil) {
-            NSLog(@"%@ x %@kr", object.amount, object.price);
 			amountBalance = [amountBalance decimalNumberByAdding:[object.price decimalNumberByMultiplyingBy:object.amount]];
 		}
 		
@@ -335,9 +334,13 @@
 
 - (void)updatePriceFields {
     
-   	progressLabel.text = [NSString stringWithFormat:@"%i / %i", self.checkedElementsCount,self.elementsCount];
+//   	progressLabel.text = [NSString stringWithFormat:@"%i / %i", self.checkedElementsCount,self.elementsCount];
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    progressLabel.text = [formatter stringFromNumber:[self calculateSumOfCheckedElementsInList]];
+    [formatter release];
     
-    [progressBar setProgress:(float)(self.checkedElementsCount/(float)(self.elementsCount)) animated:YES];
+//    [progressBar setProgress:(float)(self.checkedElementsCount/(float)(self.elementsCount)) animated:YES];
 	if ([self elementsCount] == 0)
 	{
 		checkoutButton.hidden = YES;
@@ -350,7 +353,7 @@
     if ([self checkedElementsCount] == [self elementsCount]) {
         //TODO: This is code to make the done button fancy, shold be replaced by a cool image    
         // Load our image normally.
-        UIImage *image = [UIImage imageNamed:@"button_green.png"];
+        UIImage *image = [UIImage imageNamed:@"GreenButton.png"];
         
         // And create the stretchy version.
         float w = image.size.width / 2, h = image.size.height / 2;
@@ -365,7 +368,7 @@
     else{
         //TODO: This is code to make the done button fancy, shold be replaced by a cool image    
         // Load our image normally.
-        UIImage *image = [UIImage imageNamed:@"button_red.png"];
+        UIImage *image = [UIImage imageNamed:@"RedButton.png"];
         
         // And create the stretchy version.
         float w = image.size.width / 2, h = image.size.height / 2;
@@ -402,7 +405,7 @@
     
     //end buttoncooling part
     
-    progressBar.progress = (float)(self.checkedElementsCount)/(float)(self.elementsCount);
+//    progressBar.progress = (float)(self.checkedElementsCount)/(float)(self.elementsCount);
 	[self updatePriceFields];
     
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imagePressed:) name:@"ListCellImagePressed" object:nil];

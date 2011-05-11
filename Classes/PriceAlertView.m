@@ -34,29 +34,16 @@
     {
         listArticle_ = [listArticle retain];
         
+        //Weight switch
         weightUnitSwitch = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Styckpris", @"Kilopris", nil]];
-        weightUnitSwitch.center = CGPointMake(140.f, 70.f);
+        weightUnitSwitch.center = CGPointMake(140.f, 65.f);
         weightUnitSwitch.selectedSegmentIndex = 0;
         [self addSubview:weightUnitSwitch];
         weightUnitSwitch.selectedSegmentIndex = [listArticle_.weightUnit boolValue] ? 1 : 0;
         [weightUnitSwitch addTarget:self action:@selector(updateLabels) forControlEvents:UIControlEventValueChanged];
         
-        amountField = [[UITextField alloc] initWithFrame:CGRectMake(142.0, 128.0, 120.0, 25.0)];
-        amountField.borderStyle = UITextBorderStyleRoundedRect;
-		amountField.keyboardType = UIKeyboardTypeDecimalPad;
-		amountField.keyboardAppearance = UIKeyboardAppearanceAlert;
-		amountField.autocapitalizationType = UITextAutocapitalizationTypeWords;
-		amountField.autocorrectionType = UITextAutocorrectionTypeNo;
-		amountField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-		amountField.textAlignment = UITextAlignmentCenter;
-        amountField.delegate = self;
-        
-        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        amountField.text = (listArticle_.price ? [formatter stringFromNumber:listArticle_.amount] : @"1");
-        [self addSubview:amountField];
-        
-        
-        priceField = [[UITextField alloc] initWithFrame:CGRectMake(142.0, 98.0, 120.0, 25.0)]; 
+        //Price field
+        priceField = [[UITextField alloc] initWithFrame:CGRectMake(142.0, 91.0, 120.0, 29.0)]; 
         priceField.borderStyle = UITextBorderStyleRoundedRect;
 		priceField.keyboardType = UIKeyboardTypeDecimalPad;
 		priceField.keyboardAppearance = UIKeyboardAppearanceAlert;
@@ -65,25 +52,46 @@
 		priceField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 		priceField.textAlignment = UITextAlignmentCenter;
         priceField.delegate = self;
+        priceField.clearButtonMode = UITextFieldViewModeAlways;
         [self addSubview:priceField];
         
+        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
         priceField.text = [formatter stringFromNumber:listArticle_.price];
         
-        amountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.f, 0.f, 100.f, 25.f)];
-        amountLabel.backgroundColor = [UIColor clearColor];
-        amountLabel.textColor = [UIColor whiteColor];
-        amountLabel.center = CGPointMake(amountField.center.x-120, amountField.center.y);
-        [self addSubview:amountLabel];
-        
+        // Price label
         priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.f, 0.f, 100.f, 25.f)];
         priceLabel.backgroundColor = [UIColor clearColor];
         priceLabel.textColor = [UIColor whiteColor];
         priceLabel.center = CGPointMake(priceField.center.x-120, priceField.center.y);
         [self addSubview:priceLabel];
         
+        //Amount field
+        amountField = [[UITextField alloc] initWithFrame:CGRectMake(142.0, 124.0, 120.0, 29.0)];
+        amountField.borderStyle = UITextBorderStyleRoundedRect;
+		amountField.keyboardType = UIKeyboardTypeDecimalPad;
+		amountField.keyboardAppearance = UIKeyboardAppearanceAlert;
+		amountField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+		amountField.autocorrectionType = UITextAutocorrectionTypeNo;
+		amountField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+		amountField.textAlignment = UITextAlignmentCenter;
+        amountField.delegate = self;
+        amountField.clearButtonMode = UITextFieldViewModeAlways;
+
+        amountField.text = (listArticle_.price ? [formatter stringFromNumber:listArticle_.amount] : @"1");
+        [self addSubview:amountField];
+        
+        //Amount label
+        amountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.f, 0.f, 100.f, 25.f)];
+        amountLabel.backgroundColor = [UIColor clearColor];
+        amountLabel.textColor = [UIColor whiteColor];
+        amountLabel.center = CGPointMake(amountField.center.x-120, amountField.center.y);
+        [self addSubview:amountLabel];
+        
+        //Update displays
         [self updateLabels];
         
-        maxLength = 50;
+        //Max length of inputs
+        maxLength = 7;
     }
     [formatter release];
     return self;
