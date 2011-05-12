@@ -75,7 +75,7 @@
 	}
 	else {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Budgetpost tillagd" 
-														message:[NSString stringWithFormat:@"Jämna pengar, nice!",(amountToBePayed-[self getTotalSelectedAmount]) ]
+														message:[NSString stringWithFormat:@"Jämna pengar, ingen växel åter.",(amountToBePayed-[self getTotalSelectedAmount]) ]
 													   delegate:nil 
 											  cancelButtonTitle:@"OK"
 											  otherButtonTitles:nil];
