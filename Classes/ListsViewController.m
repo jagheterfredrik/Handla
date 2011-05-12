@@ -82,7 +82,7 @@
                                    insertNewObjectForEntityForName:@"List"
                                    inManagedObjectContext:managedObjectContext_];
         
-        cloned.name = [NSString stringWithFormat:@"%@ kopia", selList.name];
+        cloned.name = [NSString stringWithFormat:@"kopia av %@", selList.name];
         cloned.creationDate = [NSDate date];
         
         for (ListArticle *listArticle in selList.articles) {
