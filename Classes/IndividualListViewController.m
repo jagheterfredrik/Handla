@@ -444,15 +444,21 @@
         //Show minus
         symbolView.image = plusSign;
         symbolView.alpha = 1.0f;
-        [UIView animateWithDuration:0.8f animations:^{
-            symbolView.alpha = 0.f;
-        }];
+        [UIView animateWithDuration:0.8f
+                              delay:0.f
+                            options:UIViewAnimationOptionAllowUserInteraction
+                         animations:^{
+                             symbolView.alpha = 0.f;
+                         } completion:nil];
     } else if(latestTotal && [total compare:latestTotal] == NSOrderedAscending) {
         symbolView.image = minusSign;
         symbolView.alpha = 1.0f;
-        [UIView animateWithDuration:0.8f animations:^{
-            symbolView.alpha = 0.f;
-        }];
+        [UIView animateWithDuration:0.8f
+                              delay:0.f
+                            options:UIViewAnimationOptionAllowUserInteraction
+                         animations:^{
+                             symbolView.alpha = 0.f;
+                         } completion:nil];
     }
     [latestTotal release];
     latestTotal = [total retain];
