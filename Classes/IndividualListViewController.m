@@ -434,12 +434,18 @@
 
 - (void)updatePriceFields {
     
-//   	progressLabel.text = [NSString stringWithFormat:@"%i / %i", self.checkedElementsCount,self.elementsCount];
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    progressLabel.text = [formatter stringFromNumber:[self calculateSumOfCheckedElementsInList]];
+    NSDecimalNumber *total = [self calculateSumOfCheckedElementsInList];
+    progressLabel.text = [formatter stringFromNumber:total];
+    if (latestTotal && [total compare:latestTotal] != NSOrderedSame) {
+        progressLabel.textColor = [UIColor redColor];
+    }
+    [latestTotal release];
+    latestTotal = [total retain];
     [formatter release];
     
+<<<<<<< HEAD
 //    [progressBar setProgress:(float)(self.checkedElementsCount/(float)(self.elementsCount)) animated:YES];
 	if ([self elementsCount] == 0)
 	{
@@ -453,8 +459,9 @@
 		checkoutButton.hidden = NO;
 	}
     
+=======
+>>>>>>> be1ce7ef652c3423afc01124ab898491c00c65a7
     if ([self checkedElementsCount] == [self elementsCount]) {
-        //TODO: This is code to make the done button fancy, shold be replaced by a cool image    
         // Load our image normally.
         UIImage *image = [UIImage imageNamed:@"GreenButton.png"];
         
@@ -469,7 +476,6 @@
         
     }
     else{
-        //TODO: This is code to make the done button fancy, shold be replaced by a cool image    
         // Load our image normally.
         UIImage *image = [UIImage imageNamed:@"RedButton.png"];
         
@@ -482,6 +488,16 @@
         
         [checkoutButton addTarget:self action:@selector(purchase) forControlEvents:UIControlEventTouchUpInside];
     }
+    
+    if ([self elementsCount] == 0)
+	{
+		checkoutButton.hidden = YES;
+        [self showPopTipView];
+	}
+	else if([self elementsCount] > 0)
+	{
+		checkoutButton.hidden = NO;
+	}
 }
 
 

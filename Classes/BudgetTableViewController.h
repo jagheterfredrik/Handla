@@ -22,6 +22,7 @@
     NSDecimalNumber *budgetSum;
 	NSDate *startDate;
 	NSDate *endDate;
+    UIImage *plusSign, *minusSign;
     
     BudgetTableViewCell *prevCell;
     UINavigationItem *navItem;
