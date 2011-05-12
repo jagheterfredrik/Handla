@@ -19,7 +19,7 @@ typedef enum Date_Interval {
 	NSMutableArray *optionDateInterval;
 	UITableViewCell *lastCheckedDateInterval;
 	
-    UISwitch *checkoutSwitch;
+    UISwitch *previousSwitch;
 }
 
 @end

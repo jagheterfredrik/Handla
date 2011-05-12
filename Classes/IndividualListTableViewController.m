@@ -175,6 +175,7 @@
     [super didReceiveMemoryWarning];
 }
 
+
 - (void)viewDidUnload {
     [super viewDidUnload];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -183,6 +184,7 @@
 
 - (void)viewDidLoad {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forceReload) name:@"ArticleChanged" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forceReload) name:@"SectionSettingChanged" object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

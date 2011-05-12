@@ -29,6 +29,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 - (IBAction)purchase;
+- (void)purchaseDone;
 - (void)addListArticle;
 - (IBAction)scanListArticle;
 

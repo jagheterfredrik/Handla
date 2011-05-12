@@ -32,6 +32,7 @@
 		[userDefaults setBool:YES forKey:@"haveStartedBefore"];
 		[userDefaults setInteger:1 forKey:@"budgetViewDateInterval"];
 		[userDefaults setInteger:1 forKey:@"listSortOrder"];
+		[userDefaults setInteger:0 forKey:@"individualListSortOrder"];
 		[userDefaults setBool:YES forKey:@"listCheckoutViewOn"];
         [userDefaults setBool:YES forKey:@"budgetHistory"];
 		[userDefaults setBool:YES forKey:@"individualListSectioning"];
