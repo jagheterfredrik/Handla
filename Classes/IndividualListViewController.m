@@ -437,8 +437,20 @@
     [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     NSDecimalNumber *total = [self calculateSumOfCheckedElementsInList];
     progressLabel.text = [formatter stringFromNumber:total];
-    if (latestTotal && [total compare:latestTotal] != NSOrderedSame) {
-        progressLabel.textColor = [UIColor redColor];
+    if (latestTotal && [total compare:latestTotal] == NSOrderedDescending) {
+        //progressLabel.textColor = [UIColor redColor];
+        //Show minus
+        symbolView.image = plusSign;
+        symbolView.alpha = 1.0f;
+        [UIView animateWithDuration:0.8f animations:^{
+            symbolView.alpha = 0.f;
+        }];
+    } else if(latestTotal && [total compare:latestTotal] == NSOrderedAscending) {
+        symbolView.image = minusSign;
+        symbolView.alpha = 1.0f;
+        [UIView animateWithDuration:0.8f animations:^{
+            symbolView.alpha = 0.f;
+        }];
     }
     [latestTotal release];
     latestTotal = [total retain];
@@ -512,7 +524,10 @@
     
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imagePressed:) name:@"ListCellImagePressed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListArticleChanged" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListChanged" object:nil];;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListChanged" object:nil];
+    
+    minusSign = [[UIImage imageNamed:@"MinusSign"] retain];
+    plusSign = [[UIImage imageNamed:@"PlusSign"] retain];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

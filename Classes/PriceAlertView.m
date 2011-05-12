@@ -132,8 +132,7 @@
 		NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
 		[f setGeneratesDecimalNumbers:YES];
 		[f setNumberStyle:NSNumberFormatterDecimalStyle];
-		if(!(listArticle_.price = (NSDecimalNumber*)[f numberFromString:alertPrompt.enteredPrice]))
-            listArticle_.price = [NSDecimalNumber zero];
+        listArticle_.price = (NSDecimalNumber*)[f numberFromString:alertPrompt.enteredPrice];
         
         listArticle_.article.lastWeightUnit = listArticle_.weightUnit = [NSNumber numberWithBool:alertPrompt.enteredWeightUnit];
         if (!alertPrompt.enteredWeightUnit) {
