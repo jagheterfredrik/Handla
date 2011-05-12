@@ -99,16 +99,24 @@
 }
 
 
+-(void)wasChecked{
+    shouldFlash++;  
+}
+
+
 - (void)layoutSubviews { 
     [super layoutSubviews]; 
     if ([self.listArticle.checked boolValue]) {
-        [self setBackgroundColor:[UIColor colorWithRed:0.18f green:0.93f blue:0.29f alpha:1.0f]];
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.2f];
-        [self setBackgroundColor:[UIColor colorWithRed:0.97f green:1.0f blue:0.97f alpha:1.f]];
+        if (shouldFlash){//self.backgroundColor!=[UIColor colorWithRed:0.97f green:1.0f blue:0.97f alpha:1.f]) {
+            [self setBackgroundColor:[UIColor colorWithRed:0.18f green:0.93f blue:0.29f alpha:1.0f]];
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:0.2f];
+            [self setBackgroundColor:[UIColor colorWithRed:0.97f green:1.0f blue:0.97f alpha:1.f]];
 
-        [UIView commitAnimations];
-            } else{
+            [UIView commitAnimations];
+            shouldFlash--;
+        }
+        } else{
         [self setBackgroundColor:[UIColor whiteColor]];
     }
 }
