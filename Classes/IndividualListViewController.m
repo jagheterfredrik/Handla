@@ -54,6 +54,7 @@
             ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
             listArticle.list = list_;
             listArticle.article = (Article*)[array lastObject];
+            listArticle.amount = [NSDecimalNumber one];
             listArticle.weightUnit = listArticle.article.lastWeightUnit;
             listArticle.price = listArticle.article.lastPrice;
         } else {

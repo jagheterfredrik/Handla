@@ -25,7 +25,6 @@
 
 - (id)init;
 - (IBAction)changePriceButtonPressed:(UIButton*) sender;
-- (IBAction)flipCheckedStatus;
 - (IBAction)imagePressed;
 - (void)updateView;
 
