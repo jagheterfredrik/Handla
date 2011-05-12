@@ -1100,7 +1100,7 @@
 				GCC_PREFIX_HEADER = Handla_Prefix.pch;
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "Handla-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/ZBarSDK\"",
@@ -1122,7 +1122,7 @@
 				GCC_PREFIX_HEADER = Handla_Prefix.pch;
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "Handla-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/ZBarSDK\"",

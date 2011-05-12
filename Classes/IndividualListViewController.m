@@ -517,6 +517,7 @@
     if([self elementsCount]==0) {
         [self showPopTipView];
     }
+    [individualListTableViewController viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -532,6 +533,7 @@
     
     // Release any cached data, images, etc. that aren't in use.
 }
+
 
 - (void)viewDidUnload {
     [super viewDidUnload];

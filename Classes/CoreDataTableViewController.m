@@ -111,7 +111,9 @@
 //Döljer serchbaren efter sökning	 	
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller 	
 {
-    self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
+    [UIView animateWithDuration:0.3f animations:^{
+        self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
+    }];
 }
 
 - (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
@@ -232,7 +234,12 @@
 {
 	[super viewWillAppear:animated];
 	[self performFetchForTableView:self.tableView];
-	self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [UIView animateWithDuration:0.3f animations:^{
+        self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
+    }];
 }
 
 #pragma mark UITableViewDataSource methods
@@ -336,6 +343,8 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+    self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
+
 }
 
 #pragma mark dealloc

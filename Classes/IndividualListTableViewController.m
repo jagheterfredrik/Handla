@@ -175,6 +175,7 @@
     [super didReceiveMemoryWarning];
 }
 
+
 - (void)viewDidUnload {
     [super viewDidUnload];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -183,6 +184,13 @@
 
 - (void)viewDidLoad {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forceReload) name:@"ArticleChanged" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forceReload) name:@"SectionSettingChanged" object:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [UIView animateWithDuration:0.3f animations:^{
+        self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
+    }];
 }
 
 - (void)dealloc {
