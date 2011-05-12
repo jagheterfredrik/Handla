@@ -20,6 +20,8 @@
 
 #import "PhotoHandler.h"
 
+#import "UIAlertView+Blocks.h"
+
 #define SCAN_TO_ADD 1
 #define SCAN_TO_CHECK 2
 
@@ -222,15 +224,30 @@
  * and if they are we go to CheckoutViewController. else we show some alerts.
  */
 - (IBAction)purchase {
-    if([[self calculateSumOfCheckedElementsInList] intValue] == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Inget att betala!" 
-                                                        message:@"Det totala beloppet av markerade varor är noll!" 
-                                                       delegate:self 
-                                              cancelButtonTitle:@"Ok"
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
-        return;
+    if([[self calculateSumOfCheckedElementsInList] doubleValue] == 0) {
+        if ([self checkedElementsCount] > 0) {
+            RIButtonItem *uncheck = [RIButtonItem itemWithLabel:@"Avmarkera"];
+            uncheck.action = ^
+            {
+                for (ListArticle *la in list_.articles)
+                    la.checked = [NSNumber numberWithBool:NO];
+            };
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Beloppet är noll"
+                                                            message:@"Summan av de markerade varorna är noll. Vill du avmarkera samtliga varor i listan?"
+                                                   cancelButtonItem:[RIButtonItem itemWithLabel:@"Nej"] otherButtonItems:uncheck, nil];
+            [alert show];
+            [alert release];
+            return;
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Inget att betala!" 
+                                                            message:@"Inga varor är markerade!" 
+                                                           delegate:self 
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+            return;
+        }
     }
     
     //look for checked articles with no price set
