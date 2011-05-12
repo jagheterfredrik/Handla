@@ -96,7 +96,6 @@
 	}
 	
 	article_.name = nameField.text;
-	article_.barcode = scanField.text;
 	article_.comment = commentField.text;
     
 	
@@ -118,7 +117,7 @@
         for(symbol in results)
             break;
         
-        scanField.text = symbol.data;
+        barCodeCheckBox.hidden=NO;
         [reader dismissModalViewControllerAnimated: YES];
     } else {
         UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
@@ -225,7 +224,11 @@
 		rightButton.title = @"Spara";
 		self.title = article_.name;
 		nameField.text = article_.name;
-		scanField.text = article_.barcode;
+		if (article_.barcode == nil){
+            barCodeCheckBox.hidden = NO;
+        } else {
+            barCodeCheckBox.hidden = YES;
+        }
 		commentField.text = article_.comment;
 		if (article_.picture)
 			photo.image = [[PhotoUtil instance] readThumbnail:article_.picture];

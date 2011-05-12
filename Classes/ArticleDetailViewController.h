@@ -21,9 +21,9 @@
 	NSManagedObjectContext *managedObjectContext_;
 	IBOutlet UIButton *photoButton;
 	IBOutlet UITextField *nameField;
-	IBOutlet UITextField *scanField;
 	IBOutlet BrutalUIImageView *photo;
 	IBOutlet UITextField *commentField;
+    IBOutlet UIImageView* barCodeCheckBox;
 	ZBarReaderViewController *barcodeReader;
 	UIImagePickerController *picturePicker;
 	BOOL newPhoto;

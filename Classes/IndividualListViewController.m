@@ -58,7 +58,7 @@
             listArticle.price = listArticle.article.lastPrice;
         } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ingen vara funnen!" 
-                                                            message:@"Den vara du skannade finns ej bland dina tidigare varor." 
+                                                            message:@"Den vara du skannade har ingen vara kopplad till sig. Du måste koppla varan till sin steckkod först." 
                                                            delegate:self 
                                                   cancelButtonTitle:@"Ok"
                                                   otherButtonTitles:nil];
@@ -77,7 +77,7 @@
         
         if (!found) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ingen vara funnen!" 
-                                                            message:@"Den vara du skannade finns ej i den aktuella listan." 
+                                                            message:@"Den vara du skannade har ingen vara kopplad till sig. Du måste koppla varan till sin steckkod först." 
                                                            delegate:self 
                                                   cancelButtonTitle:@"Ok"
                                                   otherButtonTitles:nil];
