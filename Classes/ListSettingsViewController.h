@@ -14,6 +14,8 @@
 	NSMutableArray *optionIndividualListSortOrder;
 	UISwitch *checkoutSwitch;
 	UISwitch *sectioningSwitch;
+	UISwitch *ListSortOrderSwitch;
+
 }
 
 @property (nonatomic, retain) UISwitch *checkoutSwitch;

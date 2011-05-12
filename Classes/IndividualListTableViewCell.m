@@ -113,17 +113,6 @@
     }
 }
 
-
-- (IBAction)flipCheckedStatus{
-    if ([self.listArticle.checked boolValue]==YES) {
-        [self.listArticle setChecked:[NSNumber numberWithBool:NO]];
-    } else {
-        [self.listArticle setChecked:[NSNumber numberWithBool:YES]];
-    }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ListArticleChanged" object:nil];
-    [self updateView];
-}
-
 #pragma mark -
 #pragma mark Alert prompt delegate
 
@@ -138,7 +127,6 @@
         listArticle_.amount = (NSDecimalNumber*)[f numberFromString:alertPrompt.enteredAmount];
         listArticle_.article.lastWeightUnit = listArticle_.weightUnit = [NSNumber numberWithBool:alertPrompt.enteredWeightUnit];
         listArticle_.article.lastPrice = listArticle_.price;
-		listArticle_.timeStamp = [NSDate date];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ListArticleChanged" object:nil];
 		[f release];
 	}
