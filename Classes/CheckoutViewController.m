@@ -9,6 +9,7 @@
 #import "CheckoutViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
+#import "NSDate+Helper.h"
 
 @implementation CheckoutViewController
 @synthesize list;
@@ -146,10 +147,11 @@
 	
 	BudgetPost* newBudgetPost = [NSEntityDescription insertNewObjectForEntityForName:@"BudgetPost" inManagedObjectContext:self.list.managedObjectContext];
 	newBudgetPost.name = self.list.name;
-	newBudgetPost.timeStamp = [NSDate date];
+	newBudgetPost.timeStamp = [[NSDate date] beginningOfDay];
 	//TODO: this should be rounded if we pay with cash; since there are no femtioörings anymore 
 	newBudgetPost.amount = [NSDecimalNumber decimalNumberWithString:
 							[NSString stringWithFormat:@"%i", (amountToBePayed*-1)]];
+
 	//TODO: add comment!
 	//[NSString stringWithFormat:@"Automatiskt sparat inköp %s", [[NSDate date] description]];
 	
