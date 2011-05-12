@@ -505,7 +505,7 @@
     
     //end buttoncooling part
     
-//    progressBar.progress = (float)(self.checkedElementsCount)/(float)(self.elementsCount);
+	//progressBar.progress = (float)(self.checkedElementsCount)/(float)(self.elementsCount);
 	[self updatePriceFields];
     
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imagePressed:) name:@"ListCellImagePressed" object:nil];

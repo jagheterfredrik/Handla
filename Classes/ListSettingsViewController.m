@@ -37,6 +37,9 @@
 	checkoutSwitch = [[UISwitch alloc] init];
 	[checkoutSwitch addTarget:self action:@selector(checkoutSwitchChanged) forControlEvents:UIControlEventValueChanged];
 	
+	ListSortOrderSwitch = [[UISwitch alloc] init];
+	[ListSortOrderSwitch addTarget:self action:@selector(listSortOrderSwitchChanged) forControlEvents:UIControlEventValueChanged];
+	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -201,6 +204,7 @@
 
 
 
+
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -280,6 +284,7 @@
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
 		
 		[defaults setInteger:indexPath.row forKey:@"individualListSortOrder"];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"IndividualListSortOrderChanged" object:nil];
 	}
 	
 	
@@ -311,6 +316,7 @@
 	// For example: self.myOutlet = nil;
 	[sectioningSwitch release];
 	[checkoutSwitch release];
+	[ListSortOrderSwitch release];
 }
 
 
