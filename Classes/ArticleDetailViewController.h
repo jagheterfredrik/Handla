@@ -27,6 +27,7 @@
 	ZBarReaderViewController *barcodeReader;
 	UIImagePickerController *picturePicker;
 	BOOL newPhoto;
+    NSString* barcode;
 }
 
 - (IBAction)scanClick:(id)sender;
@@ -34,5 +35,5 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil managedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil article:(Article*)article;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil list:(List*)list;
-
+@property(nonatomic,retain) NSString* barcode;
 @end

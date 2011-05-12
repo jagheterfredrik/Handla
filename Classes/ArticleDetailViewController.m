@@ -16,6 +16,8 @@
 
 @implementation ArticleDetailViewController
 
+@synthesize barcode;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil managedObjectContext:(NSManagedObjectContext*)managedObjectContext {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -97,7 +99,7 @@
 	
 	article_.name = nameField.text;
 	article_.comment = commentField.text;
-    
+    article_.barcode = self.barcode;
 	
 	list_.lastUsed = [NSDate date];
     
@@ -119,6 +121,8 @@
         
         barCodeCheckBox.hidden=NO;
         [reader dismissModalViewControllerAnimated: YES];
+        self.barcode = symbol.data;
+        
     } else {
         UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
         newPhoto = YES;
