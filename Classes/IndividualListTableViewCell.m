@@ -93,9 +93,19 @@
     } else {
         thumbnail.alpha = 1.f;
         checkboxImage.alpha = 0.f;
+
     }
     
+}
 
+//TODO:
+- (void)layoutSubviews { 
+    [super layoutSubviews]; 
+    if ([self.listArticle.checked boolValue]) {
+        [self setBackgroundColor:[UIColor colorWithRed:0.97f green:1.0f blue:0.97f alpha:1.f]];
+    } else{
+        [self setBackgroundColor:[UIColor whiteColor]];
+    }
 }
 
 #pragma mark -
