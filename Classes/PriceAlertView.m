@@ -60,7 +60,9 @@
         [self addSubview:priceField];
         
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        priceField.text = [formatter stringFromNumber:listArticle_.price];
+        if (listArticle_.price && [listArticle_.price doubleValue] != 0) {
+            priceField.text = [formatter stringFromNumber:listArticle_.price];
+        }
         
         // Price label
         priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.f, 0.f, 100.f, 25.f)];
@@ -81,7 +83,11 @@
         amountField.delegate = self;
         amountField.clearButtonMode = UITextFieldViewModeAlways;
 
-        amountField.text = (listArticle_.price ? [formatter stringFromNumber:listArticle_.amount] : @"1");
+        if (!listArticle_.price || [listArticle_.price doubleValue] == 0) {
+            amountField.text = @"1";
+        } else {
+            amountField.text = [formatter stringFromNumber:listArticle_.amount];
+        }
         [self addSubview:amountField];
         
         //Amount label
