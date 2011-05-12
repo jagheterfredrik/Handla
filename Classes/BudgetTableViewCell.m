@@ -10,5 +10,5 @@
 
 
 @implementation BudgetTableViewCell
-@synthesize symbolLabel, nameLabel, dateLabel, priceLabel;
+@synthesize symbolView, nameLabel, dateLabel, priceLabel;
 @end
