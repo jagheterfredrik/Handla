@@ -42,10 +42,11 @@
  *  Prevents the AlertPrompt from returning empty if clicking OK.
  */
 -(void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated {
-    if ([textField.text length] == 0 && buttonIndex == 1) {
+    if ([textField.text length] == 0 && buttonIndex == alertPromptButtonOK) {
         UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Någonting måste anges" delegate:nil cancelButtonTitle:@"OK" destructiveButtonTitle:nil otherButtonTitles: nil];
         [sheet showInView:self.window];
         [sheet release];
+        return;
     } else {
         [super dismissWithClickedButtonIndex:buttonIndex animated:animated];
     }

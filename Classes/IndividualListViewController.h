@@ -12,12 +12,16 @@
 
 #import "ZBarSDK.h"
 
-@interface IndividualListViewController : UIViewController<UIActionSheetDelegate,UIAlertViewDelegate, ZBarReaderDelegate> {
+#import "CMPopTipView.h"
+
+@interface IndividualListViewController : UIViewController<UIActionSheetDelegate,UIAlertViewDelegate, ZBarReaderDelegate, CMPopTipViewDelegate> {
 	IBOutlet IndividualListTableViewController *individualListTableViewController;
 	IBOutlet UITableView *tableView;
 	IBOutlet UILabel *progressLabel;
     IBOutlet UIButton* checkoutButton;
 	List* list_;
+    CMPopTipView *myPopTipView;
+    IBOutlet UIView *bubblePlaceholder;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil list:(List*)list;
@@ -25,8 +29,10 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 - (IBAction)purchase;
+- (void)addListArticle;
 - (IBAction)scanListArticle;
 
 @property (readonly) NSInteger elementsCount,checkedElementsCount;
+@property (nonatomic, retain) CMPopTipView *myPopTipView;
 
 @end

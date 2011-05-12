@@ -19,10 +19,6 @@
 		051D57861372BC67003F6F9C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 051D57841372BC67003F6F9C /* Default@2x.png */; };
 		051D57871372BC67003F6F9C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 051D57851372BC67003F6F9C /* Default.png */; };
 		052057A21340023D00315132 /* SequenceTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 052057A11340023D00315132 /* SequenceTable.m */; };
-		052C513A1378469A00862745 /* AddArticleHelp.png in Resources */ = {isa = PBXBuildFile; fileRef = 052C51341378469A00862745 /* AddArticleHelp.png */; };
-		052C513B1378469A00862745 /* AddArticleHelp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 052C51351378469A00862745 /* AddArticleHelp@2x.png */; };
-		052C513C1378469A00862745 /* AddBudgetPostHelp.png in Resources */ = {isa = PBXBuildFile; fileRef = 052C51361378469A00862745 /* AddBudgetPostHelp.png */; };
-		052C513D1378469A00862745 /* AddBudgetPostHelp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 052C51371378469A00862745 /* AddBudgetPostHelp@2x.png */; };
 		052C5141137892B800862745 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 052C5140137892B800862745 /* UIImage+Resize.m */; };
 		052C51491378AA6D00862745 /* RIButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 052C51441378AA6C00862745 /* RIButtonItem.m */; };
 		052C514A1378AA6D00862745 /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 052C51461378AA6D00862745 /* UIActionSheet+Blocks.m */; };
@@ -52,6 +48,7 @@
 		0536C0371370010700009372 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0536C0361370010600009372 /* MessageUI.framework */; };
 		0536C03B13703BFA00009372 /* UIImagePickerSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536C03A13703BF800009372 /* UIImagePickerSingleton.m */; };
 		0536C046137069FE00009372 /* BrutalUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536C045137069FC00009372 /* BrutalUIImageView.m */; };
+		054257D8137B6689003C8D45 /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 054257D7137B6689003C8D45 /* CMPopTipView.m */; };
 		057E75BD13742FE000B14E92 /* PriceAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 057E75BC13742FE000B14E92 /* PriceAlertView.m */; };
 		059EFF5A137B3E54006B1C45 /* Left.png in Resources */ = {isa = PBXBuildFile; fileRef = 059EFF56137B3E54006B1C45 /* Left.png */; };
 		059EFF5B137B3E54006B1C45 /* Left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 059EFF57137B3E54006B1C45 /* Left@2x.png */; };
@@ -125,8 +122,6 @@
 		4874B69E1329448B006F291A /* 500.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4874B6951329448B006F291A /* 500.jpg */; };
 		4874B69F1329448B006F291A /* BarCodeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4874B6961329448B006F291A /* BarCodeButton.png */; };
 		4874B6A01329448B006F291A /* BarCodeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4874B6971329448B006F291A /* BarCodeButton@2x.png */; };
-		489B0714131F90FB00FF8346 /* AddListHelp.png in Resources */ = {isa = PBXBuildFile; fileRef = 489B0712131F90FB00FF8346 /* AddListHelp.png */; };
-		489B0715131F90FB00FF8346 /* AddListHelp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 489B0713131F90FB00FF8346 /* AddListHelp@2x.png */; };
 		48A853681317DABC00026C1B /* ArticleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A853661317DABC00026C1B /* ArticleDetailViewController.xib */; };
 		48A853691317DABC00026C1B /* CheckoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48A853671317DABC00026C1B /* CheckoutViewController.xib */; };
 		48A8536C1317DAD200026C1B /* CheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A8536B1317DAD200026C1B /* CheckoutViewController.m */; };
@@ -174,12 +169,6 @@
 		051EBD0D133FFF0E00FA286B /* Handla 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Handla 3.xcdatamodel"; sourceTree = "<group>"; };
 		052057A01340023D00315132 /* SequenceTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceTable.h; sourceTree = "<group>"; };
 		052057A11340023D00315132 /* SequenceTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceTable.m; sourceTree = "<group>"; };
-		052C51341378469A00862745 /* AddArticleHelp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AddArticleHelp.png; path = Resources/Images/AddArticleHelp.png; sourceTree = "<group>"; };
-		052C51351378469A00862745 /* AddArticleHelp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AddArticleHelp@2x.png"; path = "Resources/Images/AddArticleHelp@2x.png"; sourceTree = "<group>"; };
-		052C51361378469A00862745 /* AddBudgetPostHelp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AddBudgetPostHelp.png; path = Resources/Images/AddBudgetPostHelp.png; sourceTree = "<group>"; };
-		052C51371378469A00862745 /* AddBudgetPostHelp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AddBudgetPostHelp@2x.png"; path = "Resources/Images/AddBudgetPostHelp@2x.png"; sourceTree = "<group>"; };
-		052C51381378469A00862745 /* AddListHelp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AddListHelp.png; path = Resources/Images/AddListHelp.png; sourceTree = "<group>"; };
-		052C51391378469A00862745 /* AddListHelp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AddListHelp@2x.png"; path = "Resources/Images/AddListHelp@2x.png"; sourceTree = "<group>"; };
 		052C5140137892B800862745 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		052C5142137892BD00862745 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		052C51431378AA6C00862745 /* RIButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIButtonItem.h; sourceTree = "<group>"; };
@@ -229,6 +218,8 @@
 		0536C03A13703BF800009372 /* UIImagePickerSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImagePickerSingleton.m; sourceTree = "<group>"; };
 		0536C044137069F900009372 /* BrutalUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrutalUIImageView.h; sourceTree = "<group>"; };
 		0536C045137069FC00009372 /* BrutalUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrutalUIImageView.m; sourceTree = "<group>"; };
+		054257D6137B6688003C8D45 /* CMPopTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPopTipView.h; sourceTree = "<group>"; };
+		054257D7137B6689003C8D45 /* CMPopTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPopTipView.m; sourceTree = "<group>"; };
 		057E75BB13742FE000B14E92 /* PriceAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceAlertView.h; sourceTree = "<group>"; };
 		057E75BC13742FE000B14E92 /* PriceAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceAlertView.m; sourceTree = "<group>"; };
 		059EFF56137B3E54006B1C45 /* Left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Left.png; path = Resources/Images/Left.png; sourceTree = "<group>"; };
@@ -341,8 +332,6 @@
 		4874B6951329448B006F291A /* 500.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 500.jpg; path = Resources/Images/500.jpg; sourceTree = "<group>"; };
 		4874B6961329448B006F291A /* BarCodeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BarCodeButton.png; path = Resources/Images/BarCodeButton.png; sourceTree = "<group>"; };
 		4874B6971329448B006F291A /* BarCodeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BarCodeButton@2x.png"; path = "Resources/Images/BarCodeButton@2x.png"; sourceTree = "<group>"; };
-		489B0712131F90FB00FF8346 /* AddListHelp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AddListHelp.png; path = Resources/Images/AddListHelp.png; sourceTree = "<group>"; };
-		489B0713131F90FB00FF8346 /* AddListHelp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AddListHelp@2x.png"; path = "Resources/Images/AddListHelp@2x.png"; sourceTree = "<group>"; };
 		48A853661317DABC00026C1B /* ArticleDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ArticleDetailViewController.xib; path = Resources/XIBs/ArticleDetailViewController.xib; sourceTree = "<group>"; };
 		48A853671317DABC00026C1B /* CheckoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CheckoutViewController.xib; path = Resources/XIBs/CheckoutViewController.xib; sourceTree = "<group>"; };
 		48A8536A1317DAD200026C1B /* CheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckoutViewController.h; sourceTree = "<group>"; };
@@ -406,19 +395,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		052C51331378465100862745 /* Information */ = {
-			isa = PBXGroup;
-			children = (
-				052C51341378469A00862745 /* AddArticleHelp.png */,
-				052C51351378469A00862745 /* AddArticleHelp@2x.png */,
-				052C51361378469A00862745 /* AddBudgetPostHelp.png */,
-				052C51371378469A00862745 /* AddBudgetPostHelp@2x.png */,
-				052C51381378469A00862745 /* AddListHelp.png */,
-				052C51391378469A00862745 /* AddListHelp@2x.png */,
-			);
-			name = Information;
-			sourceTree = "<group>";
-		};
 		0536BFF6136FFE8200009372 /* EGOPhotoViewer */ = {
 			isa = PBXGroup;
 			children = (
@@ -708,7 +684,6 @@
 		481BFFB1130D21D600AC4CC8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				052C51331378465100862745 /* Information */,
 				4874B68F1329448B006F291A /* 1.png */,
 				4874B6901329448B006F291A /* 5.png */,
 				77228F2A137B2FA90016D8D3 /* GreenButton.png */,
@@ -722,8 +697,6 @@
 				4874B6931329448B006F291A /* 50.JPG */,
 				4874B6941329448B006F291A /* 100.jpg */,
 				4874B6951329448B006F291A /* 500.jpg */,
-				489B0712131F90FB00FF8346 /* AddListHelp.png */,
-				489B0713131F90FB00FF8346 /* AddListHelp@2x.png */,
 				4874B6961329448B006F291A /* BarCodeButton.png */,
 				4874B6971329448B006F291A /* BarCodeButton@2x.png */,
 				481BFFCC130D220900AC4CC8 /* BudgetIcon.png */,
@@ -859,6 +832,8 @@
 		4848BBCE130B33D400702E2D /* Base classes */ = {
 			isa = PBXGroup;
 			children = (
+				054257D6137B6688003C8D45 /* CMPopTipView.h */,
+				054257D7137B6689003C8D45 /* CMPopTipView.m */,
 				052C51431378AA6C00862745 /* RIButtonItem.h */,
 				052C51441378AA6C00862745 /* RIButtonItem.m */,
 				052C51451378AA6C00862745 /* UIActionSheet+Blocks.h */,
@@ -971,8 +946,6 @@
 				483CD4FC1317A12D00671D5A /* Cogwheel@2x.png in Resources */,
 				48A853681317DABC00026C1B /* ArticleDetailViewController.xib in Resources */,
 				48A853691317DABC00026C1B /* CheckoutViewController.xib in Resources */,
-				489B0714131F90FB00FF8346 /* AddListHelp.png in Resources */,
-				489B0715131F90FB00FF8346 /* AddListHelp@2x.png in Resources */,
 				4874B6981329448B006F291A /* 1.png in Resources */,
 				4874B6991329448B006F291A /* 5.png in Resources */,
 				4874B69A1329448B006F291A /* 10.png in Resources */,
@@ -1012,10 +985,6 @@
 				051D577F1372B1EF003F6F9C /* iTunesArtwork in Resources */,
 				051D57861372BC67003F6F9C /* Default@2x.png in Resources */,
 				051D57871372BC67003F6F9C /* Default.png in Resources */,
-				052C513A1378469A00862745 /* AddArticleHelp.png in Resources */,
-				052C513B1378469A00862745 /* AddArticleHelp@2x.png in Resources */,
-				052C513C1378469A00862745 /* AddBudgetPostHelp.png in Resources */,
-				052C513D1378469A00862745 /* AddBudgetPostHelp@2x.png in Resources */,
 				77228F2E137B2FA90016D8D3 /* GreenButton.png in Resources */,
 				77228F2F137B2FA90016D8D3 /* GreenButton@2x.png in Resources */,
 				77228F30137B2FA90016D8D3 /* RedButton.png in Resources */,
@@ -1089,6 +1058,7 @@
 				052C514A1378AA6D00862745 /* UIActionSheet+Blocks.m in Sources */,
 				052C514B1378AA6D00862745 /* UIAlertView+Blocks.m in Sources */,
 				052C514E1378ACA800862745 /* PhotoHandler.m in Sources */,
+				054257D8137B6689003C8D45 /* CMPopTipView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

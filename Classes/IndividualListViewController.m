@@ -21,11 +21,14 @@
 #import "PhotoHandler.h"
 
 #import "UIAlertView+Blocks.h"
+#import "UIActionSheet+Blocks.h"
 
 #define SCAN_TO_ADD 1
 #define SCAN_TO_CHECK 2
 
 @implementation IndividualListViewController
+
+@synthesize myPopTipView;
 
 - (void) imagePickerController:(UIImagePickerController*)reader didFinishPickingMediaWithInfo:(NSDictionary*)info {
 	id<NSFastEnumeration> results =
@@ -130,6 +133,31 @@
 	
 }
 
+- (void)dismissPopTipView {
+    [self.myPopTipView dismissAnimated:NO];
+    self.myPopTipView = nil;
+}
+
+- (void)showPopTipView {
+    NSString *message = @"Klicka här för att lägga till varor";
+    CMPopTipView *popTipView = [[CMPopTipView alloc] initWithMessage:message];
+    [self dismissPopTipView];
+    popTipView.backgroundColor = [UIColor blackColor];
+    popTipView.delegate = self;
+    [popTipView presentPointingAtView:bubblePlaceholder inView:self.view.window animated:YES];
+    self.myPopTipView = popTipView;
+    [popTipView release];
+}
+
+
+
+#pragma mark CMPopTipViewDelegate methods
+- (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView {
+    // User can tap CMPopTipView to dismiss it
+    self.myPopTipView = nil;
+    [self addListArticle];
+}
+
 /**
  * returns the sum of the costs in the list
  */
@@ -162,13 +190,59 @@
 
 
 - (void)addListArticle {
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:list_.name
-															 delegate:self
-													cancelButtonTitle:@"Avbryt"
-											   destructiveButtonTitle:nil
-													otherButtonTitles:@"Skapa ny vara",@"Lägg till tidigare vara",@"Skanna in vara", nil];
+    RIButtonItem *cancel = [RIButtonItem itemWithLabel:@"Avbryt"];
+    cancel.action = ^
+    {
+        if([self elementsCount]==0) {
+            [self showPopTipView];
+        }
+    };
+    
+    RIButtonItem *create = [RIButtonItem itemWithLabel:@"Skapa ny vara"];
+    create.action = ^
+    {
+        ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil list:list_];
+        [self.navigationController pushViewController:articleDetailViewController animated:YES];
+        [articleDetailViewController release];
+    };
+    
+    RIButtonItem *existing = [RIButtonItem itemWithLabel:@"Lägg till tidigare vara"];
+    existing.action = ^
+    {
+        AddArticleListViewController *addArticleListViewController = [[AddArticleListViewController alloc] initWithList:list_];
+        [self.navigationController pushViewController:addArticleListViewController animated:YES];
+        [addArticleListViewController release];
+    };
+    
+    RIButtonItem *scan = [RIButtonItem itemWithLabel:@"Skanna in vara"];
+    scan.action = ^
+    {
+        ZBarReaderViewController *reader = [ZBarReaderViewController new];
+        reader.readerDelegate = self;
+        
+        ZBarImageScanner *scanner = reader.scanner;
+        
+        reader.view.tag = SCAN_TO_ADD;
+        
+        // disable rarely used I2/5 to improve performance
+        [scanner setSymbology: ZBAR_I25
+                       config: ZBAR_CFG_ENABLE
+                           to: 0];
+        
+        // present and release the controller
+        [self presentModalViewController: reader
+                                animated: YES];
+        [reader release];
+    };
+    
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:list_.name cancelButtonItem:cancel destructiveButtonItem:nil otherButtonItems:create, existing, scan, nil];
 	[actionSheet showInView:[[self view] window]];
 	[actionSheet release];
+    
+    
+    
+    
+    
 }
 
 /**
@@ -361,6 +435,7 @@
 	if ([self elementsCount] == 0)
 	{
 		checkoutButton.hidden = YES;
+        [self showPopTipView];
 	}
 	else if([self elementsCount] > 0)
 	{
@@ -415,9 +490,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[individualListTableViewController setList:list_];
     
     individualListTableViewController.navController = self.navigationController;
+    [individualListTableViewController setList:list_];
 
     
     //end buttoncooling part
@@ -428,6 +503,16 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imagePressed:) name:@"ListCellImagePressed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListArticleChanged" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListChanged" object:nil];;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    if([self elementsCount]==0) {
+        [self showPopTipView];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self dismissPopTipView];
 }
 
 #pragma mark -

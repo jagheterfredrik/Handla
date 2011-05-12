@@ -16,7 +16,7 @@
 
 @implementation ListsViewController
 
-@synthesize managedObjectContext=managedObjectContext_, list=list_;
+@synthesize managedObjectContext=managedObjectContext_, list=list_, myPopTipView;
 
 #pragma mark -
 #pragma mark Core data table view overrides
@@ -108,34 +108,41 @@
 }
 
 
+- (void)showPopTipView {
+    NSString *message = @"Klicka här för att skapa en ny matlista";
+    CMPopTipView *popTipView = [[CMPopTipView alloc] initWithMessage:message];
+    popTipView.backgroundColor = [UIColor blackColor];
+    popTipView.delegate = self;
+    [popTipView presentPointingAtBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
+    
+    self.myPopTipView = popTipView;
+    [popTipView release];
+}
+
+- (void)dismissPopTipView {
+    [self.myPopTipView dismissAnimated:NO];
+    self.myPopTipView = nil;
+}
+
+
+#pragma mark CMPopTipViewDelegate methods
+- (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView {
+    // User can tap CMPopTipView to dismiss it
+    self.myPopTipView = nil;
+    [self createList];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	NSInteger numRows = [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
     if (self.searchDisplayController.searchBar.showsCancelButton) {
         tableView.scrollEnabled = YES;
     } else if (numRows == 0) {
-		UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AddListHelp"]];
-		CGAffineTransform trans = CGAffineTransformMakeTranslation(0, 44);
-		imageView.transform = trans;
-		imageView.contentMode = UIViewContentModeTop;
-		tableView.backgroundView = imageView;
-		tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-		self.searchDisplayController.searchBar.hidden = YES;
-        tableView.scrollEnabled = NO;
-        self.editing = NO;
-        self.navigationItem.leftBarButtonItem = nil;
-		tableView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
-		UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createList)];
-		self.navigationItem.rightBarButtonItem = addButton;
-		[addButton release];
-		[imageView release];
+        self.searchDisplayController.searchBar.hidden = YES;
+        [self showPopTipView];
 	} else {
-		tableView.backgroundView = nil;
-		tableView.backgroundColor = [UIColor whiteColor];
-		self.searchDisplayController.searchBar.hidden = NO;
-        self.navigationItem.leftBarButtonItem = self.editButtonItem;
-        tableView.scrollEnabled = YES;
-		tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        [self dismissPopTipView];
+        self.searchDisplayController.searchBar.hidden = NO;
 	}
 	return numRows;
 }
@@ -185,6 +192,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	listSortOrder = [defaults integerForKey:@"listSortOrder"];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -219,6 +227,16 @@
 	self.title = @"Listor";
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    if([self.fetchedResultsController.fetchedObjects count]==0) {
+        self.searchDisplayController.searchBar.hidden = YES;
+        [self showPopTipView];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self dismissPopTipView];
+}
 
 #pragma mark -
 #pragma mark Events
@@ -255,7 +273,10 @@
 
 
 - (void)alertView:(AlertPrompt *)alertPrompt clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == alertPromptButtonOK && [alertPrompt.textField.text length] != 0) {
+	if (buttonIndex == alertPromptButtonOK) {
+        if ([alertPrompt.enteredText length] == 0) {
+            return;
+        }
 		switch (alertPrompt.tag) {
             case CREATE_LIST:
             {
@@ -275,7 +296,12 @@
             default:
                 break;
         }
-	}
+	} else {
+        if([self.fetchedResultsController.fetchedObjects count]==0) {
+            self.searchDisplayController.searchBar.hidden = YES;
+            [self showPopTipView];
+        }
+    }
 }
 
 

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CoreDataTableViewController.h"
 #import "IndividualListTableViewCell.h"
+#import "CMPopTipView.h"
 
 @class List;
 
