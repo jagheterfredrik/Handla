@@ -194,6 +194,7 @@
     cancel.action = ^
     {
         if([self elementsCount]==0) {
+            individualListTableViewController.searchDisplayController.searchBar.hidden = YES;
             [self showPopTipView];
         }
     };
@@ -456,6 +457,22 @@
     latestTotal = [total retain];
     [formatter release];
     
+<<<<<<< HEAD
+//    [progressBar setProgress:(float)(self.checkedElementsCount/(float)(self.elementsCount)) animated:YES];
+	if ([self elementsCount] == 0)
+	{
+		checkoutButton.hidden = YES;
+        individualListTableViewController.searchDisplayController.searchBar.hidden = YES;
+        [self showPopTipView];
+	}
+	else if([self elementsCount] > 0)
+	{
+        individualListTableViewController.searchDisplayController.searchBar.hidden = NO;
+		checkoutButton.hidden = NO;
+	}
+    
+=======
+>>>>>>> be1ce7ef652c3423afc01124ab898491c00c65a7
     if ([self checkedElementsCount] == [self elementsCount]) {
         // Load our image normally.
         UIImage *image = [UIImage imageNamed:@"GreenButton.png"];
@@ -532,6 +549,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     if([self elementsCount]==0) {
+        individualListTableViewController.searchDisplayController.searchBar.hidden = YES;
         [self showPopTipView];
     }
     [individualListTableViewController viewDidAppear:animated];
