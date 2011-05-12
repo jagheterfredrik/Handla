@@ -54,6 +54,7 @@
             ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
             listArticle.list = list_;
             listArticle.article = (Article*)[array lastObject];
+            listArticle.amount = [NSDecimalNumber one];
             listArticle.weightUnit = listArticle.article.lastWeightUnit;
             listArticle.price = listArticle.article.lastPrice;
         } else {
@@ -194,7 +195,6 @@
     cancel.action = ^
     {
         if([self elementsCount]==0) {
-            individualListTableViewController.searchDisplayController.searchBar.hidden = YES;
             [self showPopTipView];
         }
     };
@@ -443,15 +443,21 @@
         //Show minus
         symbolView.image = plusSign;
         symbolView.alpha = 1.0f;
-        [UIView animateWithDuration:0.8f animations:^{
-            symbolView.alpha = 0.f;
-        }];
+        [UIView animateWithDuration:0.8f
+                              delay:0.f
+                            options:UIViewAnimationOptionAllowUserInteraction
+                         animations:^{
+                             symbolView.alpha = 0.f;
+                         } completion:nil];
     } else if(latestTotal && [total compare:latestTotal] == NSOrderedAscending) {
         symbolView.image = minusSign;
         symbolView.alpha = 1.0f;
-        [UIView animateWithDuration:0.8f animations:^{
-            symbolView.alpha = 0.f;
-        }];
+        [UIView animateWithDuration:0.8f
+                              delay:0.f
+                            options:UIViewAnimationOptionAllowUserInteraction
+                         animations:^{
+                             symbolView.alpha = 0.f;
+                         } completion:nil];
     }
     [latestTotal release];
     latestTotal = [total retain];
@@ -461,12 +467,10 @@
 	if ([self elementsCount] == 0)
 	{
 		checkoutButton.hidden = YES;
-        individualListTableViewController.searchDisplayController.searchBar.hidden = YES;
         [self showPopTipView];
 	}
 	else if([self elementsCount] > 0)
 	{
-        individualListTableViewController.searchDisplayController.searchBar.hidden = NO;
 		checkoutButton.hidden = NO;
 	}
     
@@ -546,7 +550,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     if([self elementsCount]==0) {
-        individualListTableViewController.searchDisplayController.searchBar.hidden = YES;
         [self showPopTipView];
     }
     [individualListTableViewController viewDidAppear:animated];

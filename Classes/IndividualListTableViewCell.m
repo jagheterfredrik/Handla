@@ -98,11 +98,18 @@
     
 }
 
-//TODO:
+
 - (void)layoutSubviews { 
     [super layoutSubviews]; 
     if ([self.listArticle.checked boolValue]) {
-        [self setBackgroundColor:[UIColor colorWithRed:0.97f green:1.0f blue:0.97f alpha:1.f]];
+        [self setBackgroundColor:[UIColor colorWithRed:0.18f green:0.93f blue:0.29f alpha:1.0f]];
+        
+        [UIView animateWithDuration:0.2f
+                              delay:0.f
+                            options:UIViewAnimationOptionAllowUserInteraction
+                         animations:^{
+                             [self setBackgroundColor:[UIColor colorWithRed:0.97f green:1.0f blue:0.97f alpha:1.f]];
+                         } completion:nil];
     } else{
         [self setBackgroundColor:[UIColor whiteColor]];
     }
