@@ -98,12 +98,16 @@
     
 }
 
-
+/*
+ * This should be called when checking off an article. Increases a counter which when >0 enables "green flash" animations on the cell.
+ */
 -(void)wasChecked{
     shouldFlash++;  
 }
 
-
+/*
+ * overrides super method, to enable colored background.
+ */
 - (void)layoutSubviews { 
     [super layoutSubviews]; 
     if ([self.listArticle.checked boolValue]) {
