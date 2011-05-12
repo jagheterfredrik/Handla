@@ -232,6 +232,7 @@
         self.searchDisplayController.searchBar.hidden = YES;
         [self showPopTipView];
     }
+    self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

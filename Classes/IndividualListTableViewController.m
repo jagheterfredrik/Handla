@@ -185,6 +185,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forceReload) name:@"ArticleChanged" object:nil];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [UIView animateWithDuration:0.3f animations:^{
+        self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
+    }];
+}
+
 - (void)dealloc {
 	[list_ release];
     [super dealloc];

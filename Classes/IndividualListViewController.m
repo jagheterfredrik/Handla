@@ -509,6 +509,7 @@
     if([self elementsCount]==0) {
         [self showPopTipView];
     }
+    [individualListTableViewController viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
