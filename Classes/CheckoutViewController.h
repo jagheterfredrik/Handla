@@ -11,8 +11,7 @@
 #import "list.h"
 #import "UICashView.h"
 #import "IndividualListTableViewController.h"
-
-
+#import "AlertPrompt.h"
 
 @interface CheckoutViewController : UIViewController<UIAlertViewDelegate> {
 		
@@ -22,7 +21,7 @@
 	
 	NSString* listName;
 	BudgetPost* budgetPostToBeAdded;
-	IBOutlet UILabel* totalAmount;
+	IBOutlet UIButton* totalAmount;
 	IBOutlet UILabel* remaining;
 	IBOutlet UILabel* change;
 	IBOutlet UILabel* changeStaticText;
@@ -77,6 +76,8 @@
 - (void)unCheckArticles;
 - (void)addBudgetPostAndChangeViewToBudgetView;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+
+-(IBAction)priceChangeButtonPressed;
 
 
 - (IBAction)femhundringButtonPressed:(UIButton*)sender;

@@ -53,11 +53,11 @@
 - (IBAction) paymentCompleteButtonPressed: (id) sender
 {
 	NSInteger tempremaining=(amountToBePayed-[self getTotalSelectedAmount]);
-		if (tempremaining>0) {
+    if (tempremaining>0) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Lägga till budgetpost?" 
-													message:@"Vill du lägga till budgetposten och avsluta köpet direkt?" 
-												   delegate:self 
-										  cancelButtonTitle:@"Nej"
+                                                        message:@"Vill du lägga till budgetposten och avsluta köpet direkt?" 
+                                                       delegate:self 
+                                              cancelButtonTitle:@"Nej"
 											  otherButtonTitles:@"Ja", nil];
 		[alert show];
 		[alert release];
@@ -84,7 +84,7 @@
 		[self unCheckArticles];
 		[self addBudgetPostAndChangeViewToBudgetView];
 	}
-
+    
 }
 
 //=========================================================== 
@@ -93,25 +93,54 @@
 //=========================================================== 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (alertView.tag != 5) {
+
 	if (alertView.numberOfButtons==2) {
 		if (buttonIndex==1) {
 			//clicked "ja"
-						
+            
 			[self unCheckArticles];
 			[self addBudgetPostAndChangeViewToBudgetView];
-			}
+        }
 	}
+    }
 }
 
 /*
  Unchecks the articles when the purchase is finished.
-*/
+ */
 -(void)unCheckArticles{
 	NSArray *myArray = [list.articles allObjects];
 	for(ListArticle *object in myArray) {
 		[object setChecked:[NSNumber numberWithBool:NO]];
 	}
 }
+
+-(IBAction)priceChangeButtonPressed{
+    AlertPrompt* prompt = [[AlertPrompt alloc] initWithTitle:@"Ändra totalt pris" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"OK"];
+    
+    prompt.tag = 5;
+    prompt.textField.keyboardType = UIKeyboardTypeNumberPad;
+    [prompt show];
+    [prompt release];
+    
+}
+
+
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag ==5) {
+        //run only when update price prompts exits
+        if (buttonIndex != [alertView cancelButtonIndex])
+        {
+            NSString *entered = [(AlertPrompt *)alertView enteredText];
+            amountToBePayed = [entered integerValue];
+            [self refreshSelectedValuesDisplay];
+        }
+    }
+}
+
 
 -(void)addBudgetPostAndChangeViewToBudgetView{
 	
@@ -139,14 +168,14 @@
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization.
-    }
-    return self;
-}
-*/
+ - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+ self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+ if (self) {
+ // Custom initialization.
+ }
+ return self;
+ }
+ */
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -154,20 +183,19 @@
 	
 	//TODO: remember the öres! round up and stuff!
     [super viewDidLoad];
-	totalAmount.text = [NSString stringWithFormat:@"%i kr", amountToBePayed];
 	nameOfPurchase.text = list_.name;
 	[self refreshSelectedValuesDisplay];
-
+    
 }
 
 
 /*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
+ // Override to allow orientations other than the default portrait orientation.
+ - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+ // Return YES for supported orientations.
+ return (interfaceOrientation == UIInterfaceOrientationPortrait);
+ }
+ */
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -194,6 +222,10 @@
 //=========================================================== 
 - (void)refreshSelectedValuesDisplay
 {
+    
+	[totalAmount setTitle: [NSString stringWithFormat:@"%i kr", amountToBePayed] forState:UIControlStateNormal];
+    
+    
 	femhundringar.text = [NSString stringWithFormat:@"%i",	1*currentFemhundringar];	
 	hundringar.text =  [NSString stringWithFormat:@"%i",	1*currentHundringar];
 	femtiolappar.text =  [NSString stringWithFormat:@"%i",	1*currentFemtiolappar];	
@@ -240,7 +272,7 @@
 		
 		
 	}
-
+    
 	
 	if (moneyRemaining>=500){
 		[self setRedBorderButton:ButtonFemhundringar withBorderSize:2.0f];
@@ -287,9 +319,9 @@
 						 } completion:nil];
 		
 	}
-
+    
 } 
-	
+
 
 //=========================================================== 
 // - (void)setRedBorderButton:(UIButton theButton)
@@ -300,8 +332,8 @@
 	[theButton.layer setBorderColor: [[UIColor redColor] CGColor]];
 	[theButton.layer setBorderWidth: boarderSize];
 }
-	
-	
+
+
 
 //=========================================================== 
 // - (NSInteger) getTotalSelectedAmount
@@ -310,8 +342,8 @@
 - (NSInteger) getTotalSelectedAmount
 {
 	return (500*currentFemhundringar+100*currentHundringar+
-	50*currentFemtiolappar+20*currentTjugolappar
-	+10*currentTior+5*currentFemmor+1*currentEnkronor);
+            50*currentFemtiolappar+20*currentTjugolappar
+            +10*currentTior+5*currentFemmor+1*currentEnkronor);
 }
 
 
@@ -433,7 +465,7 @@
 //=========================================================== 
 - (IBAction)tjugolappButtonPressed:(UIButton*)sender
 {
-		[self addMoneyPressed:sender withMoneyInStack:++currentTjugolappar coin:NO];
+    [self addMoneyPressed:sender withMoneyInStack:++currentTjugolappar coin:NO];
 }
 //=========================================================== 
 // - (IBAction)tiaButtonPressed:(UIButton*)sender
@@ -441,7 +473,7 @@
 //=========================================================== 
 - (IBAction)tiaButtonPressed:(UIButton*)sender
 {
-		[self addMoneyPressed:sender withMoneyInStack:++currentTior coin:YES];
+    [self addMoneyPressed:sender withMoneyInStack:++currentTior coin:YES];
 }
 //=========================================================== 
 // - (IBAction)femmaButtonPressed:(UIButton*)sender
@@ -449,7 +481,7 @@
 //=========================================================== 
 - (IBAction)femmaButtonPressed:(UIButton*)sender
 {	
-		[self addMoneyPressed:sender withMoneyInStack:++currentFemmor coin:YES];
+    [self addMoneyPressed:sender withMoneyInStack:++currentFemmor coin:YES];
 }
 //=========================================================== 
 // - (IBAction)enkronaButtonPressed:(UIButton*)sender
@@ -457,7 +489,7 @@
 //=========================================================== 
 - (IBAction)enkronaButtonPressed:(UIButton*)sender
 {
-		[self addMoneyPressed:sender withMoneyInStack:++currentEnkronor coin:YES];
+    [self addMoneyPressed:sender withMoneyInStack:++currentEnkronor coin:YES];
 }
 
 @end
