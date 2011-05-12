@@ -248,6 +248,7 @@
 	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp din nya lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Skapa"];
     alertPrompt.tag = CREATE_LIST;
     alertPrompt.maxLength = 30;
+    [self dismissPopTipView];
 	[alertPrompt show];
 	[alertPrompt release];
 }
@@ -257,7 +258,8 @@
 	self.navigationItem.rightBarButtonItem = nil;
 	[self.tableView setEditing:YES animated:YES];
 	[self.navigationItem.leftBarButtonItem release];
-
+    
+    [self dismissPopTipView];
 }
 
 - (void)turnOffEditing {
@@ -267,6 +269,11 @@
 	self.navigationItem.rightBarButtonItem = addButton;
 	[addButton release];
 	[self.navigationItem.leftBarButtonItem release];
+    
+    if([self.fetchedResultsController.fetchedObjects count]==0) {
+        self.searchDisplayController.searchBar.hidden = YES;
+        [self showPopTipView];
+    }
 }
 #pragma mark -
 #pragma mark Alert prompt delegate

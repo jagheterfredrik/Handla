@@ -22,6 +22,10 @@
 	List* list_;
     CMPopTipView *myPopTipView;
     IBOutlet UIView *bubblePlaceholder;
+    NSDecimalNumber *latestTotal;
+    
+    IBOutlet UIImageView *symbolView;
+    UIImage *plusSign, *minusSign;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil list:(List*)list;

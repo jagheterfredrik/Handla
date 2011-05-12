@@ -21,12 +21,13 @@
 	NSManagedObjectContext *managedObjectContext_;
 	IBOutlet UIButton *photoButton;
 	IBOutlet UITextField *nameField;
-	IBOutlet UITextField *scanField;
 	IBOutlet BrutalUIImageView *photo;
 	IBOutlet UITextField *commentField;
+    IBOutlet UIImageView* barCodeCheckBox;
 	ZBarReaderViewController *barcodeReader;
 	UIImagePickerController *picturePicker;
 	BOOL newPhoto;
+    NSString* barcode;
 }
 
 - (IBAction)scanClick:(id)sender;
@@ -34,5 +35,5 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil managedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil article:(Article*)article;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil list:(List*)list;
-
+@property(nonatomic,retain) NSString* barcode;
 @end

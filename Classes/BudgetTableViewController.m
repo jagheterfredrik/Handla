@@ -33,6 +33,9 @@
             prevCell = [currentObject retain];
             break;
         }
+    
+    plusSign = [[UIImage imageNamed:@"PlusSign"] retain];
+    minusSign = [[UIImage imageNamed:@"MinusSign"] retain];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -131,23 +134,15 @@
         }
     }
     
-    prevCell.symbolLabel.textAlignment = UITextAlignmentCenter;
-    
     prevCell.nameLabel.text = @"Tidigare budget";
     prevCell.center = CGPointMake(prevCell.center.x, prevCell.frame.size.height / 2.f);
     prevCell.dateLabel.text = [NSString stringWithFormat:@"Före %@", [dateFormatter stringFromDate:startDate]];
     prevCell.accessoryType = UITableViewCellAccessoryNone;
     prevCell.priceLabel.text = [amountFormatter stringFromNumber:previousBudgetSum];
     if ([previousBudgetSum compare:[NSNumber numberWithInt:0]] == NSOrderedAscending) {
-        prevCell.symbolLabel.text = @"-";
-        prevCell.symbolLabel.font = [UIFont fontWithName:@"Helvetica" size:40.f];
-        prevCell.symbolLabel.textColor = [UIColor redColor];
-        prevCell.priceLabel.textColor = [UIColor redColor];
+        prevCell.symbolView.image = minusSign;
     } else {
-        prevCell.symbolLabel.text = @"+";
-        prevCell.symbolLabel.font = [UIFont fontWithName:@"Helvetica" size:34.f];
-        prevCell.symbolLabel.textColor = [UIColor colorWithRed:0.f green:0.55f blue:0.f alpha:1.f];
-        prevCell.priceLabel.textColor = [UIColor colorWithRed:0.f green:0.55f blue:0.f alpha:1.f];
+        prevCell.symbolView.image = plusSign;
     }
     
 	normalPredicate = [NSPredicate predicateWithFormat:@"(timeStamp >= %@) AND (timeStamp <= %@)", startDate_, endDate_];
@@ -187,22 +182,15 @@
 				cell = currentObject;
 				break;
 			}
-		cell.symbolLabel.textAlignment = UITextAlignmentCenter;
 	}
 	BudgetPost *budgetPost = (BudgetPost*)managedObject;
 	cell.nameLabel.text = budgetPost.name;
 	cell.dateLabel.text = [dateFormatter stringFromDate:budgetPost.timeStamp];
 	cell.priceLabel.text = [amountFormatter stringFromNumber:budgetPost.amount];
 	if ([budgetPost.amount compare:[NSNumber numberWithInt:0]] == NSOrderedAscending) {
-		cell.symbolLabel.text = @"-";
-		cell.symbolLabel.font = [UIFont fontWithName:@"Helvetica" size:40.f];
-		cell.symbolLabel.textColor = [UIColor redColor];
-		cell.priceLabel.textColor = [UIColor redColor];
+        cell.symbolView.image = minusSign;
 	} else {
-		cell.symbolLabel.text = @"+";
-		cell.symbolLabel.font = [UIFont fontWithName:@"Helvetica" size:34.f];
-		cell.symbolLabel.textColor = [UIColor colorWithRed:0.f green:0.55f blue:0.f alpha:1.f];
-		cell.priceLabel.textColor = [UIColor colorWithRed:0.f green:0.55f blue:0.f alpha:1.f];
+        cell.symbolView.image = plusSign;
 	}
 	return cell;
 }
@@ -223,6 +211,8 @@
 - (void)viewDidUnload {
     [super viewDidUnload];
     [prevCell release];
+    [minusSign release];
+    [plusSign release];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }

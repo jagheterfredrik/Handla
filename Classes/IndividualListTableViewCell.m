@@ -77,7 +77,9 @@
     [thumbnail setImage:[[PhotoUtil instance] readThumbnail:self.listArticle.article.picture] forState:UIControlStateNormal];
     thumbnail.adjustsImageWhenHighlighted = NO;
     
-    if ([self.listArticle.weightUnit boolValue]) {
+    if(!self.listArticle.price) {
+        descriptionLabel.text = @"";
+    } else if ([self.listArticle.weightUnit boolValue]) {
         descriptionLabel.text = [NSString stringWithFormat:@"%.2f kg á %@/kg", [self.listArticle.amount doubleValue], [formatter stringFromNumber:self.listArticle.price]];
     } else {
         descriptionLabel.text = [NSString stringWithFormat:@"%i st á %@/st", [self.listArticle.amount intValue], [formatter stringFromNumber:self.listArticle.price]];

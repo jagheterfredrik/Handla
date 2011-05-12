@@ -16,6 +16,8 @@
 
 @implementation ArticleDetailViewController
 
+@synthesize barcode;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil managedObjectContext:(NSManagedObjectContext*)managedObjectContext {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -96,9 +98,8 @@
 	}
 	
 	article_.name = nameField.text;
-	article_.barcode = scanField.text;
 	article_.comment = commentField.text;
-    
+    article_.barcode = self.barcode;
 	
 	list_.lastUsed = [NSDate date];
     
@@ -118,8 +119,10 @@
         for(symbol in results)
             break;
         
-        scanField.text = symbol.data;
+        barCodeCheckBox.hidden=NO;
         [reader dismissModalViewControllerAnimated: YES];
+        self.barcode = symbol.data;
+        
     } else {
         UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
         newPhoto = YES;
@@ -225,7 +228,11 @@
 		rightButton.title = @"Spara";
 		self.title = article_.name;
 		nameField.text = article_.name;
-		scanField.text = article_.barcode;
+		if (article_.barcode == nil){
+            barCodeCheckBox.hidden = YES;
+        } else {
+            barCodeCheckBox.hidden = NO;
+        }
 		commentField.text = article_.comment;
 		if (article_.picture)
 			photo.image = [[PhotoUtil instance] readThumbnail:article_.picture];
