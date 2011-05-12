@@ -41,6 +41,9 @@
 	if (section == 0) {
 		return @"Budgetvy";
 	}
+	else if (section == 1) {
+		return @"Övrigt";
+	}
 	return @"";
 	
 }
@@ -93,10 +96,10 @@
 	
 }
 
--(void) checkoutSwitchChanged{
+-(void) previousSwitchChanged{
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	
-    [defaults setBool:checkoutSwitch.on forKey:@"budgetHistory"];
+    [defaults setBool:previousSwitch.on forKey:@"budgetHistory"];
 	
 	[defaults synchronize];
 }
@@ -126,11 +129,11 @@
 	} else {
         cell.textLabel.text = @"Visa tidigare budget";
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
-		checkoutSwitch = [[UISwitch alloc] init];
-		cell.accessoryView = checkoutSwitch;
-		[cell addSubview:checkoutSwitch];
-		[checkoutSwitch addTarget:self action:@selector(checkoutSwitchChanged) forControlEvents:UIControlEventValueChanged];
-        [checkoutSwitch setOn:[defaults boolForKey:@"budgetHistory"] animated:NO];
+		previousSwitch = [[UISwitch alloc] init];
+		cell.accessoryView = previousSwitch;
+		[cell addSubview:previousSwitch];
+		[previousSwitch addTarget:self action:@selector(previousSwitchChanged) forControlEvents:UIControlEventValueChanged];
+        [previousSwitch setOn:[defaults boolForKey:@"budgetHistory"] animated:NO];
     }
     return cell;
 }
