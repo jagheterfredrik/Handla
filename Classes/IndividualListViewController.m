@@ -294,6 +294,43 @@
     [reader release];
 }
 
+- (void)purchaseDone
+{
+	//if checkout view is off, add new budget post and change view to budget, else goto checkoutview
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	if (![defaults boolForKey:@"listCheckoutViewOn"]) {
+		BudgetPost* newBudgetPost = [NSEntityDescription insertNewObjectForEntityForName:@"BudgetPost" inManagedObjectContext:list_.managedObjectContext];
+		newBudgetPost.name = list_.name;
+		newBudgetPost.timeStamp = [NSDate date];
+		//TODO: this should be rounded if we pay with cash; since there are no femtioörings anymore
+		NSDecimalNumber *amount = [self calculateSumOfCheckedElementsInList];
+		amount = [amount decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
+		newBudgetPost.amount = amount;
+		//TODO: add comment!
+		//[NSString stringWithFormat:@"Automatiskt sparat inköp %s", [[NSDate date] description]];
+		
+		
+		NSArray *myArray = [list_.articles allObjects];
+		for(ListArticle *object in myArray) {
+			[object setChecked:[NSNumber numberWithBool:NO]];
+		}
+		
+		[list_.managedObjectContext save:NULL];
+		
+		//go to budget mode
+		[(UITabBarController*)self.tabBarController setSelectedIndex:1];
+		[self.navigationController popViewControllerAnimated:NO];
+		
+	}else {
+		//we are all done with the list
+		CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
+																			amountToPay:[self calculateSumOfCheckedElementsInList]];
+		[self.navigationController presentModalViewController:checkOut animated:YES];
+		
+		[checkOut release];
+	}
+}
+
 /**
  * When the user clicks the "avsluta köp" button, we see if all posts are checked off
  * and if they are we go to CheckoutViewController. else we show some alerts.
@@ -343,7 +380,7 @@
     
     if ([self elementsCount] == [self checkedElementsCount]) {
 		
-		self.purchaseDone;
+		[self purchaseDone];
 
         
     }else {        
@@ -358,43 +395,6 @@
     
 }
 
-- (void)purchaseDone
-{
-	//if checkout view is off, add new budget post and change view to budget, else goto checkoutview
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	if (![defaults boolForKey:@"listCheckoutViewOn"]) {
-		BudgetPost* newBudgetPost = [NSEntityDescription insertNewObjectForEntityForName:@"BudgetPost" inManagedObjectContext:list_.managedObjectContext];
-		newBudgetPost.name = list_.name;
-		newBudgetPost.timeStamp = [NSDate date];
-		//TODO: this should be rounded if we pay with cash; since there are no femtioörings anymore
-		NSDecimalNumber *amount = [self calculateSumOfCheckedElementsInList];
-		amount = [amount decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
-		newBudgetPost.amount = amount;
-		//TODO: add comment!
-		//[NSString stringWithFormat:@"Automatiskt sparat inköp %s", [[NSDate date] description]];
-		
-		
-		NSArray *myArray = [list_.articles allObjects];
-		for(ListArticle *object in myArray) {
-			[object setChecked:[NSNumber numberWithBool:NO]];
-		}
-		
-		[list_.managedObjectContext save:NULL];
-		
-		//go to budget mode
-		[(UITabBarController*)self.tabBarController setSelectedIndex:1];
-		[self.navigationController popViewControllerAnimated:NO];
-		
-	}else {
-		//we are all done with the list
-		CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
-																			amountToPay:[self calculateSumOfCheckedElementsInList]];
-		[self.navigationController presentModalViewController:checkOut animated:YES];
-		
-		[checkOut release];
-	}
-}
-
 /**
  * Called when an alertViews is dismissed using any of the buttons.
  */
@@ -403,7 +403,7 @@
     if (buttonIndex==1) {
         //clicked "ja"
 		
-		self.purchaseDone;
+        [self purchaseDone];
 		
 		/*
         CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
@@ -457,7 +457,6 @@
     latestTotal = [total retain];
     [formatter release];
     
-<<<<<<< HEAD
 //    [progressBar setProgress:(float)(self.checkedElementsCount/(float)(self.elementsCount)) animated:YES];
 	if ([self elementsCount] == 0)
 	{
@@ -471,8 +470,6 @@
 		checkoutButton.hidden = NO;
 	}
     
-=======
->>>>>>> be1ce7ef652c3423afc01124ab898491c00c65a7
     if ([self checkedElementsCount] == [self elementsCount]) {
         // Load our image normally.
         UIImage *image = [UIImage imageNamed:@"GreenButton.png"];
