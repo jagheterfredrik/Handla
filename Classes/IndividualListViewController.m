@@ -364,7 +364,7 @@
 			[list_.managedObjectContext save:NULL];
 			
 			//go to budget mode
-			[(UITabBarController*)self.tabBarController setSelectedIndex:2];
+			[(UITabBarController*)self.tabBarController setSelectedIndex:1];
 			[self.navigationController popViewControllerAnimated:NO];
 			
 		}else {
