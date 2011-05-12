@@ -195,7 +195,6 @@
     cancel.action = ^
     {
         if([self elementsCount]==0) {
-            individualListTableViewController.searchDisplayController.searchBar.hidden = YES;
             [self showPopTipView];
         }
     };
@@ -468,12 +467,10 @@
 	if ([self elementsCount] == 0)
 	{
 		checkoutButton.hidden = YES;
-        individualListTableViewController.searchDisplayController.searchBar.hidden = YES;
         [self showPopTipView];
 	}
 	else if([self elementsCount] > 0)
 	{
-        individualListTableViewController.searchDisplayController.searchBar.hidden = NO;
 		checkoutButton.hidden = NO;
 	}
     
@@ -553,7 +550,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     if([self elementsCount]==0) {
-        individualListTableViewController.searchDisplayController.searchBar.hidden = YES;
         [self showPopTipView];
     }
     [individualListTableViewController viewDidAppear:animated];
