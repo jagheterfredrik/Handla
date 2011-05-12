@@ -229,9 +229,9 @@
 		self.title = article_.name;
 		nameField.text = article_.name;
 		if (article_.barcode == nil){
-            barCodeCheckBox.hidden = NO;
-        } else {
             barCodeCheckBox.hidden = YES;
+        } else {
+            barCodeCheckBox.hidden = NO;
         }
 		commentField.text = article_.comment;
 		if (article_.picture)
