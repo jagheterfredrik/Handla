@@ -69,7 +69,7 @@
 - (void) imagePickerController:(UIImagePickerController*)reader didFinishPickingMediaWithInfo:(NSDictionary*)info {
     self.image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     newPhoto = YES;
-    [DSBezelActivityView newActivityViewForView:controller.view withLabel:@"Sparar..."];
+    [DSBezelActivityView newActivityViewForView:controller.view.superview.superview withLabel:@"Sparar..."];
     [self performSelectorInBackground:@selector(updatePicture) withObject:nil];
     reader.delegate = nil;
     [reader dismissModalViewControllerAnimated:YES];
