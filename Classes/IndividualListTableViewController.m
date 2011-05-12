@@ -136,7 +136,6 @@
 }
 
 - (void)updateSorting {
-	NSLog(@"UPDATING");
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	request.entity = [NSEntityDescription entityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
 	

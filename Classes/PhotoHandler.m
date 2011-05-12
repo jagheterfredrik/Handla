@@ -122,7 +122,9 @@
     };
     
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Välj åtgärd" cancelButtonItem:[RIButtonItem itemWithLabel:@"Avbryt"]destructiveButtonItem:nil otherButtonItems:takeNew, pickOld, nil];
-    [sheet showInView:controller.view.window];
+    if (controller && controller.view && controller.view.window) {
+        [sheet showInView:controller.view.window];
+    }
     [sheet release];
 }
 
