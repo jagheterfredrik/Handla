@@ -89,7 +89,7 @@
 								<string key="NSFrame">{{65, 0}, {123, 37}}</string>
 								<reference key="NSSuperview" ref="779551214"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="451163685"/>
+								<reference key="NSNextKeyView" ref="747266089"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -160,7 +160,7 @@
 							<object class="IBUIImageView" id="40295130">
 								<reference key="NSNextResponder" ref="779551214"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{14, 14}, {28, 28}}</string>
+								<string key="NSFrameSize">{57, 57}</string>
 								<reference key="NSSuperview" ref="779551214"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="252671152"/>
@@ -170,7 +170,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">Checkbox.png</string>
+									<string key="NSResourceName">LargeCheckbox.png</string>
 								</object>
 							</object>
 							<object class="IBUILabel" id="747266089">
@@ -179,6 +179,7 @@
 								<string key="NSFrame">{{65, 38}, {123, 15}}</string>
 								<reference key="NSSuperview" ref="779551214"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="451163685"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -565,12 +566,12 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>Checkbox.png</string>
+				<string>LargeCheckbox.png</string>
 				<string>NoImage.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{28, 28}</string>
+				<string>{57, 57}</string>
 				<string>{57, 57}</string>
 			</object>
 		</object>

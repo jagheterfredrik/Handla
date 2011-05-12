@@ -194,6 +194,7 @@
     cancel.action = ^
     {
         if([self elementsCount]==0) {
+            individualListTableViewController.searchDisplayController.searchBar.hidden = YES;
             [self showPopTipView];
         }
     };
@@ -293,6 +294,43 @@
     [reader release];
 }
 
+- (void)purchaseDone
+{
+	//if checkout view is off, add new budget post and change view to budget, else goto checkoutview
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	if (![defaults boolForKey:@"listCheckoutViewOn"]) {
+		BudgetPost* newBudgetPost = [NSEntityDescription insertNewObjectForEntityForName:@"BudgetPost" inManagedObjectContext:list_.managedObjectContext];
+		newBudgetPost.name = list_.name;
+		newBudgetPost.timeStamp = [NSDate date];
+		//TODO: this should be rounded if we pay with cash; since there are no femtioörings anymore
+		NSDecimalNumber *amount = [self calculateSumOfCheckedElementsInList];
+		amount = [amount decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
+		newBudgetPost.amount = amount;
+		//TODO: add comment!
+		//[NSString stringWithFormat:@"Automatiskt sparat inköp %s", [[NSDate date] description]];
+		
+		
+		NSArray *myArray = [list_.articles allObjects];
+		for(ListArticle *object in myArray) {
+			[object setChecked:[NSNumber numberWithBool:NO]];
+		}
+		
+		[list_.managedObjectContext save:NULL];
+		
+		//go to budget mode
+		[(UITabBarController*)self.tabBarController setSelectedIndex:1];
+		[self.navigationController popViewControllerAnimated:NO];
+		
+	}else {
+		//we are all done with the list
+		CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
+																			amountToPay:[self calculateSumOfCheckedElementsInList]];
+		[self.navigationController presentModalViewController:checkOut animated:YES];
+		
+		[checkOut release];
+	}
+}
+
 /**
  * When the user clicks the "avsluta köp" button, we see if all posts are checked off
  * and if they are we go to CheckoutViewController. else we show some alerts.
@@ -342,7 +380,7 @@
     
     if ([self elementsCount] == [self checkedElementsCount]) {
 		
-		self.purchaseDone;
+		[self purchaseDone];
 
         
     }else {        
@@ -357,43 +395,6 @@
     
 }
 
-- (void)purchaseDone
-{
-	//if checkout view is off, add new budget post and change view to budget, else goto checkoutview
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	if (![defaults boolForKey:@"listCheckoutViewOn"]) {
-		BudgetPost* newBudgetPost = [NSEntityDescription insertNewObjectForEntityForName:@"BudgetPost" inManagedObjectContext:list_.managedObjectContext];
-		newBudgetPost.name = list_.name;
-		newBudgetPost.timeStamp = [NSDate date];
-		//TODO: this should be rounded if we pay with cash; since there are no femtioörings anymore
-		NSDecimalNumber *amount = [self calculateSumOfCheckedElementsInList];
-		amount = [amount decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
-		newBudgetPost.amount = amount;
-		//TODO: add comment!
-		//[NSString stringWithFormat:@"Automatiskt sparat inköp %s", [[NSDate date] description]];
-		
-		
-		NSArray *myArray = [list_.articles allObjects];
-		for(ListArticle *object in myArray) {
-			[object setChecked:[NSNumber numberWithBool:NO]];
-		}
-		
-		[list_.managedObjectContext save:NULL];
-		
-		//go to budget mode
-		[(UITabBarController*)self.tabBarController setSelectedIndex:1];
-		[self.navigationController popViewControllerAnimated:NO];
-		
-	}else {
-		//we are all done with the list
-		CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
-																			amountToPay:[self calculateSumOfCheckedElementsInList]];
-		[self.navigationController presentModalViewController:checkOut animated:YES];
-		
-		[checkOut release];
-	}
-}
-
 /**
  * Called when an alertViews is dismissed using any of the buttons.
  */
@@ -402,7 +403,7 @@
     if (buttonIndex==1) {
         //clicked "ja"
 		
-		self.purchaseDone;
+        [self purchaseDone];
 		
 		/*
         CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
@@ -437,12 +438,37 @@
     [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     NSDecimalNumber *total = [self calculateSumOfCheckedElementsInList];
     progressLabel.text = [formatter stringFromNumber:total];
-    if (latestTotal && [total compare:latestTotal] != NSOrderedSame) {
-        progressLabel.textColor = [UIColor redColor];
+    if (latestTotal && [total compare:latestTotal] == NSOrderedDescending) {
+        //progressLabel.textColor = [UIColor redColor];
+        //Show minus
+        symbolView.image = plusSign;
+        symbolView.alpha = 1.0f;
+        [UIView animateWithDuration:0.8f animations:^{
+            symbolView.alpha = 0.f;
+        }];
+    } else if(latestTotal && [total compare:latestTotal] == NSOrderedAscending) {
+        symbolView.image = minusSign;
+        symbolView.alpha = 1.0f;
+        [UIView animateWithDuration:0.8f animations:^{
+            symbolView.alpha = 0.f;
+        }];
     }
     [latestTotal release];
     latestTotal = [total retain];
     [formatter release];
+    
+//    [progressBar setProgress:(float)(self.checkedElementsCount/(float)(self.elementsCount)) animated:YES];
+	if ([self elementsCount] == 0)
+	{
+		checkoutButton.hidden = YES;
+        individualListTableViewController.searchDisplayController.searchBar.hidden = YES;
+        [self showPopTipView];
+	}
+	else if([self elementsCount] > 0)
+	{
+        individualListTableViewController.searchDisplayController.searchBar.hidden = NO;
+		checkoutButton.hidden = NO;
+	}
     
     if ([self checkedElementsCount] == [self elementsCount]) {
         // Load our image normally.
@@ -512,11 +538,15 @@
     
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imagePressed:) name:@"ListCellImagePressed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListArticleChanged" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListChanged" object:nil];;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePriceFields) name:@"ListChanged" object:nil];
+    
+    minusSign = [[UIImage imageNamed:@"MinusSign"] retain];
+    plusSign = [[UIImage imageNamed:@"PlusSign"] retain];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     if([self elementsCount]==0) {
+        individualListTableViewController.searchDisplayController.searchBar.hidden = YES;
         [self showPopTipView];
     }
     [individualListTableViewController viewDidAppear:animated];

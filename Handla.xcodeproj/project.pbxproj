@@ -49,6 +49,8 @@
 		0536C03B13703BFA00009372 /* UIImagePickerSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536C03A13703BF800009372 /* UIImagePickerSingleton.m */; };
 		0536C046137069FE00009372 /* BrutalUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536C045137069FC00009372 /* BrutalUIImageView.m */; };
 		054257D8137B6689003C8D45 /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 054257D7137B6689003C8D45 /* CMPopTipView.m */; };
+		054257FE137C0DBF003C8D45 /* LargeCheckbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 054257FC137C0DBF003C8D45 /* LargeCheckbox.png */; };
+		054257FF137C0DBF003C8D45 /* LargeCheckbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 054257FD137C0DBF003C8D45 /* LargeCheckbox@2x.png */; };
 		057E75BD13742FE000B14E92 /* PriceAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 057E75BC13742FE000B14E92 /* PriceAlertView.m */; };
 		059EFF5A137B3E54006B1C45 /* Left.png in Resources */ = {isa = PBXBuildFile; fileRef = 059EFF56137B3E54006B1C45 /* Left.png */; };
 		059EFF5B137B3E54006B1C45 /* Left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 059EFF57137B3E54006B1C45 /* Left@2x.png */; };
@@ -220,6 +222,8 @@
 		0536C045137069FC00009372 /* BrutalUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrutalUIImageView.m; sourceTree = "<group>"; };
 		054257D6137B6688003C8D45 /* CMPopTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPopTipView.h; sourceTree = "<group>"; };
 		054257D7137B6689003C8D45 /* CMPopTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPopTipView.m; sourceTree = "<group>"; };
+		054257FC137C0DBF003C8D45 /* LargeCheckbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LargeCheckbox.png; path = Resources/Images/LargeCheckbox.png; sourceTree = "<group>"; };
+		054257FD137C0DBF003C8D45 /* LargeCheckbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LargeCheckbox@2x.png"; path = "Resources/Images/LargeCheckbox@2x.png"; sourceTree = "<group>"; };
 		057E75BB13742FE000B14E92 /* PriceAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceAlertView.h; sourceTree = "<group>"; };
 		057E75BC13742FE000B14E92 /* PriceAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceAlertView.m; sourceTree = "<group>"; };
 		059EFF56137B3E54006B1C45 /* Left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Left.png; path = Resources/Images/Left.png; sourceTree = "<group>"; };
@@ -690,6 +694,8 @@
 				77228F2B137B2FA90016D8D3 /* GreenButton@2x.png */,
 				77228F32137B37430016D8D3 /* HILogo.png */,
 				77228F33137B37430016D8D3 /* HILogo@2x.png */,
+				054257FC137C0DBF003C8D45 /* LargeCheckbox.png */,
+				054257FD137C0DBF003C8D45 /* LargeCheckbox@2x.png */,
 				77228F2C137B2FA90016D8D3 /* RedButton.png */,
 				77228F2D137B2FA90016D8D3 /* RedButton@2x.png */,
 				4874B6911329448B006F291A /* 10.png */,
@@ -995,6 +1001,8 @@
 				059EFF5B137B3E54006B1C45 /* Left@2x.png in Resources */,
 				059EFF5C137B3E54006B1C45 /* Right.png in Resources */,
 				059EFF5D137B3E54006B1C45 /* Right@2x.png in Resources */,
+				054257FE137C0DBF003C8D45 /* LargeCheckbox.png in Resources */,
+				054257FF137C0DBF003C8D45 /* LargeCheckbox@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
