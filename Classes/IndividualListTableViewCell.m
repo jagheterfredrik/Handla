@@ -33,7 +33,7 @@
 - (IBAction)changePriceButtonPressed:(UIButton*) sender{
 	PriceAlertView *alertPrompt = [[PriceAlertView alloc] initWithListArticle:listArticle_];
 	[alertPrompt show];
-//	[alertPrompt release]; EH?!
+    //	[alertPrompt release]; EH?!
 }
 
 - (IBAction)imagePressed {
@@ -93,25 +93,41 @@
     } else {
         thumbnail.alpha = 1.f;
         checkboxImage.alpha = 0.f;
-
+        
     }
     
 }
 
+/*
+ * This should be called when checking off an article. Increases a counter which when >0 enables "green flash" animations on the cell.
+ */
+-(void)wasChecked{
+    shouldFlash++;  
+}
 
+/*
+ * overrides super method, to enable colored background.
+ */
 - (void)layoutSubviews { 
     [super layoutSubviews]; 
     if ([self.listArticle.checked boolValue]) {
-        [self setBackgroundColor:[UIColor colorWithRed:0.18f green:0.93f blue:0.29f alpha:1.0f]];
-        
-        [UIView animateWithDuration:0.2f
-                              delay:0.f
-                            options:UIViewAnimationOptionAllowUserInteraction
-                         animations:^{
-                             [self setBackgroundColor:[UIColor colorWithRed:0.97f green:1.0f blue:0.97f alpha:1.f]];
-                         } completion:nil];
-    } else{
-        [self setBackgroundColor:[UIColor whiteColor]];
+        if (shouldFlash){//self.backgroundColor!=[UIColor colorWithRed:0.97f green:1.0f blue:0.97f alpha:1.f]) {
+            [self setBackgroundColor:[UIColor colorWithRed:0.18f green:0.93f blue:0.29f alpha:1.0f]];
+            [UIView animateWithDuration:0.2f
+                                  delay:0.f
+                                options:UIViewAnimationOptionAllowUserInteraction
+                             animations:^{
+                                 [self setBackgroundColor:[UIColor colorWithRed:0.96f green:1.0f blue:0.96f alpha:1.f]];
+                             } completion:nil];
+            shouldFlash--;
+        }
+        else {
+            [self setBackgroundColor:[UIColor colorWithRed:0.96f green:1.0f blue:0.96f alpha:1.f]];
+        }
+    }
+    else
+    {
+       [self setBackgroundColor:[UIColor whiteColor]];
     }
 }
 

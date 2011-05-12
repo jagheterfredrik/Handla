@@ -21,13 +21,14 @@
     IBOutlet UIButton* markButton;	
 	IBOutlet IndividualListTableViewCell *cell;
     IBOutlet UIView* background;
+    NSInteger shouldFlash;
 }
 
 - (id)init;
 - (IBAction)changePriceButtonPressed:(UIButton*) sender;
 - (IBAction)imagePressed;
 - (void)updateView;
-
+- (void)wasChecked;
 
 @property (nonatomic,retain) ListArticle *listArticle;
 

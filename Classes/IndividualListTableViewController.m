@@ -71,7 +71,8 @@
     ListArticle *listArticle = (ListArticle*)managedObject;
     listArticle.checked = [NSNumber numberWithBool:![listArticle.checked boolValue]];
 	if ([listArticle.checked boolValue]) {
-		listArticle.timeStamp = [NSDate date];
+        [cell wasChecked];
+        listArticle.timeStamp = [NSDate date];
 	}
     
     [cell updateView];
