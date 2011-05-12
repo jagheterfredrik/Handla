@@ -86,36 +86,6 @@
 	return self.fetchedResultsController;
 }
 
-/*
- * Används ej då searchDisplayControllerDidEndSearch körs.
- *
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
-    self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
-}
-*/
-
-
-/*
- * Borde dölja searchbaren innan avslutad sökning, men gör det ej.
- * Används ej då searchDisplayControllerDidEndSearch körs.
- *
-- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
-{
-    [self fetchedResultsControllerForTableView:self.tableView];
-    self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
-}
- */
- 	
-
-//Döljer serchbaren efter sökning	 	
-- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller 	
-{
-    [UIView animateWithDuration:0.3f animations:^{
-        self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
-    }];
-}
-
 - (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
 {
 	// reset the fetch controller for the main (non-searching) table view
@@ -236,12 +206,6 @@
 	[self performFetchForTableView:self.tableView];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [UIView animateWithDuration:0.3f animations:^{
-        self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
-    }];
-}
-
 #pragma mark UITableViewDataSource methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -343,7 +307,6 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
-    self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
 
 }
 
