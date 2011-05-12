@@ -54,6 +54,7 @@
             ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
             listArticle.list = list_;
             listArticle.article = (Article*)[array lastObject];
+            listArticle.amount = [NSDecimalNumber one];
             listArticle.weightUnit = listArticle.article.lastWeightUnit;
             listArticle.price = listArticle.article.lastPrice;
         } else {
@@ -530,7 +531,7 @@
     
     //end buttoncooling part
     
-//    progressBar.progress = (float)(self.checkedElementsCount)/(float)(self.elementsCount);
+	//progressBar.progress = (float)(self.checkedElementsCount)/(float)(self.elementsCount);
 	[self updatePriceFields];
     
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imagePressed:) name:@"ListCellImagePressed" object:nil];

@@ -98,25 +98,19 @@
     
 }
 
-//TODO:
+
 - (void)layoutSubviews { 
     [super layoutSubviews]; 
     if ([self.listArticle.checked boolValue]) {
+        [self setBackgroundColor:[UIColor colorWithRed:0.18f green:0.93f blue:0.29f alpha:1.0f]];
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.2f];
         [self setBackgroundColor:[UIColor colorWithRed:0.97f green:1.0f blue:0.97f alpha:1.f]];
-    } else{
+
+        [UIView commitAnimations];
+            } else{
         [self setBackgroundColor:[UIColor whiteColor]];
     }
-}
-
-
-- (IBAction)flipCheckedStatus{
-    if ([self.listArticle.checked boolValue]==YES) {
-        [self.listArticle setChecked:[NSNumber numberWithBool:NO]];
-    } else {
-        [self.listArticle setChecked:[NSNumber numberWithBool:YES]];
-    }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ListArticleChanged" object:nil];
-    [self updateView];
 }
 
 #pragma mark -
@@ -133,7 +127,6 @@
         listArticle_.amount = (NSDecimalNumber*)[f numberFromString:alertPrompt.enteredAmount];
         listArticle_.article.lastWeightUnit = listArticle_.weightUnit = [NSNumber numberWithBool:alertPrompt.enteredWeightUnit];
         listArticle_.article.lastPrice = listArticle_.price;
-		listArticle_.timeStamp = [NSDate date];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ListArticleChanged" object:nil];
 		[f release];
 	}

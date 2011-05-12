@@ -16,6 +16,7 @@
 @interface IndividualListTableViewController : CoreDataTableViewController<UIAlertViewDelegate> {
 	List *list_;
 	NSManagedObject * selectedManagedObject;
+	NSInteger listSortOrder;
 }
 
 - (void)setList:(List*)list;

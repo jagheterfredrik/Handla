@@ -20,44 +20,6 @@
 
 @synthesize list_, navController;
 
-- (void)setList:(List*)list {
-	self.list_ = list;
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	request.entity = [NSEntityDescription entityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
-	
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	if ([defaults boolForKey:@"individualListSectioning"]) {
-		request.sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"checked"
-																						  ascending:YES],
-								   [NSSortDescriptor sortDescriptorWithKey:@"article.name"
-																 ascending:YES
-																  selector:@selector(localizedCaseInsensitiveCompare:)],nil];
-	}
-	else {
-		request.sortDescriptors = [NSArray arrayWithObject:
-								   [NSSortDescriptor sortDescriptorWithKey:@"article.name"
-																 ascending:YES
-																  selector:@selector(localizedCaseInsensitiveCompare:)]];
-	}
-
-	request.predicate = [NSPredicate predicateWithFormat:@"list = %@", list_];
-	request.fetchBatchSize = 20;
-	
-	NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
-									   initWithFetchRequest:request
-									   managedObjectContext:list_.managedObjectContext
-									   sectionNameKeyPath:([defaults boolForKey:@"individualListSectioning"] ? @"checked" : nil)
-									   cacheName:nil];
-	frc.delegate = self;
-	
-	[request release];
-	
-	[self setFetchedResultsController:frc];
-	[frc release];
-	
-	self.titleKey = @"article.name";
-}
-
 #pragma mark -
 #pragma mark Core data table view controller overrides
 
@@ -108,6 +70,9 @@
 
     ListArticle *listArticle = (ListArticle*)managedObject;
     listArticle.checked = [NSNumber numberWithBool:![listArticle.checked boolValue]];
+	if ([listArticle.checked boolValue]) {
+		listArticle.timeStamp = [NSDate date];
+	}
     
     [cell updateView];
 }
@@ -170,6 +135,59 @@
         [self.tableView reloadData];
 }
 
+- (void)updateSorting {
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	request.entity = [NSEntityDescription entityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
+	
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	listSortOrder = [defaults integerForKey:@"individualListSortOrder"];
+	if ([defaults boolForKey:@"individualListSectioning"]) {
+		NSSortDescriptor *secondaryDescriptor = nil;
+		if (listSortOrder == 0) {
+			secondaryDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"article.name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+		}
+		else if (listSortOrder == 1) {
+			secondaryDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"timeStamp" ascending:YES];
+		}
+		request.sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"checked"
+																						  ascending:YES],
+								   secondaryDescriptor,nil];
+	}
+	else {
+		if (listSortOrder == 0) {
+			request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"article.name"
+																							 ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+		}
+		else if (listSortOrder == 1) {
+			request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"timeStamp"
+																							 ascending:YES]];
+		}
+		
+	}
+	
+	request.predicate = [NSPredicate predicateWithFormat:@"list = %@", list_];
+	request.fetchBatchSize = 20;
+	
+	NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
+									   initWithFetchRequest:request
+									   managedObjectContext:list_.managedObjectContext
+									   sectionNameKeyPath:([defaults boolForKey:@"individualListSectioning"] ? @"checked" : nil)
+									   cacheName:nil];
+	frc.delegate = self;
+	
+	[request release];
+	
+	[self setFetchedResultsController:frc];
+	[frc release];
+	
+	self.titleKey = @"article.name";
+}
+
+- (void)setList:(List*)list {
+	self.list_ = list;
+	[self updateSorting];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -184,6 +202,7 @@
 - (void)viewDidLoad {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forceReload) name:@"ArticleChanged" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forceReload) name:@"SectionSettingChanged" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSorting) name:@"IndividualListSortOrderChanged" object:nil];
 }
 
 - (void)dealloc {
