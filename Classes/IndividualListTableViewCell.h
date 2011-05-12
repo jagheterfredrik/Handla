@@ -20,6 +20,7 @@
     IBOutlet UILabel *descriptionLabel;
     IBOutlet UIButton* markButton;	
 	IBOutlet IndividualListTableViewCell *cell;
+    IBOutlet UIView* background;
 }
 
 - (id)init;

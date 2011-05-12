@@ -2,16 +2,17 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
-		<string key="IBDocument.SystemVersion">10J4138</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
+		<string key="IBDocument.SystemVersion">10J869</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1305</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">301</string>
+			<string key="NS.object.0">300</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<string>IBUIView</string>
 			<string>IBUITableViewCell</string>
 			<string>IBUIImageView</string>
 			<string>IBUIButton</string>
@@ -49,6 +50,22 @@
 						<int key="NSvFlags">256</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIView" id="389248092">
+								<reference key="NSNextResponder" ref="779551214"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrameSize">{57, 57}</string>
+								<reference key="NSSuperview" ref="779551214"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="396186088"/>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MQA</bytes>
+									<object class="NSColorSpace" key="NSCustomColorSpace">
+										<int key="NSID">2</int>
+									</object>
+								</object>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+							</object>
 							<object class="IBUIButton" id="396186088">
 								<reference key="NSNextResponder" ref="779551214"/>
 								<int key="NSvFlags">292</int>
@@ -160,7 +177,7 @@
 							<object class="IBUIImageView" id="40295130">
 								<reference key="NSNextResponder" ref="779551214"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{57, 57}</string>
+								<string key="NSFrame">{{0, 1}, {57, 57}}</string>
 								<reference key="NSSuperview" ref="779551214"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="252671152"/>
@@ -200,7 +217,7 @@
 						<string key="NSFrameSize">{287, 57}</string>
 						<reference key="NSSuperview" ref="107017316"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="396186088"/>
+						<reference key="NSNextKeyView" ref="389248092"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -328,6 +345,7 @@
 							<reference ref="252671152"/>
 							<reference ref="451163685"/>
 							<reference ref="747266089"/>
+							<reference ref="389248092"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -362,6 +380,11 @@
 						<reference key="object" ref="747266089"/>
 						<reference key="parent" ref="107017316"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">72</int>
+						<reference key="object" ref="389248092"/>
+						<reference key="parent" ref="107017316"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -385,6 +408,7 @@
 					<string>4.IBPluginDependency</string>
 					<string>4.IBViewBoundsToFrameTransform</string>
 					<string>62.IBPluginDependency</string>
+					<string>72.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -415,6 +439,7 @@
 						<bytes key="NSTransformStruct">AUKCAAAAAAAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -429,7 +454,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">67</int>
+			<int key="maxID">72</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -480,6 +505,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>background</string>
 							<string>cell</string>
 							<string>checkboxImage</string>
 							<string>descriptionLabel</string>
@@ -490,6 +516,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIView</string>
 							<string>IndividualListTableViewCell</string>
 							<string>UIImageView</string>
 							<string>UILabel</string>
@@ -503,6 +530,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>background</string>
 							<string>cell</string>
 							<string>checkboxImage</string>
 							<string>descriptionLabel</string>
@@ -513,6 +541,10 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">background</string>
+								<string key="candidateClassName">UIView</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">cell</string>
 								<string key="candidateClassName">IndividualListTableViewCell</string>
@@ -575,6 +607,6 @@
 				<string>{57, 57}</string>
 			</object>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">301</string>
+		<string key="IBCocoaTouchPluginVersion">300</string>
 	</data>
 </archive>

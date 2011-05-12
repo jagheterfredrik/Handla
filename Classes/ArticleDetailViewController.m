@@ -55,6 +55,9 @@
     [DSBezelActivityView newActivityViewForView:[[self view] window] withLabel:@"Sparar..."];
 }
 
+/*
+ * Saves the PICTURE to the database.
+ */
 - (void)doSave {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     if (article_.picture)
