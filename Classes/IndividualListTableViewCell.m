@@ -33,7 +33,7 @@
 - (IBAction)changePriceButtonPressed:(UIButton*) sender{
 	PriceAlertView *alertPrompt = [[PriceAlertView alloc] initWithListArticle:listArticle_];
 	[alertPrompt show];
-//	[alertPrompt release]; EH?!
+    //	[alertPrompt release]; EH?!
 }
 
 - (IBAction)imagePressed {
@@ -93,7 +93,7 @@
     } else {
         thumbnail.alpha = 1.f;
         checkboxImage.alpha = 0.f;
-
+        
     }
     
 }
@@ -113,14 +113,15 @@
     if ([self.listArticle.checked boolValue]) {
         if (shouldFlash){//self.backgroundColor!=[UIColor colorWithRed:0.97f green:1.0f blue:0.97f alpha:1.f]) {
             [self setBackgroundColor:[UIColor colorWithRed:0.18f green:0.93f blue:0.29f alpha:1.0f]];
-            [UIView beginAnimations:nil context:NULL];
-            [UIView setAnimationDuration:0.2f];
-            [self setBackgroundColor:[UIColor colorWithRed:0.97f green:1.0f blue:0.97f alpha:1.f]];
-
-            [UIView commitAnimations];
+            [UIView animateWithDuration:0.2f
+                                  delay:0.f
+                                options:UIViewAnimationOptionAllowUserInteraction
+                             animations:^{
+                                 [self setBackgroundColor:[UIColor colorWithRed:0.97f green:1.0f blue:0.97f alpha:1.f]];
+                             } completion:nil];
             shouldFlash--;
         }
-        } else{
+    } else{
         [self setBackgroundColor:[UIColor whiteColor]];
     }
 }

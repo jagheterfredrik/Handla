@@ -34,6 +34,13 @@
 	return cell;
 }
 
+- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller 	
+{
+    [UIView animateWithDuration:0.4f animations:^{
+        self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
+    }];
+}
+
 - (void)managedObjectSelected:(NSManagedObject *)managedObject
 {
 	IndividualListViewController *individualListViewController = [[IndividualListViewController alloc] initWithNibName:@"IndividualListViewController" bundle:nil list:(List*)managedObject];
@@ -232,7 +239,9 @@
         self.searchDisplayController.searchBar.hidden = YES;
         [self showPopTipView];
     }
-    self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
+    [UIView animateWithDuration:0.4f animations:^{
+        self.tableView.contentOffset = CGPointMake(0.0, self.searchDisplayController.searchBar.frame.size.height);
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

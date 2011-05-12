@@ -29,7 +29,7 @@
 	
 	optionIndividualListSortOrder = [[NSMutableArray alloc] initWithCapacity:2];
 	[optionIndividualListSortOrder addObject:@"Namn"];
-	[optionIndividualListSortOrder addObject:@"Senast checkad"];
+	[optionIndividualListSortOrder addObject:@"Senast avbockad"];
 	
 	sectioningSwitch = [[UISwitch alloc] init];
 	[sectioningSwitch addTarget:self action:@selector(sectioningSwitchChanged) forControlEvents:UIControlEventValueChanged];
@@ -93,9 +93,9 @@
 	if(section == 0){
 		return 3;
 	}else if(section == 1){
-		return 2;
+		return 3;
 	}else if(section == 2){
-		return 2;
+		return 1;
 	}else {
 		return 0;
 	}
@@ -104,7 +104,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	if (section == 0) {
-		return @"Sorteringsordning i listan av listor";
+		return @"Sorteringsordning av listor";
 	}else if (section == 1) {
 		return @"Sorteringsordning i listor";
 	}else if (section == 2) {
@@ -140,11 +140,29 @@
 	}
 	else if (indexPath.section == 1) 
 	{
-		NSInteger ilso = [defaults integerForKey:@"individualListSortOrder"];
-		cell.textLabel.text = [optionIndividualListSortOrder objectAtIndex:indexPath.row];
-		if (indexPath.row == ilso) {
-			cell.accessoryType = UITableViewCellAccessoryCheckmark;
+		if (indexPath.row == 2) 
+		{
+			cell.textLabel.text = @"Gruppera";
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+			
+			cell.accessoryView = sectioningSwitch;
+			if ([defaults boolForKey:@"individualListSectioning"]) 
+			{
+				[sectioningSwitch setOn:YES animated:NO];
+			}
+			else 
+			{
+				[sectioningSwitch setOn:NO animated:NO];
+			}
+		} else {
+
+			NSInteger ilso = [defaults integerForKey:@"individualListSortOrder"];
+			cell.textLabel.text = [optionIndividualListSortOrder objectAtIndex:indexPath.row];
+			if (indexPath.row == ilso) {
+				cell.accessoryType = UITableViewCellAccessoryCheckmark;
+			}
 		}
+		
 	}
 	else if (indexPath.section == 2) 
 	{
@@ -160,21 +178,6 @@
 			else 
 			{
 				[checkoutSwitch setOn:NO animated:NO];
-			}
-		}
-		else if (indexPath.row == 1) 
-		{
-			cell.textLabel.text = @"Sektionera listor";
-			cell.selectionStyle = UITableViewCellSelectionStyleNone;
-			
-			cell.accessoryView = sectioningSwitch;
-			if ([defaults boolForKey:@"individualListSectioning"]) 
-			{
-				[sectioningSwitch setOn:YES animated:NO];
-			}
-			else 
-			{
-				[sectioningSwitch setOn:NO animated:NO];
 			}
 		}
 	}
@@ -272,6 +275,9 @@
 	}
 	else if (indexPath.section == 1)
 	{
+		if (indexPath.row >1) {
+			return;
+		}
 		NSInteger ilso = [defaults integerForKey:@"individualListSortOrder"];
 		
 		NSUInteger tmpArray[] = {1, ilso};		
