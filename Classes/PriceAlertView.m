@@ -135,10 +135,13 @@
         listArticle_.price = (NSDecimalNumber*)[f numberFromString:alertPrompt.enteredPrice];
         
         listArticle_.article.lastWeightUnit = listArticle_.weightUnit = [NSNumber numberWithBool:alertPrompt.enteredWeightUnit];
+
+        NSDecimalNumber *amount = (NSDecimalNumber*)[f numberFromString:alertPrompt.enteredAmount];
         if (!alertPrompt.enteredWeightUnit) {
-            [f setNumberStyle:NSNumberFormatterRoundFloor];
+            NSDecimalNumberHandler *behavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSNumberFormatterRoundFloor scale:0 raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:NO];
+            amount = [amount decimalNumberByRoundingAccordingToBehavior:behavior];
         }
-        listArticle_.amount = (NSDecimalNumber*)[f numberFromString:alertPrompt.enteredAmount];
+        listArticle_.amount = (amount ? amount : [NSDecimalNumber one]);
         listArticle_.article.lastPrice = listArticle_.price;
 		listArticle_.timeStamp = [NSDate date];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ListArticleChanged" object:nil];
