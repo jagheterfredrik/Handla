@@ -10,6 +10,7 @@
 #import "BudgetTableViewController.h"
 
 #import "NSDate+Helper.h"
+#import "PCPieChart.h"
 
 @class BudgetPostDetailViewController;
 @class BudgetSettingsViewController;
@@ -22,9 +23,12 @@
 	IBOutlet UIView *topView;
 	IBOutlet UIButton *previousCalendarButton;
 	IBOutlet UILabel *calendarLabel;
+    IBOutlet UIView *bottomView;
 	NSManagedObjectContext *managedObjectContext_;
 	NSDate *displayedDate;
 	NSInteger dateInterval;
+    PCPieChart *pieChart;
+    PCPieComponent *plusPie, *minusPie;
 }
 
 - (void)addPost;

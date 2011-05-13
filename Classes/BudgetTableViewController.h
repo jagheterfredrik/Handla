@@ -19,7 +19,7 @@
 	IBOutlet BudgetViewController *budgetViewController;
     NSFetchedResultsController *sumResultController;
     NSDecimalNumber *previousBudgetSum;
-    NSDecimalNumber *budgetSum;
+    NSDecimalNumber *budgetSum, *plusSum, *minusSum;
 	NSDate *startDate;
 	NSDate *endDate;
     UIImage *plusSign, *minusSign;
@@ -30,9 +30,10 @@
 
 - (void)setManagedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 - (void)setDurationStartDate:(NSDate*)startDate endDate:(NSDate*)endDate;
+- (void)calculateBudgetData;
 
 @property (nonatomic, retain) UINavigationItem *navItem;
 @property (nonatomic, retain) NSDecimalNumber *previousBudgetSum;
-@property (nonatomic, retain) NSDecimalNumber *budgetSum;
+@property (nonatomic, retain) NSDecimalNumber *budgetSum, *plusSum, *minusSum;
 
 @end

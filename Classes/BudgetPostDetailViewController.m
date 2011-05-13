@@ -176,8 +176,9 @@
 	newBudgetPost.comment = commentBox.text;
 	
 	newBudgetPost.timeStamp = [datePicker.date beginningOfDay];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BudgetPostUpdated" object:self];
 
-	[self.managedObjectContext save:NULL];
 	[self.navigationController popViewControllerAnimated:YES];
 	
 }

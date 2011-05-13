@@ -58,6 +58,7 @@
 		05DBB9EA13742AD4001E5154 /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DBB9E913742AD4001E5154 /* Article.m */; };
 		05E24056137C342F0017ECC1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 05E24054137C342F0017ECC1 /* Default.png */; };
 		05E24057137C342F0017ECC1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05E24055137C342F0017ECC1 /* Default@2x.png */; };
+		05E24063137D2D780017ECC1 /* PCPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E24062137D2D780017ECC1 /* PCPieChart.m */; };
 		05E5EBED1351D6FD00DF6D7A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 05E5EBEC1351D6FD00DF6D7A /* README.md */; };
 		1B531504132A692D00C328B4 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B531501132A692D00C328B4 /* AboutViewController.xib */; };
 		1B531505132A692D00C328B4 /* ListSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B531502132A692D00C328B4 /* ListSettingsViewController.xib */; };
@@ -239,6 +240,8 @@
 		05DBB9E913742AD4001E5154 /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
 		05E24054137C342F0017ECC1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		05E24055137C342F0017ECC1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		05E24061137D2D770017ECC1 /* PCPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCPieChart.h; sourceTree = "<group>"; };
+		05E24062137D2D780017ECC1 /* PCPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCPieChart.m; sourceTree = "<group>"; };
 		05E5EBEC1351D6FD00DF6D7A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		1B531501132A692D00C328B4 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutViewController.xib; path = Resources/XIBs/AboutViewController.xib; sourceTree = "<group>"; };
 		1B531502132A692D00C328B4 /* ListSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ListSettingsViewController.xib; path = Resources/XIBs/ListSettingsViewController.xib; sourceTree = "<group>"; };
@@ -850,6 +853,8 @@
 		4848BBCE130B33D400702E2D /* Base classes */ = {
 			isa = PBXGroup;
 			children = (
+				05E24061137D2D770017ECC1 /* PCPieChart.h */,
+				05E24062137D2D780017ECC1 /* PCPieChart.m */,
 				054257D6137B6688003C8D45 /* CMPopTipView.h */,
 				054257D7137B6689003C8D45 /* CMPopTipView.m */,
 				052C51431378AA6C00862745 /* RIButtonItem.h */,
@@ -1083,6 +1088,7 @@
 				052C514B1378AA6D00862745 /* UIAlertView+Blocks.m in Sources */,
 				052C514E1378ACA800862745 /* PhotoHandler.m in Sources */,
 				054257D8137B6689003C8D45 /* CMPopTipView.m in Sources */,
+				05E24063137D2D780017ECC1 /* PCPieChart.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

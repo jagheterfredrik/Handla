@@ -35,14 +35,13 @@
             totalBalance.textColor = [UIColor colorWithRed:0.f green:0.55f blue:0.f alpha:1.f];
         
         [amountFormatter release];
+        
+        float minus = [budgetTableViewController.minusSum floatValue];
+        float tot = [budgetTableViewController.budgetSum floatValue];
+        plusPie.value = (tot > 0 ? tot : 0);
+        minusPie.value = minus;
+        [pieChart setNeedsDisplay];
     }
-}
-
-/**
- * Called when receiving a BudgetPostUpdated notification.
- */
-- (void)budgetPostUpdated:(NSNotification*)notification {
-	[self calculateBudgetSum];
 }
 
 /**
@@ -73,6 +72,13 @@
     [self calculateBudgetSum];
 }
 
+/**
+ * Called when receiving a BudgetPostUpdated notification.
+ */
+- (void)budgetPostUpdated:(NSNotification*)notification {
+    [self updateCalendarLabel];
+}
+
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -92,11 +98,29 @@
 	self.navigationItem.titleView = topView;
 	
 	[budgetTableViewController setManagedObjectContext:managedObjectContext_];
-
-	[self calculateBudgetSum];
+    
+    [self calculateBudgetSum];
 	
 	//Observer pattern
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(budgetPostUpdated:) name:@"BudgetPostUpdated" object:nil];
+    
+    pieChart = [[PCPieChart alloc] initWithFrame:CGRectMake(0.f,-3.f,80.f,80.f)];
+    [pieChart setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin];
+    [pieChart setDiameter:45.f];
+    
+    //[pieChart setBackgroundColor:[UIColor blueColor]];
+    
+    
+    
+    plusPie = [[PCPieComponent alloc] initWithValue:25.f];
+    [plusPie setColour:PCColorGreen];
+    minusPie = [[PCPieComponent alloc] initWithValue:70.f];
+    [minusPie setColour:PCColorRed];
+    
+    [pieChart setComponents:[NSArray arrayWithObjects:minusPie, plusPie, nil]];
+    
+    [bottomView addSubview:pieChart];
+    [pieChart setNeedsDisplay];
 	
 	self.displayedDate = [NSDate date];
 }
@@ -203,6 +227,9 @@
 - (void)viewDidUnload {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[displayedDate release];
+    [pieChart release];
+    [plusPie release];
+    [minusPie release];
 }
 
 

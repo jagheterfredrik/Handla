@@ -15,7 +15,7 @@
 
 @implementation BudgetTableViewController
 
-@synthesize previousBudgetSum, budgetSum;
+@synthesize previousBudgetSum, budgetSum, plusSum, minusSum;
 @synthesize navItem;
 
 - (void)viewDidLoad {
@@ -103,17 +103,27 @@
 }
 
 /**
- * Sets the time interval to display and fetches BudgetPosts from it.
+ *  Adds to the variables plusSum, minusSum. To plus if the value is
+ * positive and to minus if it is negative.
  */
-- (void)setDurationStartDate:(NSDate*)startDate_ endDate:(NSDate*)endDate_ {
-    [startDate release];
-    [endDate release];
-	startDate = [startDate_ retain];
-	endDate = [endDate_ retain];
-	
-    self.previousBudgetSum = [NSDecimalNumber decimalNumberWithString:@"0"];
+- (void)addDiffSum:(NSDecimalNumber*)num {
+
+    NSComparisonResult res = [[NSDecimalNumber zero] compare:num];
+    if (res == NSOrderedAscending) {
+        self.plusSum = [self.plusSum decimalNumberByAdding:num];
+    } else {
+        self.minusSum = [self.minusSum decimalNumberByAdding:[num decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]]];
+    }
+}
+
+- (void)calculateBudgetData {
+    //Budget before the set date
+    self.plusSum = [NSDecimalNumber zero];
+    self.minusSum = [NSDecimalNumber zero];
+    self.previousBudgetSum = [NSDecimalNumber zero];
+    
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"budgetHistory"]) {
-        sumResultController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(timeStamp < %@)", startDate_];
+        sumResultController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(timeStamp < %@)", startDate];
         [sumResultController performFetch:NULL];
         for (BudgetPost *post in sumResultController.fetchedObjects) {
             // TODO: add code for repeatID >= 0
@@ -123,16 +133,32 @@
         }
     }
     
-    sumResultController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(timeStamp >= %@) AND (timeStamp <= %@)", startDate_, endDate_];
+    sumResultController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(timeStamp >= %@) AND (timeStamp <= %@)", startDate, endDate];
     [sumResultController performFetch:NULL];
-    self.budgetSum = [NSDecimalNumber decimalNumberWithString:@"0"];
-    self.budgetSum = [self.budgetSum decimalNumberByAdding:self.previousBudgetSum];
+    
+    self.budgetSum = [[NSDecimalNumber zero] decimalNumberByAdding:self.previousBudgetSum];
+    [self addDiffSum:self.previousBudgetSum];
+    
+    
     for (BudgetPost *post in sumResultController.fetchedObjects) {
         // TODO: add code for repeatID >= 0
         if (post.amount) {
             self.budgetSum = [budgetSum decimalNumberByAdding:post.amount];
+            [self addDiffSum:post.amount];
         }
     }
+}
+
+/**
+ * Sets the time interval to display and fetches BudgetPosts from it.
+ */
+- (void)setDurationStartDate:(NSDate*)startDate_ endDate:(NSDate*)endDate_ {
+    [startDate release];
+    [endDate release];
+	startDate = [startDate_ retain];
+	endDate = [endDate_ retain];
+	
+    [self calculateBudgetData];
     
     prevCell.nameLabel.text = @"Tidigare budget";
     prevCell.center = CGPointMake(prevCell.center.x, prevCell.frame.size.height / 2.f);
@@ -153,7 +179,7 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
 	[super controllerDidChangeContent:controller];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"BudgetPostUpdated" object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BudgetPostUpdated" object:self];
 }
 
 - (void)managedObjectSelected:(NSManagedObject *)managedObject
