@@ -18,6 +18,30 @@
 
 @synthesize managedObjectContext=managedObjectContext_, list=list_, myPopTipView;
 
+#pragma mark - Pop tip view helper functions
+
+/*
+ * Shows the tip-view for creating a new list
+ */
+- (void)showPopTipView {
+    NSString *message = @"Klicka här för att skapa en ny matlista";
+    CMPopTipView *popTipView = [[CMPopTipView alloc] initWithMessage:message];
+    popTipView.backgroundColor = [UIColor blackColor];
+    popTipView.delegate = self;
+    [popTipView presentPointingAtBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
+    
+    self.myPopTipView = popTipView;
+    [popTipView release];
+}
+
+/*
+ * Hides the displaying tip-view.
+ */
+- (void)dismissPopTipView {
+    [self.myPopTipView dismissAnimated:NO];
+    self.myPopTipView = nil;
+}
+
 #pragma mark -
 #pragma mark Core data table view overrides
 
@@ -132,30 +156,6 @@
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     self.navigationItem.rightBarButtonItem.enabled = !editing;
     [super setEditing:editing animated:animated];
-}
-
-#pragma mark - Pop tip view helper functions
-
-/*
- * Shows the tip-view for creating a new list
- */
-- (void)showPopTipView {
-    NSString *message = @"Klicka här för att skapa en ny matlista";
-    CMPopTipView *popTipView = [[CMPopTipView alloc] initWithMessage:message];
-    popTipView.backgroundColor = [UIColor blackColor];
-    popTipView.delegate = self;
-    [popTipView presentPointingAtBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
-    
-    self.myPopTipView = popTipView;
-    [popTipView release];
-}
-
-/*
- * Hides the displaying tip-view.
- */
-- (void)dismissPopTipView {
-    [self.myPopTipView dismissAnimated:NO];
-    self.myPopTipView = nil;
 }
 
 

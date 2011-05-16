@@ -30,6 +30,47 @@
 
 @synthesize myPopTipView;
 
+- (Article *)findArticleWithBarcode:(NSString*)barcode {
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Article" inManagedObjectContext:list_.managedObjectContext]; 
+    
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease]; 
+    
+    [request setEntity:entityDescription]; 
+    
+    [request setPredicate:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"barcode == '%@'", barcode]]];
+    
+    NSError *error = nil; 
+    NSArray *array = [list_.managedObjectContext executeFetchRequest:request error:&error];
+
+    return [array lastObject];
+}
+
+- (void)createListArticle:(Article*)article checked:(BOOL)checked {
+    ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
+    listArticle.list = list_;
+    listArticle.article = article;
+    listArticle.amount = [NSDecimalNumber one];
+    listArticle.weightUnit = listArticle.article.lastWeightUnit;
+    listArticle.checked = [NSNumber numberWithBool:checked];
+    listArticle.price = listArticle.article.lastPrice;
+}
+
+- (void)showNotFoundWithBarcode:(NSString*)barcode {
+    RIButtonItem *newArticle = [RIButtonItem itemWithLabel:@"Skapa ny vara"];
+    newArticle.action = ^
+    {
+        ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil list:list_];
+        [self.navigationController pushViewController:articleDetailViewController animated:YES];
+        articleDetailViewController.barcode = barcode;
+        [articleDetailViewController release];  
+    };
+    RIButtonItem *cancel = [RIButtonItem itemWithLabel:@"Avbryt"];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ingen vara funnen!" message:@"Den vara du skannade finns ej tidigare inlagd. Vill du skapa en ny vara med den skannade streckkoden?" cancelButtonItem:cancel otherButtonItems:newArticle, nil];
+    [alert show];
+    [alert release];
+}
+
 - (void) imagePickerController:(UIImagePickerController*)reader didFinishPickingMediaWithInfo:(NSDictionary*)info {
 	id<NSFastEnumeration> results =
 	[info objectForKey: ZBarReaderControllerResults];
@@ -39,32 +80,11 @@
         break;
     
     if (reader.view.tag == SCAN_TO_ADD) {
-        NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Article" inManagedObjectContext:list_.managedObjectContext]; 
-        
-        NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease]; 
-        
-        [request setEntity:entityDescription]; 
-        
-        [request setPredicate:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"barcode == '%@'", symbol.data]]];
-        
-        NSError *error = nil; 
-        NSArray *array = [list_.managedObjectContext executeFetchRequest:request error:&error];
-        
-        if ([array count]>0) {
-            ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:list_.managedObjectContext];
-            listArticle.list = list_;
-            listArticle.article = (Article*)[array lastObject];
-            listArticle.amount = [NSDecimalNumber one];
-            listArticle.weightUnit = listArticle.article.lastWeightUnit;
-            listArticle.price = listArticle.article.lastPrice;
+        Article* foundArticle = [self findArticleWithBarcode:symbol.data];
+        if (foundArticle) {
+            [self createListArticle:foundArticle checked:NO];
         } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ingen vara funnen!" 
-                                                            message:@"Den vara du skannade har ingen vara kopplad till sig. Du måste koppla varan till sin steckkod först." 
-                                                           delegate:self 
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil];
-            [alert show];
-            [alert release];
+            [self showNotFoundWithBarcode:symbol.data];
         }
     } else if (reader.view.tag == SCAN_TO_CHECK) {
         BOOL found = NO;
@@ -77,13 +97,20 @@
         }
         
         if (!found) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ingen vara funnen!" 
-                                                            message:@"Den vara du skannade har ingen vara kopplad till sig. Du måste koppla varan till sin steckkod först." 
-                                                           delegate:self 
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil];
-            [alert show];
-            [alert release];
+            Article* foundArticle = [self findArticleWithBarcode:symbol.data];
+            if (foundArticle) {
+                RIButtonItem *addCheck = [RIButtonItem itemWithLabel:@"Lägg till"];
+                addCheck.action = ^
+                {
+                    [self createListArticle:foundArticle checked:YES];
+                };
+                RIButtonItem *cancel = [RIButtonItem itemWithLabel:@"Avbryt"];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Varan finns inte i listan!" message:@"Varan du skannade finns bland dina tidigare varor men inte i listan. Vill du lägga till varan i listan och markera den som hämtad?" cancelButtonItem:cancel otherButtonItems:addCheck, nil];
+                [alert show];
+                [alert release];
+            } else {    
+                [self showNotFoundWithBarcode:symbol.data];
+            }
         }
     }
     
@@ -409,17 +436,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex==1) {
-        //clicked "ja"
-		
         [self purchaseDone];
-		
-		/*
-        CheckoutViewController* checkOut = [[CheckoutViewController alloc] initWithList:list_ 
-                                                                            amountToPay:[self calculateSumOfCheckedElementsInList]];
-        [self.navigationController presentModalViewController:checkOut animated:YES];
-        
-        [checkOut release];
-		 */
 	}
 }
 
@@ -472,7 +489,6 @@
     latestTotal = [total retain];
     [formatter release];
     
-//    [progressBar setProgress:(float)(self.checkedElementsCount/(float)(self.elementsCount)) animated:YES];
 	if ([self elementsCount] == 0)
 	{
 		checkoutButton.hidden = YES;
@@ -519,6 +535,7 @@
 	else if([self elementsCount] > 0)
 	{
 		checkoutButton.hidden = NO;
+        [self dismissPopTipView];
 	}
 }
 

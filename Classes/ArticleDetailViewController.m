@@ -159,8 +159,6 @@
  * currently assigned to the article.
  */
 - (IBAction)cameraClick:(id)sender {
-    NSLog(@"exists: %@", barcodeReader ? @"YES" : @"NO");
-    
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
 															 delegate:self
 													cancelButtonTitle:@"Avbryt"
@@ -226,6 +224,12 @@
     }
 }
 
+- (void)setBarcode:(NSString *)barcode_ {
+    [barcode release];
+    barcode = [barcode_ retain];
+    barCodeCheckBox.hidden = (barcode_ == nil);
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -241,11 +245,7 @@
 		rightButton.title = @"Spara";
 		self.title = article_.name;
 		nameField.text = article_.name;
-		if (article_.barcode == nil){
-            barCodeCheckBox.hidden = YES;
-        } else {
-            barCodeCheckBox.hidden = NO;
-        }
+        self.barcode = article_.barcode;
 		commentField.text = article_.comment;
 		if (article_.picture)
 			photo.image = [[PhotoUtil instance] readThumbnail:article_.picture];
