@@ -34,7 +34,7 @@
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
 	[formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     NSString *title = [NSString stringWithFormat:(listArticle_.price ? @"Ändra pris (%@)" : @"Ändra pris"), [formatter stringFromNumber:listArticle_.price]];
-    if ((self = [super initWithTitle:title message:@"\n\n\n\n\n" delegate:self cancelButtonTitle:@"Avbryt" otherButtonTitles:@"Ändra", nil]))
+    if ((self = [super initWithTitle:title message:@"\n\n\n\n\n" delegate:self cancelButtonTitle:@"Avbryt" otherButtonTitles:@"OK", nil]))
     {
         listArticle_ = [listArticle retain];
         
