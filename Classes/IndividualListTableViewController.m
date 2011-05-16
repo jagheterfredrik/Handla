@@ -102,6 +102,7 @@
     {
         PriceAlertView *alertPrompt = [[PriceAlertView alloc] initWithListArticle:(ListArticle*)managedObject];
         [alertPrompt show];
+        [alertPrompt release];
     };
     
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:((ListArticle*)managedObject).article.name cancelButtonItem:[RIButtonItem itemWithLabel:@"Avbryt"] destructiveButtonItem:delete otherButtonItems:change,price, nil];
@@ -123,7 +124,9 @@
 #pragma mark -
 #pragma mark Events
 
-// Called when the add button is pressed
+/*
+ * Called when the add button is pressed, 
+ */
 - (void)addArticle {
 	AddArticleListViewController *addArticleListViewController = [[AddArticleListViewController alloc] initWithList:list_];
 	[addArticleListViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];

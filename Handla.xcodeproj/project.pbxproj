@@ -44,7 +44,6 @@
 		0536C0341370007300009372 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536C0301370007300009372 /* EGOImageLoadConnection.m */; };
 		0536C0351370007300009372 /* EGOImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536C0321370007300009372 /* EGOImageLoader.m */; };
 		0536C0371370010700009372 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0536C0361370010600009372 /* MessageUI.framework */; };
-		0536C03B13703BFA00009372 /* UIImagePickerSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536C03A13703BF800009372 /* UIImagePickerSingleton.m */; };
 		0536C046137069FE00009372 /* BrutalUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536C045137069FC00009372 /* BrutalUIImageView.m */; };
 		054257D8137B6689003C8D45 /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 054257D7137B6689003C8D45 /* CMPopTipView.m */; };
 		054257FE137C0DBF003C8D45 /* LargeCheckbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 054257FC137C0DBF003C8D45 /* LargeCheckbox.png */; };
@@ -219,8 +218,6 @@
 		0536C0321370007300009372 /* EGOImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageLoader.m; sourceTree = "<group>"; };
 		0536C0361370010600009372 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		0536C0381370227A00009372 /* Handla 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Handla 5.xcdatamodel"; sourceTree = "<group>"; };
-		0536C03913703BF700009372 /* UIImagePickerSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImagePickerSingleton.h; sourceTree = "<group>"; };
-		0536C03A13703BF800009372 /* UIImagePickerSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImagePickerSingleton.m; sourceTree = "<group>"; };
 		0536C044137069F900009372 /* BrutalUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrutalUIImageView.h; sourceTree = "<group>"; };
 		0536C045137069FC00009372 /* BrutalUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrutalUIImageView.m; sourceTree = "<group>"; };
 		054257D6137B6688003C8D45 /* CMPopTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPopTipView.h; sourceTree = "<group>"; };
@@ -673,8 +670,6 @@
 				48C3F9221314650F00EAE609 /* ArticleDetailViewController.m */,
 				48A8536A1317DAD200026C1B /* CheckoutViewController.h */,
 				48A8536B1317DAD200026C1B /* CheckoutViewController.m */,
-				0536C03913703BF700009372 /* UIImagePickerSingleton.h */,
-				0536C03A13703BF800009372 /* UIImagePickerSingleton.m */,
 				052C514C1378ACA700862745 /* PhotoHandler.h */,
 				052C514D1378ACA700862745 /* PhotoHandler.m */,
 			);
@@ -1078,7 +1073,6 @@
 				0536C0331370007300009372 /* EGOCache.m in Sources */,
 				0536C0341370007300009372 /* EGOImageLoadConnection.m in Sources */,
 				0536C0351370007300009372 /* EGOImageLoader.m in Sources */,
-				0536C03B13703BFA00009372 /* UIImagePickerSingleton.m in Sources */,
 				0536C046137069FE00009372 /* BrutalUIImageView.m in Sources */,
 				05DBB9EA13742AD4001E5154 /* Article.m in Sources */,
 				057E75BD13742FE000B14E92 /* PriceAlertView.m in Sources */,
@@ -1119,6 +1113,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Erika Dahlin (MT6Y8RU8ZN)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1136,6 +1131,7 @@
 					"\"$(SRCROOT)/Classes/ZBarSDK\"",
 				);
 				PRODUCT_NAME = Handla;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4A27BD67-4AFF-4E5C-88F4-C4DBFFF10628";
 			};
 			name = Debug;
 		};
@@ -1143,6 +1139,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Erika Dahlin (MT6Y8RU8ZN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Erika Dahlin (MT6Y8RU8ZN)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1158,6 +1156,8 @@
 					"\"$(SRCROOT)/Classes/ZBarSDK\"",
 				);
 				PRODUCT_NAME = Handla;
+				PROVISIONING_PROFILE = "4A27BD67-4AFF-4E5C-88F4-C4DBFFF10628";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4A27BD67-4AFF-4E5C-88F4-C4DBFFF10628";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

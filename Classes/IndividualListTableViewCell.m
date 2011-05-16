@@ -33,7 +33,7 @@
 - (IBAction)changePriceButtonPressed:(UIButton*) sender{
 	PriceAlertView *alertPrompt = [[PriceAlertView alloc] initWithListArticle:listArticle_];
 	[alertPrompt show];
-    //	[alertPrompt release]; EH?!
+    [alertPrompt release];
 }
 
 - (IBAction)imagePressed {
@@ -106,7 +106,7 @@
 }
 
 /*
- * overrides super method, to enable colored background.
+ * Overrides super method, to enable colored background.
  */
 - (void)layoutSubviews { 
     [super layoutSubviews]; 

@@ -160,7 +160,7 @@
 }
 
 /**
- * returns the sum of the costs in the list
+ * Returns the sum of the costs in the list
  */
 - (NSDecimalNumber*)calculateSumOfElementsInList {
 	NSDecimalNumber *amountBalance = [NSDecimalNumber decimalNumberWithString:@"0"];
@@ -174,7 +174,7 @@
 }
 
 /**
- * returns the sum of the checked articles' costs in the list
+ * Returns the sum of the checked articles costs in the list
  */
 - (NSDecimalNumber*)calculateSumOfCheckedElementsInList {
 	NSDecimalNumber *amountBalance = [NSDecimalNumber decimalNumberWithString:@"0"];
@@ -189,7 +189,10 @@
 	return amountBalance;
 }
 
-
+/*
+ * Asks the user if s/he wants to create a new list, select a previous item
+ * or scan in an item.
+ */
 - (void)addListArticle {
     RIButtonItem *cancel = [RIButtonItem itemWithLabel:@"Avbryt"];
     cancel.action = ^
@@ -294,6 +297,11 @@
     [reader release];
 }
 
+/*
+ * Handles the click of the purchase-done button. Checks if the user has checked
+ * all items, wanrs if not, and then shows the checkout-view (if the user has the
+ * setting turned on).
+ */
 - (void)purchaseDone
 {
 	//if checkout view is off, add new budget post and change view to budget, else goto checkoutview
@@ -431,9 +439,10 @@
     return self;
 }
 
-
+/*
+ * Updates all the price fields. Called when a listarticle's price is changed.
+ */
 - (void)updatePriceFields {
-    
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     NSDecimalNumber *total = [self calculateSumOfCheckedElementsInList];
@@ -514,6 +523,11 @@
 }
 
 
+/*
+ * Called when an thumbnail image in the list is pressed. If the pressed image was
+ * the has-no-image image the user is asked if it wants to take a new picture or
+ * choose an existing.
+ */
 - (void)imagePressed:(NSNotification*)notification {
 	ListArticle *article = (ListArticle*)[notification object];
 	if (article.article.picture) {
@@ -524,6 +538,7 @@
 	} else {
         PhotoHandler *handler = [[PhotoHandler alloc] initWithViewController:self article:article.article];
         [handler showAlternatives];
+        [handler release];
     }
 }
 

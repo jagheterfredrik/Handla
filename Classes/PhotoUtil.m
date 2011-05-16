@@ -36,7 +36,7 @@ NSString *thumbpath(NSString *base, NSString *name) {
 }
 
 /**
- * Get the picture form a picture-id.
+ * Get the picture from a picture-id.
  */
 - (UIImage*)readPhoto:(NSString*)name {
 	if (!name) return nil;
@@ -77,6 +77,9 @@ NSString *thumbpath(NSString *base, NSString *name) {
 	return name;
 }
 
+/*
+ * Deletes a photo and it's thumbnail.
+ */
 - (void)deletePhoto:(NSString*)name {
 	if (!name) return;
 	NSString *path = filepath(basePath, name);

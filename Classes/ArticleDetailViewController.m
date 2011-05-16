@@ -12,8 +12,6 @@
 
 #import "DSActivityView.h"
 
-#import "UIImagePickerSingleton.h"
-
 @implementation ArticleDetailViewController
 
 @synthesize barcode;
@@ -73,6 +71,9 @@
     [pool release];
 }
 
+/*
+ * Saves the article iff the done-button was clicked.
+ */
 - (void)doneClick {
 	if ([nameField.text length] == 0) {
 		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Du måste ange ett namn för varan"
@@ -116,8 +117,7 @@
 
 - (void) imagePickerController:(UIImagePickerController*)reader didFinishPickingMediaWithInfo:(NSDictionary*)info {
     if ([reader isMemberOfClass:[ZBarReaderViewController class]]) {
-        id<NSFastEnumeration> results =
-        [info objectForKey: ZBarReaderControllerResults];
+        id<NSFastEnumeration> results = [info objectForKey: ZBarReaderControllerResults];
         ZBarSymbol *symbol = nil;
         for(symbol in results)
             break;
@@ -135,23 +135,31 @@
     }
 }
 
+/*
+ * Allows the user to add barcode to the article.
+ */
 - (IBAction)scanClick:(id)sender {
-	ZBarReaderViewController *reader = [ZBarReaderViewController new];
-    reader.readerDelegate = self;
+	barcodeReader = [ZBarReaderViewController new];
+    barcodeReader.readerDelegate = self;
 	
-    ZBarImageScanner *scanner = reader.scanner;
+    ZBarImageScanner *scanner = barcodeReader.scanner;
     // disable rarely used I2/5 to improve performance
     [scanner setSymbology: ZBAR_I25
 				   config: ZBAR_CFG_ENABLE
 					   to: 0];
 	
     // present and release the controller
-    [self presentModalViewController: reader
+    [self presentModalViewController: barcodeReader
 							animated: YES];
-    [reader release];
+    [barcodeReader release];
 }
 
+/*
+ * Allows the user to take a new picture, choose an existing one or remove the one
+ * currently assigned to the article.
+ */
 - (IBAction)cameraClick:(id)sender {
+    NSLog(@"exists: %@", barcodeReader ? @"YES" : @"NO");
     
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
 															 delegate:self
@@ -188,7 +196,7 @@
         {
             //Take picture
             // Create image picker controller
-            UIImagePickerController *imagePicker = [UIImagePickerSingleton sharedInstance];
+            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
             if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ingen kamera tillgänglig" message:@"Funktionen kräver att din enhet har en kamera" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [alert show];
@@ -199,16 +207,18 @@
             imagePicker.delegate = self;
             imagePicker.allowsEditing = NO;
             [self presentModalViewController:imagePicker animated:YES];
+            [imagePicker release];
         }
             break;
         case 2:
             //Choose existing picture
         {
-            UIImagePickerController *imagePicker = [UIImagePickerSingleton sharedInstance];
+            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
             imagePicker.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
             imagePicker.delegate = self;
             imagePicker.allowsEditing = NO;
             [self presentModalViewController:imagePicker animated:YES];
+            [imagePicker release];
         }
             break;
         default:

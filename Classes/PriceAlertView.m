@@ -104,7 +104,7 @@
         maxLength = 7;
     }
     [formatter release];
-    return self;
+    return [self retain];
 }
 
 /**

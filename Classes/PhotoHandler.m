@@ -8,7 +8,6 @@
 
 #import "PhotoHandler.h"
 #import "PhotoUtil.h"
-#import "UIImagePickerSingleton.h"
 #import "UIActionSheet+Blocks.h"
 #import "DSActivityView.h"
 
@@ -49,6 +48,9 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ArticleChanged" object:nil];
 }
 
+/*
+ * Updates the picture by saving it.
+ */
 - (void)updatePicture {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     if (article_.picture)
@@ -84,6 +86,9 @@
 }
 */
 
+/*
+ * Allows the user to take a new picture, choose an existing one.
+ */
 - (void)showAlternatives {
     RIButtonItem *delete = [RIButtonItem itemWithLabel:@"Ta bort bild"];
     delete.action = ^
@@ -98,7 +103,7 @@
     RIButtonItem *takeNew = [RIButtonItem itemWithLabel:@"Ta ny bild med kamera"];
     takeNew.action = ^
     {
-        UIImagePickerController *imagePicker = [UIImagePickerSingleton sharedInstance];
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
         if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ingen kamera tillgänglig" message:@"Funktionen kräver att din enhet har en kamera" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
@@ -109,16 +114,18 @@
         imagePicker.delegate = self;
         imagePicker.allowsEditing = NO;
         [self.controller presentModalViewController:imagePicker animated:YES];
+        [imagePicker release];
     };
-    
+
     RIButtonItem *pickOld = [RIButtonItem itemWithLabel:@"Välj befintlig bild"];
     pickOld.action = ^
     {
-        UIImagePickerController *imagePicker = [UIImagePickerSingleton sharedInstance];
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
         imagePicker.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
         imagePicker.delegate = self;
         imagePicker.allowsEditing = NO;
         [self.controller presentModalViewController:imagePicker animated:YES];
+        [imagePicker release];
     };
     
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Välj åtgärd" cancelButtonItem:[RIButtonItem itemWithLabel:@"Avbryt"]destructiveButtonItem:nil otherButtonItems:takeNew, pickOld, nil];

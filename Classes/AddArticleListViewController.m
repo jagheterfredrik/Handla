@@ -66,6 +66,9 @@
 #pragma mark -
 #pragma mark Events
 
+/*
+ * Handles clicks from the add-button and allows the user to create a new article.
+ */
 - (void)addArticle {
 	ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil managedObjectContext:context_];
 	[self.navigationController pushViewController:articleDetailViewController animated:YES];
@@ -153,6 +156,11 @@
 #pragma mark -
 #pragma mark Events
 
+/*
+ * Called if the user confirms the removal in the alert view. The alert view
+ * is only showed if the user is trying to remove an item that is included in
+ * any list. All list-items belonging to the article is then also removed.
+ */
 - (void)performRemoval {
 	for (id object in selectedArticle.listArticles)
 		[context_ deleteObject:object];

@@ -114,31 +114,6 @@
 	[actionSheet release];
 }
 
-
-- (void)showPopTipView {
-    NSString *message = @"Klicka här för att skapa en ny matlista";
-    CMPopTipView *popTipView = [[CMPopTipView alloc] initWithMessage:message];
-    popTipView.backgroundColor = [UIColor blackColor];
-    popTipView.delegate = self;
-    [popTipView presentPointingAtBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
-    
-    self.myPopTipView = popTipView;
-    [popTipView release];
-}
-
-- (void)dismissPopTipView {
-    [self.myPopTipView dismissAnimated:NO];
-    self.myPopTipView = nil;
-}
-
-
-#pragma mark CMPopTipViewDelegate methods
-- (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView {
-    // User can tap CMPopTipView to dismiss it
-    self.myPopTipView = nil;
-    [self createList];
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	NSInteger numRows = [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
@@ -157,6 +132,39 @@
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
     self.navigationItem.rightBarButtonItem.enabled = !editing;
     [super setEditing:editing animated:animated];
+}
+
+#pragma mark - Pop tip view helper functions
+
+/*
+ * Shows the tip-view for creating a new list
+ */
+- (void)showPopTipView {
+    NSString *message = @"Klicka här för att skapa en ny matlista";
+    CMPopTipView *popTipView = [[CMPopTipView alloc] initWithMessage:message];
+    popTipView.backgroundColor = [UIColor blackColor];
+    popTipView.delegate = self;
+    [popTipView presentPointingAtBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
+    
+    self.myPopTipView = popTipView;
+    [popTipView release];
+}
+
+/*
+ * Hides the displaying tip-view.
+ */
+- (void)dismissPopTipView {
+    [self.myPopTipView dismissAnimated:NO];
+    self.myPopTipView = nil;
+}
+
+
+#pragma mark CMPopTipViewDelegate methods
+
+- (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView {
+    // User can tap CMPopTipView to dismiss it
+    self.myPopTipView = nil;
+    [self createList];
 }
 
 #pragma mark -
@@ -251,7 +259,9 @@
 #pragma mark -
 #pragma mark Events
 
-// Called when the add button is pressed
+/*
+ * Called when the add button is pressed, asks for a new name for the new list.
+ */
 - (void)createList {
 	self.list = nil;
 	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp din nya lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Skapa"];
@@ -262,6 +272,9 @@
 	[alertPrompt release];
 }
 
+/*
+ * Helper function for turning on editing of the table and disabling the add-button.
+ */
 - (void)turnOnEditing {
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(turnOffEditing)];
 	self.navigationItem.rightBarButtonItem = nil;
@@ -271,6 +284,9 @@
     [self dismissPopTipView];
 }
 
+/*
+ * Helper function for turning off editing of the table and enabling the add-button.
+ */
 - (void)turnOffEditing {
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(turnOnEditing)];
 	[self.tableView setEditing:NO animated:YES];
