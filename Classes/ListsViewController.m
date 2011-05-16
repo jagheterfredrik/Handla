@@ -98,7 +98,7 @@
     RIButtonItem *rename = [RIButtonItem itemWithLabel:@"Ändra namn"];
     rename.action = ^
     {
-        AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp om din lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Ändra"];
+        AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp om din lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"OK"];
         alertPrompt.textField.text = selList.name;
         list_ = selList;
         alertPrompt.tag = RENAME_LIST;
@@ -106,14 +106,14 @@
         [alertPrompt release];
     };
     
-    RIButtonItem *duplicate = [RIButtonItem itemWithLabel:@"Duplicera listan"];
+    RIButtonItem *duplicate = [RIButtonItem itemWithLabel:@"Skapa kopia"];
     duplicate.action = ^
     {
         List *cloned = [NSEntityDescription
                                    insertNewObjectForEntityForName:@"List"
                                    inManagedObjectContext:managedObjectContext_];
         
-        cloned.name = [NSString stringWithFormat:@"kopia av %@", selList.name];
+        cloned.name = [NSString stringWithFormat:@"Kopia av %@", selList.name];
         cloned.creationDate = [NSDate date];
         
         for (ListArticle *listArticle in selList.articles) {
@@ -264,7 +264,7 @@
  */
 - (void)createList {
 	self.list = nil;
-	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp din nya lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"Skapa"];
+	AlertPrompt *alertPrompt = [[AlertPrompt alloc] initWithTitle:@"Döp din nya lista" delegate:self cancelButtonTitle:@"Avbryt" okButtonTitle:@"OK"];
     alertPrompt.tag = CREATE_LIST;
     alertPrompt.maxLength = 30;
     [self dismissPopTipView];
