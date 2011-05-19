@@ -170,7 +170,6 @@
 		051D577A1372B1EF003F6F9C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		051D577B1372B1EF003F6F9C /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		051D577C1372B1EF003F6F9C /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
-		051EBD0D133FFF0E00FA286B /* Handla 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Handla 3.xcdatamodel"; sourceTree = "<group>"; };
 		052057A01340023D00315132 /* SequenceTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceTable.h; sourceTree = "<group>"; };
 		052057A11340023D00315132 /* SequenceTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceTable.m; sourceTree = "<group>"; };
 		052C5140137892B800862745 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
@@ -217,7 +216,6 @@
 		0536C0311370007300009372 /* EGOImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageLoader.h; sourceTree = "<group>"; };
 		0536C0321370007300009372 /* EGOImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageLoader.m; sourceTree = "<group>"; };
 		0536C0361370010600009372 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		0536C0381370227A00009372 /* Handla 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Handla 5.xcdatamodel"; sourceTree = "<group>"; };
 		0536C044137069F900009372 /* BrutalUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrutalUIImageView.h; sourceTree = "<group>"; };
 		0536C045137069FC00009372 /* BrutalUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrutalUIImageView.m; sourceTree = "<group>"; };
 		054257D6137B6688003C8D45 /* CMPopTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPopTipView.h; sourceTree = "<group>"; };
@@ -1113,6 +1111,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Erika Dahlin (MT6Y8RU8ZN)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Erika Dahlin (MT6Y8RU8ZN)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1131,6 +1130,7 @@
 					"\"$(SRCROOT)/Classes/ZBarSDK\"",
 				);
 				PRODUCT_NAME = Handla;
+				PROVISIONING_PROFILE = "4A27BD67-4AFF-4E5C-88F4-C4DBFFF10628";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4A27BD67-4AFF-4E5C-88F4-C4DBFFF10628";
 			};
 			name = Debug;
@@ -1139,8 +1139,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Erika Dahlin (MT6Y8RU8ZN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Erika Dahlin (MT6Y8RU8ZN)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Aulikki Linnala";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Aulikki Linnala";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1156,8 +1156,9 @@
 					"\"$(SRCROOT)/Classes/ZBarSDK\"",
 				);
 				PRODUCT_NAME = Handla;
-				PROVISIONING_PROFILE = "4A27BD67-4AFF-4E5C-88F4-C4DBFFF10628";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4A27BD67-4AFF-4E5C-88F4-C4DBFFF10628";
+				PROVISIONING_PROFILE = "A0FB4A7E-F5A1-4BAE-A7D3-22B85A37C772";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A0FB4A7E-F5A1-4BAE-A7D3-22B85A37C772";
+				SKIP_INSTALL = NO;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1289,8 +1290,6 @@
 			isa = XCVersionGroup;
 			children = (
 				05DBB9E713742A8B001E5154 /* Handla.xcdatamodel */,
-				0536C0381370227A00009372 /* Handla 5.xcdatamodel */,
-				051EBD0D133FFF0E00FA286B /* Handla 3.xcdatamodel */,
 			);
 			currentVersion = 05DBB9E713742A8B001E5154 /* Handla.xcdatamodel */;
 			name = Handla.xcdatamodeld;
