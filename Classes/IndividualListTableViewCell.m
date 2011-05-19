@@ -65,7 +65,7 @@
     
     titleLabel.font = font;
     
-    if (self.listArticle.price != nil) {
+    if (self.listArticle.price) {
         priceLabel.text = [formatter stringFromNumber:[listArticle_.amount decimalNumberByMultiplyingBy:listArticle_.price]];
         priceLabel.textColor = [UIColor blackColor];
     }
@@ -77,12 +77,18 @@
     [thumbnail setImage:[[PhotoUtil instance] readThumbnail:self.listArticle.article.picture] forState:UIControlStateNormal];
     thumbnail.adjustsImageWhenHighlighted = NO;
     
-    if(!self.listArticle.price) {
-        descriptionLabel.text = @"";
-    } else if ([self.listArticle.weightUnit boolValue]) {
-        descriptionLabel.text = [NSString stringWithFormat:@"%.2f kg á %@/kg", [self.listArticle.amount doubleValue], [formatter stringFromNumber:self.listArticle.price]];
+    if ([self.listArticle.weightUnit boolValue]) {
+        if (self.listArticle.amount && !self.listArticle.price) {
+            descriptionLabel.text = [NSString stringWithFormat:@"%.2f kg", [self.listArticle.amount doubleValue]];
+        } else {
+            descriptionLabel.text = [NSString stringWithFormat:@"%.2f kg á %@/kg", [self.listArticle.amount doubleValue], [formatter stringFromNumber:self.listArticle.price]];
+        }
     } else {
-        descriptionLabel.text = [NSString stringWithFormat:@"%i st á %@/st", [self.listArticle.amount intValue], [formatter stringFromNumber:self.listArticle.price]];
+        if (self.listArticle.amount && !self.listArticle.price) {
+            descriptionLabel.text = [NSString stringWithFormat:@"%i st", [self.listArticle.amount intValue]];
+        } else {
+            descriptionLabel.text = [NSString stringWithFormat:@"%i st á %@/st", [self.listArticle.amount intValue], [formatter stringFromNumber:self.listArticle.price]];
+        }
     }
 	
     [formatter release];
@@ -129,25 +135,6 @@
     {
        [self setBackgroundColor:[UIColor whiteColor]];
     }
-}
-
-#pragma mark -
-#pragma mark Alert prompt delegate
-
-#define alertViewButtonOK 1
-
-- (void)alertView:(PriceAlertView *)alertPrompt clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == alertViewButtonOK && [alertPrompt.enteredPrice length] != 0) { //TODO: Better test
-		NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
-		[f setGeneratesDecimalNumbers:YES];
-		[f setNumberStyle:NSNumberFormatterDecimalStyle];
-		listArticle_.price = (NSDecimalNumber*)[f numberFromString:alertPrompt.enteredPrice];
-        listArticle_.amount = (NSDecimalNumber*)[f numberFromString:alertPrompt.enteredAmount];
-        listArticle_.article.lastWeightUnit = listArticle_.weightUnit = [NSNumber numberWithBool:alertPrompt.enteredWeightUnit];
-        listArticle_.article.lastPrice = listArticle_.price;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ListArticleChanged" object:nil];
-		[f release];
-	}
 }
 
 - (void)dealloc {

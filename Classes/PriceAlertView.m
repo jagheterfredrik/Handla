@@ -61,7 +61,7 @@
         
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
         if (listArticle_.price && [listArticle_.price doubleValue] != 0) {
-            priceField.text = [formatter stringFromNumber:listArticle_.price];
+            priceField.placeholder = [formatter stringFromNumber:listArticle_.price];
         }
         
         // Price label
@@ -83,10 +83,8 @@
         amountField.delegate = self;
         amountField.clearButtonMode = UITextFieldViewModeAlways;
 
-        if (!listArticle_.price || [listArticle_.price doubleValue] == 0) {
-            amountField.text = @"1";
-        } else {
-            amountField.text = [formatter stringFromNumber:listArticle_.amount];
+        if (listArticle_.amount) {
+            amountField.placeholder = [formatter stringFromNumber:listArticle_.amount];
         }
         [self addSubview:amountField];
         
@@ -128,22 +126,34 @@
  * Handles updating the article when pressing OK.
  */
 - (void)alertView:(PriceAlertView *)alertPrompt clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == 1 && [alertPrompt.enteredPrice length] != 0) { //TODO: Better test
+	if (buttonIndex == 1) { //TODO: Better test
 		NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
 		[f setGeneratesDecimalNumbers:YES];
 		[f setNumberStyle:NSNumberFormatterDecimalStyle];
-        listArticle_.price = (NSDecimalNumber*)[f numberFromString:alertPrompt.enteredPrice];
+        
+        if ([alertPrompt.enteredPrice length] != 0) {
+            listArticle_.price = (NSDecimalNumber*)[f numberFromString:alertPrompt.enteredPrice];
+            listArticle_.article.lastPrice = listArticle_.price;
+        }
         
         listArticle_.article.lastWeightUnit = listArticle_.weightUnit = [NSNumber numberWithBool:alertPrompt.enteredWeightUnit];
 
-        NSDecimalNumber *amount = (NSDecimalNumber*)[f numberFromString:alertPrompt.enteredAmount];
-        if (!alertPrompt.enteredWeightUnit) {
+        if ([alertPrompt.enteredAmount length] != 0) {
+            NSDecimalNumber *amount = (NSDecimalNumber*)[f numberFromString:alertPrompt.enteredAmount];
+            if (!alertPrompt.enteredWeightUnit) {
+                NSDecimalNumberHandler *behavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSNumberFormatterRoundFloor scale:0 raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:NO];
+                amount = [amount decimalNumberByRoundingAccordingToBehavior:behavior];
+            }
+        
+            listArticle_.amount = (amount ? amount : [NSDecimalNumber one]);
+        } else if (!alertPrompt.enteredWeightUnit) {
             NSDecimalNumberHandler *behavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSNumberFormatterRoundFloor scale:0 raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:NO];
-            amount = [amount decimalNumberByRoundingAccordingToBehavior:behavior];
+            NSDecimalNumber *amount = [(NSDecimalNumber*)[f numberFromString:amountField.placeholder]decimalNumberByRoundingAccordingToBehavior:behavior];
+            
+            listArticle_.amount = (amount ? amount : [NSDecimalNumber one]);
         }
-        listArticle_.amount = (amount ? amount : [NSDecimalNumber one]);
-        listArticle_.article.lastPrice = listArticle_.price;
-		listArticle_.timeStamp = [NSDate date];
+        
+		//Dont think so?: listArticle_.timeStamp = [NSDate date];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ListArticleChanged" object:nil];
 		[f release];
 	}
