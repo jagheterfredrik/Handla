@@ -227,7 +227,8 @@
 #pragma mark View lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+  self.edgesForExtendedLayout = UIRectEdgeNone;
+  [super viewWillAppear:animated];
 	valueBox.keyboardType = UIKeyboardTypeDecimalPad;
 	[nameBox becomeFirstResponder];
 }

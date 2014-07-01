@@ -39,6 +39,10 @@
     return nil;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  self.edgesForExtendedLayout = UIRectEdgeNone;
+}
+
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [super controllerDidChangeContent:controller];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ListChanged" object:self];
@@ -86,7 +90,7 @@
     RIButtonItem *change = [RIButtonItem itemWithLabel:@"Ändra vara"];
     change.action = ^
     {
-        ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil article:((ListArticle*)managedObject).article];
+        ArticleDetailViewController *articleDetailViewController = [[ArticleDetailViewController alloc] initWithNibName:@"ArticleDetailViewController" bundle:nil listArticle:(ListArticle*)managedObject];
         [self.navController pushViewController:articleDetailViewController animated:YES];
         [articleDetailViewController release];
     };
@@ -97,15 +101,7 @@
         [self deleteManagedObject:managedObject];
     };
     
-    RIButtonItem *price = [RIButtonItem itemWithLabel:@"Ändra pris"];
-    price.action = ^
-    {
-        PriceAlertView *alertPrompt = [[PriceAlertView alloc] initWithListArticle:(ListArticle*)managedObject];
-        [alertPrompt show];
-        [alertPrompt release];
-    };
-    
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:((ListArticle*)managedObject).article.name cancelButtonItem:[RIButtonItem itemWithLabel:@"Avbryt"] destructiveButtonItem:delete otherButtonItems:change,price, nil];
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:((ListArticle*)managedObject).article.name cancelButtonItem:[RIButtonItem itemWithLabel:@"Avbryt"] destructiveButtonItem:delete otherButtonItems:change, nil];
     [sheet showInView:self.view.window];
     [sheet release];
 }

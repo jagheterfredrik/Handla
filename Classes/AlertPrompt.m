@@ -20,19 +20,8 @@
 	
     if ((self = [super initWithTitle:title message:@"\n" delegate:delegate cancelButtonTitle:cancelButtonTitle otherButtonTitles:okayButtonTitle, nil]))
     {
-        UITextField *theTextField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 45.0, 260.0, 25.0)]; 
-        theTextField.backgroundColor = [UIColor clearColor];
-		theTextField.textColor = [UIColor whiteColor];
-		theTextField.keyboardType = UIKeyboardTypeAlphabet;
-		theTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
-		theTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
-		theTextField.autocorrectionType = UITextAutocorrectionTypeNo;
-		theTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-		theTextField.textAlignment = UITextAlignmentCenter;
-        theTextField.delegate = self;
-        [self addSubview:theTextField];
-        self.textField = theTextField;
-        [theTextField release];
+        self.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [self textFieldAtIndex:0].placeholder = @"";
         maxLength = 50;
     }
     return self;
@@ -74,12 +63,12 @@
  */
 - (NSString *)enteredText
 {
-    return textField.text;
+    return [self textFieldAtIndex:0].text;
 }
 
 - (void)dealloc
 {
-    [textField release];
     [super dealloc];
+    [textField release];
 }
 @end

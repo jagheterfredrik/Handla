@@ -24,6 +24,16 @@
     return self;	
 }
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil listArticle:(ListArticle*)listArticle {
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+    listArticle_ = listArticle;
+    article_ = listArticle_.article;
+    managedObjectContext_ = article_.managedObjectContext;
+  }
+  return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil article:(Article*)article {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -71,6 +81,50 @@
     [pool release];
 }
 
+- (void)updateLabels {
+  if (listArticle_ != nil) {
+    return;
+  }
+  if (weightUnitSwitch.selectedSegmentIndex == 0) {
+    priceField.placeholder = @"Styckpris";
+    amountField.placeholder = @"Antal";
+  } else {
+    priceField.placeholder = @"Kilopris";
+    amountField.placeholder = @"Vikt (kg)";
+  }
+}
+
+- (void)handlePrice {
+  NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+  [f setGeneratesDecimalNumbers:YES];
+  [f setNumberStyle:NSNumberFormatterDecimalStyle];
+  
+  if ([priceField.text length] != 0) {
+    listArticle_.price = (NSDecimalNumber*)[f numberFromString:priceField.text];
+    listArticle_.article.lastPrice = listArticle_.price;
+  }
+  
+  listArticle_.article.lastWeightUnit = listArticle_.weightUnit = [NSNumber numberWithBool:(weightUnitSwitch.selectedSegmentIndex == 1)];
+  
+  if ([amountField.text length] != 0) {
+    NSDecimalNumber *amount = (NSDecimalNumber*)[f numberFromString:amountField.text];
+    if (!listArticle_.weightUnit) {
+      NSDecimalNumberHandler *behavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSNumberFormatterRoundFloor scale:0 raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:NO];
+      amount = [amount decimalNumberByRoundingAccordingToBehavior:behavior];
+    }
+    
+    listArticle_.amount = (amount ? amount : [NSDecimalNumber one]);
+  } else {
+    NSDecimalNumberHandler *behavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSNumberFormatterRoundFloor scale:0 raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:NO];
+    NSDecimalNumber *amount = [(NSDecimalNumber*)[f numberFromString:amountField.placeholder]decimalNumberByRoundingAccordingToBehavior:behavior];
+    
+    listArticle_.amount = (amount ? amount : [NSDecimalNumber one]);
+  }
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"listArticleChanged" object:nil];
+  [f release];
+}
+
 /*
  * Saves the article iff the done-button was clicked.
  */
@@ -93,17 +147,18 @@
 	
 	//See if we're supposed to add the article to a list
 	if (list_ != nil) {
-		ListArticle *listArticle = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:managedObjectContext_];
-		listArticle.list = list_;
-		listArticle.article = article_;
-        listArticle.amount = [NSDecimalNumber decimalNumberWithString:@"1"];
-        listArticle.weightUnit = article_.lastWeightUnit;
-        listArticle.price = article_.lastPrice;
+		listArticle_ = [NSEntityDescription insertNewObjectForEntityForName:@"ListArticle" inManagedObjectContext:managedObjectContext_];
+    listArticle_.list = list_;
+    listArticle_.article = article_;
 	}
+  
+  if (listArticle_ != nil) {
+    [self handlePrice];
+  }
 	
 	article_.name = nameField.text;
 	article_.comment = commentField.text;
-    article_.barcode = self.barcode;
+  article_.barcode = self.barcode;
 	
 	list_.lastUsed = [NSDate date];
     
@@ -230,6 +285,28 @@
     barCodeCheckBox.hidden = (barcode_ == nil);
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  self.edgesForExtendedLayout = UIRectEdgeNone;
+  
+  [weightUnitSwitch addTarget:self action:@selector(updateLabels) forControlEvents:UIControlEventValueChanged];
+  
+  weightUnitSwitch.selectedSegmentIndex = [listArticle_.weightUnit boolValue] ? 1 : 0;
+  
+  [self updateLabels];
+  
+  NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+  [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+  
+  if (listArticle_.price != nil) {
+    priceField.placeholder = [formatter stringFromNumber:listArticle_.price];
+  }
+  [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+  if (listArticle_.amount != nil) {
+    amountField.placeholder = [formatter stringFromNumber:listArticle_.amount];
+  }
+  [formatter release];
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -249,6 +326,8 @@
 		commentField.text = article_.comment;
 		if (article_.picture)
 			photo.image = [[PhotoUtil instance] readThumbnail:article_.picture];
+
+    [self updateLabels];
 	} else {
 		rightButton.title = @"Lägg till";
 		self.title = @"Ny vara";

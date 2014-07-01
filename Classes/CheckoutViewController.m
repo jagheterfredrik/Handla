@@ -161,8 +161,8 @@
 	
 	//go to budget mode
 	//TODO: it would be great if the new budgetpost was highlighted in budgetview
-	[[[(UITabBarController*)self.parentViewController viewControllers] objectAtIndex:0] popViewControllerAnimated:NO]; 
 	[(UITabBarController*)self.parentViewController setSelectedIndex:1];
+	[[[(UITabBarController*)self.parentViewController viewControllers] objectAtIndex:0] popViewControllerAnimated:NO];
 	
 	//go to list view. Maybe even listSview???
 	[self dismissModalViewControllerAnimated:YES];

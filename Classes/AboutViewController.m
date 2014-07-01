@@ -31,6 +31,9 @@
 	
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  self.edgesForExtendedLayout = UIRectEdgeNone;
+}
 
 - (void)doneClick {	
 	

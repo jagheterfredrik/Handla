@@ -9,6 +9,7 @@
 #import "IndividualListTableViewCell.h"
 #import "PriceAlertView.h"
 #import "PhotoUtil.h"
+#import "ArticleDetailViewController.h"
 
 @implementation IndividualListTableViewCell
 @synthesize listArticle=listArticle_;
@@ -31,9 +32,6 @@
 }
 
 - (IBAction)changePriceButtonPressed:(UIButton*) sender{
-	PriceAlertView *alertPrompt = [[PriceAlertView alloc] initWithListArticle:listArticle_];
-	[alertPrompt show];
-    [alertPrompt release];
 }
 
 - (IBAction)imagePressed {

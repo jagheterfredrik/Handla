@@ -71,6 +71,10 @@
     [alert release];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  self.edgesForExtendedLayout = UIRectEdgeNone;
+}
+
 - (void) imagePickerController:(UIImagePickerController*)reader didFinishPickingMediaWithInfo:(NSDictionary*)info {
 	id<NSFastEnumeration> results =
 	[info objectForKey: ZBarReaderControllerResults];

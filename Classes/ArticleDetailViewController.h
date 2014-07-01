@@ -18,6 +18,7 @@
 @interface ArticleDetailViewController : UIViewController<ZBarReaderDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UIActionSheetDelegate, UINavigationControllerDelegate> {
 	Article *article_;
 	List *list_;
+  ListArticle *listArticle_;
 	NSManagedObjectContext *managedObjectContext_;
 	IBOutlet UIButton *photoButton;
 	IBOutlet UITextField *nameField;
@@ -28,11 +29,15 @@
 	UIImagePickerController *picturePicker;
 	BOOL newPhoto;
     NSString* barcode;
+  IBOutlet UITextField *amountField;
+  IBOutlet UITextField *priceField;
+  IBOutlet UISegmentedControl *weightUnitSwitch;
 }
 
 - (IBAction)scanClick:(id)sender;
 - (IBAction)cameraClick:(id)sender;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil managedObjectContext:(NSManagedObjectContext*)managedObjectContext;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil listArticle:(ListArticle*)listArticle;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil article:(Article*)article;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil list:(List*)list;
 @property(nonatomic,retain) NSString* barcode;
